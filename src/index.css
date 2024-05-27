@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-color: #c4c4c4;
+  }
+}
+
+/* TEST---------------------------------------------------------------------------------- */
+
+.product-card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 16px;
+  width: 30%;
+}
+
+.product-image {
+  border-radius: 8px;
+  margin-bottom: 12px;
+  max-width: 100%;
+}
+
+.product-name {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.product-price {
+  font-size: 16px;
+  color: #555;
+}
+
+/* ABOUT US-------------------------------------------------------- */
+
+.about-us-section {
+  display: flex;
+  flex-direction: row;
+}
+.text-container {
+}
+.text-title {
+  font-size: 2em;
+  font-weight: 800;
+}
+.text {
+}
+.image-container {
+}
+image {
+}
+
+/* BRANDS ------------------------------------------------------------------- */
+/* Brands.css */
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 70px;
+  background-color: orange; /* Puedes ajustar el fondo según tus necesidades */
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll 50s linear infinite;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: auto;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 25px;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* CARD------------------------------------------------------ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.flip-card-inner {
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.card-offer-span::before {
+  content: "Offert";
+  position: absolute;
+  width: 150%;
+  height: 30px;
+  background-color: #ff9f0d;
+  transform: rotate(-45deg) translateY(-20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 5px 2px 9px 0px rgba(0, 0, 0, 0.23);
+}
+
+.card-offer-span::after {
+  content: "";
+  position: absolute;
+  width: 11px;
+  bottom: 7px;
+  left: 0px;
+  height: 10px;
+  z-index: -1;
+  box-shadow: 132px -132px #cc3f47;
+  background-color: #cc3f47;
+}
+.card-offer-span {
+  position: absolute;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  top: -10px;
+  left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tooltip {
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.card-button {
+  background-color: #ff9f0d;
+}
+.card-button:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.card-button:hover .tooltip,
+.card-button:hover .tooltip::before {
+  background-color: #ff9f0d;
+  color: #ffffff;
+}
+
+/* Ocultar barra de desplazamiento */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-indicator.visible {
+  display: block;
+}
+/* Agrega el siguiente estilo para la flecha indicadora de scroll */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  right: 5px;
+  font-size: 24px;
+  color: #ff9f0d;
+  transition: opacity 0.3s ease;
+}
+
+/* Ajusta el estilo para que la flecha indicadora sea visible solo cuando hay desplazamiento */
+.scroll-indicator.invisible {
+  opacity: 0;
+}
