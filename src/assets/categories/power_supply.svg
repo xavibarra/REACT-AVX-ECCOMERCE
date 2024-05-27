@@ -5,58 +5,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 717"
         >
-          <defs>
-            <style>
-              .cls-1 {
-                fill: #171523;
-              }
 
-              .cls-1,
-              .cls-2,
-              .cls-3 {
-                stroke-width: 0px;
-              }
-
-              .cls-13 {
-                stroke-width: 8px;
-              }
-
-              .cls-13,
-              .cls-12,
-              .cls-16 {
-                fill: none;
-                stroke-miterlimit: 10;
-              }
-
-              .cls-13 {
-                stroke: #fdae37;
-                stroke-width: 12px;
-              }
-              .cls-17 {
-                stroke: #171523;
-                fill: none;
-                stroke-miterlimit: 10;
-                stroke-width: 12px;
-              }
-
-              .cls-12 {
-                stroke: #fdae37;
-                stroke-width: 40px;
-              }
-
-              .cls-16 {
-                stroke-width: 12px;
-              }
-
-              .cls-2 {
-                fill: #fff;
-              }
-
-              .cls-321 {
-                fill: #fff;
-              }
-            </style>
-          </defs>
           <rect
             class="cls-1"
             x="46"
