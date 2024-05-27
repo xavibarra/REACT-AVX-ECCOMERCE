@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <div id="nav-container">
       <div id="nav-left">
-        <div className="container">
+        <div className="container-nav">
           <input
             type="text"
             name="text"
