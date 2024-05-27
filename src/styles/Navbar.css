@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
 }
-.container {
+.container-nav {
   position: relative;
   --size-button: 40px;
   color: white;
@@ -45,7 +45,7 @@
   cursor: pointer;
 }
 
-.container .icon {
+.container-nav .icon {
   position: absolute;
   width: var(--size-button);
   height: var(--size-button);
@@ -54,7 +54,7 @@
   pointer-events: none;
 }
 
-.container .icon svg {
+.container-nav .icon svg {
   width: 25px;
   height: 25px;
 }
