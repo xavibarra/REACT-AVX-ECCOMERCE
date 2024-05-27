@@ -1,0 +1,122 @@
+<svg
+          id="case"
+          class="item"
+          data-name="Case"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 521 1200"
+        >
+          <defs>
+            <style>
+              .cls-1 {
+                fill: #171523;
+              }
+
+              .cls-1,
+              .cls-2,
+              .cls-3 {
+                stroke-width: 0px;
+              }
+
+              .cls-16 {
+                stroke-width: 10px;
+              }
+
+              .cls-16,
+              .cls-10 {
+                stroke: #fff;
+                stroke-miterlimit: 10;
+              }
+
+              .cls-16,
+              .cls-10,
+              .cls-3 {
+                fill: #fdae37;
+              }
+
+              .cls-2 {
+                fill: #fff;
+              }
+
+              .cls-10 {
+                stroke-width: 15px;
+              }
+            </style>
+          </defs>
+          <rect
+            class="cls-1"
+            x="30.94"
+            y="31.5"
+            width="459.13"
+            height="1137"
+            rx="45.31"
+            ry="45.31"
+          />
+          <rect
+            class="cls-3"
+            x="53.39"
+            y="62.27"
+            width="414.21"
+            height="119.77"
+          />
+          <rect
+            class="cls-3"
+            x="53.39"
+            y="201.18"
+            width="414.21"
+            height="111.45"
+          />
+          <rect
+            class="cls-3"
+            x="53.39"
+            y="326.77"
+            width="414.21"
+            height="111.45"
+          />
+          <rect
+            class="cls-3"
+            x="53.39"
+            y="454.86"
+            width="414.21"
+            height="111.45"
+            rx="34.59"
+            ry="34.59"
+          />
+          <g>
+            <rect
+              class="cls-2"
+              x="166.51"
+              y="497.28"
+              width="57.39"
+              height="26.62"
+            />
+            <rect
+              class="cls-2"
+              x="232.22"
+              y="497.28"
+              width="26.62"
+              height="26.62"
+              rx="13.31"
+              ry="13.31"
+              transform="translate(491.06 1021.17) rotate(-180)"
+            />
+            <rect
+              class="cls-2"
+              x="264.66"
+              y="497.28"
+              width="26.62"
+              height="26.62"
+              rx="13.31"
+              ry="13.31"
+              transform="translate(555.93 1021.17) rotate(180)"
+            />
+            <rect
+              class="cls-2"
+              x="297.1"
+              y="497.28"
+              width="57.39"
+              height="26.62"
+            />
+          </g>
+          <circle class="cls-10 light_case" cx="260.5" cy="707.71" r="39.92" />
+          <circle class="cls-16 light_case" cx="260.32" cy="793.8" r="18.3" />
+        </svg>

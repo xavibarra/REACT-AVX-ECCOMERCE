@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1908 576">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: Montserrat-SemiBold, Montserrat;
+        font-size: 295.6px;
+        font-weight: 600;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        font-family: Montserrat-Light, Montserrat;
+        font-size: 88.71px;
+        font-weight: 300;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        letter-spacing: .79em;
+      }
+
+      .cls-6 {
+        letter-spacing: .8em;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        letter-spacing: .79em;
+      }
+
+      .cls-3 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-3" d="M401.14,102.49c-39.61-39.61-91.52-59.41-143.43-59.41l.45,202.84"/>
+    <path class="cls-3" d="M469,252.29c0-56.01-22.7-106.72-59.41-143.43l-143.11,143.75"/>
+    <path class="cls-3" d="M102.91,414.49c39.61,39.61,91.52,59.41,143.43,59.41l-.45-202.84"/>
+    <path class="cls-3" d="M35.95,262.88c0,56.01,22.7,106.72,59.41,143.43l143.11-143.75"/>
+    <path class="cls-3" d="M94.88,108.23c-39.61,39.61-59.41,91.52-59.41,143.43l202.84-.45"/>
+    <path class="cls-3" d="M246.49,41.27c-56.01,0-106.72,22.7-143.43,59.41l143.75,143.11"/>
+  </g>
+  <text class="cls-1" transform="translate(231.47 473.26)"><tspan x="0" y="0">PO</tspan><tspan class="cls-4" x="463.5" y="0">R</tspan><tspan class="cls-7" x="676.63" y="0">TIONS</tspan></text>
+  <text class="cls-2" transform="translate(528.29 246.07)"><tspan class="cls-8" x="0" y="0">C</tspan><tspan class="cls-6" x="133.16" y="0">OMPONEN</tspan><tspan class="cls-5" x="1130.66" y="0">T</tspan><tspan class="cls-6" x="1250.42" y="0">S</tspan></text>
+</svg>
