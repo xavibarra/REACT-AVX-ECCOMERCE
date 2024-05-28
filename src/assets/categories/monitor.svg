@@ -5,59 +5,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 958"
         >
-          <defs>
-            <style>
-              .cls-166 {
-                letter-spacing: 0.8em;
-              }
 
-              .cls-25 {
-                letter-spacing: 0.79em;
-              }
-
-              .cls-5 {
-                fill: #171523;
-              }
-
-              .cls-31,
-              .cls-6,
-              .cls-7 {
-                stroke-width: 0px;
-              }
-
-              .cls-8 {
-                letter-spacing: 0.79em;
-              }
-
-              .cls-9 {
-                letter-spacing: 0.8em;
-              }
-
-              .cls-41 {
-                font-family: Montserrat-SemiBold, Montserrat;
-                font-size: 139.4px;
-                font-weight: 600;
-              }
-
-              .light_monitor {
-                fill: #fff;
-              }
-
-              .cls-5 {
-                font-family: Montserrat-Light, Montserrat;
-                font-size: 41.84px;
-                font-weight: 300;
-              }
-
-              .cls-77 {
-                fill: #fdae37;
-              }
-
-              .cls-101 {
-                letter-spacing: 0em;
-              }
-            </style>
-          </defs>
           <g>
             <path
               class="cls-77"
