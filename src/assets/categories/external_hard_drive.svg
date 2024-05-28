@@ -5,40 +5,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1106 1266"
         >
-          <defs>
-            <style>
-              .cls-19,
-              .cls-29 {
-                fill: #171523;
-              }
 
-              .cls-19,
-              .cls-29,
-              .cls-39,
-              .cls-49 {
-                stroke-width: 0px;
-              }
-
-              .cls-59 {
-                fill: none;
-                stroke: #fdae37;
-                stroke-miterlimit: 10;
-                stroke-width: 25px;
-              }
-
-              .cls-29 {
-                opacity: 0.97;
-              }
-
-              .cls-39 {
-                fill: #fff;
-              }
-
-              .cls-49 {
-                fill: #fdae37;
-              }
-            </style>
-          </defs>
           <rect
             class="cls-29"
             x="163.89"
