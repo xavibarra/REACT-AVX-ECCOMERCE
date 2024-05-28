@@ -340,12 +340,6 @@ image {
   transform: translate(50%, -50%);
 }
 
-.container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
 .scroll-container {
   display: flex;
   flex-wrap: nowrap;
@@ -484,6 +478,17 @@ image {
 #power_supply:hover .cls-13 {
   stroke: #171717;
   stroke-width: 12px;
+}
+
+.container section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* INTERNAL HARD DRIVE */
