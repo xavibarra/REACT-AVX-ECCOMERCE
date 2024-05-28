@@ -3,12 +3,17 @@ svg {
   height: 75%;
 }
 
-#ram2, #ram3{
+
+#ram2,
+#ram3 {
+
   width: 100%;
   height: 100%;
 }
 
-#ram{
+
+#ram {
+
   display: flex;
   flex-direction: column;
   padding: 2em 0.25em;
@@ -164,9 +169,6 @@ svg {
 .cls-101 {
   letter-spacing: 0em;
 }
-
-
-
 
 
 /* EXTERNAL HARD DRIVE */

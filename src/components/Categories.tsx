@@ -1,5 +1,7 @@
-import "../styles/svg.css";
+
 import React, { useEffect } from "react";
+import "../styles/svg.css";
+
 
 const Categories: React.FC = () => {
   useEffect(() => {
@@ -105,7 +107,9 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Cpu"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1265 1127">
+            viewBox="0 0 1265 1127"
+          >
+
             <g>
               <g>
                 <g>
@@ -537,7 +541,9 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Case"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 521 1200">
+            viewBox="0 0 521 1200"
+          >
+
             <rect
               className="cls-1"
               x="30.94"
@@ -634,7 +640,9 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Power supply"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 717">
+            viewBox="0 0 1200 717"
+          >
+
             <rect
               className="cls-1"
               x="46"
@@ -782,7 +790,9 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Internal hard drive"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 887 1200">
+            viewBox="0 0 887 1200"
+          >
+
             <rect className="cls-1" x="38.5" y="18" width="810" height="1164" />
             <g>
               <g id="R.2-1">
@@ -915,7 +925,10 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Monitor"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 958">
+
+            viewBox="0 0 1200 958"
+          >
+
             <g>
               <path
                 className="cls-77"
@@ -983,7 +996,10 @@ const Categories: React.FC = () => {
               </g>
               <text
                 className="cls-41 logo"
-                transform="translate(263.49 472.22)">
+
+                transform="translate(263.49 472.22)"
+              >
+
                 <tspan x="0" y="0">
                   PO
                 </tspan>
@@ -1018,7 +1034,10 @@ const Categories: React.FC = () => {
             className="item"
             data-name="External hard drive"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1106 1266">
+
+            viewBox="0 0 1106 1266"
+          >
+
             <rect
               className="cls-29"
               x="163.89"
@@ -1114,7 +1133,10 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Optical drive"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 1214">
+
+            viewBox="0 0 1200 1214"
+          >
+
             <g id="disk_move">
               <rect
                 className="cls-3"
@@ -1198,7 +1220,10 @@ const Categories: React.FC = () => {
             data-name="Case fan"
             className="item"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 1200">
+
+            viewBox="0 0 1200 1200"
+          >
+
             <rect
               className="cls-1"
               x="49.75"
@@ -1258,7 +1283,10 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Ram"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 307">
+
+            viewBox="0 0 1200 307"
+          >
+
             <path
               className="cls-1"
               d="M1165.49,138.66c.7,0,1.38.06,2.05.15V26H35.46v112.81c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v24.89c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v54.09h457.47v-30.04h16.39v30.04h658.22v-54.09c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7c.7,0,1.38.06,2.05.15v-24.89c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7Z"
@@ -1412,7 +1440,10 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Ram"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 307">
+
+            viewBox="0 0 1200 307"
+          >
+
             <path
               className="cls-1"
               d="M1165.49,138.66c.7,0,1.38.06,2.05.15V26H35.46v112.81c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v24.89c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v54.09h457.47v-30.04h16.39v30.04h658.22v-54.09c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7c.7,0,1.38.06,2.05.15v-24.89c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7Z"
@@ -1569,7 +1600,10 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Graphic card"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 717">
+
+            viewBox="0 0 1200 717"
+          >
+
             <g>
               <rect
                 className="cls-44"
@@ -1679,7 +1713,10 @@ const Categories: React.FC = () => {
             className="item"
             data-name="Cpu cooler"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1041 958">
+
+            viewBox="0 0 1041 958"
+          >
+
             <rect
               className="cls-1"
               x="84.31"
@@ -1757,7 +1794,10 @@ const Categories: React.FC = () => {
             className="item"
             data-name="motherboard"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1265 1393">
+
+            viewBox="0 0 1265 1393"
+          >
+
             <g>
               <rect
                 className="cls-5"
