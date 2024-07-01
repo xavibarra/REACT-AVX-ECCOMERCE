@@ -4,11 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
-#nav-container div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .container-nav {
   position: relative;
   --size-button: 40px;
@@ -54,10 +50,6 @@
   pointer-events: none;
 }
 
-.container-nav .icon svg {
-  width: 25px;
-  height: 25px;
-}
 #nav-mid {
   display: flex;
   align-items: center;
@@ -73,14 +65,4 @@ p {
 }
 #comp {
   font-size: 25px;
-}
-#circulo {
-  width: 35px;
-  height: 35px;
-}
-.ico {
-  color: black;
-  padding: 0px 5px;
-  height: 30px;
-  width: 30px;
 }
