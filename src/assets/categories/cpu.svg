@@ -5,27 +5,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1265 1127"
         >
-          <defs>
-            <style>
-              .cls-1 {
-                fill: #171523;
-              }
-
-              .cls-1,
-              .cls-2,
-              .cls-3 {
-                stroke-width: 0px;
-              }
-
-              .cls-2 {
-                fill: #fff;
-              }
-
-              .cls-3 {
-                fill: #fdae37;
-              }
-            </style>
-          </defs>
+         
           <g>
             <g>
               <g>
