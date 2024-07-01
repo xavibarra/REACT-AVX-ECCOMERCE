@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
-import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { debounce } from "lodash";
+import { useCallback, useEffect, useState } from "react";
+import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import "../styles/navbar.css";
 
 function Navbar() {
