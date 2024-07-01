@@ -16,6 +16,7 @@ import nzxtLogo from "../assets/brand-logos/nzxt.png";
 import samsungLogo from "../assets/brand-logos/samsung.png";
 import seagateLogo from "../assets/brand-logos/seagate.png";
 import toshibaLogo from "../assets/brand-logos/toshiba.png";
+import "../styles/animations.css";
 
 // TODO no es veuren les ultimes marques
 export default class Brands extends Component {
@@ -104,11 +105,18 @@ export default class Brands extends Component {
     ];
 
     return (
-      <div className="carousel">
-        <div className="carousel-track">
+      <div className="relative w-full overflow-hidden h-[70px] bg-primary">
+        <div className="carousel-track flex">
           {brands.map((brand, index) => (
-            <div className="carousel-item" key={index}>
-              <img src={brand.logo} alt={brand.alt} />
+            <div
+              className="flex-shrink-0 flex-grow-0 w-auto h-[70px] flex items-center justify-center px-[25px] carousel-item"
+              key={index}
+            >
+              <img
+                className="h-full object-contain"
+                src={brand.logo}
+                alt={brand.alt}
+              />
             </div>
           ))}
         </div>

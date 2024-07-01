@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
 import iconLocation from "../assets/img/icons8-mapas-48.png";
+import "../styles/flip-card.css";
 // TODO PRIMARY COLOR FROM TAILWINDCONFIG
 // TODO INFROMATION FROM DB
 // TODO IMPROVE CSS STYLE
