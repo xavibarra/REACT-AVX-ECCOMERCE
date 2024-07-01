@@ -1,13 +1,12 @@
-import { useState, useEffect, useCallback } from "react";
-import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { debounce } from "lodash";
-import circulo from "../assets/img/circulo.png";
-import "../styles/Navbar.css";
+import { useCallback, useEffect, useState } from "react";
+import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 
+import "../styles/navbar.css";
 
 function Navbar() {
   // Estado para almacenar el término de búsqueda
-  const [query, setQuery] = useState(''); // Modificado: Añadido el estado query
+  const [query, setQuery] = useState(""); // Modificado: Añadido el estado query
   // Estado para almacenar los resultados de la búsqueda
   const [results, setResults] = useState<any[]>([]); // Modificado: Añadido el estado results
 
