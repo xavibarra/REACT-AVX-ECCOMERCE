@@ -1,6 +1,6 @@
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import circulo from "../assets/img/circulo.png";
-import "../styles/Navbar.css";
+import "../styles/navbar.css";
 
 function Navbar() {
   return (
