@@ -166,7 +166,6 @@ svg {
   letter-spacing: 0em;
 }
 
-
 /* EXTERNAL HARD DRIVE */
 #external_hard_drive:hover #light_external3 {
   fill: #fdae37;
@@ -439,6 +438,3 @@ svg {
   transform: translateY(100px);
   transition: transform 0.8s ease;
 }
-
-/* HOVER NOMBRE CATEGORIAS */
-.cpu: hover;
