@@ -2,9 +2,9 @@ import about from "../assets/img/aboutUs.jpg";
 // TODO STYLE
 const AboutUs = () => {
   return (
-    <section className="about-us-section">
+    <section className="flex flex-row">
       <div className="tetx-container">
-        <h2 className="text-title">About us</h2>
+        <h2 className="text-2xl font-extrabold">About us</h2>
         <p className="text">
           Welcome to Components Portions! Founded by tech enthusiasts, we are
           dedicated to providing the highest quality computer components to help

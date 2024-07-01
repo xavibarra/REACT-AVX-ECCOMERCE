@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import "../styles/svg.css";
-import provaIMG from "../assets/img/aboutUs.jpg";
+import "../styles/svgCategories.css";
 
 const Categories: React.FC = () => {
   useEffect(() => {
@@ -122,8 +121,11 @@ const Categories: React.FC = () => {
     setHoveredIndex(null);
   };
   return (
-    <section id="components">
-      <div className="container">
+    <section
+      id="components"
+      className="flex justify-center items-center h-screen mr-8 bg-white overflow-x-auto"
+    >
+      <div className="relative h-full mx-auto container">
         <div
           id="cpu"
           onMouseEnter={() => handleMouseEnter(0)}
@@ -137,7 +139,6 @@ const Categories: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1265 1127"
           >
-
             <g>
               <g>
                 <g>
@@ -575,7 +576,6 @@ const Categories: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 521 1200"
           >
-
             <rect
               className="cls-1"
               x="30.94"
@@ -678,7 +678,6 @@ const Categories: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1200 717"
           >
-
             <rect
               className="cls-1"
               x="46"
@@ -832,7 +831,6 @@ const Categories: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 887 1200"
           >
-
             <rect className="cls-1" x="38.5" y="18" width="810" height="1164" />
             <g>
               <g id="R.2-1">
@@ -971,7 +969,6 @@ const Categories: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1200 958"
           >
-
             <g>
               <path
                 className="cls-77"
@@ -1079,10 +1076,8 @@ const Categories: React.FC = () => {
             className="item"
             data-name="External hard drive"
             xmlns="http://www.w3.org/2000/svg"
-
             viewBox="0 0 1106 1266"
           >
-
             <rect
               className="cls-29"
               x="163.89"
@@ -1273,7 +1268,6 @@ const Categories: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1200 1200"
           >
-
             <rect
               className="cls-1"
               x="49.75"
@@ -1339,7 +1333,6 @@ const Categories: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1200 307"
           >
-
             <path
               className="cls-1"
               d="M1165.49,138.66c.7,0,1.38.06,2.05.15V26H35.46v112.81c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v24.89c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v54.09h457.47v-30.04h16.39v30.04h658.22v-54.09c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7c.7,0,1.38.06,2.05.15v-24.89c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7Z"
@@ -1495,7 +1488,6 @@ const Categories: React.FC = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1200 307"
           >
-
             <path
               className="cls-1"
               d="M1165.49,138.66c.7,0,1.38.06,2.05.15V26H35.46v112.81c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v24.89c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v54.09h457.47v-30.04h16.39v30.04h658.22v-54.09c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7c.7,0,1.38.06,2.05.15v-24.89c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7Z"
@@ -2165,9 +2157,101 @@ const Categories: React.FC = () => {
 
         <section className="center">
           {hoveredIndex !== null ? (
-            <span className="">{categoriesName[hoveredIndex]}</span>
+            <span className="text-primary text-4xl font-bold">
+              {categoriesName[hoveredIndex]}
+            </span>
           ) : (
-            <img src={provaIMG} alt="Imagen por defecto" />
+            <svg
+              id="Layer_1"
+              data-name="Layer 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1908 576"
+              className="h-auto w-full max-w-lg"
+            >
+              <defs>
+                <style>{`
+              .font-semi-bold {
+                font-family: Montserrat-SemiBold, Montserrat;
+                font-size: 295.6px;
+                font-weight: 600;
+              }
+              .fill-black, .font-light, .no-stroke {
+                fill: #000;
+              }
+              .font-light {
+                font-family: Montserrat-Light, Montserrat;
+                font-size: 88.71px;
+                font-weight: 300;
+              }
+              .spacing-normal {
+                letter-spacing: 0em;
+              }
+              .spacing-wide {
+                letter-spacing: .79em;
+              }
+              .spacing-wider {
+                letter-spacing: .8em;
+              }
+              .no-stroke {
+                stroke-width: 0px;
+              }
+            `}</style>
+              </defs>
+              <g>
+                <path
+                  className="no-stroke"
+                  d="M401.14,102.49c-39.61-39.61-91.52-59.41-143.43-59.41l.45,202.84"
+                />
+                <path
+                  className="no-stroke"
+                  d="M469,252.29c0-56.01-22.7-106.72-59.41-143.43l-143.11,143.75"
+                />
+                <path
+                  className="no-stroke"
+                  d="M102.91,414.49c39.61,39.61,91.52,59.41,143.43,59.41l-.45-202.84"
+                />
+                <path
+                  className="no-stroke"
+                  d="M35.95,262.88c0,56.01,22.7,106.72,59.41,143.43l143.11-143.75"
+                />
+                <path
+                  className="no-stroke"
+                  d="M94.88,108.23c-39.61,39.61-59.41,91.52-59.41,143.43l202.84-.45"
+                />
+                <path
+                  className="no-stroke"
+                  d="M246.49,41.27c-56.01,0-106.72,22.7-143.43,59.41l143.75,143.11"
+                />
+              </g>
+              <text
+                className="font-semi-bold"
+                transform="translate(231.47 473.26)"
+              >
+                <tspan x="0" y="0">
+                  PO
+                </tspan>
+                <tspan className="spacing-normal" x="463.5" y="0">
+                  R
+                </tspan>
+                <tspan className="spacing-normal" x="676.63" y="0">
+                  TIONS
+                </tspan>
+              </text>
+              <text className="font-light" transform="translate(528.29 246.07)">
+                <tspan className="spacing-wide" x="0" y="0">
+                  C
+                </tspan>
+                <tspan className="spacing-wider" x="133.16" y="0">
+                  OMPONEN
+                </tspan>
+                <tspan className="spacing-wide" x="1130.66" y="0">
+                  T
+                </tspan>
+                <tspan className="spacing-wider" x="1250.42" y="0">
+                  S
+                </tspan>
+              </text>
+            </svg>
           )}
         </section>
       </div>

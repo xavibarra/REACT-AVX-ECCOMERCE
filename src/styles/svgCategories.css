@@ -166,7 +166,6 @@ svg {
   letter-spacing: 0em;
 }
 
-
 /* EXTERNAL HARD DRIVE */
 #external_hard_drive:hover #light_external3 {
   fill: #fdae37;
@@ -440,5 +439,141 @@ svg {
   transition: transform 0.8s ease;
 }
 
-/* HOVER NOMBRE CATEGORIAS */
-.cpu: hover;
+/* COMPONENTS------------------------------------------------------ */
+
+.container div {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 16px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.container div img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center svg {
+  width: 250px;
+}
+
+/* Top row */
+.container div:nth-child(1) {
+  top: 20%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+.container div:nth-child(2) {
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container div:nth-child(3) {
+  top: 20%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+}
+
+/* Bottom row */
+.container div:nth-child(4) {
+  bottom: 20%;
+  left: 30%;
+  transform: translate(-50%, 50%);
+}
+.container div:nth-child(5) {
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+.container div:nth-child(6) {
+  bottom: 20%;
+  left: 70%;
+  transform: translate(-50%, 50%);
+}
+
+/* Left column */
+.container div:nth-child(7) {
+  top: 25%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+.container div:nth-child(8) {
+  top: 50%;
+  left: 6%;
+  transform: translate(-50%, -50%);
+}
+.container div:nth-child(9) {
+  top: 75%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+
+/* Right column */
+.container div:nth-child(10) {
+  top: 25%;
+  right: 10%;
+  transform: translate(50%, -50%);
+}
+.container div:nth-child(11) {
+  top: 50%;
+  right: 5%;
+  transform: translate(50%, -50%);
+}
+.container div:nth-child(12) {
+  top: 75%;
+  right: 10%;
+  transform: translate(50%, -50%);
+}
+
+.container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.scroll-container {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.item {
+  width: 100vw;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
