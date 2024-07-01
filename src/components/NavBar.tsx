@@ -1,13 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { debounce } from "lodash";
-import circulo from "../assets/img/circulo.png";
-import "../styles/Navbar.css";
-
+import "../styles/navbar.css";
 
 function Navbar() {
   // Estado para almacenar el término de búsqueda
-  const [query, setQuery] = useState(''); // Modificado: Añadido el estado query
+  const [query, setQuery] = useState(""); // Modificado: Añadido el estado query
   // Estado para almacenar los resultados de la búsqueda
   const [results, setResults] = useState<any[]>([]); // Modificado: Añadido el estado results
 
@@ -81,10 +79,10 @@ function Navbar() {
                 font-size: 295.6px;
                 font-weight: 600;
               }
-              .fill-black, .font-light, .no-stroke {
+              .fill-black, .font-light2, .no-stroke {
                 fill: #000;
               }
-              .font-light {
+              .font-light2 {
                 font-family: Montserrat-Light, Montserrat;
                 font-size: 88.71px;
                 font-weight: 300;
@@ -140,7 +138,7 @@ function Navbar() {
               TIONS
             </tspan>
           </text>
-          <text className="font-light" transform="translate(528.29 246.07)">
+          <text className="font-light2" transform="translate(528.29 246.07)">
             <tspan className="spacing-wide" x="0" y="0">
               C
             </tspan>
