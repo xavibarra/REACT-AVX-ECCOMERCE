@@ -1,8 +1,34 @@
+import { useState, useEffect, useCallback } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
+import { debounce } from "lodash";
 import circulo from "../assets/img/circulo.png";
 import "../styles/Navbar.css";
 
 function Navbar() {
+  // Estado para almacenar el término de búsqueda
+  const [query, setQuery] = useState(''); // Modificado: Añadido el estado query
+  // Estado para almacenar los resultados de la búsqueda
+  const [results, setResults] = useState<any[]>([]); // Modificado: Añadido el estado results
+
+  // Función para realizar la búsqueda en el backend
+  const fetchData = async (searchQuery: string) => {
+    if (searchQuery.length > 0) {
+      const response = await fetch(`/api/search?query=${searchQuery}`);
+      const data = await response.json();
+      setResults(data);
+    } else {
+      setResults([]);
+    }
+  };
+
+  // Función debounced para optimizar las solicitudes de búsqueda
+  const debouncedFetchData = useCallback(debounce(fetchData, 300), []); // Modificado: Añadido debounce para fetchData
+
+  // useEffect para ejecutar la búsqueda cada vez que cambia query
+  useEffect(() => {
+    debouncedFetchData(query); // Modificado: Añadido el efecto para ejecutar la búsqueda
+  }, [query, debouncedFetchData]);
+
   return (
     <div id="nav-container">
       <div id="nav-left">
@@ -13,7 +39,9 @@ function Navbar() {
             className="input"
             required
             placeholder="Buscar..."
-          ></input>
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
           <div className="icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
