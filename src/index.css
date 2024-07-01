@@ -4,7 +4,8 @@
 
 @layer base {
   :root {
-    --primary-color: #c4c4c4;
+    --color-primary: #ff9f0d;
+    --color-secondary: #171523;
   }
 }
 
