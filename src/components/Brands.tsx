@@ -9,14 +9,14 @@ import epsonLogo from "../assets/brand-logos/epson.png";
 import gigabyteLogo from "../assets/brand-logos/gigabyte.png";
 import intelLogo from "../assets/brand-logos/intel.png";
 import kingstonLogo from "../assets/brand-logos/kingston.png";
-import montechLogo from "../assets/brand-logos/montech.png";
+import logitechLogo from "../assets/brand-logos/logitech.png";
 import msiLogo from "../assets/brand-logos/msi.png";
-import nvideaLogo from "../assets/brand-logos/nvidea.svg";
+import nvideaLogo from "../assets/brand-logos/nvidia.png";
 import nzxtLogo from "../assets/brand-logos/nzxt.png";
 import samsungLogo from "../assets/brand-logos/samsung.png";
 import seagateLogo from "../assets/brand-logos/seagate.png";
 import toshibaLogo from "../assets/brand-logos/toshiba.png";
-import "../styles/animations.css";
+import "../styles/brands.css";
 
 // TODO no es veuren les ultimes marques
 export default class Brands extends Component {
@@ -63,9 +63,9 @@ export default class Brands extends Component {
         alt: "Logo de Kingston",
       },
       {
-        brand: "montech",
-        logo: montechLogo,
-        alt: "Logo de Montech",
+        brand: "logitech",
+        logo: logitechLogo,
+        alt: "Logo de Logitech",
       },
       {
         brand: "msi",
@@ -103,17 +103,15 @@ export default class Brands extends Component {
         alt: "Logo de Toshiba",
       },
     ];
+    const duplicatedBrands = [...brands, ...brands];
 
     return (
-      <div className="relative w-full overflow-hidden h-[70px] bg-primary">
-        <div className="carousel-track flex">
-          {brands.map((brand, index) => (
-            <div
-              className="flex-shrink-0 flex-grow-0 w-auto h-[70px] flex items-center justify-center px-[25px] carousel-item"
-              key={index}
-            >
+      <div className="carousel-container">
+        <div className="carousel-track">
+        {duplicatedBrands.map((brand, index) => (
+            <div className="carousel-item" key={index}>
               <img
-                className="h-full object-contain"
+                className="carousel-image"
                 src={brand.logo}
                 alt={brand.alt}
               />
