@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../models/product"; // Asegúrate de la ruta correcta aquí
+import { Product } from "../models/product";
 
-const Category: React.FC = () => {
+const Category = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [products, setProducts] = React.useState<Product[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchProductsByCategory = async () => {
       try {
         setLoading(true);
         setError(null);
+
         const response = await fetch(
           `http://localhost:3000/products/productsByCategory/${categoryId}`
         );
+
         if (!response.ok) {
           throw new Error("Error al obtener los productos.");
         }

@@ -442,25 +442,23 @@ svg {
 /* COMPONENTS------------------------------------------------------ */
 #components {
   position: relative;
-
-  top: -50px;
 }
 
-.container div {
+.category-link {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 20vh;
+  height: 20vh;
   display: flex;
+  background-color: #fff;
   justify-content: center;
   align-items: center;
-  background-color: white;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 16px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   cursor: pointer;
 }
 
-.container div img {
+.category-link img {
   max-width: 100%;
   max-height: 100%;
 }
@@ -481,76 +479,75 @@ svg {
 }
 
 /* Top row */
-.container div:nth-child(1) {
+.category-link1 {
   top: 20%;
-  left: 30%;
+  left: 33%;
   transform: translate(-50%, -50%);
 }
-.container div:nth-child(2) {
+.category-link2 {
   top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.container div:nth-child(3) {
+.category-link3 {
   top: 20%;
-  left: 70%;
+  left: 68%;
   transform: translate(-50%, -50%);
 }
 
 /* Bottom row */
-.container div:nth-child(4) {
+.category-link4 {
   bottom: 20%;
-  left: 30%;
+  left: 33%;
   transform: translate(-50%, 50%);
 }
-.container div:nth-child(5) {
+.category-link5 {
   bottom: 15%;
   left: 50%;
   transform: translate(-50%, 50%);
 }
-.container div:nth-child(6) {
+.category-link6 {
   bottom: 20%;
-  left: 70%;
+  left: 68%;
   transform: translate(-50%, 50%);
 }
 
 /* Left column */
-.container div:nth-child(7) {
+.category-link7 {
   top: 25%;
-  left: 10%;
+  left: 15%;
   transform: translate(-50%, -50%);
 }
-.container div:nth-child(8) {
+.category-link8 {
   top: 50%;
-  left: 6%;
+  left: 10%;
   transform: translate(-50%, -50%);
 }
-.container div:nth-child(9) {
+.category-link9 {
   top: 75%;
-  left: 10%;
+  left: 15%;
   transform: translate(-50%, -50%);
 }
 
 /* Right column */
-.container div:nth-child(10) {
+.category-link10 {
   top: 25%;
-  right: 10%;
+  right: 15%;
   transform: translate(50%, -50%);
 }
-.container div:nth-child(11) {
+.category-link11 {
   top: 50%;
-  right: 5%;
+  right: 10%;
   transform: translate(50%, -50%);
 }
-.container div:nth-child(12) {
+.category-link12 {
   top: 75%;
-  right: 10%;
+  right: 15%;
   transform: translate(50%, -50%);
 }
 
 .container {
   overflow: hidden;
-  position: relative;
 }
 
 .scroll-container {
@@ -583,16 +580,89 @@ svg {
   right: 10px;
 }
 
-.categoriesSection {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  overflow-x: auto;
-  position: relative;
-  z-index: 100;
-}
-
 .categoriesContent {
   height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .center {
+    width: 70vw;
+    height: 30vh;
+    top: 51%;
+  }
+  .center svg {
+    width: 40vw;
+  }
+  .category-link {
+    width: 25vw;
+    height: 25vw;
+  }
+
+  /* Top row */
+  .category-link:nth-child(1) {
+    top: 27%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+  }
+  .category-link:nth-child(2) {
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .category-link:nth-child(3) {
+    top: 27%;
+    left: 78%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Bottom row */
+  .category-link:nth-child(4) {
+    bottom: 25%;
+    left: 22%;
+    transform: translate(-50%, 50%);
+  }
+  .category-link:nth-child(5) {
+    bottom: 32%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+  .category-link:nth-child(6) {
+    bottom: 25%;
+    left: 78%;
+    transform: translate(-50%, 50%);
+  }
+
+  /* Left column */
+  .category-link:nth-child(7) {
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .category-link:nth-child(8) {
+    top: 40%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+  }
+  .category-link:nth-child(9) {
+    top: 62%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Right column */
+  .category-link:nth-child(10) {
+    top: 40%;
+    right: 15%;
+    transform: translate(50%, -50%);
+  }
+  .category-link:nth-child(11) {
+    top: 62%;
+    right: 15%;
+    transform: translate(50%, -50%);
+  }
+  .category-link:nth-child(12) {
+    top: 82%;
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
 }
