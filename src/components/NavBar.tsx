@@ -33,12 +33,12 @@ function Navbar() {
   };
 
   return (
-    <div className="px-6 py-2 flex flex-row justify-between h-16">
+    <div id="navbar">
       <div className="flex-1 container-nav">
         <input
           type="text"
           name="text"
-          className="input"
+          className="inputSearch"
           value={searchTerm}
           onChange={handleInputChange}
           required
@@ -47,7 +47,7 @@ function Navbar() {
         <div className="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-10 mt-3"
+            className="lupa"
             viewBox="0 0 512 512"
           >
             <path
@@ -68,13 +68,13 @@ function Navbar() {
           </svg>
         </div>
       </div>
-      <div className="flex-1 flex justify-center h-12">
-        <svg
+      <div className="logoContainer">
+        {/*   <svg
           id="Layer_1"
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1908 576"
-          className="h-auto w-full max-w-lg"
+          className="svgLogo"
         >
           <defs>
             <style>{`
@@ -156,16 +156,16 @@ function Navbar() {
               S
             </tspan>
           </text>
-        </svg>
+        </svg> */}
       </div>
-      <div className="flex-1 flex justify-end space-x-1">
-        <a href="/" className="py-1">
+      <div className="iconsNav">
+        <a href="/" className="userIcon">
           <FaUser />
         </a>
-        <a href="/" className="px-5">
+        <a href="/" className="cartIcon">
           <FaShoppingBasket />
         </a>
-        <a href="/" className="py-1">
+        <a href="/" className="burguerIcon">
           <FaBars />
         </a>
       </div>

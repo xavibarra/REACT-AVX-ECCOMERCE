@@ -3,15 +3,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+#navbar {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: static;
+  z-index: 1;
+  height: 80px;
 }
 
 .container-nav {
   position: relative;
-  --size-button: 40px;
+  --size-button: 30px;
   color: white;
 }
 
-.input {
+.inputSearch {
+  margin-top: 2px;
   padding-left: var(--size-button);
   height: var(--size-button);
   font-size: 15px;
@@ -27,24 +42,22 @@
   cursor: pointer;
 }
 
-.input:focus,
-.input:not(:invalid) {
+.inputSearch:focus,
+.inputSearch:not(:invalid) {
   width: 200px;
   cursor: text;
   box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%),
     inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
 }
 
-.input:focus + .icon,
-.input:not(:invalid) + .icon {
+.inputSearch:focus + .icon,
+.inputSearch:not(:invalid) + .icon {
   pointer-events: all;
   cursor: pointer;
 }
 
 .container-nav .icon {
   position: absolute;
-  width: var(--size-button);
-  height: var(--size-button);
   top: 0;
   left: 0;
   pointer-events: none;
@@ -65,4 +78,39 @@ p {
 }
 #comp {
   font-size: 25px;
+}
+
+.logoContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+}
+
+.svgLogo {
+  height: auto;
+  width: 100%;
+  max-width: 32rem;
+}
+
+.iconsNav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.lupa {
+  width: 15px;
+  margin-top: 9px;
+  margin-left: 7px;
+}
+
+.userIcon,
+.burguerIcon {
+  width: 25px;
+}
+
+.cartIcon {
+  width: 30px;
 }
