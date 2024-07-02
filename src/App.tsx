@@ -7,7 +7,6 @@ import FlipCard from "./components/FlipCard.tsx";
 const App: React.FC = () => {
   return (
     <>
-      <FlipCard />
       <Router>
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
