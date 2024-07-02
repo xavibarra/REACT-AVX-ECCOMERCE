@@ -452,6 +452,7 @@ svg {
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 16px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  cursor: pointer;
 }
 
 .container div img {
