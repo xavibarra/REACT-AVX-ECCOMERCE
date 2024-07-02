@@ -1,32 +1,36 @@
-import { debounce } from "lodash";
-import { useCallback, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import "../styles/navbar.css";
 
 function Navbar() {
-  // Estado para almacenar el término de búsqueda
-  const [query, setQuery] = useState(""); // Modificado: Añadido el estado query
-  // Estado para almacenar los resultados de la búsqueda
-  const [results, setResults] = useState<any[]>([]); // Modificado: Añadido el estado results
+  const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState([]);
 
-  // Función para realizar la búsqueda en el backend
-  const fetchData = async (searchQuery: string) => {
-    if (searchQuery.length > 0) {
-      const response = await fetch(`/api/search?query=${searchQuery}`);
-      const data = await response.json();
-      setResults(data);
+  useEffect(() => {
+    if (searchTerm) {
+      // Realizar la solicitud de búsqueda
+      fetch(
+        `http://localhost:3000/products/search/${encodeURIComponent(
+          searchTerm
+        )}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data); // Mostrar los resultados en la consola
+          setResults(data); // Actualizar el estado con los resultados
+        })
+        .catch((error) => console.error("Error fetching data:", error));
     } else {
+      // Limpiar los resultados si el término de búsqueda está vacío
       setResults([]);
     }
+  }, [searchTerm]); // Se ejecuta cuando searchTerm cambia
+
+  const handleInputChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setSearchTerm(event.target.value);
   };
-
-  // Función debounced para optimizar las solicitudes de búsqueda
-  const debouncedFetchData = useCallback(debounce(fetchData, 300), []); // Modificado: Añadido debounce para fetchData
-
-  // useEffect para ejecutar la búsqueda cada vez que cambia query
-  useEffect(() => {
-    debouncedFetchData(query); // Modificado: Añadido el efecto para ejecutar la búsqueda
-  }, [query, debouncedFetchData]);
 
   return (
     <div className="px-6 py-2 flex flex-row justify-between h-16">
@@ -35,11 +39,11 @@ function Navbar() {
           type="text"
           name="text"
           className="input"
+          value={searchTerm}
+          onChange={handleInputChange}
           required
           placeholder="Buscar..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        ></input>
+        />
         <div className="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
