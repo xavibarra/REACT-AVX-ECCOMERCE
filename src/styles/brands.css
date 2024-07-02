@@ -1,0 +1,41 @@
+/* brands.css */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 90px;
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+}
+
+.carousel-track { 
+  display: flex;
+  width: calc(350%);
+  animation: scroll 30s linear infinite;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 160px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 25px;
+}
+
+.carousel-image {
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-52.1%);
+  }
+}
