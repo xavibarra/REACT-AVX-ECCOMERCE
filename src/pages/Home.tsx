@@ -6,7 +6,7 @@ import FlipCard from "../components/FlipCard";
 const Home = () => {
   return (
     <>
-      <Categories />
+      <Categories category={""} />
       <AboutUs />
       <Brands />
       <FlipCard></FlipCard>

@@ -1,12 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import "./index.css";
-import Home from "./pages/Home.tsx";
+
+import Category from "./pages/Category";
+import Home from "./pages/Home";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/productsByCategory/:categoryId",
+    element: <Category />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
-    <Home />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
