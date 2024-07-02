@@ -1,12 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { debounce } from "lodash";
-import circulo from "../assets/img/circulo.png";
-import "../styles/Navbar.css";
+import "../styles/navbar.css";
 
 
 function Navbar() {
-  // Estado para almacenar el término de búsqueda
   const [query, setQuery] = useState(''); // Modificado: Añadido el estado query
   // Estado para almacenar los resultados de la búsqueda
   const [results, setResults] = useState<any[]>([]); // Modificado: Añadido el estado results
@@ -14,9 +12,22 @@ function Navbar() {
   // Función para realizar la búsqueda en el backend
   const fetchData = async (searchQuery: string) => {
     if (searchQuery.length > 0) {
-      const response = await fetch(`/api/search?query=${searchQuery}`);
-      const data = await response.json();
-      setResults(data);
+      try {
+        const response = await fetch(`https://dtchhmivnblzqzsmodfa.supabase.co/rest/v1/products?select=*&name=ilike.%${searchQuery}%`, {
+          headers: {
+            'apikey': import.meta.env.VITE_SUPABASE_KEY,
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_KEY}`,
+          }
+        });
+          if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setResults(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
     } else {
       setResults([]);
     }
@@ -29,6 +40,7 @@ function Navbar() {
   useEffect(() => {
     debouncedFetchData(query); // Modificado: Añadido el efecto para ejecutar la búsqueda
   }, [query, debouncedFetchData]);
+
 
   return (
     <div className="px-6 py-2 flex flex-row justify-between h-16">
