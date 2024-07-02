@@ -440,6 +440,11 @@ svg {
 }
 
 /* COMPONENTS------------------------------------------------------ */
+#components {
+  position: relative;
+
+  top: -50px;
+}
 
 .container div {
   position: absolute;
@@ -546,7 +551,6 @@ svg {
 .container {
   overflow: hidden;
   position: relative;
-  width: 100%;
 }
 
 .scroll-container {
@@ -577,4 +581,18 @@ svg {
 
 .next {
   right: 10px;
+}
+
+.categoriesSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  overflow-x: auto;
+  position: relative;
+  z-index: 100;
+}
+
+.categoriesContent {
+  height: 100vh;
 }
