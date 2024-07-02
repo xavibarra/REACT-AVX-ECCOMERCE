@@ -1,46 +1,36 @@
-import { useState, useEffect, useCallback } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
-import { debounce } from "lodash";
 import "../styles/navbar.css";
 
-
 function Navbar() {
-  const [query, setQuery] = useState(''); // Modificado: Añadido el estado query
-  // Estado para almacenar los resultados de la búsqueda
-  const [results, setResults] = useState<any[]>([]); // Modificado: Añadido el estado results
+  const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState([]);
 
-  // Función para realizar la búsqueda en el backend
-  const fetchData = async (searchQuery: string) => {
-    if (searchQuery.length > 0) {
-      try {
-        const response = await fetch(`https://dtchhmivnblzqzsmodfa.supabase.co/rest/v1/products?select=*&name=ilike.%${searchQuery}%`, {
-          headers: {
-            'apikey': import.meta.env.VITE_SUPABASE_KEY,
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_KEY}`,
-          }
-        });
-          if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setResults(data);
-        console.log(data);
-      } catch (error) {
-        console.error('Fetch error:', error);
-      }
+  useEffect(() => {
+    if (searchTerm) {
+      // Realizar la solicitud de búsqueda
+      fetch(
+        `http://localhost:3000/products/search/${encodeURIComponent(
+          searchTerm
+        )}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data); // Mostrar los resultados en la consola
+          setResults(data); // Actualizar el estado con los resultados
+        })
+        .catch((error) => console.error("Error fetching data:", error));
     } else {
+      // Limpiar los resultados si el término de búsqueda está vacío
       setResults([]);
     }
+  }, [searchTerm]); // Se ejecuta cuando searchTerm cambia
+
+  const handleInputChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setSearchTerm(event.target.value);
   };
-
-  // Función debounced para optimizar las solicitudes de búsqueda
-  const debouncedFetchData = useCallback(debounce(fetchData, 300), []); // Modificado: Añadido debounce para fetchData
-
-  // useEffect para ejecutar la búsqueda cada vez que cambia query
-  useEffect(() => {
-    debouncedFetchData(query); // Modificado: Añadido el efecto para ejecutar la búsqueda
-  }, [query, debouncedFetchData]);
-
 
   return (
     <div className="px-6 py-2 flex flex-row justify-between h-16">
@@ -49,11 +39,11 @@ function Navbar() {
           type="text"
           name="text"
           className="input"
+          value={searchTerm}
+          onChange={handleInputChange}
           required
           placeholder="Buscar..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        ></input>
+        />
         <div className="icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -93,10 +83,10 @@ function Navbar() {
                 font-size: 295.6px;
                 font-weight: 600;
               }
-              .fill-black, .font-light, .no-stroke {
+              .fill-black, .font-light2, .no-stroke {
                 fill: #000;
               }
-              .font-light {
+              .font-light2 {
                 font-family: Montserrat-Light, Montserrat;
                 font-size: 88.71px;
                 font-weight: 300;
@@ -152,7 +142,7 @@ function Navbar() {
               TIONS
             </tspan>
           </text>
-          <text className="font-light" transform="translate(528.29 246.07)">
+          <text className="font-light2" transform="translate(528.29 246.07)">
             <tspan className="spacing-wide" x="0" y="0">
               C
             </tspan>

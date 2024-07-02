@@ -2175,10 +2175,10 @@ const Categories: React.FC = () => {
                 font-size: 295.6px;
                 font-weight: 600;
               }
-              .fill-black, .font-light, .no-stroke {
+              .fill-black, .font-light3, .no-stroke {
                 fill: #000;
               }
-              .font-light {
+              .font-light3 {
                 font-family: Montserrat-Light, Montserrat;
                 font-size: 88.71px;
                 font-weight: 300;
@@ -2237,7 +2237,10 @@ const Categories: React.FC = () => {
                   TIONS
                 </tspan>
               </text>
-              <text className="font-light" transform="translate(528.29 246.07)">
+              <text
+                className="font-light3"
+                transform="translate(528.29 246.07)"
+              >
                 <tspan className="spacing-wide" x="0" y="0">
                   C
                 </tspan>
