@@ -8,22 +8,21 @@
 }
 
 #navbar {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 0.5rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  position: fixed; 
-  top: 0;   
+  align-items: center;
+  position: fixed;
+  top: 0;
   width: 100%;
-  z-index: 10;   
+  z-index: 10;
+  height: 10vh;
 }
 
 .container-nav {
   position: relative;
   --size-button: 30px;
   color: white;
+  margin-left: 25px;
 }
 
 .inputSearch {
@@ -98,7 +97,13 @@ p {
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 1rem;
+  margin-right: 25px;
+}
+
+.iconsNav svg{
+  width: 80%;
 }
 
 .lupa {
@@ -114,4 +119,39 @@ p {
 
 .cartIcon {
   width: 30px;
+}
+
+/* ---------------------------------------- SCROLL CSS */
+
+#navbar.scroll {
+  background: var(--color-secondary);
+  height: 10vh;
+}
+
+#navbar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#navbar.scroll .container-nav input {
+  background-color: white;
+}
+
+#navbar.scroll .container-nav .icon {
+  color: var(--color-secondary);
+}
+
+#navbar.scroll .iconsNav svg {
+  color: white;
+}
+
+
+.logoContainer svg {
+  display: none;
+  /* Añade cualquier estilo adicional para la imagen */
+}
+
+.logoContainer svg.show {
+  display: block;
+  /* Añade cualquier estilo adicional cuando la imagen se muestre */
 }

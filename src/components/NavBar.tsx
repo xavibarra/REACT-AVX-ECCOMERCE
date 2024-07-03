@@ -6,9 +6,36 @@ function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
 
+  /* --------------------------------------------------------------- NAVBAR SCROLL CANVI --*/
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.getElementById("navbar");
+      const logoSvg = document.querySelector(".logoContainer svg");
+      if (navbar && logoSvg) {
+        if (window.scrollY > 600) {
+          navbar.classList.add("scroll");
+          navbar.classList.remove("hidden");
+          logoSvg.classList.add("show");
+        } else if (window.scrollY > 0 && window.scrollY <= 600) {
+          navbar.classList.add("hidden");
+          navbar.classList.remove("scroll");
+          logoSvg.classList.remove("show");
+        } else {
+          navbar.classList.remove("scroll", "hidden");
+          logoSvg.classList.remove("show");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  /* --------------------------------------------------------------- SEARCH INPUT FUNCIÓ --*/
   useEffect(() => {
     if (searchTerm) {
-      // Realizar la solicitud de búsqueda
       fetch(
         `http://localhost:3000/products/search/${encodeURIComponent(
           searchTerm
@@ -16,8 +43,8 @@ function Navbar() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data); // Mostrar los resultados en la consola
-          setResults(data); // Actualizar el estado con los resultados
+          console.log(data);
+          setResults(data);
         })
         .catch((error) => console.error("Error fetching data:", error));
     } else {
@@ -65,7 +92,95 @@ function Navbar() {
           </svg>
         </div>
       </div>
-      <div className="logoContainer"></div>
+      <div className="logoContainer fill-white">
+        <svg
+          id="Layer_1"
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1908 576"
+          className="h-auto w-full max-w-lg show">
+          <defs>
+            <style>{`
+              .font-semi-bold {
+                font-family: Montserrat-SemiBold, Montserrat;
+                font-size: 295.6px;
+                font-weight: 600;
+              }
+              .fill-black, .no-stroke {
+                fill: #ffff;
+              }
+              .font-light4 {
+                font-family: Montserrat-Light, Montserrat;
+                font-size: 88.71px;
+                font-weight: 300;
+              }
+              .spacing-normal {
+                letter-spacing: 0em;
+              }
+              .spacing-wide {
+                letter-spacing: .79em;
+              }
+              .spacing-wider {
+                letter-spacing: .8em;
+              }
+              .no-stroke {
+                stroke-width: 0px;
+              }
+            `}</style>
+          </defs>
+          <g>
+            <path
+              className=""
+              d="M401.14,102.49c-39.61-39.61-91.52-59.41-143.43-59.41l.45,202.84"
+            />
+            <path
+              className=""
+              d="M469,252.29c0-56.01-22.7-106.72-59.41-143.43l-143.11,143.75"
+            />
+            <path
+              className=""
+              d="M102.91,414.49c39.61,39.61,91.52,59.41,143.43,59.41l-.45-202.84"
+            />
+            <path
+              className=""
+              d="M35.95,262.88c0,56.01,22.7,106.72,59.41,143.43l143.11-143.75"
+            />
+            <path
+              className=""
+              d="M94.88,108.23c-39.61,39.61-59.41,91.52-59.41,143.43l202.84-.45"
+            />
+            <path
+              className=""
+              d="M246.49,41.27c-56.01,0-106.72,22.7-143.43,59.41l143.75,143.11"
+            />
+          </g>
+          <text className="font-semi-bold" transform="translate(231.47 473.26)">
+            <tspan x="0" y="0">
+              PO
+            </tspan>
+            <tspan className="spacing-normal" x="463.5" y="0">
+              R
+            </tspan>
+            <tspan className="spacing-normal" x="676.63" y="0">
+              TIONS
+            </tspan>
+          </text>
+          <text className="font-light4" transform="translate(528.29 246.07)">
+            <tspan className="spacing-wide" x="0" y="0">
+              C
+            </tspan>
+            <tspan className="spacing-wider" x="133.16" y="0">
+              OMPONEN
+            </tspan>
+            <tspan className="spacing-wide" x="1130.66" y="0">
+              T
+            </tspan>
+            <tspan className="spacing-wider" x="1250.42" y="0">
+              S
+            </tspan>
+          </text>
+        </svg>
+      </div>
       <div className="iconsNav">
         <a href="/" className="userIcon">
           <FaUser />

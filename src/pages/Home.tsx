@@ -2,6 +2,7 @@ import AboutUs from "../components/AboutUs";
 import Brands from "../components/Brands";
 import Categories from "../components/Categories";
 import FlipCard from "../components/FlipCard";
+import Form from "../components/Form";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <AboutUs />
       <Brands />
       <FlipCard></FlipCard>
+      <Form></Form>
     </>
   );
 };
