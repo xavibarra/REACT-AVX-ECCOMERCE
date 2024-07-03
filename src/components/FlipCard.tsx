@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineStarPurple500 } from "react-icons/md";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
+
 import iconLocation from "../assets/img/icons8-mapas-48.png";
-import { Product } from "../models/product"; // Ajusta la ruta según sea necesario
+
+import type { Product } from "../models/product"; // Importar Product como solo tipo
 import "../styles/flip-card.css";
 
 interface FlipCardProps {
@@ -10,6 +13,7 @@ interface FlipCardProps {
 
 const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const [showIndicator, setShowIndicator] = useState(false);
+  const navigate = useNavigate(); // Usar el hook useNavigate para la navegación
 
   useEffect(() => {
     const storeList = document.getElementById("store-list");
@@ -30,8 +34,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     };
   }, []);
 
+  const handleCardClick = () => {
+    // Navegar a la página de detalles del producto
+    navigate(`/product/${product.id}`);
+  };
+
   return (
-    <div className="m-11 flip-card w-48 h-72 bg-transparent perspective-1000 font-sans">
+    <div
+      className="m-11 flip-card w-48 h-72 bg-transparent perspective-1000 font-sans cursor-pointer"
+      onClick={handleCardClick} // Añadir onClick al contenedor principal
+    >
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-700">
         <div className="flip-card-front absolute flex flex-col justify-between w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
