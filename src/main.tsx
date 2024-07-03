@@ -6,6 +6,7 @@ import "./index.css";
 
 import Category from "./pages/Category";
 import Home from "./pages/Home";
+import Product from "./pages/Product";
 import ProjectInfo from "./pages/ProjectInfo";
 
 const router = createBrowserRouter([
@@ -19,8 +20,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/projectInfo",
-    element: <ProjectInfo />
-  }
+    element: <ProjectInfo />,
+  },
+  {
+    path: "/product/:productId",
+    element: <Product />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
