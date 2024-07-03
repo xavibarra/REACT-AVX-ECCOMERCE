@@ -3,8 +3,8 @@ export interface Product {
   name: string;
   price: number;
   category_id: number;
-  image_url: string;
-  isOffer: boolean;
+  imageUrl: string;
+  offer: boolean;
   discount: number;
   rating: number;
   barcelonaStock: boolean;

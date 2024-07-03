@@ -99,18 +99,18 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
   }, []);
 
   const categoriesName = [
-    "Cpu",
-    "Case",
-    "Power supply",
-    "Internal hard drive",
-    "Monitor",
-    "External hard drive",
-    "Optical drive",
-    "Case fan",
-    "Ram memory",
-    "Graphic card",
-    "Cpu cooler",
-    "Motherboard",
+    "CPU",
+    "CASE",
+    "POWER SUPPLY",
+    "INTERNAL HARD DRIVEVE",
+    "MONITOR",
+    "EXTERNAL HARD DRIVE",
+    "OPTICAL DRIVE",
+    "CASE FAN",
+    "RAM MEMORY",
+    "GRAPHIC CARD",
+    "CPU COOLER",
+    "MOTHERBOARD",
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
