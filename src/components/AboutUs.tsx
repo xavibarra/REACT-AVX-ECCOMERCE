@@ -1,7 +1,19 @@
 import about from "../assets/img/aboutUs.jpg";
 import "../styles/about-us.css"
-// TODO STYLE
+import { useNavigate } from 'react-router-dom';
+
+// TODO NAVIGATE
 const AboutUs = () => {
+
+  const navigate = useNavigate();
+
+  const goToProjectInfo = () => {
+
+    navigate("/projectInfo")
+
+  };
+  
+
   return (
     <section className="ab-container">
       <div className="ab-description-container">
@@ -25,7 +37,7 @@ const AboutUs = () => {
         shopping experience seamless and enjoyable, with fast shipping and reliable support.
         Join us on our journey to enhance the future of computing, one component at a time!
         </p>
-        <button className="ab-button">Know more!</button>
+        <button onClick={goToProjectInfo} className="ab-button">Know more!</button>
       </div>
       <div className="ab-image-container">
         <img className="ab-image" src={about} alt="About-us image" />
