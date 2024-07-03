@@ -2,6 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../models/product";
 
+import FlipCard from "../components/FlipCard";
+
 const Category = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
   const [products, setProducts] = React.useState<Product[]>([]);
@@ -37,16 +39,15 @@ const Category = () => {
     }
   }, [categoryId]);
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+  console.log(products);
   return (
     <div>
       <h1>Productos en la categoría: {categoryId}</h1>
-      {loading && <p>Cargando productos...</p>}
-      {error && <p>Error: {error}</p>}
-      <div className="product-cards-container">
+      <div className="">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <h3 className="product-name">{product.name}</h3>
-          </div>
+          <FlipCard key={product.id} product={product} />
         ))}
       </div>
     </div>
