@@ -2,6 +2,10 @@
   transform-style: preserve-3d;
 }
 
+.card-img {
+  height: 110px;
+}
+
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
 }
