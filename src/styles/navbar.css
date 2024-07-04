@@ -15,7 +15,7 @@
   top: 0;
   width: 100%;
   z-index: 10;
-  height: 10vh;
+  height: 70px;
 }
 
 .container-nav {
@@ -102,7 +102,7 @@ p {
   margin-right: 25px;
 }
 
-.iconsNav svg{
+.iconsNav svg {
   width: 80%;
 }
 
@@ -125,7 +125,7 @@ p {
 
 #navbar.scroll {
   background: var(--color-secondary);
-  height: 10vh;
+  height: 70px;
 }
 
 #navbar.hidden {
@@ -144,7 +144,6 @@ p {
 #navbar.scroll .iconsNav svg {
   color: white;
 }
-
 
 .logoContainer svg {
   display: none;
