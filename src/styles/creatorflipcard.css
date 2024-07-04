@@ -1,0 +1,40 @@
+
+/* FRONT-CARD */
+
+.creator-foto-container{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        img{
+            height: 85%;
+            width: auto;
+        }
+    }
+
+.creator-name-container{
+    height: 20%;
+    width: 100%;
+    padding: 10px;
+        p{
+            background-color: var(--color-primary);
+        }
+}
+
+/* BACK-CARD */
+.creator-flip-card-back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.creator-description-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 90%;
+    width: 90%;
+    background-color: grey;
+}
+

@@ -1,0 +1,130 @@
+
+/* CONTAINER */
+
+.info-content-container{
+    padding-top: 100px;
+}
+.info-title-container{
+    display: flex;
+    justify-content: center;
+        h3{
+            font-size: 40px;
+        }
+}
+
+
+/* CREATOR-CARD */
+
+.info-card-container{
+    display: flex;
+    justify-content: center;
+}
+
+
+/* HISTORIA */
+
+.info-historia-container{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+        h3{
+            padding: 20px;
+            font-size: 25px;
+        }
+
+}
+
+
+/* DESCRIPCIÓN */
+
+.info-descripcion-container{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+        h3{
+            padding: 20px;
+            font-size: 25px;
+        }
+    }
+
+
+/* TECNOLOGIAS */
+
+.info-tecnologias-container{
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+        h3{
+            font-size: 25px;
+            padding: 10px 0px 50px 0px;
+        }
+}
+
+.info-tecnologias-lista-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+        h4{
+            text-decoration: underline;
+            padding-bottom: 10px;
+        }
+
+}
+
+
+/* INFORMACIÓN */
+
+.info-informacion-container{
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+        h3{
+            font-size: 25px;
+            padding: 10px 0px 50px 0px;
+        }
+}
+
+.info-informacion-bloques-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
+
+.info-que-es-container{
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+        h4{
+            font-size: 25px;
+            padding-bottom: 20px;
+
+        }
+}
+
+.info-caracteristicas-clave-container{
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+        h4{
+            font-size: 25px;
+            padding-bottom: 20px;
+        }
+        ul{
+            margin: 0px;
+            padding-left: 30px;
+                li{
+                    padding: 3px 0px;
+                }
+        }
+        p{
+            font-family: "Montserrat", sans-serif;
+        }
+}
