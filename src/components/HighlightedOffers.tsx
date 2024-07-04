@@ -35,7 +35,7 @@ function HighlightedOffers() {
   if (error) return <p>Error: {error}</p>;
   console.log(products);
   return (
-    <section>
+    <section className="hightighlighted-offers-container">
       <h2>Highlighted offers</h2>
       <div className="">
         <Carousel cols={5} rows={1} gap={2} loop>
