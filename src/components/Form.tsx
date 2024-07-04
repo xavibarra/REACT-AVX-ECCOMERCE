@@ -1,5 +1,7 @@
 import { useState } from "react";
+import emailjs from "emailjs-com";
 import "../styles/form.css";
+
 function Form() {
   const [formData, setFormData] = useState({
     user_name: "",
@@ -15,9 +17,24 @@ function Form() {
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    // Aquí puedes manejar el envío del formulario, por ejemplo, enviar los datos a un servidor
-    console.log(formData);
-    // Aquí podrías realizar una solicitud POST usando fetch o Axios para enviar los datos a tu servidor
+
+    emailjs
+      .send(
+        "service_uyi80bo",
+        "template_zxqj97l",
+        formData,
+        "FxxkJajXA1pApKOU9"
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          alert("Email sent successfully!");
+        },
+        (error) => {
+          console.log("FAILED...", error);
+          alert("Failed to send email.");
+        }
+      );
   };
 
   return (
@@ -26,7 +43,7 @@ function Form() {
         <div className="formCircle"></div>
         <div className="formCircle"></div>
         <div className="formCardInner">
-          <h2>We'd Love to Hear from You!</h2>
+          <h3>We'd Love to Hear from You!</h3>
           <div className="formContainer">
             <div className="formInfo">
               <p>
@@ -36,7 +53,7 @@ function Form() {
                 simply want to share your thoughts about your experience with
                 us.
               </p>
-              <h3>What Do We Want to Hear from You?</h3>
+              <h4>What Do We Want to Hear from You?</h4>
               <ul>
                 <li>
                   Do you have any questions about{" "}
@@ -61,11 +78,7 @@ function Form() {
               </p>
             </div>
             <div className="formInputs">
-              <form
-                id="form"
-                onSubmit={handleSubmit}
-                action="/my-handling-form-page"
-                method="post">
+              <form id="form" onSubmit={handleSubmit}>
                 <ul>
                   <li>
                     <input
@@ -116,7 +129,24 @@ function Form() {
           </div>
         </div>
       </div>
+      <div className="formCard2">
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCircle2"></div>
+        <div className="formCardInner2">
+        </div>
+      </div>
     </>
   );
 }
+
 export default Form;
