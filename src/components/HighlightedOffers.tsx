@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import Carousel from "react-grid-carousel";
 import { Product } from "../models/product";
 
+import "../styles/HighlightedOffers.css";
 import FlipCard from "./FlipCard";
 
 function HighlightedOffers() {
@@ -33,14 +35,18 @@ function HighlightedOffers() {
   if (error) return <p>Error: {error}</p>;
   console.log(products);
   return (
-    <div>
-      <h1>Products on Offer</h1>
+    <section className="hightighlighted-offers-container">
+      <h2>Highlighted offers</h2>
       <div className="">
-        {products.map((product) => (
-          <FlipCard key={product.id} product={product} />
-        ))}
+        <Carousel cols={5} rows={1} gap={2} loop>
+          {products.map((product) => (
+            <Carousel.Item>
+              <FlipCard key={product.id} product={product} />
+            </Carousel.Item>
+          ))}
+        </Carousel>
       </div>
-    </div>
+    </section>
   );
 }
 

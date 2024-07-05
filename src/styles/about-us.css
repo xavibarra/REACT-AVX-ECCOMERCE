@@ -1,40 +1,35 @@
-.ab-container{
-    display: flex;
-    padding: 30px 0px 30px 70px;
-    height: 600px;
+.ab-container {
+  display: flex;
+  padding: 30px 0px 30px 70px;
 }
 
-.ab-description-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 45%;
+.ab-description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 45%;
 }
-.ab-title{
-    font-size: 50px;
-    font-weight: 700;
+.ab-description {
+  font-size: 15px;
+  font-weight: 500;
 }
-.ab-description{
-    font-size: 15px;
-    font-weight: 500;
-}
-.ab-button{
-    height: 40px;
-    width: 200px;
-    background-color: var(--color-primary);
-    font-size: 18px;
-    font-weight: 600;
-    color: white;
-    border-radius: 5px;
+.ab-button {
+  height: 40px;
+  width: 200px;
+  background-color: var(--color-primary);
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  border-radius: 5px;
 }
 
-.ab-image-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 55%;
+.ab-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
 }
-.ab-image{
-    height: 500px;
-    width: auto;
+.ab-image {
+  height: 500px;
+  width: auto;
 }
