@@ -40,7 +40,7 @@ function HighlightedOffers() {
       <div className="">
         <Carousel cols={5} rows={1} gap={2} loop>
           {products.map((product) => (
-            <Carousel.Item>
+            <Carousel.Item key={product.id}>
               <FlipCard key={product.id} product={product} />
             </Carousel.Item>
           ))}

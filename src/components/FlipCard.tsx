@@ -48,7 +48,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
         <div className="flip-card-front absolute flex flex-col justify-between w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
           <img
-            className="card-img w-7/12 mx-auto"
+            className="card-img mx-auto"
             src={product.imageUrl}
             alt={product.name}
           />

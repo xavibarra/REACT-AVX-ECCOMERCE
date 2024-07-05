@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../models/product";
 
+import gifff from "../assets/img/gifanimado.gif";
 import FlipCard from "../components/FlipCard";
 
 const Category = () => {
@@ -39,7 +40,7 @@ const Category = () => {
     }
   }, [categoryId]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <img className="" src={gifff} alt="" />;
   if (error) return <p>Error: {error}</p>;
   console.log(products);
   return (
