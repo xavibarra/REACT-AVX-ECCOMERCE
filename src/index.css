@@ -19,5 +19,6 @@
 h2 {
   font-weight: bold;
   font-size: 50px;
+  color: var(--color-secondary);
 }
 
