@@ -1,5 +1,5 @@
 import "../styles/footer.css"
-import { FaInstagram, FaDiscord, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 
@@ -109,12 +109,6 @@ function Footer() {
                 </a>
                 <a href="/">
                     <FaXTwitter className="footer-ico" />
-                </a>
-                <a href="/">
-                    <FaDiscord className="footer-ico" />
-                </a>
-                <a href="/">
-                    <FaWhatsapp className="footer-ico" />
                 </a>
             </div>
             <div className="footer-copy-container">

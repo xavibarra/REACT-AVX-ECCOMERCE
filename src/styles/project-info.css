@@ -121,13 +121,13 @@
         ul{
             margin: 0px;
             padding-left: 30px;
-            font-size: 900;
+            font-weight: 400;
             
                 li{
                     padding: 3px 0px;
                     font-family: "Montserrat", sans-serif;
-                    font-weight: 4 00;
                 }
         }
 
 }
+
