@@ -109,10 +109,10 @@ const ProjectInfoContent = () => {
                     <div className="info-caracteristicas-clave-container">
                         <h4>Características clave</h4>
                         <ul>
-                            <li><p>Amplia variedad de componentes</p></li>
-                            <li><p>Plataforma intuitiva y fàcil de usar</p></li>
-                            <li><p>Sistema de gestión de inventario eficiente</p></li>
-                            <li><p>Atención al cliente personalizada y soporte técnico</p></li>
+                            <li><p>- Amplia variedad de componentes</p></li>
+                            <li><p>- Plataforma intuitiva y fàcil de usar</p></li>
+                            <li><p>- Sistema de gestión de inventario eficiente</p></li>
+                            <li><p>- Atención al cliente personalizada y soporte técnico</p></li>
                         </ul>
                     </div>
                 </div>
