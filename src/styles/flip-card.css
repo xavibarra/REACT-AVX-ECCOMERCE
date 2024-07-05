@@ -1,9 +1,54 @@
 .flip-card-inner {
   transform-style: preserve-3d;
+  width: 16vw;
+  height: 340px;
 }
 
 .card-img {
-  height: 110px;
+  height: 150px;
+}
+
+.card-name {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}
+
+.card-price-offer{
+  margin-top: 0.35em;
+  margin-left: 0.3em;
+}
+
+.card-price {
+  font-size: 1em;
+  font-weight: 600;
+  margin-left: 0.5em;
+  margin-bottom: 0.25em;
+  text-align: center;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+}
+
+.starsIcon {
+  font-size: 0.8em;
+  margin-left: 0.5em;
+  color: var(--color-primary);
+}
+
+.starIcon{
+  margin: 0.1em;
+}
+
+.eOWFDC {
+  height: 55vh;
+}
+
+.bghjHX {
+  margin: 0 !important;
+  overflow: visible !important;
 }
 
 .flip-card:hover .flip-card-inner {
@@ -15,6 +60,42 @@
   box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  padding: 0.75em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topCard {
+   position: relative; 
+  display: flex;
+  justify-content: center;
+}
+
+.favIcon{
+display: flex;
+align-items: center;
+font-size: 1.4em;
+color: var(--color-primary);
+}
+
+.bottomCard{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 0.5em;
+}
+
+.compareIcon {
+    position: absolute;
+  top: 10px;
+  right: 10px; 
+  font-size: 1em; 
+  color: var(--color-secondary);
+}
+
+.imgCard {
+  font-size: 1em;
+  padding: 0.5em;
+  width: 100%;
 }
 
 .flip-card-back {
@@ -22,7 +103,7 @@
 }
 
 .card-offer-span::before {
-  content: "Offert";
+  content: "Offer";
   position: absolute;
   width: 150%;
   height: 30px;
@@ -36,6 +117,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   box-shadow: 5px 2px 9px 0px rgba(0, 0, 0, 0.23);
+  z-index: 15;
 }
 
 .card-offer-span::after {
@@ -78,7 +160,8 @@
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .card-button {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
+  width: 100%;
 }
 .card-button:hover .tooltip {
   top: -45px;

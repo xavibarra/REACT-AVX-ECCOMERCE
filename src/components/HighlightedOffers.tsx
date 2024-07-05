@@ -37,7 +37,7 @@ function HighlightedOffers() {
   return (
     <section className="hightighlighted-offers-container">
       <h2>Highlighted offers</h2>
-      <div className="">
+      <div className="carouselContainer">
         <Carousel cols={5} rows={1} gap={2} loop>
           {products.map((product) => (
             <Carousel.Item key={product.id}>

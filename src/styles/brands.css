@@ -1,17 +1,7 @@
 /* brands.css */
-.carousel-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  height: 90px;
-  background-color: var(--color-primary);
-  display: flex;
-  align-items: center;
-}
 
 .carousel-track {
   display: flex;
-  width: calc(350%);
   animation: scroll 30s linear infinite;
 }
 
@@ -39,89 +29,127 @@
     transform: translateX(-52.1%);
   }
 }
-
 .formCard2 {
   transition: all 0.5s;
   background-color: var(--color-primary);
   position: relative;
   margin: 1em 0;
+  overflow-x: hidden;
 }
 
 .formCardInner2 {
-  width: 100wh;
+  width: 100%;
   height: 150px;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
   padding: 1em;
+  overflow: hidden;
 }
 
 .formCircle2 {
-  width: 16vh;
-  height: 14vh;
+  width: 50vh;
+  height: 12vh;
   margin: 0.5em;
   background: radial-gradient(white, white);
   position: absolute;
-  animation: move-up6 4s ease-in infinite alternate-reverse;
+  animation: grow-shrink 3s ease-in infinite alternate-reverse;
+  transform-origin: center;
 }
 
 .formCircle2:nth-child(1) {
   left: -25px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
 }
 
 .formCircle2:nth-child(2) {
   right: -25px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(3) {
   right: 70px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(4) {
   right: 180px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(5) {
   right: 300px;
   width: 200px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(6) {
   right: 430px;
   width: 200px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(7) {
   right: 560px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(8) {
   right: 680px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(9) {
   left: 100px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(10) {
   left: 220px;
   width: 200px;
-  animation-name: move-down1;
+  margin-top: 2.5em;
+
+
 }
+
 .formCircle2:nth-child(11) {
   left: 350px;
   width: 200px;
-  animation-name: move-down1;
-}
-.formCircle2:nth-child(12) {
-  left: 470px;
-  animation-name: move-down1;
-  width: 200px;
+  margin-top: 2.5em;
+
+
 }
 
-@keyframes move-down1 {
-  to {
-    transform: translateY(23px);
+.formCircle2:nth-child(12) {
+  left: 470px;
+  width: 200px;
+  margin-top: 2.5em;
+
+
+}
+
+@keyframes grow-shrink {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1.5);
   }
 }

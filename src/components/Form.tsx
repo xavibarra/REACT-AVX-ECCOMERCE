@@ -129,22 +129,6 @@ function Form() {
           </div>
         </div>
       </div>
-      <div className="formCard2">
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCardInner2">
-        </div>
-      </div>
     </>
   );
 }
