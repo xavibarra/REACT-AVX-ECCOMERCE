@@ -7,6 +7,7 @@ const AboutUs = () => {
   const navigate = useNavigate();
 
   const goToProjectInfo = () => {
+    window.scrollTo(0, 0);
     navigate("/projectInfo");
   };
 
