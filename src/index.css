@@ -2,14 +2,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --color-primary: #ff9f0d;
     --color-secondary: #171523;
   }
 }
- 
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,4 +21,9 @@ h2 {
   font-size: 50px;
   color: var(--color-secondary);
 }
-
+.text-primary-color {
+  color: var(--color-primary);
+}
+.bg-primary-color {
+  background-color: var(--color-primary);
+}

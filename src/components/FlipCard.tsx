@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { MdOutlineStarPurple500 } from "react-icons/md";
 import { useNavigate } from "react-router-dom"; // Importar useNavigate
 
 import iconLocation from "../assets/img/icons8-mapas-48.png";
 
+import { CiHeart } from "react-icons/ci";
+import { FaCodeCompare, FaRegStar, FaShop } from "react-icons/fa6";
 import type { Product } from "../models/product"; // Importar Product como solo tipo
 import "../styles/flip-card.css";
-import { FaCodeCompare, FaRegStar, FaShop } from "react-icons/fa6";
-import { CiHeart } from "react-icons/ci";
 
 interface FlipCardProps {
   product: Product;
@@ -85,7 +84,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="bottomCard">
             <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
-                {product.price.toFixed(2)}€
+                {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
               <span> Add to card </span>
             </button>
@@ -101,14 +100,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           </div>
           <ul
             className="overflow-y-auto hide-scrollbar relative"
-            id="store-list">
+            id="store-list"
+          >
             {Object.keys(product).map((key) => {
               if (key.endsWith("Stock") && product[key as keyof Product]) {
                 const city = key.replace("Stock", "");
                 return (
                   <li
                     key={key}
-                    className="card-city list-none my-1 text-left mx-2 flex items-center">
+                    className="card-city list-none my-1 text-left mx-2 flex items-center"
+                  >
                     <img
                       className="icon w-4 mr-1"
                       src={iconLocation}
@@ -130,7 +131,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="bottomCard">
             <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
-                {product.price.toFixed(2)}€
+                {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
               <span> Add to card </span>
             </button>

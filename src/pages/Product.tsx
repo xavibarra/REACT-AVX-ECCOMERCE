@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import CardAddCartProduct from "../components/CardAddCartProduct";
 import type { FeaturesValues } from "../models/featuresValues";
 import type { Product } from "../models/product";
 
@@ -82,6 +83,7 @@ const Product = () => {
       ) : (
         <p>No product found with ID {productId}</p>
       )}
+      <CardAddCartProduct></CardAddCartProduct>
     </div>
   );
 };
