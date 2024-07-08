@@ -1,9 +1,8 @@
 import CreatorFlipCard from "./CreatorFlipCard";
-import persona1 from "../assets/img/foto-ejemplo.jpg"
-import persona2 from "../assets/img/foto-ejemplo-2.jpg"
-import persona3 from "../assets/img/foto-ejemplo-3.jpg"
-import "../styles/project-info.css"
-
+import persona1 from "../assets/img/foto-ejemplo.jpg";
+import persona2 from "../assets/img/foto-ejemplo-2.jpg";
+import persona3 from "../assets/img/foto-ejemplo-3.jpg";
+import "../styles/project-info.css";
 
 const ProjectInfoContent = () => {
 
@@ -31,14 +30,14 @@ const ProjectInfoContent = () => {
 
 
     return (
-        
+
         <div className="info-content-container">
             <div className="info-title-container">
                 <h3>AVX COMPONENTS PROJECT</h3>
             </div>
             <div className="info-card-container">
-            {creators.map((creator, index) => (
-                    <CreatorFlipCard 
+                {creators.map((creator, index) => (
+                    <CreatorFlipCard
                         key={index}
                         name={creator.name}
                         foto={creator.foto}
@@ -53,73 +52,32 @@ const ProjectInfoContent = () => {
                     5 meses en tecnologías de programación web, parte de una FP dual
                     de formación y trabajo de Fundesplai. Este programa incluye tanto
                     la formación en el bootcamp como la parte laboral trabajando de la
-                    mano de la empresa Onizea. Empezamos el proyecto 6 meses antes de finalizar
+                    mano de la empresa Onizea.
+                    <br></br><br></br>
+                    Empezamos el proyecto 6 meses antes de finalizar
                     este e-commerce, aplicando las habilidades adquiridas y dedicando tiempo adicional
                     para asegurar que nuestro proyecto refleje el mejor uso posible de estas tecnologías.</p>
-            </div>
-            <div className="info-descripcion-container">
-                <h3>DESCRIPCIÓN DEL PROYECTO</h3>
-                <p>AVX Components es un e-commerce con más de 10.000 productos organizados en 12 categorías
-                    de componentes. Nos hemos encargado de conseguir entre nuestros productos todos los mejores
-                    que hay en el mercado, ofreciendo una plataforma ejemplar de cómo sería una página web de
-                    venta de componentes de alta calidad.
-                    </p>
-            </div>
-            <div className="info-tecnologias-container">
-                <h3>TECNOLOGIAS UTILIZADAS</h3>
-                <div className="info-tecnologias-lista-container">
-                    <div className="info-tecnologias-lista-1-container">
-                        <h4>FRONTEND</h4>
-                        <ul>
-                            <li>CSS</li>
-                            <li>Tailwind</li>
-                            <li>TypeScript</li>
-                            <li>React</li>
-                        </ul>
-                    </div>
-                    <div className="info-tecnologias-lista-2-container">
-                    <h4>BACKEND</h4>
-                        <ul>
-                            <li>NodeJS</li>
-                        </ul>
-                        <h4>BASE DE DATOS</h4>
-                        <ul>
-                            <li>SQL</li>
-                            <li>SupaBase</li>
-
-                        </ul>
-                    </div>
-                    <div className="info-tecnologias-lista-3-container">
-                    <h4>DISEÑOS</h4>
-                        <ul>
-                            <li>Figma</li>
-                        </ul>
-                        <h4>ORGANIZACIÓN</h4>
-                        <ul>
-                            <li>Trello</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             <div className="info-informacion-container">
                 <h3>INFORMACIÓN DEL PROYECTO</h3>
                 <div className="info-informacion-bloques-container">
-                    <div className="info-que-es-container">
-                        <h4>¿Qué es?</h4>
-                        <p>Nuestro e-commerce AVX Components ofrece más de 10.000 productos,
-                            organizados en 12 categorías. Nuestro objetivo es proporcionar a
-                            nuestros clientes una experiencia de compra completa y satisfactoria,
-                            presentando los mejores componentes disponibles en el mercado.</p>
-                    </div>
-                    <div className="info-caracteristicas-clave-container">
-                        <h4>Características clave</h4>
-                        <ul>
-                            <li><p>- Amplia variedad de componentes</p></li>
-                            <li><p>- Plataforma intuitiva y fàcil de usar</p></li>
-                            <li><p>- Sistema de gestión de inventario eficiente</p></li>
-                            <li><p>- Atención al cliente personalizada y soporte técnico</p></li>
-                        </ul>
-                    </div>
+                    <p>Nuestro e-commerce, AVX Components, se enorgullece de ofrecer más de 10.000 productos,
+                        organizados en 12 categorías para facilitar la navegación y selección. Nuestro catálogo
+                        incluye una amplia variedad de componentes electrónicos y accesorios especializados,
+                        diseñados para satisfacer las necesidades de nuestros clientes.
+                        Nuestro objetivo principal es proporcionar una experiencia de compra completa y satisfactoria.
+                        <br></br><br></br>
+                        Nos esforzamos por presentar los mejores componentes disponibles en el mercado, garantizando la
+                        calidad y el rendimiento de cada producto. Para ello, ofrecemos descripciones detalladas,
+                        imágenes claras y especificaciones técnicas precisas.
+                        En AVX Components, valoramos la opinión de nuestros clientes y estamos siempre dispuestos
+                        a mejorar nuestros servicios basándonos en sus comentarios.
+                        <br></br><br></br>
+                        Nuestra plataforma es intuitiva
+                        y fácil de usar, con múltiples opciones de búsqueda y filtros para encontrar rápidamente lo
+                        que necesitan. En resumen, en AVX Components nos dedicamos a ofrecer una experiencia de compra
+                        de primera clase, asegurando que nuestros clientes tengan acceso a productos de alta calidad y
+                        a un servicio excepcional.</p>
                 </div>
             </div>
         </div>
