@@ -13,6 +13,7 @@
 .cardAddCartPrice {
   font-weight: bold;
   font-size: 1.5em;
+  margin-bottom: 10px;
 }
 .cardAddCartIcon {
   margin-top: 4px;
