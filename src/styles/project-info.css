@@ -24,52 +24,19 @@
 /* HISTORIA */
 
 .info-historia-container{
-    padding: 50px;
+    padding: 100px 70px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
+    background-color: var(--color-secondary);
+    color: white;
         h3{
-            padding: 20px;
-            font-size: 25px;
+            padding: 0px 0px 40px 0px;
+            font-size: 40px;
+            font-weight: 500;
         }
-
-}
-
-
-/* DESCRIPCIÓN */
-
-.info-descripcion-container{
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-        h3{
-            padding: 20px;
-            font-size: 25px;
-        }
-    }
-
-
-/* TECNOLOGIAS */
-
-.info-tecnologias-container{
-    padding: 40px 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-        h3{
-            font-size: 25px;
-            padding: 10px 0px 50px 0px;
-        }
-}
-
-.info-tecnologias-lista-container{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-        h4{
-            text-decoration: underline;
-            padding-bottom: 10px;
+        p{
+            font-size: 17px;
         }
 
 }
@@ -78,24 +45,29 @@
 /* INFORMACIÓN */
 
 .info-informacion-container{
-    padding: 40px 50px;
+    padding: 40px 0px 40px 60px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
         h3{
-            font-size: 25px;
-            padding: 10px 0px 50px 0px;
+            font-size: 40px;
+            font-weight: 500;
+            padding: 50px 0px 30px 0px;
+        }
+        p{
+            font-size: 17px;
         }
 }
 
 .info-informacion-bloques-container{
     display: flex;
-    justify-content: space-between;
-    padding: 0px 30px;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .info-que-es-container{
-    width: 50%;
+    width: 100%;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -108,7 +80,7 @@
 }
 
 .info-caracteristicas-clave-container{
-    width: 50%;
+    width: 100%;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -131,3 +103,6 @@
 
 }
 
+.express-ico{
+    height: 70px;
+}

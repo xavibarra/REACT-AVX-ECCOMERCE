@@ -1,0 +1,136 @@
+#nav2-container {
+    padding: 30px 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+  
+  #navbar2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 90;
+    height: 70px;
+    background-color: var(--color-secondary);
+  }
+  
+  .container-nav2 {
+    position: relative;
+    --size-button: 30px;
+    color: white;
+    margin-left: 25px;
+  }
+  
+  .inputSearch {
+    margin-top: 2px;
+    padding-left: var(--size-button);
+    height: var(--size-button);
+    font-size: 15px;
+    border: none;
+    color: black;
+    outline: none;
+    width: var(--size-button);
+    transition: all ease 0.3s;
+    background-color: white;
+    box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
+      inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  
+  .inputSearch:focus,
+  .inputSearch:not(:invalid) {
+    width: 200px;
+    cursor: text;
+    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%),
+      inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
+  }
+  
+  .inputSearch:focus + .icon,
+  .inputSearch:not(:invalid) + .icon {
+    pointer-events: all;
+    cursor: pointer;
+  }
+  
+  .container-nav2 .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  #nav2-mid {
+    display: flex;
+    align-items: center;
+  }
+  #nav2-mid img,
+  p {
+    padding: 0px 2px;
+    margin: 0;
+  }
+  #avx {
+    font-size: 30px;
+    font-weight: 500;
+  }
+  #comp {
+    font-size: 25px;
+  }
+  
+  .logoContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    height: 3rem;
+  }
+  
+  .svgLogo {
+    height: auto;
+    width: 100%;
+    max-width: 32rem;
+  }
+  
+  .iconsNav2 {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 25px;
+  }
+  
+  .iconsNav2 svg {
+    width: 80%;
+    color: white;
+  }
+  
+  .lupa {
+    width: 15px;
+    margin-top: 9px;
+    margin-left: 7px;
+    color: black;
+  }
+  
+  .userIcon,
+  .burguerIcon {
+    width: 25px;
+  }
+  
+  .cartIcon {
+    width: 30px;
+  }
+  
+  .logoContainer svg {
+    display: none;
+    /* Añade cualquier estilo adicional para la imagen */
+  }
+  
+  .logoContainer svg.show {
+    display: block;
+    /* Añade cualquier estilo adicional cuando la imagen se muestre */
+  }
+  
