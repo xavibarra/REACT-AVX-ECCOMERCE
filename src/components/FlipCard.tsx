@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
-
-import iconLocation from "../assets/img/icons8-mapas-48.png";
-
+import { useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { FaCodeCompare, FaRegStar, FaShop } from "react-icons/fa6";
-import type { Product } from "../models/product"; // Importar Product como solo tipo
+import type { Product } from "../models/product";
 import "../styles/flip-card.css";
 
 interface FlipCardProps {
@@ -14,7 +11,7 @@ interface FlipCardProps {
 
 const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const [showIndicator, setShowIndicator] = useState(false);
-  const navigate = useNavigate(); // Usar el hook useNavigate para la navegación
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storeList = document.getElementById("store-list");
@@ -35,16 +32,34 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     };
   }, []);
 
+  const formatCityList = (): string => {
+    const cities: string[] = [];
+
+    Object.keys(product).forEach((key) => {
+      if (key.endsWith("Stock") && product[key as keyof Product]) {
+        const city = key.replace("Stock", "");
+        cities.push(formatCityName(city));
+      }
+    });
+
+    if (cities.length === 0) return "";
+    if (cities.length === 1) return cities[0];
+    const lastCity = cities.pop();
+    return cities.join(", ") + " y " + lastCity;
+  };
+
+  const formatCityName = (cityName: string): string => {
+    return cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
+  };
+
   const handleCardClick = () => {
-    // Navegar a la página de detalles del producto
     navigate(`/product/${product.id}`);
   };
 
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick} // Añadir onClick al contenedor principal
-    >
+      onClick={handleCardClick}>
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-700">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
@@ -57,7 +72,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
                   alt={product.name}
                 />
               </div>
-
               <div className="compareIcon">
                 <FaCodeCompare />
               </div>
@@ -74,7 +88,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
                   </p>
                 )}
               </div>
-              <div className="starsIcon flex">
+              <div className="starsIcon">
                 {[...Array(5)].map((_, index) => (
                   <FaRegStar key={index} className="starIcon" />
                 ))}
@@ -94,49 +108,39 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           </div>
         </div>
         <div className="flip-card-back absolute flex flex-col justify-between w-full h-full bg-white shadow-md transform rotate-y-180">
-          <div className="stock flex">
-            <FaShop />
-            <p className="title font-bold mt-3">TIENDAS CON STOCK:</p>
+          <div className="descriptionProduct">
+            <p>
+              La base sólida y estructural de tu sistema, el chasis del PC no
+              solo protege todos los componentes internos de daños externos,
+              sino que también ofrece una gestión organizada de cables y un
+              flujo de aire optimizado para mantener todo funcionando de manera
+              eficiente.
+            </p>
           </div>
-          <ul
-            className="overflow-y-auto hide-scrollbar relative"
-            id="store-list"
-          >
-            {Object.keys(product).map((key) => {
-              if (key.endsWith("Stock") && product[key as keyof Product]) {
-                const city = key.replace("Stock", "");
-                return (
-                  <li
-                    key={key}
-                    className="card-city list-none my-1 text-left mx-2 flex items-center"
-                  >
-                    <img
-                      className="icon w-4 mr-1"
-                      src={iconLocation}
-                      alt="icon location"
-                    />
-                    {city}
-                  </li>
-                );
-              }
-              return null;
-            })}
-          </ul>
-
-          {showIndicator && (
-            <div className="scroll-indicator absolute bottom-0 right-0 left-0 text-center mb-1">
-              <span className="text-xs">▼</span>
+          <div className="infoCardBack">
+            <div className="stock">
+              <FaShop />
+              <h3 className="">Disponibilidad en tienda:</h3>
             </div>
-          )}
-          <div className="bottomCard">
-            <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
-              <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
-                {(product.price * (1 - product.discount / 100)).toFixed(2)}€
-              </span>
-              <span> Add to card </span>
-            </button>
-            <div className="favIcon">
-              <CiHeart />
+            <div
+              className="overflow-y-auto hide-scrollbar relative cities"
+              id="store-list">
+              <p className="card-city list-none my-1 text-left mx-2 flex items-center">
+                {formatCityList()}.
+              </p>
+            </div>
+          </div>
+          <div className="bottomCardBack">
+            <div className="bottomCard">
+              <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
+                <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
+                  {(product.price * (1 - product.discount / 100)).toFixed(2)}€
+                </span>
+                <span> Add to card </span>
+              </button>
+              <div className="favIcon">
+                <CiHeart />
+              </div>
             </div>
           </div>
         </div>
