@@ -4,6 +4,7 @@ import Categories from "../components/Categories";
 import Footer from "../components/Footer";
 import HighlightedOffers from "../components/HighlightedOffers";
 import Form from "../components/Form";
+import Loading from "../components/Loading"
 
 
 
@@ -16,6 +17,7 @@ const Home = () => {
       <HighlightedOffers />
       <Form></Form>
       <Footer />
+
     </>
   );
 };

@@ -8,6 +8,7 @@ import Category from "./pages/Category";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import ProjectInfo from "./pages/ProjectInfo";
+import Loading from "./components/Loading";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
     path: "/product/:productId",
     element: <Product />,
   },
+  {
+    path: "/loading/",
+    element: <Loading />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
