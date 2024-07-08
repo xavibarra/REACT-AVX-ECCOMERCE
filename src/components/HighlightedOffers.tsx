@@ -4,6 +4,7 @@ import { Product } from "../models/product";
 
 import "../styles/HighlightedOffers.css";
 import FlipCard from "./FlipCard";
+import Loading from "./Loading";
 
 function HighlightedOffers() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -31,7 +32,7 @@ function HighlightedOffers() {
     fetchOfferProducts();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
   console.log(products);
   return (

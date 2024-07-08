@@ -4,6 +4,7 @@ import { Product } from "../models/product";
 
 import gifff from "../assets/img/gifanimado.gif";
 import FlipCard from "../components/FlipCard";
+import Loading from "../components/Loading";
 
 const Category = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -40,7 +41,7 @@ const Category = () => {
     }
   }, [categoryId]);
 
-  if (loading) return <img className="" src={gifff} alt="" />;
+  if (loading) return <Loading/>;
   if (error) return <p>Error: {error}</p>;
   console.log(products);
   return (
