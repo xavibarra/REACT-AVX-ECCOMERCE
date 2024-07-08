@@ -102,7 +102,7 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
     "CPU",
     "CASE",
     "POWER SUPPLY",
-    "INTERNAL HARD DRIVEVE",
+    "INTERNAL HARD DRIVE",
     "MONITOR",
     "EXTERNAL HARD DRIVE",
     "OPTICAL DRIVE",
@@ -132,14 +132,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id={category}
               onMouseEnter={() => handleMouseEnter(0)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link1">
+              className="category-link category-link1"
+            >
               {/* CPU */}
               <svg
                 id="cpu"
                 className="item"
                 data-name="Cpu"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1265 1127">
+                viewBox="0 0 1265 1127"
+              >
                 <g>
                   <g>
                     <g>
@@ -571,14 +573,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="case"
               onMouseEnter={() => handleMouseEnter(1)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link2">
+              className="category-link category-link2"
+            >
               {/* CASE */}
               <svg
                 id="case2"
                 className="item"
                 data-name="Case"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 521 1200">
+                viewBox="0 0 521 1200"
+              >
                 <rect
                   className="cls-1"
                   x="30.94"
@@ -675,14 +679,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="power_supply"
               onMouseEnter={() => handleMouseEnter(2)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link3">
+              className="category-link category-link3"
+            >
               {/* POWER SUPPLY */}
               <svg
                 id="power_supply2"
                 className="item"
                 data-name="Power supply"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1200 717">
+                viewBox="0 0 1200 717"
+              >
                 <rect
                   className="cls-1"
                   x="46"
@@ -850,14 +856,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="internal_hard_drive"
               onMouseEnter={() => handleMouseEnter(3)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link4">
+              className="category-link category-link4"
+            >
               {/* INTERNAL HARD DRIVE */}
               <svg
                 id="internal_hard_drive2"
                 className="item"
                 data-name="Internal hard drive"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 887 1200">
+                viewBox="0 0 887 1200"
+              >
                 <rect
                   className="cls-1"
                   x="38.5"
@@ -1021,14 +1029,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="monitor"
               onMouseEnter={() => handleMouseEnter(4)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link5">
+              className="category-link category-link5"
+            >
               {/* MONITOR */}
               <svg
                 id="monitor2"
                 className="item"
                 data-name="Monitor"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1200 958">
+                viewBox="0 0 1200 958"
+              >
                 <g>
                   <path
                     className="cls-77"
@@ -1096,7 +1106,8 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
                   </g>
                   <text
                     className="cls-41 logo"
-                    transform="translate(263.49 472.22)">
+                    transform="translate(263.49 472.22)"
+                  >
                     <tspan x="0" y="0">
                       PO
                     </tspan>
@@ -1109,7 +1120,8 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
                   </text>
                   <text
                     className="cls-5 logo"
-                    transform="translate(403.47 365.08)">
+                    transform="translate(403.47 365.08)"
+                  >
                     <tspan className="cls-8 logo" x="0" y="0">
                       C
                     </tspan>
@@ -1133,14 +1145,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="external_hard_drive"
               onMouseEnter={() => handleMouseEnter(5)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link6">
+              className="category-link category-link6"
+            >
               {/* EXTERNAL HARD DRIVE */}
               <svg
                 id="external_hard_drive2"
                 className="item"
                 data-name="External hard drive"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1106 1266">
+                viewBox="0 0 1106 1266"
+              >
                 <rect
                   className="cls-29"
                   x="163.89"
@@ -1236,14 +1250,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="optical_drive"
               onMouseEnter={() => handleMouseEnter(6)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link7">
+              className="category-link category-link7"
+            >
               {/* OPTICAL DRIVE */}
               <svg
                 id="optical_drive2"
                 className="item"
                 data-name="Optical drive"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1200 1214">
+                viewBox="0 0 1200 1214"
+              >
                 <g id="disk_move">
                   <rect
                     className="cls-3"
@@ -1327,14 +1343,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="case_fan"
               onMouseEnter={() => handleMouseEnter(7)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link8">
+              className="category-link category-link8"
+            >
               {/* CASE FAN */}
               <svg
                 id="case_fan2"
                 data-name="Case fan"
                 className="item"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1200 1200">
+                viewBox="0 0 1200 1200"
+              >
                 <rect
                   className="cls-1"
                   x="49.75"
@@ -1394,14 +1412,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="ram"
               onMouseEnter={() => handleMouseEnter(8)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link9">
+              className="category-link category-link9"
+            >
               {/* RAM */}
               <svg
                 id="ram2"
                 className="item"
                 data-name="Ram"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1200 307">
+                viewBox="0 0 1200 307"
+              >
                 <path
                   className="cls-1"
                   d="M1165.49,138.66c.7,0,1.38.06,2.05.15V26H35.46v112.81c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v24.89c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v54.09h457.47v-30.04h16.39v30.04h658.22v-54.09c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7c.7,0,1.38.06,2.05.15v-24.89c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7Z"
@@ -1555,7 +1575,8 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
                 className="item"
                 data-name="Ram"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1200 307">
+                viewBox="0 0 1200 307"
+              >
                 <path
                   className="cls-1"
                   d="M1165.49,138.66c.7,0,1.38.06,2.05.15V26H35.46v112.81c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v24.89c.67-.09,1.35-.15,2.05-.15,8.67,0,15.7,7.03,15.7,15.7s-7.03,15.7-15.7,15.7c-.7,0-1.38-.06-2.05-.15v54.09h457.47v-30.04h16.39v30.04h658.22v-54.09c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7c.7,0,1.38.06,2.05.15v-24.89c-.67.09-1.35.15-2.05.15-8.67,0-15.7-7.03-15.7-15.7s7.03-15.7,15.7-15.7Z"
@@ -1712,14 +1733,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="graphic_card"
               onMouseEnter={() => handleMouseEnter(9)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link10">
+              className="category-link category-link10"
+            >
               {/* GRAPHIC CARD */}
               <svg
                 id="graphic_card2"
                 className="item"
                 data-name="Graphic card"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1200 717">
+                viewBox="0 0 1200 717"
+              >
                 <g>
                   <rect
                     className="cls-44"
@@ -1844,14 +1867,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="cpu_cooler"
               onMouseEnter={() => handleMouseEnter(10)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link11">
+              className="category-link category-link11"
+            >
               {/* CPU COOLER */}
               <svg
                 id="cpu_cooler2"
                 className="item"
                 data-name="Cpu cooler"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1041 958">
+                viewBox="0 0 1041 958"
+              >
                 <rect
                   className="cls-1"
                   x="84.31"
@@ -1929,14 +1954,16 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
               id="motherboard"
               onMouseEnter={() => handleMouseEnter(11)}
               onMouseLeave={handleMouseLeave}
-              className="category-link category-link12">
+              className="category-link category-link12"
+            >
               {/* MOTHERBOARD */}
               <svg
                 id="motherboard2"
                 className="item"
                 data-name="motherboard"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1265 1393">
+                viewBox="0 0 1265 1393"
+              >
                 <g>
                   <rect
                     className="cls-5"
@@ -2296,7 +2323,8 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
                 data-name="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1908 576"
-                className="h-auto w-full max-w-lg">
+                className="h-auto w-full max-w-lg"
+              >
                 <defs>
                   <style>{`
               .font-semi-bold {
@@ -2354,7 +2382,8 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
                 </g>
                 <text
                   className="font-semi-bold"
-                  transform="translate(231.47 473.26)">
+                  transform="translate(231.47 473.26)"
+                >
                   <tspan x="0" y="0">
                     PO
                   </tspan>
@@ -2367,7 +2396,8 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
                 </text>
                 <text
                   className="font-light3"
-                  transform="translate(528.29 246.07)">
+                  transform="translate(528.29 246.07)"
+                >
                   <tspan className="spacing-wide" x="0" y="0">
                     C
                   </tspan>
