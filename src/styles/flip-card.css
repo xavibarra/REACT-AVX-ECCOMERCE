@@ -1,7 +1,7 @@
 .flip-card-inner {
   transform-style: preserve-3d;
-  width: 200px;
-  height: 340px;
+  width: 240px;
+  height: 350px;
 }
 
 .card-img {
@@ -13,7 +13,7 @@
   margin-bottom: 0.5em;
 }
 
-.card-price-offer{
+.card-price-offer {
   margin-top: 0.35em;
   margin-left: 0.3em;
 }
@@ -30,16 +30,19 @@
   display: flex;
   flex-direction: column;
   align-items: space-between;
+  margin-top: 0.5em;
 }
 
 .starsIcon {
   font-size: 0.8em;
-  margin-left: 0.5em;
   color: var(--color-primary);
+  display: flex;
+  margin-left: 0.75em;
 }
 
-.starIcon{
-  margin: 0.1em;
+.starsIcon svg {
+  margin: 1px;
+  width: 15px !important;
 }
 
 .eOWFDC {
@@ -47,8 +50,32 @@
 }
 
 .bghjHX {
-  margin: 0 !important;
   overflow: visible !important;
+}
+
+.kVtMtA, .bhRnqO {
+  background-color: var(--color-secondary) !important;
+  opacity: 100 !important;
+}
+
+.kVtMtA::before, .bhRnqO::before {
+  border-top: 2px solid #ffff !important;
+  border-right: 2px solid #ffff !important;
+  left: 48% !important;
+}
+
+.bVoXXg {
+  width: 240px;
+  height: 350px;
+}
+
+.UtimI {
+  align-items: center;
+  justify-items: center;
+}
+
+.flip-card {
+  width: 200px;
 }
 
 .flip-card:hover .flip-card-inner {
@@ -66,29 +93,29 @@
 }
 
 .topCard {
-   position: relative; 
+  position: relative;
   display: flex;
   justify-content: center;
 }
 
-.favIcon{
-display: flex;
-align-items: center;
-font-size: 1.4em;
-color: var(--color-primary);
+.favIcon {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  color: var(--color-primary);
 }
 
-.bottomCard{
+.bottomCard {
   display: flex;
   justify-content: space-between;
   margin-right: 0.5em;
 }
 
 .compareIcon {
-    position: absolute;
-  top: 10px;
-  right: 10px; 
-  font-size: 1em; 
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 18px;
   color: var(--color-secondary);
 }
 
@@ -106,7 +133,7 @@ color: var(--color-primary);
   content: "Offer";
   position: absolute;
   width: 150%;
-  height: 30px;
+  height: 35px;
   background-color: var(--color-primary);
   transform: rotate(-45deg) translateY(-20px);
   display: flex;
@@ -116,19 +143,19 @@ color: var(--color-primary);
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  box-shadow: 5px 2px 9px 0px rgba(0, 0, 0, 0.23);
+  box-shadow: 11px 3px 7px 0px rgba(0, 0, 0, 0.23);
   z-index: 15;
 }
 
 .card-offer-span::after {
   content: "";
   position: absolute;
-  width: 11px;
-  bottom: 7px;
+  width: 15px;
+  bottom: 3px;
   left: 0px;
-  height: 10px;
+  height: 16px;
   z-index: -1;
-  box-shadow: 132px -132px #cc3f47;
+  box-shadow: 133px -131px #cc3f47;
   background-color: #cc3f47;
 }
 .card-offer-span {
@@ -163,8 +190,14 @@ color: var(--color-primary);
   background-color: var(--color-secondary);
   width: 100%;
 }
+
+.card-button span {
+  font-weight: 500;
+  font-size: 13px;
+}
+
 .card-button:hover .tooltip {
-  top: -45px;
+  top: -33px;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -203,4 +236,33 @@ color: var(--color-primary);
 /* Ajusta el estilo para que la flecha indicadora sea visible solo cuando hay desplazamiento */
 .scroll-indicator.invisible {
   opacity: 0;
+}
+
+.stock {
+  display: flex;
+  align-items: center;
+  margin: 0 1em;
+}
+
+.stock svg {
+  margin-right: 10px;
+}
+
+.stock h3 {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.cities {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 10px;
+  margin: 0 0.75em;
+}
+
+.descriptionProduct p {
+  font-size: 11px;
+  text-align: justify;
+  margin: 1em 1em 0 1em;
 }
