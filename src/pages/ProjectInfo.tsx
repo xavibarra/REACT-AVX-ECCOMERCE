@@ -1,20 +1,18 @@
-import Navbar from "../components/NavBar";
-import ProjectInfoContent from "../components/ProjectInfoContent";
-import InfoTecnologies from "../components/InfoTecnologies";
 import Footer from "../components/Footer";
+import InfoTecnologies from "../components/InfoTecnologies";
+import Navbar2 from "../components/NavBar2";
+import ProjectInfoContent from "../components/ProjectInfoContent";
 // TODO DISSENY
 
 const ProjectInfo = () => {
-
-    return (
-        <>
-            <Navbar />
-            <ProjectInfoContent />
-            <InfoTecnologies />
-            <Footer />
-        </>
-    )
-
-}
+  return (
+    <>
+      <Navbar2 />
+      <ProjectInfoContent />
+      <InfoTecnologies />
+      <Footer />
+    </>
+  );
+};
 
 export default ProjectInfo;

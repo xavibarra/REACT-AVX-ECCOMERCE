@@ -3,6 +3,7 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import CardAddCartProduct from "../components/CardAddCartProduct";
 import CharacteristicProductDetails from "../components/CharacteristicProductDetails";
+import NavBar2 from "../components/NavBar2";
 import type { Category } from "../models/category";
 import type { FeaturesValues } from "../models/featuresValues";
 import type { Product } from "../models/product";
@@ -128,7 +129,7 @@ const ProductPage = () => {
 
   return (
     <section>
-      <h2>NAV-BAR</h2>
+      <NavBar2></NavBar2>
       <div className="productDetails">
         <div className="productDetailsDiv">
           <img src={product.imageUrl} alt="" />

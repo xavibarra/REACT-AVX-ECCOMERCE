@@ -4,7 +4,7 @@
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 30px;
   grid-row-gap: 30px;
-  margin: 0 10%;
+  margin: 100px 10% 0 10%;
 }
 .productDetailsDiv {
   display: flex;
