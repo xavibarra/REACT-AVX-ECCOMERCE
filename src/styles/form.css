@@ -116,9 +116,11 @@ textarea::placeholder {
   height: 3em;
 }
 
-.formCard:hover {
+/* TODO TRANFORM DESENFOCA */
+
+/* .formCard:hover {
   transform: scale(1.03);
-}
+} */
 
 .formCircle {
   width: 20vh;
