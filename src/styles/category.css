@@ -6,36 +6,124 @@
   flex-wrap: wrap;
   row-gap: 50px;
   column-gap: 100px;
-  justify-content: center;
+  justify-content: space-between;
   overflow: hidden;
-  padding: 5em;
+  padding: 2em 2.5em;
 }
 /* styles.css */
 
 .title {
   display: inline-block;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   white-space: nowrap;
-  position: absolute;
+  position: relative;
   left: -30%;
   font-weight: 1000;
-  margin-top: 1em;
+  margin: 1em 0;
 }
 
-.filterOrder{
+.filterOrder {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 2.5em;
+}
 
-} 
-
-.filterOrder button{
-  padding: 1em;
+.filterOrder button {
+  padding: 0.5em 1em;
   background-color: var(--color-secondary);
   color: white;
   width: 200px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.filterOrder button:hover {
+  background-color: rgb(var(--color-secondary-rgb), 0.75);
 }
 
 .title span {
-  padding-right: 20px; 
+  padding-right: 20px;
+}
+#filter {
+  position: fixed;
+  z-index: 25;
+  bottom: 45%;
+  left: -1%;
+}
+
+.backFilterContainer {
+  position: absolute;
+  top: 1em;
+  left: -0.5em;
+  z-index: 20;
+}
+
+.buttonBack {
+  background: linear-gradient(
+    90deg,
+    rgba(253, 174, 55, 0.2) 100%,
+    rgba(245, 245, 220, 0.7) 0%
+  );
+  width: 5em;
+  height: 6em;
+  border-radius: 25%;
+  transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease,
+    background 0.3s ease;
+}
+
+.buttonFilter {
+  width: 5em;
+  height: 5em;
+  border-radius: 100%;
+  position: absolute;
+  left: 1.5em;
+  top: 1.5em;
+  z-index: 30;
+  background: linear-gradient(
+    90deg,
+    rgba(245, 245, 220, 0.1) 0%,
+    rgba(253, 174, 55, 1) 100%
+  );
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.buttonFilter.expanded {
+  background: var(--color-secondary);
+}
+
+.buttonFilter::before {
+  content: "";
+  border: solid white;
+  border-width: 5px 5px 0 0;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  transform: rotate(45deg) translateY(-1px) translateX(7px);
+  border-radius: 3px;
+  transition: transform 0.3s ease;
+}
+
+.buttonFilter.expanded::before {
+  transform: rotate(-130deg) translateY(0px) translateX(-6px);
+}
+
+.buttonBack.expanded {
+  background-color: var(--color-primary);
+  width: 30vw;
+  height: 100vh;
+  border-radius: 0;
+  position: relative;
+  top: -22em;
+}
+
+
+.blueDiv {
+  width: 10px;
+  height: 100vh;
+  background-color: var(--color-secondary);
+  position: fixed;
+  top: 0;
+  left: 0;
 }
