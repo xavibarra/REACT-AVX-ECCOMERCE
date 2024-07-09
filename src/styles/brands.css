@@ -43,14 +43,13 @@
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
-  padding: 1em;
+  padding: 0.7em;
   overflow: hidden;
 }
 
 .formCircle2 {
-  width: 50vh;
-  height: 12vh;
-  margin: 0.5em;
+  width: 100vh;
+  height: 80px;
   background: radial-gradient(white, white);
   position: absolute;
   animation: grow-shrink 3s ease-in infinite alternate-reverse;
@@ -59,27 +58,27 @@
 
 .formCircle2:nth-child(1) {
   left: -25px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 }
 
 .formCircle2:nth-child(2) {
   right: -25px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
 
 .formCircle2:nth-child(3) {
   right: 70px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
 
 .formCircle2:nth-child(4) {
   right: 180px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
@@ -87,7 +86,7 @@
 .formCircle2:nth-child(5) {
   right: 300px;
   width: 200px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
@@ -95,28 +94,28 @@
 .formCircle2:nth-child(6) {
   right: 430px;
   width: 200px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
 
 .formCircle2:nth-child(7) {
   right: 560px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
 
 .formCircle2:nth-child(8) {
   right: 680px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
 
 .formCircle2:nth-child(9) {
   left: 100px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
@@ -124,7 +123,7 @@
 .formCircle2:nth-child(10) {
   left: 220px;
   width: 200px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
@@ -132,7 +131,7 @@
 .formCircle2:nth-child(11) {
   left: 350px;
   width: 200px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }
@@ -140,7 +139,7 @@
 .formCircle2:nth-child(12) {
   left: 470px;
   width: 200px;
-  margin-top: 2.5em;
+  margin-top: 2.25em;
 
 
 }

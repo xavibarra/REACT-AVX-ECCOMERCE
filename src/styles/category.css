@@ -1,0 +1,34 @@
+.categoryTitle {
+  margin: 100px 0 50px 0;
+}
+.categoryProducts {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 50px;
+  column-gap: 100px;
+  justify-content: center;
+}
+/* styles.css */
+
+.title-container {
+  /* overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative; */
+  margin: 100px 0 50px 0;
+  z-index: 9;
+}
+
+.title {
+  display: inline-block;
+  font-size: 24px; /* Ajusta el tamaño de la fuente según sea necesario */
+  font-weight: bold;
+  white-space: nowrap;
+  position: absolute;
+  left: -50%;
+  right: -50%;
+}
+
+.title span {
+  padding-right: 20px; /* Ajusta el espacio entre las repeticiones */
+}
