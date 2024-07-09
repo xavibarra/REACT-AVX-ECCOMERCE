@@ -19,6 +19,7 @@ function HighlightedOffers() {
           throw new Error(`Error: ${response.statusText}`);
         }
         const data: Product[] = await response.json();
+
         setProducts(data);
       } catch (error) {
         if (error instanceof Error) {
@@ -30,11 +31,12 @@ function HighlightedOffers() {
     };
 
     fetchOfferProducts();
+    console.log(products[0]);
   }, []);
 
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
-  console.log(products);
+
   return (
     <section className="hightighlighted-offers-container">
       <h2>Highlighted offers</h2>

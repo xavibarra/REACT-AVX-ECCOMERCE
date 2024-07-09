@@ -116,10 +116,6 @@ textarea::placeholder {
   height: 3em;
 }
 
-/* .formCard:hover {
-  transform: scale(1.03);
-}
- */
 .formCircle {
   width: 20vh;
   height: 20vh;

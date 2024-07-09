@@ -1,0 +1,13 @@
+.burger-container{
+    background-color: var(--color-secondary);
+        .icon{
+            color: white;
+        }
+            p{
+                color: white;
+            }
+}
+
+.burger-icon-name{
+    display: flex;
+}

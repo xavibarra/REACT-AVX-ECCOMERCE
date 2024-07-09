@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import type { Category } from "../models/category";
 import { Product } from "../models/product";
 
 import FlipCard from "../components/FlipCard";
@@ -29,7 +30,15 @@ const Category = () => {
           throw new Error("Error al obtener los productos.");
         }
         const data: Product[] = await response.json();
-        setProducts(data);
+
+        // Fetch category for each product sequentially
+        const productsWithCategory = [];
+        for (const product of data) {
+          const category = await fetchCategory(product.categoryId);
+          productsWithCategory.push({ ...product, category });
+        }
+
+        setProducts(productsWithCategory);
       } catch (error) {
         setError(
           "Error al obtener los productos. Inténtelo de nuevo más tarde."
@@ -62,6 +71,18 @@ const Category = () => {
       fetchCategoryName();
     }
   }, [categoryId]);
+
+  const fetchCategory = async (categoryId: number): Promise<Category> => {
+    const response = await fetch(
+      `http://localhost:3000/categories/${categoryId}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    const data: Category = await response.json();
+    console.log(data);
+    return data;
+  };
 
   if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;

@@ -1,4 +1,5 @@
 import Footer from "../components/Footer";
+import BurgerMenu from "../components/BurgerMenu";
 import InfoTecnologies from "../components/InfoTecnologies";
 import Navbar2 from "../components/NavBar2";
 import ProjectInfoContent from "../components/ProjectInfoContent";
@@ -10,9 +11,12 @@ const ProjectInfo = () => {
       <Navbar2 />
       <ProjectInfoContent />
       <InfoTecnologies />
+      <BurgerMenu />
       <Footer />
     </>
   );
 };
 
+
 export default ProjectInfo;
+
