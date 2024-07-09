@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import { FaCodeCompare, FaRegStar, FaShop } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 import type { Product } from "../models/product";
 import "../styles/flip-card.css";
 
@@ -59,7 +59,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick}>
+      onClick={handleCardClick}
+    >
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-700">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
@@ -109,13 +110,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
         </div>
         <div className="flip-card-back absolute flex flex-col justify-between w-full h-full bg-white shadow-md transform rotate-y-180">
           <div className="descriptionProduct">
-            <p>
-              La base sólida y estructural de tu sistema, el chasis del PC no
-              solo protege todos los componentes internos de daños externos,
-              sino que también ofrece una gestión organizada de cables y un
-              flujo de aire optimizado para mantener todo funcionando de manera
-              eficiente.
-            </p>
+            <p>{product.categories.category_description_en}</p>
           </div>
           <div className="infoCardBack">
             <div className="stock">
@@ -124,7 +119,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
             <div
               className="overflow-y-auto hide-scrollbar relative cities"
-              id="store-list">
+              id="store-list"
+            >
               <p className="card-city list-none my-1 text-left mx-2 flex items-center">
                 {formatCityList()}.
               </p>
