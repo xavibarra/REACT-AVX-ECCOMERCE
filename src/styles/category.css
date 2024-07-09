@@ -7,28 +7,35 @@
   row-gap: 50px;
   column-gap: 100px;
   justify-content: center;
+  overflow: hidden;
+  padding: 5em;
 }
 /* styles.css */
 
-.title-container {
-  /* overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-  position: relative; */
-  margin: 100px 0 50px 0;
-  z-index: 9;
-}
-
 .title {
   display: inline-block;
-  font-size: 24px; /* Ajusta el tamaño de la fuente según sea necesario */
+  font-size: 24px;
   font-weight: bold;
   white-space: nowrap;
   position: absolute;
-  left: -50%;
-  right: -50%;
+  left: -30%;
+  font-weight: 1000;
+  margin-top: 1em;
+}
+
+.filterOrder{
+  display: flex;
+  justify-content: space-around;
+
+} 
+
+.filterOrder button{
+  padding: 1em;
+  background-color: var(--color-secondary);
+  color: white;
+  width: 200px;
 }
 
 .title span {
-  padding-right: 20px; /* Ajusta el espacio entre las repeticiones */
+  padding-right: 20px; 
 }
