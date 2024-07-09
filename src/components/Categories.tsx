@@ -102,7 +102,7 @@ const Categories: React.FC<{ category: string }> = ({ category }) => {
     "CPU",
     "CASE",
     "POWER SUPPLY",
-    "INTERNAL HARD DRIVEVE",
+    "INTERNAL HARD DRIVE",
     "MONITOR",
     "EXTERNAL HARD DRIVE",
     "OPTICAL DRIVE",
