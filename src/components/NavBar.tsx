@@ -1,6 +1,9 @@
 import { SetStateAction, useEffect, useState } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
+import BurgerMenu from "../components/BurgerMenu";
+
 
 function Navbar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,7 +62,15 @@ function Navbar() {
     setSearchTerm(event.target.value);
   };
 
+  const navigate = useNavigate();
+
+  const goHome = () => {
+    window.scrollTo(0, 0);
+    navigate("");
+  };
+
   return (
+    <>
     <div id="navbar">
       <div className="flex-1 container-nav">
         <input
@@ -92,7 +103,7 @@ function Navbar() {
           </svg>
         </div>
       </div>
-      <div className="logoContainer fill-white">
+      <div className="logoContainer fill-white" onClick={goHome}>
         <svg
           id="Layer_1"
           data-name="Layer 1"
@@ -193,6 +204,8 @@ function Navbar() {
         </a>
       </div>
     </div>
+    <BurgerMenu />
+    </>
   );
 }
 

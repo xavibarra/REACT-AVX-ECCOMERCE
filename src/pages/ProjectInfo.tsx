@@ -11,7 +11,6 @@ const ProjectInfo = () => {
       <Navbar2 />
       <ProjectInfoContent />
       <InfoTecnologies />
-      <BurgerMenu />
       <Footer />
     </>
   );

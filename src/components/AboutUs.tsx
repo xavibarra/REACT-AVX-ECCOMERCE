@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 import about from "../assets/img/aboutUs.jpg";
 import "../styles/about-us.css";
 
