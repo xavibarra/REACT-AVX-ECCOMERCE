@@ -2,9 +2,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../models/product";
 
-import gifff from "../assets/img/gifanimado.gif";
 import FlipCard from "../components/FlipCard";
 import Loading from "../components/Loading";
+import Navbar2 from "../components/NavBar2";
+import "../styles/category.css";
 
 const Category = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
@@ -41,17 +42,28 @@ const Category = () => {
     }
   }, [categoryId]);
 
-  if (loading) return <Loading/>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
-  console.log(products);
+
   return (
     <div>
-      <h1>Productos en la categoría: {categoryId}</h1>
-      <div className="">
+      <Navbar2 />
+      <RepeatedTitle text="GRAPHIC CARDS" />
+      <div className="categoryProducts">
         {products.map((product) => (
           <FlipCard key={product.id} product={product} />
         ))}
       </div>
+    </div>
+  );
+};
+
+const RepeatedTitle = ({ text }) => {
+  const repeatedText = new Array(10).fill(text).join(" ");
+
+  return (
+    <div className="title-container">
+      <div className="title">{repeatedText}</div>
     </div>
   );
 };
