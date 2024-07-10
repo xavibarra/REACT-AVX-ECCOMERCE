@@ -47,37 +47,37 @@ const ProjectInfoContent = () => {
                 ))}
             </div>
             <div className="info-historia-container">
-                <h3>HISTORIA DEL PROYECTO</h3>
-                <p>AVX Components nació como el proyecto final de un bootcamp de
-                    5 meses en tecnologías de programación web, parte de una FP dual
-                    de formación y trabajo de Fundesplai. Este programa incluye tanto
-                    la formación en el bootcamp como la parte laboral trabajando de la
-                    mano de la empresa Onizea.
+                <h3>PROJECT INFORMATION</h3>
+                <p>AVX Components was born as the final project of a bootcamp
+                    5 months in web programming technologies, part of a dual FP
+                    of training and work of Fundesplai. This program includes both
+                    training in the bootcamp as well as the working part of the
+                    hand of the Onizea company.
                     <br></br><br></br>
-                    Empezamos el proyecto 6 meses antes de finalizar
-                    este e-commerce, aplicando las habilidades adquiridas y dedicando tiempo adicional
-                    para asegurar que nuestro proyecto refleje el mejor uso posible de estas tecnologías.</p>
+                    We started the project 1 month before finishing
+                    this formation program, applying the acquired skills and dedicating additional time
+                    to ensure that our project reflects the best possible use of these technologies.</p>
             </div>
             <div className="info-informacion-container">
-                <h3>INFORMACIÓN DEL PROYECTO</h3>
+                <h3>PROJECT HISTORY</h3>
                 <div className="info-informacion-bloques-container">
-                    <p>Nuestro e-commerce, AVX Components, se enorgullece de ofrecer más de 10.000 productos,
-                        organizados en 12 categorías para facilitar la navegación y selección. Nuestro catálogo
-                        incluye una amplia variedad de componentes electrónicos y accesorios especializados,
-                        diseñados para satisfacer las necesidades de nuestros clientes.
-                        Nuestro objetivo principal es proporcionar una experiencia de compra completa y satisfactoria.
+                <p>Our e-commerce, AVX Components, is proud to offer more than 10,000 products,
+                        organized into 12 categories for easy navigation and selection. Our catalog
+                        includes a wide variety of specialized electronic components and accessories,
+                        designed to meet the needs of our customers.
+                        Our main goal is to provide a complete and satisfactory shopping experience.
                         <br></br><br></br>
-                        Nos esforzamos por presentar los mejores componentes disponibles en el mercado, garantizando la
-                        calidad y el rendimiento de cada producto. Para ello, ofrecemos descripciones detalladas,
-                        imágenes claras y especificaciones técnicas precisas.
-                        En AVX Components, valoramos la opinión de nuestros clientes y estamos siempre dispuestos
-                        a mejorar nuestros servicios basándonos en sus comentarios.
+                        We strive to present the best components available on the market, ensuring the
+                        quality and performance of each product. For this, we offer detailed descriptions,
+                        clear images and precise technical specifications.
+                        At AVX Components, we value our customers' opinions and are always willing
+                        to improve our services based on your comments.
                         <br></br><br></br>
-                        Nuestra plataforma es intuitiva
-                        y fácil de usar, con múltiples opciones de búsqueda y filtros para encontrar rápidamente lo
-                        que necesitan. En resumen, en AVX Components nos dedicamos a ofrecer una experiencia de compra
-                        de primera clase, asegurando que nuestros clientes tengan acceso a productos de alta calidad y
-                        a un servicio excepcional.</p>
+                        Our platform is intuitive
+                        and easy to use, with multiple search options and filters to quickly find what
+                        what do you need. In short, at AVX Components we are dedicated to providing a great shopping experience.
+                        first class, ensuring that our customers have access to high quality products and
+                        to exceptional service.</p>
                 </div>
             </div>
         </div>

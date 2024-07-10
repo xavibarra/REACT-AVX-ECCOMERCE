@@ -120,6 +120,12 @@ p {
 .burguerIcon {
   width: 25px;
 }
+.burgerIcon.rotated {
+  transform: rotate(90deg);
+  margin-top: 4px;
+}
+
+
 
 .cartIcon {
   width: 30px;
