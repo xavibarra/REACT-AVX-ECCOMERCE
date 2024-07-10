@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Product from "./pages/Product";
 import ProjectInfo from "./pages/ProjectInfo";
+import Comparator from "./pages/Comparator";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/comparator",
+    element: <Comparator />,
   },
 ]);
 

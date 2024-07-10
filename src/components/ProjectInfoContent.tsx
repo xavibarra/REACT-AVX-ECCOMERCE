@@ -11,20 +11,23 @@ const ProjectInfoContent = () => {
             name: 'Álvaro Monfort',
             foto: persona1,
             descripcion: 'asdasdads',
-            offer: true
+            offer: true,
+            rating: 5
         },
         {
             name: 'Xavi Barrachina',
             foto: persona2,
             descripcion: 'asdasdads',
-            offer: true
+            offer: true,
+            rating: 5
 
         },
         {
             name: 'Àlex Virgili',
             foto: persona3,
             descripcion: 'asdasdads',
-            offer: true
+            offer: true,
+            rating: 5
         },
     ]
 
@@ -43,6 +46,7 @@ const ProjectInfoContent = () => {
                         foto={creator.foto}
                         descripcion={creator.descripcion}
                         offer={creator.offer}
+                        rating={creator.rating}
                     />
                 ))}
             </div>
