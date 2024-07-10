@@ -14,17 +14,14 @@ function Login() {
   useEffect(() => {
     supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_IN" && session?.user) {
-        const uuid_user = session.user.id;
-
         try {
-          const response = await fetch("/api/users", {
+          const response = await fetch("http://localhost:3000/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
               id: null, // Deja que Supabase genere el ID automáticamente
-              uuid_user,
               admin: false, // Ajusta según tus necesidades
               cart: [], // Ajusta según tus necesidades
             }),
@@ -87,7 +84,7 @@ function Login() {
         supabaseClient={supabase}
         appearance={{ theme: customTheme }}
         theme="dark"
-        providers={["discord"]}
+        providers={["discord", "google"]}
       />
     </div>
   );
