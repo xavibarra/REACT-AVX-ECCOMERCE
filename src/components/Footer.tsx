@@ -112,18 +112,18 @@ function Footer() {
                 </a>
             </div>
             <div className="footer-copy-container">
-                <p>&copy; 2023 - Tots els drets reservats</p>
+                <p>&copy; 2024 - All rights reserved</p>
                 <div className="footer-legal-container">
                     <a href="/">
-                        <p>Politica de privacitat</p>
+                        <p>Privacy Policy</p>
                     </a>
                     <p>|</p>
                     <a href="/">
-                        <p>Politica de Cookies</p>
+                        <p>Cookies Policy</p>
                     </a>
                     <p>|</p>
                     <a href="/">
-                        <p>Avís legal</p>
+                        <p>Legal Advice</p>
                     </a>
                 </div>
             </div>

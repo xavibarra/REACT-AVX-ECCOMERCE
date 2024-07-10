@@ -95,13 +95,15 @@ function Navbar() {
 
   const [menuVisible, setMenuVisible] = useState(false); // Estado para el menú de hamburguesa
   const [isIconRotated, setIsIconRotated] = useState(false); // Estado para la rotación del ícono
-
+  const [categoriesVisible, setCategoriesVisible] = useState(false);
   const toggleMenu = () => {
+    event.preventDefault(); 
     setMenuVisible(!menuVisible); // Alterna la visibilidad del menú
     setIsIconRotated(!isIconRotated); // Alterna la rotación del ícono
+    if (menuVisible) { 
+      setCategoriesVisible(false);
+    }
   };
-
-
 
   return (
     <>
@@ -244,7 +246,11 @@ function Navbar() {
           </a>
         </div>
       </div>
-      <BurgerMenu menuVisible={menuVisible} />
+      <BurgerMenu
+  menuVisible={menuVisible}
+  setCategoriesVisible={setCategoriesVisible}
+  categoriesVisible={categoriesVisible}
+/>
     </>
   );
 }
