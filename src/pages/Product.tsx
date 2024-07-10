@@ -73,6 +73,7 @@ const ProductPage = () => {
         throw new Error(`Error: ${response.statusText}`);
       }
       const data: Category = await response.json();
+      console.log(data);
       setCategory(data);
     } catch (error) {
       if (error instanceof Error) {
@@ -171,7 +172,7 @@ const ProductPage = () => {
           )}
         </div>
         <div>
-          <p>{category ? category.categoryDescriptionEs : "Loading..."}</p>
+          <p>{category ? category.categoryDescriptionEn : "Loading..."}</p>
         </div>
       </div>
     </section>

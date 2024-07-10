@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
-import { FaCodeCompare, FaRegStar, FaShop } from "react-icons/fa6";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaCodeCompare, FaShop } from "react-icons/fa6";
+
 import { useNavigate } from "react-router-dom";
 import type { Product } from "../models/product";
 import "../styles/flip-card.css";
@@ -56,6 +58,25 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     navigate(`/product/${product.id}`);
   };
 
+  // Función para generar las estrellas según el rating
+  const generateStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating - fullStars >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    return (
+      <>
+        {[...Array(fullStars)].map((_, i) => (
+          <FaStar key={`full-${i}`} />
+        ))}
+        {hasHalfStar && <FaStarHalfAlt />}
+        {[...Array(emptyStars)].map((_, i) => (
+          <FaRegStar key={`empty-${i}`} />
+        ))}
+      </>
+    );
+  };
+
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
@@ -89,11 +110,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
                   </p>
                 )}
               </div>
-              <div className="starsIcon">
-                {[...Array(5)].map((_, index) => (
-                  <FaRegStar key={index} className="starIcon" />
-                ))}
-              </div>
+              <div className="starsIcon">{generateStars(product.rating)}</div>
             </div>
           </div>
           <div className="bottomCard">
@@ -101,7 +118,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
-              <span> Add to card </span>
+              <span> Add to cart </span>
             </button>
             <div className="favIcon">
               <CiHeart />
@@ -110,7 +127,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
         </div>
         <div className="flip-card-back absolute flex flex-col justify-between w-full h-full bg-white shadow-md transform rotate-y-180">
           <div className="descriptionProduct">
-            <p>{product.categories.category_description_en}</p>
+            <p>{product.categories?.category_description_en}</p>
           </div>
           <div className="infoCardBack">
             <div className="stock">
@@ -132,7 +149,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
-                <span> Add to card </span>
+                <span> Add to cart </span>
               </button>
               <div className="favIcon">
                 <CiHeart />
