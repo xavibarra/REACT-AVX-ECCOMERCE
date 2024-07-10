@@ -87,40 +87,40 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ menuVisible }) => {
             </div>
             <div className={`burger-categories-container ${categoriesVisible ? 'visible' : 'hidden'}`}>
                 <a href="" className="burger-category-name-first" onClick={goToCase}>
-                    <p>CASE</p>
+                    <p>Case</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToPowerSupply}>
-                    <p>POWER SUPPLY</p>
+                    <p>Power Supply</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToGraphicCard}>
-                    <p>GRAPHIC CARD</p>
+                    <p>Graphic Card</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToCpuCooler}>
-                    <p>CPU COOLER</p>
+                    <p>Cpu Cooler</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToMotherBoard}>
-                    <p>MOTHERBOARD</p>
+                    <p>Motherboard</p>
                 </a>
                 <a href="" className="burger-category-name-2" onClick={goToExternalHardDrive}>
-                    <p>EXTERNAL HARD DRIVE</p>
+                    <p>External Hard Drive</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToMonitor}>
-                    <p>MONITOR</p>
+                    <p>Monitor</p>
                 </a>
                 <a href="" className="burger-category-name-2" onClick={goToInternalHardDrive}>
-                    <p>INTERNAL HARD DRIVE</p>
+                    <p>Internal Hard Drive</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToRamMemory}>
-                    <p>RAM MEMORY</p>
+                    <p>Ram Memory</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToCaseFan}>
-                    <p>CASE FAN</p>
+                    <p>Case Fan</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToOpticalDrive}>
-                    <p>OPTICAL DRIVE</p>
+                    <p>Optical Drive</p>
                 </a>
                 <a href="" className="burger-category-name" onClick={goToCpu}>
-                    <p>CPU</p>
+                    <p>Cpu</p>
                 </a>
             </div>
         </>
