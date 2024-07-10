@@ -1,20 +1,21 @@
 import "../styles/burger-menu.css";
 import { FaCodeCompare, FaPuzzlePiece, FaHeart } from "react-icons/fa6";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
 
 interface BurgerMenuProps {
     menuVisible: boolean;
+    setCategoriesVisible: (visible: boolean) => void;
+    categoriesVisible: boolean;
 };
 
-const BurgerMenu: React.FC<BurgerMenuProps> = ({ menuVisible }) => {
 
-    const [categoriesVisible, setCategoriesVisible] = useState(false);
 
+const BurgerMenu: React.FC<BurgerMenuProps> = ({ menuVisible, setCategoriesVisible, categoriesVisible }) => {
 
     const toggleCategories = () => {
+        event.preventDefault();
         setCategoriesVisible(!categoriesVisible);
     };
 
