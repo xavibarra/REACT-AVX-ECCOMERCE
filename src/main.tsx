@@ -4,11 +4,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import "./index.css";
 
+import Loading from "./components/Loading";
 import Category from "./pages/Category";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Product from "./pages/Product";
 import ProjectInfo from "./pages/ProjectInfo";
-import Loading from "./components/Loading";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
   {
     path: "/loading/",
     element: <Loading />,
-  }
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
