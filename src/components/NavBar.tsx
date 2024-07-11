@@ -15,19 +15,28 @@ function Navbar() {
   //User logic
   const [user, setUser] = useState({});
 
-  // useEffect(() => {
-  //   async function getUserData() {
-  //     await supabaseClient.auth.getUser().then((value) => {
-  //       if (value.data) {
-  //         navigate("/login");
-  //       } else {
-  //         setUser(value.data.user);
-  //         navigate("/profile");
-  //       }
-  //     });
-  //   }
+  useEffect(() => {
+    async function checkUser() {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error) {
+        setUser(null);
+      } else {
+        setUser(data.user);
+        console.log(data); // Asegúrate de que los datos del usuario se establecen correctamente
+      }
+    }
 
-  // }, []);
+    checkUser();
+  }, []);
+
+  const goToProfileOrLogin = () => {
+    if (user) {
+      navigate("/profile");
+      console.log(user);
+    } else {
+      navigate("/login");
+    }
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
@@ -101,21 +110,6 @@ function Navbar() {
       setCategoriesVisible(false);
     }
   };
-  async function getUserData() {
-    console.log("hola");
-    await supabaseClient.auth.getUser().then((value) => {
-      if (value.data) {
-        navigate("/login");
-        console.log(
-          "---------------------------------------------------------------------"
-        );
-        console.log(value.data);
-      } else {
-        setUser(value.data.user);
-        // navigate("/profile");
-      }
-    });
-  }
 
   return (
     <>
@@ -254,7 +248,7 @@ function Navbar() {
         </a>
         <div className="iconsNav">
           <a className="userIcon">
-            <FaUser onClick={getUserData} />
+            <FaUser onClick={goToProfileOrLogin} />
           </a>
           <a href="/" className="cartIcon">
             <FaShoppingBasket />
