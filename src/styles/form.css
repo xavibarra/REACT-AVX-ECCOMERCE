@@ -1,6 +1,6 @@
 .formCard {
   height: 70vh;
-  margin: 5em 8em;
+  margin: 12em 11em;
   transition: all 0.2s;
   position: relative;
 }
@@ -14,9 +14,7 @@
   padding: 1em;
 }
 
-.formCardInner h3 {
-  font-size: 2.5em;
-  font-weight: 600;
+.formCardInner h2 {
   margin-left: 0.5em;
   margin-top: 0.3em;
 }
@@ -28,18 +26,61 @@
 
 .formInfo {
   width: 40%;
-  margin: 2em;
+  margin: 1em;
   font-size: 0.8em;
 }
 
 .formInfo p,
 ul {
-  margin-bottom: 1em;
+  margin-bottom: 0.75em;
   font-weight: 300;
+  font-size: 1em;
+}
+
+@media (min-width: 1750px) {
+  .formInfo {
+    width: 40%;
+    margin: 2em;
+    font-size: 0.8em;
+  }
+  
+  .formInfo p,
+  ul {
+    margin-bottom: 1em;
+    font-weight: 300;
+    font-size: 1.5em;
+  }
+  .formInfo h4 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+  }
+  
+}
+
+@media (min-width: 900px) and (max-width: 1749px) {
+  .formInfo {
+    width: 40%;
+    margin: 1.5em;
+    font-size: 0.75em;
+  }
+  
+  .formInfo p,
+  ul {
+    margin-bottom: 1em;
+    font-weight: 300;
+    font-size: 1.25em;
+  }
+  .formInfo h4 {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+  }
+  
 }
 
 .formInfo h4 {
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-bottom: 0.5em;
   font-weight: 400;
 }

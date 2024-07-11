@@ -163,6 +163,11 @@
   margin: 0.5em;
 }
 
+.category-link:hover{
+  height: 22vh;
+  width: 22vh;
+}
+
 .priceFilter{
   width: 18%;
   height: 20%;

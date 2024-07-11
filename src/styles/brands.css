@@ -32,7 +32,7 @@
 .formCard2 {
   transition: all 0.5s;
   background-color: var(--color-primary);
-  position: relative;
+   position: relative;
   margin: 1em 0;
   overflow-x: hidden;
 }
@@ -59,89 +59,66 @@
 .formCircle2:nth-child(1) {
   left: -25px;
   margin-top: 2.25em;
-
 }
 
 .formCircle2:nth-child(2) {
   right: -25px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(3) {
   right: 70px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(4) {
   right: 180px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(5) {
   right: 300px;
   width: 200px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(6) {
   right: 430px;
   width: 200px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(7) {
   right: 560px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(8) {
   right: 680px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(9) {
   left: 100px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(10) {
   left: 220px;
   width: 200px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(11) {
   left: 350px;
   width: 200px;
   margin-top: 2.25em;
-
-
 }
 
 .formCircle2:nth-child(12) {
   left: 470px;
   width: 200px;
   margin-top: 2.25em;
-
-
 }
 
 @keyframes grow-shrink {

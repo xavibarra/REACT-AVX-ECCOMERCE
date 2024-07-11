@@ -29,7 +29,7 @@ const AboutUs = () => {
           purchase, ensuring you find the perfect components to meet your
           specific needs.
         </p>
-        <p className="ab-description">
+        <p className="ab-description lastDescription">
           Thank you for choosing Components Portions. We are committed to making
           your shopping experience seamless and enjoyable, with fast shipping
           and reliable support. Join us on our journey to enhance the future of
