@@ -105,14 +105,14 @@ function Navbar() {
     console.log("hola");
     await supabaseClient.auth.getUser().then((value) => {
       if (value.data) {
+        setUser(value.data.user);
+        navigate("/profile");
+      } else {
         navigate("/login");
         console.log(
           "---------------------------------------------------------------------"
         );
         console.log(value.data);
-      } else {
-        setUser(value.data.user);
-        // navigate("/profile");
       }
     });
   }
