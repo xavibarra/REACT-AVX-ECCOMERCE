@@ -55,7 +55,7 @@ function Login() {
   };
 
   return (
-    <section>
+    <section className="loginContainer">
       <Navbar2 />
       <div className="supabase-auth-container">
         <Auth
