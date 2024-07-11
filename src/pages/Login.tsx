@@ -1,7 +1,10 @@
 import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { createClient } from "@supabase/supabase-js";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar2 from "../components/NavBar2";
+import "../styles/login.css"; // Importa tu hoja de estilos personalizada
 
 const supabase = createClient(
   "https://dtchhmivnblzqzsmodfa.supabase.co",
@@ -14,17 +17,14 @@ function Login() {
   useEffect(() => {
     supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_IN" && session?.user) {
-        const uuid_user = session.user.id;
-
         try {
-          const response = await fetch("/api/users", {
+          const response = await fetch("http://localhost:3000/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
               id: null, // Deja que Supabase genere el ID automáticamente
-              uuid_user,
               admin: false, // Ajusta según tus necesidades
               cart: [], // Ajusta según tus necesidades
             }),
@@ -43,53 +43,28 @@ function Login() {
       }
     });
   }, [navigate]);
+
   const customTheme = {
-    default: {
-      colors: {
-        brand: "#404040",
-        brandAccent: "#3ecf8e",
-        brandButtonText: "#ffffff",
-        defaultButtonBackground: "#404040",
-        defaultButtonBackgroundHover: "#333333",
-        defaultButtonBorder: "transparent",
-        defaultButtonText: "#ffffff",
-        dividerBackground: "#404040",
-        inputBackground: "#fff",
-        inputBorder: "#ddd",
-        inputBorderHover: "#aaa",
-        inputBorderFocus: "#3ecf8e",
-        inputText: "#000",
-        inputLabelText: "#404040",
-        inputPlaceholder: "#404040",
-        messageText: "#000",
-        messageTextDanger: "#ff0000",
-        anchorTextColor: "#3ecf8e",
-        anchorTextHoverColor: "#3ecf8e",
-      },
-      fontSizes: {
-        baseBodySize: "13px",
-        baseInputSize: "14px",
-        baseLabelSize: "12px",
-        baseButtonSize: "14px",
-      },
-      borderRadii: {
-        borderRadiusButton: "4px",
-        buttonBorderRadius: "4px",
-        inputBorderRadius: "4px",
-      },
+    ...ThemeSupa,
+    colors: {
+      ...ThemeSupa.colors,
+      brand: "var(--color-primary)",
+      brandAccent: "var(--color-primary)",
+      inputBorderFocus: "var(--color-primary)",
     },
   };
 
   return (
-    <div>
-      <h1>LOGIN</h1>
-      <Auth
-        supabaseClient={supabase}
-        appearance={{ theme: customTheme }}
-        theme="dark"
-        providers={["discord"]}
-      />
-    </div>
+    <section>
+      <Navbar2 />
+      <div className="supabase-auth-container">
+        <Auth
+          supabaseClient={supabase}
+          appearance={{ theme: customTheme }}
+          providers={["discord", "google"]}
+        />
+      </div>
+    </section>
   );
 }
 
