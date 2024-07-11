@@ -7,10 +7,10 @@
   max-width: 400px;
   margin: 50px auto;
 }
-section {
+/* section {
   background-color: var(--color-secondary);
   height: 100vh;
-}
+} */
 .supabase-auth-title {
   color: var(--color-primary);
   font-size: 24px;
