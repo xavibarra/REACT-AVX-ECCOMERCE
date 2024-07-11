@@ -43,7 +43,7 @@ function Form() {
         <div className="formCircle"></div>
         <div className="formCircle"></div>
         <div className="formCardInner">
-          <h3>We'd Love to Hear from You!</h3>
+          <h2>We'd Love to Hear from You!</h2>
           <div className="formContainer">
             <div className="formInfo">
               <p>

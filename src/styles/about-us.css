@@ -1,6 +1,6 @@
 .ab-container {
   display: flex;
-  padding: 30px 0px 30px 70px;
+  padding: 3em 1em 3.5em 6em;
 }
 
 .ab-description-container {
@@ -10,8 +10,23 @@
   width: 45%;
 }
 .ab-description {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 1em;
+  font-weight: 300;
+  margin: 1em 1em 0 0;
+}
+@media (min-width: 1550px) {
+  .ab-description {
+    font-size: 1.25em;
+    font-weight: 300;
+    margin: 1em 1em 0 0;
+  }
+  .ab-container {
+    display: flex;
+    padding: 6em 1em 7em 12em;
+  }
+}
+.lastDescription {
+  margin-bottom: 2em;
 }
 .ab-button {
   height: 40px;

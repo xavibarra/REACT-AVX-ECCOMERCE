@@ -45,10 +45,6 @@
   width: 15px !important;
 }
 
-.eOWFDC {
-  height: 55vh;
-}
-
 .kVtMtA, .bhRnqO {
   background-color: var(--color-secondary) !important;
   opacity: 100 !important;
@@ -63,11 +59,13 @@
 .bVoXXg {
   width: 240px;
   height: 350px;
+  
 }
 
 .UtimI {
   align-items: center;
   justify-items: center;
+  grid-template-columns: repeat(5, 1fr) !important;
 }
 
 .flip-card:hover .flip-card-inner {
