@@ -115,14 +115,13 @@
 }
 
 .buttonBack.expanded {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary) !important;
   width: 30vw;
   height: 100vh;
   border-radius: 0;
   position: relative;
   top: -22em;
 }
-
 
 .blueDiv {
   width: 10px;
@@ -131,17 +130,106 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 20;
+  width: 3.5em;
 }
 
-.pagination{
+.backgroundFilter{
+  height: 100vh;
+  background-color: rgb(var(--color-secondary-rgb), 0.75);
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.pagination {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.pagination p {
+  font-size: 1em;
+  color: var(--color-secondary);
+  margin: 0.5em;
+}
+
+.pagination button {
+  margin: 0 0.5em;
   font-size: 3em;
   color: var(--color-secondary);
   margin: 0.5em;
 }
 
-.pagination button{
-  margin: 0 0.5em;
+.priceFilter{
+  width: 18%;
+  height: 20%;
+  background-color: white;
+  position: fixed;
+  z-index: 21;
+  top: 100px;
+  left: 110px;
+  padding: 1em 2em;
+  border-radius: 15px;
+  
+}
+.buttonApply{
+  width: 18%;
+  height: 6%;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 1em;
+  left: 110px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.priceFilter h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  height: 1em;
+}
+
+.priceFilter p {
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.priceInputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceInputs input[type="range"] {
+  width: calc(50% - 10px); /* 50% del ancho del contenedor menos el espacio entre ellos */
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  border-radius: 5px;
+  background: var(--color-secondary);
+  outline: none;
+}
+
+.priceInputs input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+} 
+
+.namePrice{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
 }
