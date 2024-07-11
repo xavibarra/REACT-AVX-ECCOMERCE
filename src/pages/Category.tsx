@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../models/product";
@@ -18,20 +17,23 @@ const Category = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1); // Estado para el número total de páginas
+  const [totalPages, setTotalPages] = useState<number>(1);
   const [buttonBackExpanded, setButtonBackExpanded] = useState<boolean>(false);
   const [backFilterColor, setBackFilterColor] = useState<string>(
     "rgba(253, 174, 55, 0.2)"
   );
+  const [sortOrder, setSortOrder] = useState<string>("");
+  const [minPrice, setMinPrice] = useState<number>(1); // Valor mínimo del rango de precio
+  const [maxPrice, setMaxPrice] = useState<number>(5000); // Valor máximo del rango de precio
 
   // Función para cargar productos por categoría y página
-  const fetchProductsByCategory = async (page: number) => {
+  const fetchProductsByCategory = async (page: number, sort: string = "") => {
     try {
       setLoading(true);
       setError(null);
 
       const response = await fetch(
-        `http://localhost:3000/products/productsByCategory/${categoryId}?page=${page}`
+        `http://localhost:3000/products/productsByCategory/${categoryId}?page=${page}&sort=${sort}&minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
 
       if (!response.ok) {
@@ -49,7 +51,8 @@ const Category = () => {
       // Actualizar estado con los nuevos productos cargados
       setProducts(data);
       setCurrentPage(page); // Actualizar la página actual
-    } catch (error) {
+    } catch (error: unknown) {
+      const err = error as Error;
       setError("Error al obtener los productos. Inténtelo de nuevo más tarde.");
     } finally {
       setLoading(false);
@@ -69,6 +72,7 @@ const Category = () => {
         const data = await response.json();
         setCategoryName(data.category_name_en);
       } catch (error) {
+        const err = error as Error;
         setError(
           "Error al obtener el nombre de la categoría. Inténtelo de nuevo más tarde."
         );
@@ -76,10 +80,10 @@ const Category = () => {
     };
 
     if (categoryId) {
-      fetchProductsByCategory(1); // Cargar la primera página inicialmente
+      fetchProductsByCategory(1, sortOrder); // Cargar la primera página inicialmente con el orden seleccionado
       fetchCategoryName();
     }
-  }, [categoryId]);
+  }, [categoryId, sortOrder]);
 
   const handleFilterButtonClick = () => {
     setButtonBackExpanded((prev) => !prev);
@@ -91,13 +95,43 @@ const Category = () => {
   };
 
   const handleLoadMore = () => {
-    fetchProductsByCategory(currentPage + 1); // Cargar la siguiente página
+    fetchProductsByCategory(currentPage + 1, sortOrder); // Cargar la siguiente página con el orden seleccionado
   };
 
   const handleLoadPrevious = () => {
     if (currentPage > 1) {
-      fetchProductsByCategory(currentPage - 1); // Cargar la página anterior
+      fetchProductsByCategory(currentPage - 1, sortOrder); // Cargar la página anterior
     }
+  };
+
+  const handleSortOrderChange = (order: string) => {
+    setSortOrder(order);
+    fetchProductsByCategory(1, order); // Cargar la primera página con el nuevo orden
+  };
+
+  const handleMinPriceChange = (event) => {
+    const price = parseInt(event.target.value);
+    setMinPrice(price);
+  };
+
+  const handleMaxPriceChange = (event) => {
+    const price = parseInt(event.target.value);
+    setMaxPrice(price);
+  };
+
+  const applyPriceRangeFilter = () => {
+    fetchProductsByCategory(1, sortOrder); // Aplicar cambios al hacer clic en "Apply"
+    setButtonBackExpanded(false); // Ocultar el filtro al aplicar cambios
+    setBackFilterColor("rgba(253, 174, 55, 0.2)"); // Restaurar el color de fondo original de buttonBack
+  };
+
+  const closeFilter = () => {
+    setButtonBackExpanded(false); // Función para cerrar el filtro al hacer clic en backgroundFilter
+    setBackFilterColor("rgba(253, 174, 55, 0.2)"); // Restaurar el color de fondo original de buttonBack
+  };
+
+  const formatPrice = (price) => {
+    return `€${price}`;
   };
 
   if (loading) return <Loading />;
@@ -109,7 +143,41 @@ const Category = () => {
         <div className="backFilterContainer">
           <div
             className={`buttonBack ${buttonBackExpanded ? "expanded" : ""}`}
-            style={{ backgroundColor: backFilterColor }}></div>
+            style={{ backgroundColor: backFilterColor }}>
+            {buttonBackExpanded && (
+              <div className="priceFilter">
+                <div className="namePrice">
+                  <h3>Price Range</h3>
+                  <p>
+                    {formatPrice(minPrice)} - {formatPrice(maxPrice)}
+                  </p>{" "}
+                </div>
+                {/* Muestra el rango de precio seleccionado */}
+                <div className="priceInputs">
+                  <input
+                    type="range"
+                    min="1"
+                    max="5000"
+                    value={minPrice}
+                    onChange={handleMinPriceChange}
+                  />
+                  <input
+                    type="range"
+                    min="1"
+                    max="5000"
+                    value={maxPrice}
+                    onChange={handleMaxPriceChange}
+                  />
+                </div>{" "}
+                <button className="buttonApply" onClick={applyPriceRangeFilter}>
+                  Apply
+                </button>
+              </div>
+            )}
+          </div>
+          {buttonBackExpanded && (
+            <div className="backgroundFilter" onClick={closeFilter}></div>
+          )}
         </div>
         <button
           className={`buttonFilter ${buttonBackExpanded ? "expanded" : ""}`}
@@ -128,11 +196,17 @@ const Category = () => {
       </div>
 
       <div className="filterOrder">
-        <button>Lowest price</button>
-        <button>Highest price</button>
-        <button>Best rated</button>
-        <button>Offers</button>
-        <button>Name</button>
+        <button onClick={() => handleSortOrderChange("lowestPrice")}>
+          Lowest price
+        </button>
+        <button onClick={() => handleSortOrderChange("highestPrice")}>
+          Highest price
+        </button>
+        <button onClick={() => handleSortOrderChange("bestRated")}>
+          Best rated
+        </button>
+        <button onClick={() => handleSortOrderChange("offers")}>Offers</button>
+        <button onClick={() => handleSortOrderChange("name")}>Name</button>
       </div>
       <div className="categoryProducts">
         {/* Mostrar productos de la página actual */}
@@ -142,14 +216,13 @@ const Category = () => {
       </div>
       {/* Información de paginación */}
       <div className="pagination">
-        <p>
-          Página {currentPage} de {totalPages}
-        </p>
         {currentPage > 1 && (
           <button onClick={handleLoadPrevious}>
             <FaCircleArrowLeft />
           </button>
         )}
+        <p>{currentPage}</p>
+
         {products.length >= PAGE_SIZE && (
           <button onClick={handleLoadMore}>
             <FaCircleArrowRight />
