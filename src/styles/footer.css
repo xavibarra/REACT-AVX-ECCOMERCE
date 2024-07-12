@@ -1,0 +1,59 @@
+/* CONTAINER */
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-secondary);
+    height: 110px;
+    bottom: 0;
+    right: 0;
+}
+
+/* LOGO */
+.footer-logo-container{
+    width: 33%;
+    display: flex;
+    align-items: center;
+        svg{
+            padding-left: 45px;
+            height: auto;
+            width: 270px;
+        }
+}
+
+/* ICONOS */
+.footer-media-container{
+    width: 17%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer-ico{
+    color: white;
+    height: 40px;
+    width: auto;
+}
+
+/* LEGAL */
+
+.footer-copy-container{
+    width: 33%;
+    padding-right: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+
+        p{
+            color: white;
+            font-size: 15px;
+            font-weight: 300;
+        }
+}
+.footer-legal-container{
+    display: flex;
+        p{
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+}
