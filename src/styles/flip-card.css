@@ -113,6 +113,14 @@
   color: var(--color-secondary);
 }
 
+.compareIcon2 { 
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  font-size: 18px;
+  color: var(--color-secondary);
+}
+
 .imgCard {
   font-size: 1em;
   padding: 0.5em;
@@ -202,7 +210,9 @@
   background-color: var(--color-primary);
   color: #ffffff;
 }
-
+.duration-500{
+  transition-duration: 400ms !important;
+}
 /* Ocultar barra de desplazamiento */
 .hide-scrollbar::-webkit-scrollbar {
   width: 0px;
