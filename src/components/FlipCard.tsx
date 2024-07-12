@@ -158,7 +158,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
       onClick={handleCardClick}
     >
-      <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-700">
+      <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-500">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
           <div className="cardContainer">
@@ -211,7 +211,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="infoCardBack">
             <div className="stock">
               <FaShop />
-              <h3 className="">Disponibilidad en tienda:</h3>
+              <h3 className="">Availability in store:</h3>
             </div>
             <div
               className="overflow-y-auto hide-scrollbar relative cities"
