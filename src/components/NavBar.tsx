@@ -85,6 +85,10 @@ function Navbar() {
     window.scrollTo(0, 0);
     navigate("");
   };
+  const goCart = () => {
+    window.scrollTo(0, 0);
+    navigate("/cart");
+  };
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [isIconRotated, setIsIconRotated] = useState(false);
@@ -289,8 +293,8 @@ function Navbar() {
           <a className="userIcon">
             <FaUser onClick={goToProfileOrLogin} />
           </a>
-          <a href="/" className="cartIcon">
-            <FaShoppingBasket />
+          <a className="cartIcon">
+            <FaShoppingBasket onClick={goCart} />
           </a>
           <a
             href="#"

@@ -5,9 +5,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 
 import Loading from "./components/Loading";
+import Cart from "./pages/Cart";
 import Category from "./pages/Category";
 import Comparator from "./pages/Comparator";
 import Home from "./pages/Home";
+import Likes from "./pages/Likes";
 import Login from "./pages/Login";
 import Product from "./pages/Product";
 import Profile from "./pages/Profile";
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
+  {
+    path: "likes",
+    element: <Likes />,
   },
 ]);
 

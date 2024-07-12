@@ -2,30 +2,18 @@ import React, { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FaCodeCompare, FaShop } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
 import type { Product } from "../models/product";
-import "../styles/flip-card.css";
-import { supabaseClient } from "../utils/supabaseClient";
+import "../styles/comparator-flip-card.css";
 
 interface FlipCardProps {
   product: Product;
 }
 
-const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
+const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const [showIndicator, setShowIndicator] = useState(false);
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
-
-  async function getUserData() {
-    const { data, error } = await supabaseClient.auth.getUser();
-    if (error) {
-      console.error("Error fetching user data:", error);
-    } else {
-      setUser(data.user);
-      console.log(data.user.id);
-    }
-  }
 
   useEffect(() => {
     const storeList = document.getElementById("store-list");
@@ -70,7 +58,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     navigate(`/product/${product.id}`);
   };
 
-  // Función para generar las estrellas según el rating
   const generateStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating - fullStars >= 0.5;
@@ -87,70 +74,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
         ))}
       </>
     );
-  };
-
-  const handleAddToCartClick = async (event: React.MouseEvent) => {
-    event.stopPropagation();
-
-    try {
-      const { data, error } = await supabaseClient.auth.getUser();
-      if (error) {
-        console.error("Error fetching user data:", error);
-        return;
-      }
-
-      const userId = data.user.id;
-      const productId = product.id;
-
-      const response = await fetch("http://localhost:3000/users/add-to-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId, productId }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to add product to cart");
-      }
-
-      const result = await response.json();
-      console.log(result.message); // Aquí puedes manejar la respuesta del backend
-    } catch (error) {
-      console.error("Error adding product to cart:", error.message);
-    }
-  };
-
-  const handleAddToLikeClick = async (event: React.MouseEvent) => {
-    event.stopPropagation();
-
-    try {
-      const { data, error } = await supabaseClient.auth.getUser();
-      if (error) {
-        console.error("Error fetching user data:", error);
-        return;
-      }
-
-      const userId = data.user.id;
-      const productId = product.id;
-
-      const response = await fetch("http://localhost:3000/users/add-like", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId, productId }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to add product to likes");
-      }
-
-      const result = await response.json();
-      console.log(result.message); // Maneja la respuesta del backend como desees
-    } catch (error) {
-      console.error("Error adding product to likes:", error.message);
-    }
   };
 
   return (
@@ -190,16 +113,13 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
           </div>
           <div className="bottomCard">
-            <button
-              className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-              onClick={handleAddToCartClick}
-            >
+            <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
-              <span>Add to cart</span>
+              <span> Add to Comparator </span>
             </button>
-            <div className="favIcon" onClick={handleAddToLikeClick}>
+            <div className="favIcon">
               <CiHeart />
             </div>
           </div>
@@ -224,16 +144,13 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           </div>
           <div className="bottomCardBack">
             <div className="bottomCard">
-              <button
-                className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-                onClick={handleAddToCartClick}
-              >
+              <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
-                <span>Add to cart</span>
+                <span> Add to comparator </span>
               </button>
-              <div className="favIcon" onClick={handleAddToLikeClick}>
+              <div className="favIcon">
                 <CiHeart />
               </div>
             </div>
@@ -244,4 +161,4 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   );
 };
 
-export default FlipCard;
+export default ComparatorFlipCard;
