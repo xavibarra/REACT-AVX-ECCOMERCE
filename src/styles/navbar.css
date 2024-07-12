@@ -1,0 +1,230 @@
+#nav-container {
+  padding: 30px 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 90;
+  height: 70px;
+}
+
+.container-nav {
+  position: relative;
+  --size-button: 40px;
+  color: white;
+  margin-left: 25px;
+}
+
+.inputSearch {
+  margin-top: -3px;
+  padding-left: var(--size-button);
+  height: var(--size-button);
+  border: none;
+  outline: none;
+  width: var(--size-button);
+  transition: all ease 0.3s;
+  background-color: #191a1e;
+  box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
+    inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.inputSearch:focus,
+.inputSearch:not(:invalid) {
+  width: 390px;
+  cursor: text;
+
+}
+
+.inputSearch:focus + .icon,
+.inputSearch:not(:invalid) + .icon {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.container-nav .icon svg {
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  pointer-events: none;
+  color: white;
+  width: 1.25em;
+}
+
+.scroll .icon svg{
+  color: var(--color-secondary);
+}
+
+#nav-mid {
+  display: flex;
+  align-items: center;
+}
+#nav-mid img,
+p {
+  padding: 0px 2px;
+  margin: 0;
+}
+#avx {
+  font-size: 30px;
+  font-weight: 500;
+}
+#comp {
+  font-size: 25px;
+}
+
+.logoContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  height: 3rem;
+}
+
+.svgLogo {
+  height: auto;
+  width: 100%;
+  max-width: 32rem;
+}
+
+.iconsNav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 25px;
+}
+
+.iconsNav svg {
+  width: 80%;
+}
+
+.icon{
+  margin: 0px;
+}
+
+.lupa {
+  width: 15px;
+  margin: 10px 0px 0px 8px;
+}
+
+.userIcon,
+.burguerIcon {
+  width: 25px;
+}
+
+.burgerIcon.rotated {
+  transform: rotate(90deg);
+  margin-top: 4px;
+}
+
+.cartIcon {
+  width: 30px;
+}
+
+.iconsNav svg{
+  font-size: 1.5em;
+}
+
+/* ---------------------------------------- SCROLL CSS */
+
+#navbar.scroll {
+  background: var(--color-secondary);
+  height: 70px;
+}
+
+#navbar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#navbar.scroll .container-nav input {
+  background-color: white;
+  color: var(--color-secondary);
+}
+
+.container-nav input{
+  background-color: var(--color-secondary);
+  color: white;
+}
+#navbar.scroll .container-nav .icon {
+  color: var(--color-secondary);
+}
+
+#navbar.scroll .iconsNav svg {
+  color: white;
+}
+
+.logoContainer svg {
+  display: none;
+  /* Añade cualquier estilo adicional para la imagen */
+}
+
+.logoContainer svg.show {
+  display: block;
+  /* Añade cualquier estilo adicional cuando la imagen se muestre */
+}
+
+
+
+
+
+.searchResults {
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  width: 22em;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 4px 4px;
+  z-index: 1000;
+  max-height: 300px; /* Ajusta este valor según la altura deseada */
+  overflow-y: auto;
+  z-index: -1;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.searchResultItem:last-child {
+  border-bottom: none;
+}
+
+.searchResultItem:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.resultImage {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 1em;
+}
+
+.resultDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultPrice, .resultFinalPrice {
+  font-size: 1em;
+  color: var(--color-secondary);
+  font-weight: bold;
+}
+

@@ -1,0 +1,81 @@
+/* 
+.hightighlighted-offers-container {
+  padding: 30px;
+}
+
+.hightighlighted-offers-container h2{
+  margin-bottom: 0.5em;
+}
+
+.eOWFDC{
+  padding: 0 5em;
+    height: 60vh !important;
+    width: 100vw;
+}
+.bghjHX{
+  margin: 0 !important;
+  position: relative;
+      left: -40px;
+} */
+.highlighted-offers-container {
+  width: 100%;
+  margin: 8em auto;
+}
+
+.highlighted-offers-container h2 {
+  padding-left: 2.75em;
+}
+
+.carouselContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 25em;
+  padding: 1.5em 7em;
+  margin-top: 2em;
+}
+
+.carouselInner {
+  display: flex;
+  justify-content: center;
+  transition: transform 1s ease-in-out;
+}
+
+.carouselPage {
+  display: flex;
+  width: 100%;
+  transition: transform 1s ease-in-out; /* Transición para el movimiento de las tarjetas */
+}
+
+.carouselItem {
+  flex: 0 0 27%; /* Mostrar 4 elementos por slide */
+  box-sizing: border-box;
+  padding: 0 1%; /* Espacio adicional entre elementos */
+  transition: transform 0.5s ease-in-out; /* Transición para el movimiento de las tarjetas */
+}
+
+@media (min-width: 2100px) {
+  .carouselItem {
+    flex: 0 0 22%; /* Cambia a 40% de ancho si la pantalla es más grande que 1200px */
+  }
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  z-index: 2;
+  color: var(--color-secondary);
+  font-size: 4em;
+}
+
+.prevButton {
+  left: 0;
+}
+
+.nextButton {
+  right: 0;
+}

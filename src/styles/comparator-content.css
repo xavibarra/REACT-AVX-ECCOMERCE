@@ -1,0 +1,144 @@
+.comparator-content-container{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comparator-selected-container{
+    display: flex;
+    width: 90%;
+}
+
+.comparator-item-selected-container{
+    height: 600px;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comparator-rating-name-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.comparator-remove-choice-icon{
+    font-size: 40px;
+}
+
+.comparator-first-choice-img{
+    height: 300px;
+}
+
+.comparator-second-choice-img{
+    height: 300px;
+}
+
+.comparator-vs-container{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comparator-vs-line{
+    width: 1px;
+    border: 1px solid rgb(96, 96, 96);
+    height: 35%;
+}
+
+.comparator-vs-icon{
+    border: 2px solid rgb(79, 79, 79);
+    border-radius: 50%;
+    p{
+        padding: 10px 12px;
+        font-weight: 600;
+    }
+    
+}
+.comparator-plus-icon-1-container-hidden{
+    display: none;
+}
+.comparator-plus-icon-2-container-hidden{
+    display: none;
+}
+
+.comparator-plus-icon{
+    font-size: 100px;
+    color: rgb(172, 172, 172);
+}
+
+.comparator-add-title-container{
+    padding: 50px 0px;
+        h3{
+            font-size: 35px;
+            font-weight: 800;
+        }
+}
+
+.comparator-search-container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+
+    select{
+        display: flex;
+        align-items: center;
+        height: 40px;
+        width: 20%;
+        border: 3px solid black;
+        border-radius: 25px;
+        padding-left: 12px;
+        option{
+            height: 200px;
+        }
+    }
+}
+
+.comparator-input-container{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 20%;
+    border: 3px solid black;
+    border-radius: 25px;
+    div{
+        padding: 10px;
+        border-radius: 25px;
+
+    }
+    input{
+        padding: 0px 10px;
+        border-radius: 25px;
+        border: none;
+    }
+}
+
+.comparator-input-icon-container{
+    background-color: black;
+    border-radius: 20px;
+}
+    
+
+.comparator-input-icon{
+    font-size: 17px;
+    color: white;
+    padding-right: 1px;
+
+}
+
+.comparator-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 16px; /* Espacio entre las tarjetas */
+}
+
+
+
+
+

@@ -1,0 +1,59 @@
+.supabase-auth-container {
+  background-color: white;
+  color: var(--color-primary);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 50px auto;
+}
+.loginContainer {
+  background-color: var(--color-secondary);
+  height: 100vh;
+}
+.supabase-auth-title {
+  color: var(--color-primary);
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.supabase-auth-ui_ui-button {
+  background-color: var(--color-primary) !important;
+  color: var(--color-secondary) !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+  width: 100% !important;
+}
+
+.supabase-auth-ui_ui-button:hover {
+  background-color: darken(var(--color-primary), 10%) !important;
+}
+
+.supabase-auth-ui_ui-input {
+  width: calc(100% - 20px) !important;
+  padding: 10px !important;
+  margin: 10px 0 !important;
+  border: 1px solid #ddd !important;
+  border-radius: 5px !important;
+  background-color: white !important;
+  color: black !important;
+}
+
+.supabase-auth-ui_ui-label {
+  color: var(--color-primary) !important;
+}
+
+.supabase-auth-provider-button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
