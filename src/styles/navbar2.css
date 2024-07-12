@@ -21,18 +21,18 @@
   
   .container-nav2 {
     position: relative;
-    --size-button: 30px;
+    --size-button: 40px;
     color: white;
     margin-left: 25px;
   }
   
   .inputSearch2 {
-    margin-top: 2px;
+    margin-top: -3px;
     padding-left: var(--size-button);
     height: var(--size-button);
-    font-size: 15px;
+    font-size: 20px;
     border: none;
-    color: white;
+    color: var(--color-secondary);
     outline: none;
     width: var(--size-button);
     transition: all ease 0.3s;
@@ -45,10 +45,9 @@
   
   .inputSearch2:focus,
   .inputSearch2:not(:invalid) {
-    width: 200px;
+    width: 390px;
     cursor: text;
-    box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%),
-      inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
+
   }
   
   .inputSearch2:focus + .icon,
@@ -134,3 +133,69 @@
     /* Añade cualquier estilo adicional cuando la imagen se muestre */
   }
   
+  .container-nav2 .icon svg {
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    pointer-events: none;
+    width: 1.25em;
+  }
+
+  .iconsNav2 svg{
+    font-size: 1.5em;
+  }
+
+
+
+
+
+
+.searchResults {
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  width: 22em;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 4px 4px;
+  z-index: 1000;
+  max-height: 300px; /* Ajusta este valor según la altura deseada */
+  overflow-y: auto;
+  z-index: -1;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.searchResultItem:last-child {
+  border-bottom: none;
+}
+
+.searchResultItem:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.resultImage {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 1em;
+}
+
+.resultDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultPrice, .resultFinalPrice {
+  font-size: 1em;
+  color: var(--color-secondary);
+  font-weight: bold;
+}
+

@@ -1,17 +1,42 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../styles/navbar2.css";
 import BurgerMenu from "../components/BurgerMenu";
 
-
-
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
+  const [showResults, setShowResults] = useState(false); // Estado para mostrar u ocultar resultados de búsqueda
+  const [user, setUser] = useState({});
 
+  useEffect(() => {
+    async function checkUser() {
+      // Simulando la autenticación de Supabase
+      // const { data, error } = await supabaseClient.auth.getUser();
+      const data = { user: { name: "John Doe" } }; // Ejemplo de usuario autenticado
+      const error = null;
+      if (error) {
+        setUser(null);
+      } else {
+        setUser(data.user);
+        console.log(data); // Asegúrate de que los datos del usuario se establecen correctamente
+      }
+    }
 
-  /* --------------------------------------------------------------- SEARCH INPUT FUNCIÓ --*/
+    checkUser();
+  }, []);
+
+  const goToProfileOrLogin = () => {
+    if (user) {
+      navigate("/profile");
+      console.log(user);
+    } else {
+      navigate("/login");
+    }
+  };
+
+  /* --------------------------------------------------------------- SEARCH INPUT FUNCIÓN --*/
   useEffect(() => {
     if (searchTerm) {
       fetch(
@@ -21,20 +46,23 @@ function Navbar2() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          console.log(data); // Verificar los datos recibidos
           setResults(data);
         })
         .catch((error) => console.error("Error fetching data:", error));
     } else {
-      // Limpiar los resultados si el término de búsqueda está vacío
       setResults([]);
     }
-  }, [searchTerm]); // Se ejecuta cuando searchTerm cambia
+  }, [searchTerm]);
 
-  const handleInputChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
+    setShowResults(true);
+  };
+
+  const handleCardClick = (productId) => (event) => {
+    event.preventDefault();
+    navigate(`/product/${productId}`);
   };
 
   const navigate = useNavigate();
@@ -44,89 +72,122 @@ function Navbar2() {
     navigate("/");
   };
 
-  const [menuVisible, setMenuVisible] = useState(false); // Estado para el menú de hamburguesa
-  const [isIconRotated, setIsIconRotated] = useState(false); // Estado para la rotación del ícono
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [isIconRotated, setIsIconRotated] = useState(false);
   const [categoriesVisible, setCategoriesVisible] = useState(false);
-  const toggleMenu = () => {
+  const toggleMenu = (event) => {
     event.preventDefault();
     setMenuVisible(!menuVisible); // Alterna la visibilidad del menú
     setIsIconRotated(!isIconRotated); // Alterna la rotación del ícono
-    if (menuVisible) { 
+    if (menuVisible) {
       setCategoriesVisible(false);
     }
   };
-
 
   return (
     <>
       <div id="navbar2">
         <div className="flex-1 container-nav2">
-          <input
-            type="text"
-            name="text"
-            className="inputSearch2"
-            value={searchTerm}
-            onChange={handleInputChange}
-            required
-            placeholder="Buscar..."
-          />
-          <div className="icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="lupa2"
-              viewBox="0 0 512 512">
-              <path
-                d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
-                fill="none"
-                stroke="currentColor"
-                strokeMiterlimit="10"
-                strokeWidth="32"></path>
-              <path
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeMiterlimit="10"
-                strokeWidth="32"
-                d="M338.29 338.29L448 448"></path>
-            </svg>
+          <div className="searchContainer">
+            <input
+              type="text"
+              name="text"
+              className="inputSearch2"
+              value={searchTerm}
+              onChange={handleInputChange}
+              onClick={() => setShowResults(true)}
+              required
+              placeholder=" Search..."
+            />
+             <div className="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="lupa2"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeMiterlimit="10"
+                  strokeWidth="32"
+                ></path>
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeMiterlimit="10"
+                  strokeWidth="32"
+                  d="M338.29 338.29L448 448"
+                ></path>
+              </svg>
+            </div>
+            {showResults && (
+              <div className="searchResults">
+                {results.length > 0 ? (
+                  results.map((result) => (
+                    <div
+                      key={result.id}
+                      className="searchResultItem"
+                      onClick={handleCardClick(result.id)}
+                    >
+                      <img
+                        src={result.imageUrl || "default-image.png"}
+                        alt={result.name}
+                        className="resultImage"
+                      />
+                      <div className="resultDetails">
+                        <p className="resultName">{result.name}</p>
+                        <p className="resultPrice">
+                          €{result.price?.toFixed(2) ?? ""}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="searchResultItem">No results found</div>
+                )}
+              </div>
+            )}
           </div>
         </div>
-        <a href="" onClick={goHome}>
+        <a href="/" onClick={goHome}>
           <div className="logoContainer fill-white">
             <svg
               id="Layer_1"
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1908 576"
-              className="h-auto w-full max-w-lg show">
+              className="h-auto w-full max-w-lg show"
+            >
               <defs>
                 <style>{`
-              .font-semi-bold {
-                font-family: Montserrat-SemiBold, Montserrat;
-                font-size: 295.6px;
-                font-weight: 600;
-              }
-              .fill-black, .no-stroke {
-                fill: #ffff;
-              }
-              .font-light4 {
-                font-family: Montserrat-Light, Montserrat;
-                font-size: 88.71px;
-                font-weight: 300;
-              }
-              .spacing-normal {
-                letter-spacing: 0em;
-              }
-              .spacing-wide {
-                letter-spacing: .79em;
-              }
-              .spacing-wider {
-                letter-spacing: .8em;
-              }
-              .no-stroke {
-                stroke-width: 0px;
-              }
-            `}</style>
+                  .font-semi-bold {
+                    font-family: Montserrat-SemiBold, Montserrat;
+                    font-size: 295.6px;
+                    font-weight: 600;
+                  }
+                  .fill-black, .no-stroke {
+                    fill: #ffff;
+                  }
+                  .font-light4 {
+                    font-family: Montserrat-Light, Montserrat;
+                    font-size: 88.71px;
+                    font-weight: 300;
+                  }
+                  .spacing-normal {
+                    letter-spacing: 0em;
+                  }
+                  .spacing-wide {
+                    letter-spacing: .79em;
+                  }
+                  .spacing-wider {
+                    letter-spacing: .8em;
+                  }
+                  .no-stroke {
+                    stroke-width: 0px;
+                  }
+                `}</style>
               </defs>
               <g>
                 <path
@@ -184,14 +245,14 @@ function Navbar2() {
         </a>
         <div className="iconsNav2">
           <a href="/" className="userIcon">
-            <FaUser />
+            <FaUser onClick={goToProfileOrLogin} />
           </a>
           <a href="/" className="cartIcon">
             <FaShoppingBasket />
           </a>
           <a
             href="/"
-            className={`burgerIcon ${isIconRotated ? 'rotated' : ''}`} // Aplica clase rotada si isIconRotated es true
+            className={`burgerIcon ${isIconRotated ? "rotated" : ""}`} // Aplica clase rotada si isIconRotated es true
             onClick={toggleMenu} // Llama a toggleMenu al hacer clic
           >
             <FaBars />
@@ -199,10 +260,11 @@ function Navbar2() {
         </div>
       </div>
       <BurgerMenu
-  menuVisible={menuVisible}
-  setCategoriesVisible={setCategoriesVisible}
-  categoriesVisible={categoriesVisible}
-/>    </>
+        menuVisible={menuVisible}
+        setCategoriesVisible={setCategoriesVisible}
+        categoriesVisible={categoriesVisible}
+      />
+    </>
   );
 }
 
