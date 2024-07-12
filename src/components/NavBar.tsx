@@ -37,6 +37,40 @@ function Navbar() {
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
 
+  /* --------------------------------------------------------------- NAVBAR SCROLL CANVI --*/
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.getElementById("navbar");
+      const logoSvg = document.querySelector(".logoContainer svg");
+      if (window.scrollY > 0) {
+        setMenuVisible(false);
+        setCategoriesVisible(false);
+        setIsIconRotated(false);
+      }
+      if (navbar && logoSvg) {
+        if (window.scrollY > 600) {
+          navbar.classList.add("scroll");
+          navbar.classList.remove("hidden");
+          logoSvg.classList.add("show");
+        } else if (window.scrollY > 0 && window.scrollY <= 600) {
+          navbar.classList.add("hidden");
+          navbar.classList.remove("scroll");
+          logoSvg.classList.remove("show");
+        } else {
+          navbar.classList.remove("scroll", "hidden");
+          logoSvg.classList.remove("show");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  /* --------------------------------------------------------------- SEARCH INPUT FUNCIÓ --*/
+
   useEffect(() => {
     if (searchTerm) {
       fetch(

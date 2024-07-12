@@ -1,144 +1,262 @@
-.comparator-content-container{
+/* Estilos generales */
+.comparator-content-container {
     height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.comparator-selected-container{
+  }
+  
+  .comparator-selected-container {
     display: flex;
     width: 90%;
-}
-
-.comparator-item-selected-container{
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .comparator-item-selected-container {
     height: 600px;
-    width: 45%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.comparator-rating-name-container{
+  }
+  .comparator-first-choice-container,
+  .comparator-second-choice-container{
+    width: 70%;
+  }
+  
+  .comparator-first-choice-container-hidden,
+  .comparator-second-choice-container-hidden,
+  .comparator-plus-icon-1-container-hidden,
+  .comparator-plus-icon-2-container-hidden,
+  .comparator-characteristics-container-hidden,
+  .comparator-choices-names-container-hidden {
+    display: none;
+  }
+  
+  .comparator-rating-name-container,
+  .comparator-rating-name-container-hidden {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-}
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
 
-.comparator-remove-choice-icon{
+  .comparator-rating{
+    border: 4px solid var(--color-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    font-weight: 600;
+    align-self: start;
+  }
+
+  .comparator-name{
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .comparator-remove-choice-icon {
     font-size: 40px;
-}
-
-.comparator-first-choice-img{
+    cursor: pointer;
+  }
+  
+  .comparator-remove-choice-icon.highlight {
+    color: red;
+    transition: color 0.2s;
+  }
+  
+  .comparator-first-choice-img,
+  .comparator-second-choice-img {
     height: 300px;
-}
+    display: block;
+    margin: 0 auto 10px;
+  }
 
-.comparator-second-choice-img{
-    height: 300px;
-}
-
-.comparator-vs-container{
-    width: 10%;
+  .comparator-see-product-button-container{
+    display: flex;
+    justify-content: center;
+        button{
+            background-color: var(--color-primary);
+            border-radius: 5px;
+        }
+        h6{
+            padding: 7px 60px;
+            color: white;
+            font-weight: 600;
+        }
+  }
+  
+  .comparator-vs-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.comparator-vs-line{
+    width: 10%;
+  }
+  
+  .comparator-vs-line {
     width: 1px;
     border: 1px solid rgb(96, 96, 96);
     height: 35%;
-}
-
-.comparator-vs-icon{
+  }
+  
+  .comparator-vs-icon p {
     border: 2px solid rgb(79, 79, 79);
     border-radius: 50%;
-    p{
-        padding: 10px 12px;
-        font-weight: 600;
-    }
-    
-}
-.comparator-plus-icon-1-container-hidden{
-    display: none;
-}
-.comparator-plus-icon-2-container-hidden{
-    display: none;
-}
-
-.comparator-plus-icon{
+    padding: 10px 12px;
+    font-weight: 600;
+  }
+  
+  .comparator-plus-icon {
     font-size: 100px;
     color: rgb(172, 172, 172);
-}
-
-.comparator-add-title-container{
-    padding: 50px 0px;
-        h3{
-            font-size: 35px;
-            font-weight: 800;
-        }
-}
-
-.comparator-search-container{
+  }
+  
+  /* Estilos del contenedor de nombres de elección */
+  .comparator-choices-names-container,
+  .comparator-choices-names-container-hidden {
+    margin: 20px 0;
+  }
+  
+  .comparator-choices-names-container h4 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Estilos de las características de comparación */
+  .comparator-characteristics-container,
+  .comparator-characteristics-container-hidden {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .comparator-characteristics-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .comparator-characteristics-cell {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .comparator-characteristics-cell:first-child {
+    text-align: left;
+    font-weight: normal;
+  }
+  
+  .comparator-characteristics-cell:not(:first-child) {
+    border-left: 1px solid #ccc;
+  }
+  
+  /* Estilos del contenedor de añadir título */
+  .comparator-add-title-container {
+    padding: 50px 0;
+  }
+  
+  .comparator-add-title-container h3 {
+    font-size: 35px;
+    font-weight: 800;
+  }
+  
+  /* Estilos del contenedor de búsqueda */
+  .comparator-search-container {
     width: 100%;
     height: 100px;
     display: flex;
     justify-content: space-around;
-
-    select{
-        display: flex;
-        align-items: center;
-        height: 40px;
-        width: 20%;
-        border: 3px solid black;
-        border-radius: 25px;
-        padding-left: 12px;
-        option{
-            height: 200px;
-        }
-    }
-}
-
-.comparator-input-container{
-    display: flex;
-    align-items: center;
+  }
+  
+  .comparator-search-container select,
+  .comparator-search-container input {
     height: 40px;
     width: 20%;
     border: 3px solid black;
     border-radius: 25px;
-    div{
-        padding: 10px;
-        border-radius: 25px;
-
-    }
-    input{
-        padding: 0px 10px;
-        border-radius: 25px;
-        border: none;
-    }
-}
-
-.comparator-input-icon-container{
+    padding-left: 12px;
+  }
+  
+  .comparator-input-container {
+    display: flex;
+    align-items: center;
+    border: 3px solid black;
+    border-radius: 25px;
+    height: 40px;
+  }
+  
+  .comparator-input-container div {
+    padding: 10px;
+  }
+  
+  .comparator-input-container input {
+    padding: 0 10px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 25px;
+    height: 30px;
+    width: 80%;
+  }
+  
+  .comparator-input-icon-container {
     background-color: black;
     border-radius: 20px;
-}
-    
-
-.comparator-input-icon{
+  }
+  
+  .comparator-input-icon {
     font-size: 17px;
     color: white;
-    padding-right: 1px;
-
-}
-
-.comparator-grid{
+  }
+  
+  /* Estilos de la cuadrícula de comparación */
+  .comparator-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
-    gap: 16px; /* Espacio entre las tarjetas */
-}
-
-
-
-
-
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  
+  /* Estilos específicos para las estrellas */
+  .stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .added-message {
+    position: fixed;
+    top: 15px;
+    right: 15%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 1;
+    font-weight: bold;
+    animation: fadein 0.5s, fadeout 0.5s 1.5s;
+  }
+  
+  @keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 0.9; }
+  }
+  
+  @keyframes fadeout {
+    from { opacity: 0.9; }
+    to { opacity: 0; }
+  }
+  

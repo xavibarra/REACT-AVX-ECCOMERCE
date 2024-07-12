@@ -1,17 +1,18 @@
+// ComparatorFlipCard.tsx
 import React, { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FaCodeCompare, FaShop } from "react-icons/fa6";
-
 import { useNavigate } from "react-router-dom";
 import type { Product } from "../models/product";
 import "../styles/comparator-flip-card.css";
 
 interface FlipCardProps {
   product: Product;
+  onAddToComparator: (product: Product) => void;
 }
 
-const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product }) => {
+const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product, onAddToComparator }) => {
   const [showIndicator, setShowIndicator] = useState(false);
   const navigate = useNavigate();
 
@@ -54,10 +55,6 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product }) => {
     return cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
   };
 
-  const handleCardClick = () => {
-    navigate(`/product/${product.id}`);
-  };
-
   const generateStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating - fullStars >= 0.5;
@@ -79,7 +76,6 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product }) => {
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick}
     >
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-700">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
@@ -113,7 +109,7 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
           </div>
           <div className="bottomCard">
-            <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
+            <button onClick={() => onAddToComparator(product)} className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
@@ -144,7 +140,7 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product }) => {
           </div>
           <div className="bottomCardBack">
             <div className="bottomCard">
-              <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
+              <button onClick={() => onAddToComparator(product)} className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
