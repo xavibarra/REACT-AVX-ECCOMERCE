@@ -16,14 +16,13 @@
 }
 @media (min-width: 1550px) {
   .ab-description {
-    font-size: 1.25em;
+    font-size: 1em;
     font-weight: 300;
     margin: 1em 1em 0 0;
   }
   .ab-container {
     display: flex;
-    padding: 6em 1em 7em 12em;
-  }
+    padding: 6em 7em 7em 9em;  }
 }
 .lastDescription {
   margin-bottom: 2em;
