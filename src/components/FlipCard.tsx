@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FaCodeCompare, FaShop } from "react-icons/fa6";
-
 import { useNavigate } from "react-router-dom";
+
 import type { Product } from "../models/product";
 import "../styles/flip-card.css";
+import { supabaseClient } from "../utils/supabaseClient";
 
 interface FlipCardProps {
   product: Product;
@@ -13,7 +14,18 @@ interface FlipCardProps {
 
 const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const [showIndicator, setShowIndicator] = useState(false);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  async function getUserData() {
+    const { data, error } = await supabaseClient.auth.getUser();
+    if (error) {
+      console.error("Error fetching user data:", error);
+    } else {
+      setUser(data.user);
+      console.log(data.user.id);
+    }
+  }
 
   useEffect(() => {
     const storeList = document.getElementById("store-list");
@@ -77,10 +89,75 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     );
   };
 
+  const handleAddToCartClick = async (event: React.MouseEvent) => {
+    event.stopPropagation();
+
+    try {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error) {
+        console.error("Error fetching user data:", error);
+        return;
+      }
+
+      const userId = data.user.id;
+      const productId = product.id;
+
+      const response = await fetch("http://localhost:3000/users/add-to-cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, productId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add product to cart");
+      }
+
+      const result = await response.json();
+      console.log(result.message); // Aquí puedes manejar la respuesta del backend
+    } catch (error) {
+      console.error("Error adding product to cart:", error.message);
+    }
+  };
+
+  const handleAddToLikeClick = async (event: React.MouseEvent) => {
+    event.stopPropagation();
+
+    try {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error) {
+        console.error("Error fetching user data:", error);
+        return;
+      }
+
+      const userId = data.user.id;
+      const productId = product.id;
+
+      const response = await fetch("http://localhost:3000/users/add-like", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, productId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add product to likes");
+      }
+
+      const result = await response.json();
+      console.log(result.message); // Maneja la respuesta del backend como desees
+    } catch (error) {
+      console.error("Error adding product to likes:", error.message);
+    }
+  };
+
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick}>
+      onClick={handleCardClick}
+    >
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-700">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
@@ -113,13 +190,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
           </div>
           <div className="bottomCard">
-            <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
+            <button
+              className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
+              onClick={handleAddToCartClick}
+            >
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
-              <span> Add to cart </span>
+              <span>Add to cart</span>
             </button>
-            <div className="favIcon">
+            <div className="favIcon" onClick={handleAddToLikeClick}>
               <CiHeart />
             </div>
           </div>
@@ -135,7 +215,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
             <div
               className="overflow-y-auto hide-scrollbar relative cities"
-              id="store-list">
+              id="store-list"
+            >
               <p className="card-city list-none my-1 text-left mx-2 flex items-center">
                 {formatCityList()}.
               </p>
@@ -143,13 +224,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           </div>
           <div className="bottomCardBack">
             <div className="bottomCard">
-              <button className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
+              <button
+                className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
+                onClick={handleAddToCartClick}
+              >
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
-                <span> Add to cart </span>
+                <span>Add to cart</span>
               </button>
-              <div className="favIcon">
+              <div className="favIcon" onClick={handleAddToLikeClick}>
                 <CiHeart />
               </div>
             </div>

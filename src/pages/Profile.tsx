@@ -21,7 +21,7 @@ const Profile = () => {
   }, []);
 
   async function singOutUser() {
-    const { error } = await supabaseClient.auth.signOut();
+    await supabaseClient.auth.signOut();
     navigate("/");
   }
 
@@ -32,8 +32,9 @@ const Profile = () => {
           <h1>Perfil de usuario</h1>
           <p>Nombre: {user.user_metadata?.full_name || "No disponible"}</p>
           <p>Email: {user.email}</p>
+          <img src={user.user_metadata.avatar_url} alt="" />
           {/* Añade otros campos según sea necesario */}
-          <button onClick={() => singOutUser()}>Sign Out</button>
+          <button onClick={() => singOutUser()}>Sing Out</button>
         </div>
       ) : (
         <Loading />
