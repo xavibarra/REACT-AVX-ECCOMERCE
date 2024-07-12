@@ -46,6 +46,11 @@ function Navbar() {
     const handleScroll = () => {
       const navbar = document.getElementById("navbar");
       const logoSvg = document.querySelector(".logoContainer svg");
+      if (window.scrollY > 0) {
+        setMenuVisible(false);
+        setCategoriesVisible(false);
+        setIsIconRotated(false);
+      }
       if (navbar && logoSvg) {
         if (window.scrollY > 600) {
           navbar.classList.add("scroll");

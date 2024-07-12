@@ -1,6 +1,7 @@
 import { FaCodeCompare, FaHeart, FaPuzzlePiece } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "../styles/burger-menu.css";
+import { useEffect } from "react";
 
 interface BurgerMenuProps {
   menuVisible: boolean;
@@ -20,6 +21,10 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
 
   const navigate = useNavigate();
 
+  const goToComparator = () => {
+    window.scrollTo(0, 0);
+    navigate("/comparator");
+  };
   const goToCase = () => {
     window.scrollTo(0, 0);
     navigate("/productsByCategory/1");
@@ -75,14 +80,14 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
 
   return (
     <>
-      <div className={`burger-container ${menuVisible ? "visible" : "hidden"}`}>
+      <div id="burger-container" className={`burger-container ${menuVisible ? "visible" : "hidden"}`}>
         <a href="" className="burger-icon-name-first" onClick={goToLikes}>
           <FaHeart className="burger-icon" />
-          <p>Favoritos</p>
+          <p>Favorites</p>
         </a>
-        <a href="#" className="burger-icon-name">
+        <a href="#" className="burger-icon-name" onClick={goToComparator}>
           <FaCodeCompare className="burger-icon" />
-          <p>Comparador</p>
+          <p>Comparator</p>
         </a>
         <a
           href="#"
@@ -90,10 +95,11 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
           onClick={toggleCategories}
         >
           <FaPuzzlePiece className="burger-icon" />
-          <p>Componentes</p>
+          <p>Components</p>
         </a>
       </div>
       <div
+        id="burger-categories-container"
         className={`burger-categories-container ${
           categoriesVisible ? "visible" : "hidden"
         }`}

@@ -20,6 +20,10 @@
         }
 }
 
+.burger-hidden{
+    display: none;
+}
+
 .burger-container.visible {
     display: flex;
   }
@@ -92,9 +96,15 @@
 
 .burger-categories-container.visible {
     display: flex;
-  }
+}
+.burger-categories-container-visible {
+    display: flex;
+}
 
 .burger-categories-container.hidden{
+    display: none;
+}
+.burger-categories-container-hidden{
     display: none;
 }
 
