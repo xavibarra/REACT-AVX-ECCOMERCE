@@ -1,0 +1,51 @@
+.formCard {
+  margin: 3em 11em !important;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.profile-information-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 65%;
+  margin-left: 10%;
+}
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10%;
+}
+.profile-image-container img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+.profile-information {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.profile-information div {
+  display: flex;
+  flex-direction: column;
+}
+.singout-button {
+  padding: 6px 40px;
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  border-radius: 5px;
+}
+.profile-button-container {
+  display: flex;
+  align-items: flex-end;
+  height: 20%;
+  margin-left: 10%;
+  margin-bottom: 20px;
+}

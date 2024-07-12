@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import Navbar2 from "../components/NavBar2";
+import "../styles/profile.css";
 import { supabaseClient } from "../utils/supabaseClient";
 
 const Profile = () => {
@@ -25,21 +27,56 @@ const Profile = () => {
     navigate("/");
   }
 
+  const getEmailPrefix = (email) => {
+    if (!email) return "No disponible";
+    const atIndex = email.indexOf("@");
+    if (atIndex === -1) return email; // Por si acaso no hay @ en el email
+    return email.substring(0, atIndex);
+  };
+
   return (
-    <div>
-      {user ? (
-        <div>
-          <h1>Perfil de usuario</h1>
-          <p>Nombre: {user.user_metadata?.full_name || "No disponible"}</p>
-          <p>Email: {user.email}</p>
-          <img src={user.user_metadata.avatar_url} alt="" />
-          {/* Añade otros campos según sea necesario */}
-          <button onClick={() => singOutUser()}>Sing Out</button>
-        </div>
-      ) : (
-        <Loading />
-      )}
-    </div>
+    <>
+      <Navbar2 />
+      <div>
+        {user ? (
+          <div>
+            <div className="formCard">
+              <div className="formCircle"></div>
+              <div className="formCircle"></div>
+              <div className="formCardInner profile">
+                <div className="profile-information-container">
+                  <div className="profile-information">
+                    <div>
+                      <p>Name:</p>
+                      <p>User Name:</p>
+                      <p>Email:</p>
+                    </div>
+                    <div>
+                      <b>{user.user_metadata?.full_name || "No disponible"}</b>
+                      <b>{getEmailPrefix(user.email)}</b>
+                      <b>{user.email}</b>
+                    </div>
+                  </div>
+                  <div className="profile-image-container">
+                    <img src={user.user_metadata.picture} alt="user avatar" />
+                  </div>
+                </div>
+                <div className="profile-button-container">
+                  <button
+                    className="singout-button"
+                    onClick={() => singOutUser()}
+                  >
+                    Sing Out
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Loading />
+        )}
+      </div>
+    </>
   );
 };
 
