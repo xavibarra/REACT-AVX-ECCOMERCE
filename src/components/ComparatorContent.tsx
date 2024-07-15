@@ -25,8 +25,8 @@ const ComparatorContent = () => {
   const [showAddedMessage, setShowAddedMessage] = useState(false);
   const [comparisonError, setComparisonError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [minPrice, setMinPrice] = useState<number>(0); 
-  const [maxPrice, setMaxPrice] = useState<number>(5000); 
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(5000);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -47,23 +47,20 @@ const ComparatorContent = () => {
 
   const fetchProducts = async () => {
     try {
-        let url = `http://localhost:3000/products/search/${search}`;
-        const params = new URLSearchParams({
-            category: selectedCategory,
-            minPrice: minPrice.toString(),
-            maxPrice: maxPrice.toString()
-        });
-        url += `?${params.toString()}`;
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setProducts(data);
+      const url = `http://localhost:3000/products/search/${search}/${selectedCategory}/${minPrice}/${maxPrice}`;
+      console.log("Fetch URL:", url); // Para depuración
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setProducts(data);
     } catch (error) {
-        console.error('Error fetching products:', error);
+      console.error('Error fetching products:', error);
     }
-};
+  };
+
 
   const fetchFeaturesValues = async (productId: number, setFeatures: (features: FeaturesValues[]) => void) => {
     try {
@@ -78,14 +75,14 @@ const ComparatorContent = () => {
     }
   };
 
+  const handleSearchClick = () => {
+    fetchProducts();
+  };
+
   const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       fetchProducts();
     }
-  };
-
-  const handleSearchClick = () => {
-    fetchProducts();
   };
 
   const handleAddToComparator = (product: Product) => {
@@ -102,7 +99,7 @@ const ComparatorContent = () => {
       setComparisonProducts(newComparisonProducts);
       fetchFeaturesValues(product.id, firstEmptyIndex === 0 ? setFeaturesValues1 : setFeaturesValues2);
       setShowAddedMessage(true);
-      setTimeout(() => setShowAddedMessage(false), 2000); 
+      setTimeout(() => setShowAddedMessage(false), 2000);
       if (firstEmptyIndex === 1) {
         window.scrollTo(0, 0);
       }
@@ -157,6 +154,7 @@ const ComparatorContent = () => {
     setSelectedCategory(e.target.value);
   };
 
+
   const handleSeeProduct = (productId: number | null) => {
     if (productId) {
       window.open(`/product/${productId}`, '_blank');
@@ -167,19 +165,28 @@ const ComparatorContent = () => {
     const newMinPrice = Number(event.target.value);
     setMinPrice(newMinPrice);
     if (newMinPrice > maxPrice) {
-        setMaxPrice(newMinPrice);
+      setMaxPrice(newMinPrice);
     }
-    fetchProducts(); // Llamar a la función de búsqueda para actualizar los resultados
-};
+  };
 
-const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newMaxPrice = Number(event.target.value);
     setMaxPrice(newMaxPrice);
     if (newMaxPrice < minPrice) {
-        setMinPrice(newMaxPrice);
+      setMinPrice(newMaxPrice);
     }
-    fetchProducts(); // Llamar a la función de búsqueda para actualizar los resultados
-};
+  };
+
+  const handleMinPriceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newMinPrice = Number(event.target.value);
+    setMinPrice(newMinPrice);
+  };
+
+  const handleMaxPriceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newMaxPrice = Number(event.target.value);
+    setMaxPrice(newMaxPrice);
+  };
+
 
   return (
     <>
@@ -203,7 +210,7 @@ const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                 </div>
               </div>
             </div>
-            <a href="" className={comparisonProducts[0] ? "comparator-plus-icon-1-container-hidden" : "comparator-plus-icon-1-container"}>
+            <a href="#comparator-add-title-container" className={comparisonProducts[0] ? "comparator-plus-icon-1-container-hidden" : "comparator-plus-icon-1-container"}>
               <FaPlus className="comparator-plus-icon" />
             </a>
           </div>
@@ -229,7 +236,7 @@ const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                 </div>
               </div>
             </div>
-            <a href="" className={comparisonProducts[1] ? "comparator-plus-icon-2-container-hidden" : "comparator-plus-icon-2-container"}>
+            <a href="#comparator-add-title-container" className={comparisonProducts[1] ? "comparator-plus-icon-2-container-hidden" : "comparator-plus-icon-2-container"}>
               <FaPlus className="comparator-plus-icon" />
             </a>
           </div>
@@ -257,7 +264,7 @@ const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
             );
           })}
         </div>
-        <div className="comparator-add-title-container">
+        <div id="comparator-add-title-container" className="comparator-add-title-container">
           <h3>Añade un componente</h3>
         </div>
         <div className="comparator-search-container">
@@ -274,14 +281,14 @@ const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
             />
           </div>
           <div className="comparator-choice-categories-container">
-          <select onChange={handleCategoryChange} value={selectedCategory}>
-            <option value="">-- Select Category --</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id.toString()}>
-                {category.categoryNameEn}
-              </option>
-            ))}
-          </select>
+            <select onChange={handleCategoryChange} value={selectedCategory}>
+              <option value="">-- Select Category --</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id.toString()}>
+                  {category.categoryNameEn}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="comparator-price-filter">
             <div className="comparator-price-filter-header">
@@ -304,9 +311,22 @@ const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
               />
             </div>
             <div className="comparator-price-values">
-              <span>{minPrice}€</span>
+              <input
+                type="number"
+                value={minPrice}
+                onChange={handleMinPriceInputChange}
+                min="0"
+                max="5000"
+              />
               <span> - </span>
-              <span>{maxPrice}€</span>
+              <input
+                type="number"
+                value={maxPrice}
+                onChange={handleMaxPriceInputChange}
+                min="0"
+                max="5000"
+              />
+              <span>€</span>
             </div>
           </div>
         </div>
@@ -320,7 +340,7 @@ const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
             <ComparatorFlipCard key={product.id} product={product} onAddToComparator={handleAddToComparator} />
           ))}
         </div>
-      </div>
+      </div >
     </>
   );
 };

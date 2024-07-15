@@ -1,5 +1,4 @@
 // ComparatorFlipCard.tsx
-import React, { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FaCodeCompare } from "react-icons/fa6";

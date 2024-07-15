@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { supabaseClient } from "../utils/supabaseClient";
+import ProductCard from "../components/ProductCard";
+import "../styles/cart.css";
+import { FaTrash } from "react-icons/fa";
+
 
 const Cart = () => {
   const [userCart, setUserCart] = useState([]);
@@ -30,8 +34,14 @@ const Cart = () => {
 
         const cartItems = profileData.cart || [];
 
-        // Obtener nombres de productos basados en los IDs del carrito
-        const promises = cartItems.map(async (productId) => {
+        // Contar las ocurrencias de cada productId
+        const itemCounts = cartItems.reduce((acc, productId) => {
+          acc[productId] = (acc[productId] || 0) + 1;
+          return acc;
+        }, {});
+
+        // Obtener datos de productos basados en los IDs del carrito
+        const promises = Object.keys(itemCounts).map(async (productId) => {
           const response = await fetch(
             `http://localhost:3000/products/${productId}`
           );
@@ -39,11 +49,26 @@ const Cart = () => {
             throw new Error(`Failed to fetch product with ID ${productId}`);
           }
           const productData = await response.json();
-          return productData.name;
+
+          // Generar una fecha de entrega aleatoria entre 5 y 20 días desde hoy
+          const deliveryDays = Math.floor(Math.random() * 16) + 5;
+          const deliveryDate = new Date();
+          deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
+
+          // Formatear la fecha
+          const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+          const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          const formattedDeliveryDate = `Receive it on ${daysOfWeek[deliveryDate.getDay()]}, ${months[deliveryDate.getMonth()]} ${deliveryDate.getDate()}`;
+
+          return {
+            ...productData,
+            deliveryDate: formattedDeliveryDate,
+            quantity: itemCounts[productId]
+          };
         });
 
-        const productNames = await Promise.all(promises);
-        setUserCart(productNames);
+        const products = await Promise.all(promises);
+        setUserCart(products);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching user cart:", error.message);
@@ -58,14 +83,33 @@ const Cart = () => {
     return <p>Loading...</p>;
   }
 
+  const totalPrice = userCart.reduce((total, product) => {
+    return total + (parseFloat(product.final_price) * product.quantity);
+  }, 0);
+
   return (
-    <div>
-      <h2>User Cart:</h2>
-      <ul>
-        {userCart.map((productName, index) => (
-          <li key={index}>{productName}</li>
-        ))}
-      </ul>
+    <div className="cart-container">
+      <div className="cart-title-container">
+        <h5>My cart</h5>
+        <p>{userCart.length} items</p>
+      </div>
+      <div className="cart-content-container">
+        <div className="cart-items">
+          {userCart.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+          <div className="cart-actions">
+            <button><p>Keep buying</p></button>
+            <button className="cart-empty-cart-button"><FaTrash className="cart-trash-icon" /><p>Empty cart</p></button>
+          </div>
+        </div>
+        <div className="cart-summary">
+          <h2>Summary</h2>
+          <p>Receive everything on {userCart[0]?.deliveryDate}</p>
+          <div className="cart-total">Total: {totalPrice.toFixed(2)}€</div>
+          <button>Checkout</button>
+        </div>
+      </div>
     </div>
   );
 };
