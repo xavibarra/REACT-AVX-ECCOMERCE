@@ -1,0 +1,125 @@
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f8f8f8;
+    min-height: 100vh;
+  }
+
+  .cart-title-container{
+    padding: 10px 0px 30px 0px;
+    h5{
+        font-size: 25px;
+        font-weight: 700;
+    }
+    p{
+        font-size: 15px;
+    }
+  }
+  
+.cart-content-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-trash-icon{
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+  .cart-items {
+    margin-right: 20px;
+    width: 50%;
+  }
+  
+  .cart-items h5 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .cart-items p {
+    font-size: 16px;
+  }
+  
+  .cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .cart-actions button {
+    padding: 12px 20px;
+    background-color: #ff9900;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+    height: 60px;
+    width: 200px;
+        p{
+            font-weight: 600;
+        }
+  }
+  
+  .cart-actions button:last-child {
+    margin-right: 0;
+  }
+  
+  .cart-actions button:hover {
+    background-color: #ffaa2c;
+  }
+  
+  .cart-summary {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    height: 400px;
+    width: 30%;
+    }
+  
+  .cart-summary h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .cart-summary p {
+    color: #ff9900;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .cart-total {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+  }
+
+  .cart-empty-cart-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cart-summary button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff9900;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .cart-summary button:hover {
+    background-color: #ffaa2c;
+  }
+  
