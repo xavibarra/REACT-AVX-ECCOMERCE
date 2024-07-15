@@ -7,6 +7,7 @@ import grafica4090 from "../assets/img/grafica-4090.jpg";
 import graficaAmd from "../assets/img/grafica-amd.jpg";
 import { IoClose } from "react-icons/io5";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 interface FeaturesValues {
   id_feature: number;
@@ -22,6 +23,10 @@ const ComparatorContent = () => {
   const [featuresValues1, setFeaturesValues1] = useState<FeaturesValues[]>([]);
   const [featuresValues2, setFeaturesValues2] = useState<FeaturesValues[]>([]);
   const [showAddedMessage, setShowAddedMessage] = useState(false);
+  const [comparisonError, setComparisonError] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [minPrice, setMinPrice] = useState<number>(0); 
+  const [maxPrice, setMaxPrice] = useState<number>(5000); 
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -42,19 +47,23 @@ const ComparatorContent = () => {
 
   const fetchProducts = async () => {
     try {
-      console.log(`Searching for products with name: ${search}`);
-      const url = `http://localhost:3000/products/search/${search}`;
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setProducts(data);
-      console.log('Products received from backend:', data);
+        let url = `http://localhost:3000/products/search/${search}`;
+        const params = new URLSearchParams({
+            category: selectedCategory,
+            minPrice: minPrice.toString(),
+            maxPrice: maxPrice.toString()
+        });
+        url += `?${params.toString()}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data);
     } catch (error) {
-      console.error('Error fetching products:', error);
+        console.error('Error fetching products:', error);
     }
-  };
+};
 
   const fetchFeaturesValues = async (productId: number, setFeatures: (features: FeaturesValues[]) => void) => {
     try {
@@ -75,19 +84,28 @@ const ComparatorContent = () => {
     }
   };
 
+  const handleSearchClick = () => {
+    fetchProducts();
+  };
+
   const handleAddToComparator = (product: Product) => {
     const newComparisonProducts = [...comparisonProducts];
     const firstEmptyIndex = newComparisonProducts.findIndex(p => p === null);
 
     if (firstEmptyIndex !== -1) {
+      if (firstEmptyIndex === 1 && newComparisonProducts[0]?.categoryId !== product.categoryId) {
+        setComparisonError("No se pueden comparar dos objetos de diferentes categorías");
+        setTimeout(() => setComparisonError(null), 2000);
+        return;
+      }
       newComparisonProducts[firstEmptyIndex] = product;
       setComparisonProducts(newComparisonProducts);
       fetchFeaturesValues(product.id, firstEmptyIndex === 0 ? setFeaturesValues1 : setFeaturesValues2);
       setShowAddedMessage(true);
-      setTimeout(() => setShowAddedMessage(false), 2000); // Hide message after 2 seconds
+      setTimeout(() => setShowAddedMessage(false), 2000); 
       if (firstEmptyIndex === 1) {
         window.scrollTo(0, 0);
-    }
+      }
     } else {
       document.querySelector(".comparator-selected-container")?.scrollIntoView({ behavior: "smooth" });
       document.querySelectorAll(".comparator-remove-choice-icon").forEach(icon => {
@@ -135,10 +153,39 @@ const ComparatorContent = () => {
     ...featuresValues2.map(f => f.feature_name_es)
   ])];
 
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const handleSeeProduct = (productId: number | null) => {
+    if (productId) {
+      window.open(`/product/${productId}`, '_blank');
+    }
+  };
+
+  const handleMinPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newMinPrice = Number(event.target.value);
+    setMinPrice(newMinPrice);
+    if (newMinPrice > maxPrice) {
+        setMaxPrice(newMinPrice);
+    }
+    fetchProducts(); // Llamar a la función de búsqueda para actualizar los resultados
+};
+
+const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newMaxPrice = Number(event.target.value);
+    setMaxPrice(newMaxPrice);
+    if (newMaxPrice < minPrice) {
+        setMinPrice(newMaxPrice);
+    }
+    fetchProducts(); // Llamar a la función de búsqueda para actualizar los resultados
+};
+
   return (
     <>
       <div className="comparator-content-container">
         {showAddedMessage && <div className="added-message">Product added to comparator</div>}
+        {comparisonError && <div className="comparison-error">{comparisonError}</div>}
         <div className="comparator-selected-container">
           <div className="comparator-item-selected-container">
             <div className={comparisonProducts[0] ? "comparator-first-choice-container" : "comparator-first-choice-container-hidden"}>
@@ -149,9 +196,11 @@ const ComparatorContent = () => {
               </div>
               <img className="comparator-first-choice-img" src={comparisonProducts[0] ? comparisonProducts[0].imageUrl : grafica4090} alt="" />
               <div className="comparator-see-product-button-container">
-                <button>
-                  <h6>See Product</h6>
-                </button>
+                <div className="comparator-see-product-button-container">
+                  <button onClick={() => handleSeeProduct(comparisonProducts[0]?.id)}>
+                    <h6>See Product</h6>
+                  </button>
+                </div>
               </div>
             </div>
             <a href="" className={comparisonProducts[0] ? "comparator-plus-icon-1-container-hidden" : "comparator-plus-icon-1-container"}>
@@ -173,9 +222,11 @@ const ComparatorContent = () => {
               </div>
               <img className="comparator-second-choice-img" src={comparisonProducts[1] ? comparisonProducts[1].imageUrl : graficaAmd} alt="" />
               <div className="comparator-see-product-button-container">
-                <button>
-                  <h6>See Product</h6>
-                </button>
+                <div className="comparator-see-product-button-container">
+                  <button onClick={() => handleSeeProduct(comparisonProducts[1]?.id)}>
+                    <h6>See Product</h6>
+                  </button>
+                </div>
               </div>
             </div>
             <a href="" className={comparisonProducts[1] ? "comparator-plus-icon-2-container-hidden" : "comparator-plus-icon-2-container"}>
@@ -222,17 +273,47 @@ const ComparatorContent = () => {
               onKeyPress={handleSearchKeyPress}
             />
           </div>
-          <select>
-            <option value="">- - -</option>
+          <div className="comparator-choice-categories-container">
+          <select onChange={handleCategoryChange} value={selectedCategory}>
+            <option value="">-- Select Category --</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id.toString()}>
                 {category.categoryNameEn}
               </option>
             ))}
           </select>
-          <select name="" id="">
-            <option value="">Marca</option>
-          </select>
+          </div>
+          <div className="comparator-price-filter">
+            <div className="comparator-price-filter-header">
+              <h3>Price</h3>
+            </div>
+            <div className="priceInputs">
+              <input
+                type="range"
+                min="0"
+                max="5000"
+                value={minPrice}
+                onChange={handleMinPriceChange}
+              />
+              <input
+                type="range"
+                min="0"
+                max="5000"
+                value={maxPrice}
+                onChange={handleMaxPriceChange}
+              />
+            </div>
+            <div className="comparator-price-values">
+              <span>{minPrice}€</span>
+              <span> - </span>
+              <span>{maxPrice}€</span>
+            </div>
+          </div>
+        </div>
+        <div className="comparator-button-search-container">
+          <button className="comparator-button-search" onClick={handleSearchClick}>
+            <h6>Search</h6>
+          </button>
         </div>
         <div className="comparator-grid">
           {products.map((product) => (

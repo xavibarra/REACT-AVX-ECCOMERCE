@@ -1,5 +1,4 @@
 .comparator-flip-card-inner {
-  transform-style: preserve-3d;
   width: 240px;
   height: 350px;
 }
@@ -45,39 +44,7 @@
   width: 15px !important;
 }
 
-.comparator-eOWFDC {
-  height: 55vh;
-}
-
-.comparator-kVtMtA,
-.comparator-bhRnqO {
-  background-color: var(--color-secondary) !important;
-  opacity: 100 !important;
-}
-
-.comparator-kVtMtA::before,
-.comparator-bhRnqO::before {
-  border-top: 2px solid #ffff !important;
-  border-right: 2px solid #ffff !important;
-  left: 48% !important;
-}
-
-.comparator-bVoXXg {
-  width: 240px;
-  height: 350px;
-}
-
-.comparator-UtimI {
-  align-items: center;
-  justify-items: center;
-}
-
-.comparator-flip-card:hover .comparator-flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.comparator-flip-card-front,
-.comparator-flip-card-back {
+.comparator-flip-card-front {
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -117,10 +84,6 @@
   font-size: 1em;
   padding: 0.5em;
   width: 100%;
-}
-
-.comparator-flip-card-back {
-  transform: rotateY(180deg);
 }
 
 .comparator-card-offer-span::before {
@@ -203,63 +166,4 @@
 .comparator-card-button:hover .comparator-tooltip::before {
   background-color: var(--color-primary);
   color: #ffffff;
-}
-
-/* Ocultar barra de desplazamiento */
-.comparator-hide-scrollbar::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-
-.comparator-hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.comparator-scroll-indicator.visible {
-  display: block;
-}
-
-/* Agrega el siguiente estilo para la flecha indicadora de scroll */
-.comparator-scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  right: 5px;
-  font-size: 24px;
-  color: var(--color-primary);
-  transition: opacity 0.3s ease;
-}
-
-/* Ajusta el estilo para que la flecha indicadora sea visible solo cuando hay desplazamiento */
-.comparator-scroll-indicator.invisible {
-  opacity: 0;
-}
-
-.comparator-stock {
-  display: flex;
-  align-items: center;
-  margin: 0 1em;
-}
-
-.comparator-stock svg {
-  margin-right: 10px;
-}
-
-.comparator-stock h3 {
-  font-size: 12px;
-  font-weight: 600;
-  text-align: left;
-}
-
-.comparator-cities {
-  color: var(--color-primary);
-  font-weight: 500;
-  font-size: 10px;
-  margin: 0 0.75em;
-}
-
-.comparator-descriptionProduct p {
-  font-size: 11px;
-  text-align: justify;
-  margin: 1em 1em 0 1em;
 }
