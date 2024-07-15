@@ -1,6 +1,6 @@
 .cardAddCartSection {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 350px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+  width: 90%;
   padding: 30px;
 }
 .cardAddCartContainer {
@@ -12,7 +12,7 @@
 }
 .cardAddCartPrice {
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 2em;
   margin-bottom: 10px;
 }
 .cardAddCartIcon {
@@ -23,7 +23,7 @@
   color: white;
   font-weight: 500;
   padding: 5px;
-  border-radius: 2.5px;
+  border-radius: 5px;
 }
 .cardAddCartButton:hover {
   transform: scale(1.05);
@@ -32,4 +32,12 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+.cardAddCartContainer svg{
+  margin-right: 0.5em;
+  font-size: 1.5em;
+}
+.infoTitle{
+  margin-top: 0.5em;
+  font-weight: 6  00;
 }
