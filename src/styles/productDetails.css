@@ -2,15 +2,23 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 30px;
+  grid-column-gap: 0px;
   grid-row-gap: 30px;
-  margin: 100px 10% 0 10%;
+  margin: 100px 50px 0 50px;
 }
 .productDetailsDiv {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.productDetailsDiv2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.productDetailsDiv img{
+  width: 400px;
 }
 .productDetailsDiv h3 {
   font-size: 1.3em;
@@ -19,19 +27,44 @@
 }
 .productDetailName {
   display: flex;
+  align-items: center;
 }
 .productDetailName h3:nth-child(1) {
   margin-right: 20px;
-  border: 4px solid var(--color-primary);
-  width: 35px;
-  height: 35px;
+  border: 7px solid var(--color-primary);
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 500;
+  font-size: 1.25em;
+}
+.productDetailName h3:last-child {
+  font-weight: 600;
+  font-size: 1.75em;
 }
 .productDetailsStars {
   display: flex;
   color: var(--color-primary);
-  margin-bottom: 20px;
+  font-size: 1.3em;
+  margin: 5px 0 25px 70px;
+}
+
+.cardAddCartSection{
+  display: flex;
+    margin-left: 55px;
+    height: 20em;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.categoryDescription{
+    margin-left: 55px;
+
+}
+
+.reviews{
+  margin: 3em;
 }

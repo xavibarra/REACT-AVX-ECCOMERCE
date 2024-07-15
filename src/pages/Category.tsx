@@ -25,6 +25,13 @@ const Category = () => {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [minPrice, setMinPrice] = useState<number>(1); // Valor mínimo del rango de precio
   const [maxPrice, setMaxPrice] = useState<number>(5000); // Valor máximo del rango de precio
+  const [brands, setBrands] = useState<Set<string>>(new Set());
+  const [selectedBrands, setSelectedBrands] = useState<Set<string>>(new Set());
+
+  // Estados temporales para los filtros
+  const [tempMinPrice, setTempMinPrice] = useState<number>(1);
+  const [tempMaxPrice, setTempMaxPrice] = useState<number>(5000);
+  const [tempSelectedBrands, setTempSelectedBrands] = useState<Set<string>>(new Set());
 
   // Función para cargar productos por categoría y página
   const fetchProductsByCategory = async (page: number, sort: string = "") => {
@@ -41,6 +48,12 @@ const Category = () => {
       }
       const data: Product[] = await response.json();
 
+      // Extraer marcas de los productos
+      const extractedBrands = new Set(
+        data.map((product) => product.name.split(" ")[0])
+      );
+      setBrands(extractedBrands);
+
       // Calcular el número total de páginas
       const totalCount = response.headers.get("X-Total-Count");
       if (totalCount) {
@@ -48,8 +61,13 @@ const Category = () => {
         setTotalPages(total);
       }
 
+      // Filtrar productos por marcas seleccionadas si hay alguna seleccionada
+      const filteredData = selectedBrands.size
+        ? data.filter((product) => selectedBrands.has(product.name.split(" ")[0]))
+        : data;
+
       // Actualizar estado con los nuevos productos cargados
-      setProducts(data);
+      setProducts(filteredData);
       setCurrentPage(page); // Actualizar la página actual
     } catch (error: unknown) {
       const err = error as Error;
@@ -111,15 +129,37 @@ const Category = () => {
 
   const handleMinPriceChange = (event) => {
     const price = parseInt(event.target.value);
-    setMinPrice(price);
+    setTempMinPrice(price);
+    if (price >= tempMaxPrice) {
+      setTempMaxPrice(price + 1);
+    }
   };
 
   const handleMaxPriceChange = (event) => {
     const price = parseInt(event.target.value);
-    setMaxPrice(price);
+    if (price > tempMinPrice) {
+      setTempMaxPrice(price);
+    } else {
+      setTempMaxPrice(tempMinPrice + 1);
+    }
   };
 
-  const applyPriceRangeFilter = () => {
+  const handleBrandChange = (brand) => {
+    setTempSelectedBrands((prevSelectedBrands) => {
+      const newSelectedBrands = new Set(prevSelectedBrands);
+      if (newSelectedBrands.has(brand)) {
+        newSelectedBrands.delete(brand);
+      } else {
+        newSelectedBrands.add(brand);
+      }
+      return newSelectedBrands;
+    });
+  };
+
+  const applyFilters = () => {
+    setMinPrice(tempMinPrice);
+    setMaxPrice(tempMaxPrice);
+    setSelectedBrands(tempSelectedBrands);
     fetchProductsByCategory(1, sortOrder); // Aplicar cambios al hacer clic en "Apply"
     setButtonBackExpanded(false); // Ocultar el filtro al aplicar cambios
     setBackFilterColor("rgba(253, 174, 55, 0.2)"); // Restaurar el color de fondo original de buttonBack
@@ -146,31 +186,49 @@ const Category = () => {
             style={{ backgroundColor: backFilterColor }}
           >
             {buttonBackExpanded && (
-              <div className="priceFilter">
-                <div className="namePrice">
-                  <h3>Price Range</h3>
-                  <p>
-                    {formatPrice(minPrice)} - {formatPrice(maxPrice)}
-                  </p>{" "}
+              <div className="filterContainer">
+                <div className="priceFilter">
+                  <div className="namePrice">
+                    <h3>Price Range</h3>
+                    <p>
+                      {formatPrice(tempMinPrice)} - {formatPrice(tempMaxPrice)}
+                    </p>{" "}
+                  </div>
+                  {/* Muestra el rango de precio seleccionado */}
+                  <div className="priceInputs">
+                    <input
+                      type="range"
+                      min="1"
+                      max="5000"
+                      value={tempMinPrice}
+                      onChange={handleMinPriceChange}
+                    />
+                    <input
+                      type="range"
+                      min="1"
+                      max="5000"
+                      value={tempMaxPrice}
+                      onChange={handleMaxPriceChange}
+                    />
+                  </div>
                 </div>
-                {/* Muestra el rango de precio seleccionado */}
-                <div className="priceInputs">
-                  <input
-                    type="range"
-                    min="1"
-                    max="5000"
-                    value={minPrice}
-                    onChange={handleMinPriceChange}
-                  />
-                  <input
-                    type="range"
-                    min="1"
-                    max="5000"
-                    value={maxPrice}
-                    onChange={handleMaxPriceChange}
-                  />
-                </div>{" "}
-                <button className="buttonApply" onClick={applyPriceRangeFilter}>
+                <div className="brandFilter">
+                  <h3>Brands</h3>
+                  <div className="brandCheckboxes">
+                    {[...brands].map((brand) => (
+                      <div key={brand}>
+                        <input
+                          type="checkbox"
+                          id={brand}
+                          checked={tempSelectedBrands.has(brand)}
+                          onChange={() => handleBrandChange(brand)}
+                        />
+                        <label htmlFor={brand}>{brand}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <button className="buttonApply" onClick={applyFilters}>
                   Apply
                 </button>
               </div>

@@ -36,7 +36,7 @@ const CardAddCartProduct = ({ tiendas, price }) => {
           <FaTruck className="cardAddCartIcon" />
         </div>
         <div className="cardAddCartSubContainer">
-          <div>
+          <div className="infoTitle">
             <p>Envío: Gratis</p>
           </div>
           <div>
@@ -49,7 +49,7 @@ const CardAddCartProduct = ({ tiendas, price }) => {
           <FaShop className="cardAddCartIcon" />
         </div>
         <div>
-          <div className="cardAddCartSubContainer">
+          <div className="cardAddCartSubContainer infoTitle">
             <p>Disponible en las tiendas:</p>
           </div>
           <div>
