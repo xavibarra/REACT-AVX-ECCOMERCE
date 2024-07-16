@@ -7,7 +7,6 @@ import grafica4090 from "../assets/img/grafica-4090.jpg";
 import graficaAmd from "../assets/img/grafica-amd.jpg";
 import { IoClose } from "react-icons/io5";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
 
 interface FeaturesValues {
   id_feature: number;
@@ -47,19 +46,27 @@ const ComparatorContent = () => {
 
   const fetchProducts = async () => {
     try {
-      const url = `http://localhost:3000/products/search/${search}/${selectedCategory}/${minPrice}/${maxPrice}`;
-      console.log("Fetch URL:", url); // Para depuración
+        const params = new URLSearchParams();
+        if (search) params.append('name', search);
+        if (selectedCategory) params.append('category', selectedCategory);
+        params.append('minPrice', minPrice.toString());
+        params.append('maxPrice', maxPrice.toString());
 
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setProducts(data);
+        const url = `http://localhost:3000/products/search?${params.toString()}`;
+        console.log("Fetch URL:", url); // Para depuración
+
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data);
     } catch (error) {
-      console.error('Error fetching products:', error);
+        console.error('Error fetching products:', error);
     }
-  };
+};
+
+
 
 
   const fetchFeaturesValues = async (productId: number, setFeatures: (features: FeaturesValues[]) => void) => {
@@ -294,7 +301,7 @@ const ComparatorContent = () => {
             <div className="comparator-price-filter-header">
               <h3>Price</h3>
             </div>
-            <div className="priceInputs">
+            <div className="comparator-priceInputs">
               <input
                 type="range"
                 min="0"

@@ -128,7 +128,8 @@ function Navbar() {
   const [isIconRotated, setIsIconRotated] = useState(false);
   const [categoriesVisible, setCategoriesVisible] = useState(false);
 
-  const toggleMenu = () => {
+  const toggleMenu = (event) => {
+    event.preventDefault();
     setMenuVisible(!menuVisible);
     setIsIconRotated(!isIconRotated);
     if (menuVisible) {
@@ -331,7 +332,7 @@ function Navbar() {
             <FaShoppingBasket onClick={goCart} />
           </a>
           <a
-            href="#"
+            href=""
             className={`burgerIcon ${isIconRotated ? "rotated" : ""}`}
             onClick={toggleMenu}
           >

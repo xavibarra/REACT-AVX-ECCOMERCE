@@ -1,15 +1,19 @@
 .cart-container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
     background-color: #f8f8f8;
     min-height: 100vh;
+    width: 100%;
+    padding: 30px 50px;
+
   }
 
   .cart-title-container{
-    padding: 10px 0px 30px 0px;
+    margin: 20px 50px 20px 50px;
+
     h5{
-        font-size: 25px;
+        font-size: 35px;
         font-weight: 700;
     }
     p{
@@ -19,7 +23,25 @@
   
 .cart-content-container{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+
+.cart-empty-cart-container{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+        h5{
+            font-size: 50px;
+        }
+        .cart-icon-cart{
+            margin-top: 20px;
+            font-size: 50px;
+            color: grey;
+        }
 }
 
 .cart-trash-icon{
@@ -29,7 +51,24 @@
 
   .cart-items {
     margin-right: 20px;
-    width: 50%;
+    margin-top: 30px;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart-empty-cart-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  .cart-items-hidden, .cart-empty-cart-container-hidden, .cart-actions-hidden{
+    display: none;
   }
   
   .cart-items h5 {
@@ -46,6 +85,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    width: 75%;
   }
   
   .cart-actions button {
@@ -73,18 +113,25 @@
   }
   
   .cart-summary {
-    padding: 20px;
+    padding: 40px 20px;
+    margin-top: 30px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     text-align: center;
     height: 400px;
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+        h6{
+            font-weight: 700;
+        }
     }
   
   .cart-summary h2 {
     margin-top: 0;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
     margin-bottom: 20px;
   }

@@ -1,4 +1,4 @@
-/* Estilos generales */
+      /* Estilos generales */
 .comparator-content-container {
   height: auto;
   width: 100%;
@@ -259,6 +259,7 @@
 /* Estilos de la cuadrícula de comparación */
 .comparator-grid {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 50px;

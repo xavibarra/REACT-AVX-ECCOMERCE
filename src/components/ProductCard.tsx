@@ -1,14 +1,28 @@
 import { FaTrash } from "react-icons/fa";
 import "../styles/product-card.css"
 
-const ProductCard = ({ product }) => {
-  const finalPrice = parseFloat(product.finalPrice);
-  const formattedFinalPrice = !isNaN(finalPrice) ? finalPrice.toFixed(2) : 'N/A';
+
+interface ProductCardProps {
+    product: {
+      id: string;
+      imageUrl: string;
+      name: string;
+      finalPrice: string;
+      quantity: number;
+      deliveryDate: string;
+    };
+    onRemove: (productId: string) => void;
+  }
+  
+  const ProductCard: React.FC<ProductCardProps> = ({ product, onRemove }) => {
+    const finalPrice = parseFloat(product.finalPrice);
+    const formattedFinalPrice = !isNaN(finalPrice) ? finalPrice.toFixed(2) : 'N/A';
+
 
   return (
     <div className="product-card-container">
-      <div>
-        <img src={product.imageUrl} alt={product.name} />
+      <div className="product-card-img-container">
+        <img className="product-card-img" src={product.imageUrl} alt={product.name} />
       </div>
       <div className="product-card-details">
         <h4>{product.name}</h4>
@@ -20,7 +34,7 @@ const ProductCard = ({ product }) => {
           {product.deliveryDate}
         </div>
       </div>
-      <div className="product-card-trash">
+      <div className="product-card-trash" onClick={() => onRemove(product.id)}>
         <FaTrash />
       </div>
     </div>
