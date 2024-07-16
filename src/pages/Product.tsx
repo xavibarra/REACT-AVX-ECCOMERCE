@@ -12,23 +12,13 @@ import "../styles/reviewRating.css";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 
-interface Review {
-  id: string;
-  productId: string;
-  rating: number;
-  revoew: string;
-}
-
 const ProductPage = () => {
   const { productId } = useParams<{ productId: string }>(); // Obtener productId de la URL
   const [product, setProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
   const [featuresValues, setFeaturesValues] = useState<FeaturesValues[]>([]);
-  const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [reviewsLoading, setReviewsLoading] = useState<boolean>(true);
-  const [reviewsError, setReviewsError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -42,8 +32,8 @@ const ProductPage = () => {
         const data: Product = await response.json();
         setProduct(data);
         fetchCategory(data.categoryId);
+        // Llamar a la función para obtener características y valores después de obtener el producto
         fetchFeaturesValues(productId);
-        fetchReviews(productId); // Llama a la función para obtener reseñas
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
@@ -86,6 +76,7 @@ const ProductPage = () => {
         throw new Error(`Error: ${response.statusText}`);
       }
       const data: Category = await response.json();
+      console.log(data);
       setCategory(data);
     } catch (error) {
       if (error instanceof Error) {
@@ -98,25 +89,7 @@ const ProductPage = () => {
     }
   };
 
-  const fetchReviews = async (productId: string) => {
-    try {
-      const response = await fetch(`http://localhost:3000/reviews/${productId}`);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-      const data: Review[] = await response.json();
-      setReviews(data);
-    } catch (error) {
-      if (error instanceof Error) {
-        setReviewsError(error.message);
-      } else {
-        setReviewsError("An unknown error occurred.");
-      }
-    } finally {
-      setReviewsLoading(false);
-    }
-  };
-
+  // Función para generar las estrellas según el rating
   const generateStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating - fullStars >= 0.5;
@@ -135,14 +108,16 @@ const ProductPage = () => {
     );
   };
 
-  if (loading) return <Loading />; // Muestra un componente de carga mientras se carga la página
-  if (error) return <p>Error: {error}</p>; // Muestra un mensaje de error si ocurrió un error al cargar el producto
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
+  // Calcular el precio final con o sin descuento
   const finalPrice =
     product && product.offer
       ? (product.price * (1 - product.discount / 100)).toFixed(2)
       : product?.price.toFixed(2);
 
+  // Determinar las tiendas disponibles
   const availableStores = [
     product?.barcelonaStock && "Barcelona",
     product?.bilbaoStock && "Bilbao",
@@ -156,11 +131,22 @@ const ProductPage = () => {
     product?.sanSebastianStock && "San Sebastian",
   ].filter(Boolean);
 
-  const totalReviews = reviews.reduce((acc, review) => acc + 1, 0);
+  // Datos de ejemplo para las opiniones
+  const reviewCounts = {
+    5: 5,
+    4: 8,
+    3: 0,
+    2: 2,
+    1: 0,
+  };
 
+  // Función para calcular el porcentaje de cada calificación
   const calculatePercentage = (count: number, total: number) => {
     return total > 0 ? (count / total) * 100 : 0;
   };
+
+  // Calcular el total de opiniones
+  const totalReviews = Object.values(reviewCounts).reduce((a, b) => a + b, 0);
 
   return (
     <section>
@@ -211,21 +197,33 @@ const ProductPage = () => {
       </div>
       <div className="reviews">
         <h2>Opinions</h2>
-        {reviewsLoading ? (
-          <p>Loading reviews...</p>
-        ) : reviewsError ? (
-          <p>Error: {reviewsError}</p>
-        ) : (
-          <div>
-            {reviews.map((review) => (
-              <div key={review.id} className="review">
-                <p>{review.comment}</p>
-                <p>Rating: {review.rating}</p>
+        <div className="review-rating">
+          <div className="rating-circle">
+            <span>{product?.rating.toFixed(1)}</span>
+          </div>
+          <div className="reviews-summary">
+            {Object.keys(reviewCounts).map((star) => (
+              <div key={star} className="review-bar">
+                <span>
+                  {star} <FaStar />
+                </span>
+                <div className="bar">
+                  <div
+                    className="filled-bar"
+                    style={{
+                      width: `${calculatePercentage(
+                        reviewCounts[star],
+                        totalReviews
+                      )}%`,
+                    }}
+                  ></div>
+                </div>
+                <span>{reviewCounts[star]}</span>
               </div>
             ))}
           </div>
-        )}
-        <button className="add-review-btn">Add Review</button>
+          <button className="add-review-btn">Añadir opinión</button>
+        </div>
       </div>
       <Footer />
     </section>

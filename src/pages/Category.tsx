@@ -101,7 +101,7 @@ const Category = () => {
       fetchProductsByCategory(1, sortOrder); // Cargar la primera página inicialmente con el orden seleccionado
       fetchCategoryName();
     }
-  }, [categoryId, sortOrder]);
+  }, [categoryId, sortOrder, minPrice, maxPrice, selectedBrands]);
 
   const handleFilterButtonClick = () => {
     setButtonBackExpanded((prev) => !prev);
@@ -160,7 +160,7 @@ const Category = () => {
     setMinPrice(tempMinPrice);
     setMaxPrice(tempMaxPrice);
     setSelectedBrands(tempSelectedBrands);
-    fetchProductsByCategory(1, sortOrder); // Aplicar cambios al hacer clic en "Apply"
+    setCurrentPage(1); // Resetear a la primera página cuando se aplican filtros
     setButtonBackExpanded(false); // Ocultar el filtro al aplicar cambios
     setBackFilterColor("rgba(253, 174, 55, 0.2)"); // Restaurar el color de fondo original de buttonBack
   };

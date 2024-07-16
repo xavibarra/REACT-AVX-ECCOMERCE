@@ -6,10 +6,10 @@
   flex-wrap: wrap;
   row-gap: 50px;
   column-gap: 100px;
-  justify-content: space-between;
   overflow: hidden;
   padding: 2em 2.5em;
 }
+
 /* styles.css */
 .titleContainer {
   display: flex;
