@@ -251,7 +251,7 @@ function Navbar2() {
             <FaShoppingBasket />
           </a>
           <a
-            href="/"
+            href=""
             className={`burgerIcon ${isIconRotated ? "rotated" : ""}`} // Aplica clase rotada si isIconRotated es true
             onClick={toggleMenu} // Llama a toggleMenu al hacer clic
           >
