@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Product from "./pages/Product";
 import Profile from "./pages/Profile";
 import ProjectInfo from "./pages/ProjectInfo";
+import Admin from "./pages/Admin";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "likes",
     element: <Likes />,
+  },
+  {
+    path: "admin",
+    element: <Admin />,
   },
 ]);
 
