@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
-import { Product } from "../models/product";
 import FlipCard from "../components/FlipCard";
+import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Navbar2 from "../components/NavBar2";
-import Footer from "../components/Footer";
+import { Product } from "../models/product";
 import "../styles/category.css";
-import { FaCircleArrowRight, FaCircleArrowLeft } from "react-icons/fa6";
 
 const PAGE_SIZE = 10; // Número de productos por página
 
@@ -183,7 +183,8 @@ const Category = () => {
         <div className="backFilterContainer">
           <div
             className={`buttonBack ${buttonBackExpanded ? "expanded" : ""}`}
-            style={{ backgroundColor: backFilterColor }}>
+            style={{ backgroundColor: backFilterColor }}
+          >
             {buttonBackExpanded && (
               <div className="filterContainer">
                 <div className="priceFilter">
@@ -239,7 +240,8 @@ const Category = () => {
         </div>
         <button
           className={`buttonFilter ${buttonBackExpanded ? "expanded" : ""}`}
-          onClick={handleFilterButtonClick}></button>
+          onClick={handleFilterButtonClick}
+        ></button>
         {buttonBackExpanded && <div className="blueDiv"></div>}
       </div>
       <Navbar2 />
@@ -293,7 +295,7 @@ const Category = () => {
 };
 
 const RepeatedTitle = ({ text }: { text: string }) => {
-  const repeatedText = new Array(10).fill(text).join(" ");
+  const repeatedText = new Array(10).fill(text).join("\u00A0\u00A0\u00A0");
 
   return (
     <div className="title">
