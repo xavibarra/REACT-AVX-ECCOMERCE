@@ -72,6 +72,11 @@ function Navbar2() {
     navigate("/");
   };
 
+  const goCart = () => {
+    window.scrollTo(0, 0);
+    navigate("/cart");
+  };
+
   const [menuVisible, setMenuVisible] = useState(false);
   const [isIconRotated, setIsIconRotated] = useState(false);
   const [categoriesVisible, setCategoriesVisible] = useState(false);
@@ -151,7 +156,7 @@ function Navbar2() {
             )}
           </div>
         </div>
-        <a href="/" onClick={goHome}>
+        <a href="" onClick={goHome}>
           <div className="logoContainer fill-white">
             <svg
               id="Layer_1"
@@ -244,11 +249,11 @@ function Navbar2() {
           </div>
         </a>
         <div className="iconsNav2">
-          <a href="/" className="userIcon">
+          <a href="" className="userIcon">
             <FaUser onClick={goToProfileOrLogin} />
           </a>
-          <a href="/" className="cartIcon">
-            <FaShoppingBasket />
+          <a href="" className="cartIcon">
+            <FaShoppingBasket onClick={goCart} />
           </a>
           <a
             href=""

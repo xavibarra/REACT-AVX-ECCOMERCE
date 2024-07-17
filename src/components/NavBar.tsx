@@ -33,6 +33,7 @@ function Navbar() {
     }
   };
 
+
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
@@ -232,7 +233,7 @@ function Navbar() {
             )}
           </div>
         </div>
-        <a href="/" onClick={goHome}>
+        <a href="" onClick={goHome}>
           <div className="logoContainer fill-white">
             <svg
               id="Layer_1"
