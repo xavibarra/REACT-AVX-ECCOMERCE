@@ -46,13 +46,18 @@ const ComparatorContent = () => {
 
   const fetchProducts = async () => {
     try {
-        const params = new URLSearchParams();
-        if (search) params.append('name', search);
-        if (selectedCategory) params.append('category', selectedCategory);
-        params.append('minPrice', minPrice.toString());
-        params.append('maxPrice', maxPrice.toString());
+        let url = '';
 
-        const url = `http://localhost:3000/products/search?${params.toString()}`;
+        if (search && selectedCategory) {
+            url = `http://localhost:3000/products/searchByAllFilters/${minPrice}/${maxPrice}/${search}/${selectedCategory}`;
+        } else if (search) {
+            url = `http://localhost:3000/products/searchByPriceAndName/${minPrice}/${maxPrice}/${search}`;
+        } else if (selectedCategory) {
+            url = `http://localhost:3000/products/searchByPriceAndCategory/${minPrice}/${maxPrice}/${selectedCategory}`;
+        } else {
+            url = `http://localhost:3000/products/searchByPrice/${minPrice}/${maxPrice}`;
+        }
+
         console.log("Fetch URL:", url); // Para depuración
 
         const response = await fetch(url);
@@ -65,6 +70,8 @@ const ComparatorContent = () => {
         console.error('Error fetching products:', error);
     }
 };
+
+
 
 
 
@@ -325,6 +332,7 @@ const ComparatorContent = () => {
                 min="0"
                 max="5000"
               />
+              <span>€</span>
               <span> - </span>
               <input
                 type="number"
