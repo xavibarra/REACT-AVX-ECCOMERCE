@@ -3,14 +3,15 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import CardAddCartProduct from "../components/CardAddCartProduct";
 import CharacteristicProductDetails from "../components/CharacteristicProductDetails";
+import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 import NavBar2 from "../components/NavBar2";
 import type { Category } from "../models/category";
 import type { FeaturesValues } from "../models/featuresValues";
 import type { Product } from "../models/product";
 import "../styles/productDetails.css";
 import "../styles/reviewRating.css";
-import Footer from "../components/Footer";
-import Loading from "../components/Loading";
+
 
 const ProductPage = () => {
   const { productId } = useParams<{ productId: string }>(); // Obtener productId de la URL
@@ -69,9 +70,8 @@ const ProductPage = () => {
 
   const fetchCategory = async (categoryId: number) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/categories/${categoryId}`
-      );
+      const response = await fetch(`
+        http://localhost:3000/categories/${categoryId}`);
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }

@@ -37,10 +37,10 @@ const CardAddCartProduct = ({ tiendas, price }) => {
         </div>
         <div className="cardAddCartSubContainer">
           <div className="infoTitle">
-            <p>Envío: Gratis</p>
+            <p>Shipping: Free</p>
           </div>
           <div>
-            <p className="text-primary-color">Recíbelo el {deliveryDate}</p>
+            <p className="text-primary-color">Receive it on {deliveryDate}</p>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ const CardAddCartProduct = ({ tiendas, price }) => {
         </div>
         <div>
           <div className="cardAddCartSubContainer infoTitle">
-            <p>Disponible en las tiendas:</p>
+            <p>Available in stores:</p>
           </div>
           <div>
             <p className="text-primary-color">{tiendas.join(", ")}</p>
@@ -59,7 +59,7 @@ const CardAddCartProduct = ({ tiendas, price }) => {
       </div>
       <div className="cardAddCartButtonContainer">
         <button className="bg-primary-color cardAddCartButton">
-          Añadir al carrito
+          Add to cart
         </button>
       </div>
     </aside>
