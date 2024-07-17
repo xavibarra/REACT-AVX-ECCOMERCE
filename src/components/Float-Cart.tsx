@@ -144,10 +144,6 @@ const FloatCart = ({ className }) => {
         navigate("/cart");
     };
 
-    if (loading) {
-        return <Loading/>
-    }
-
     return (
         <div className={className}>
             <div className="float-cart-title-container">
