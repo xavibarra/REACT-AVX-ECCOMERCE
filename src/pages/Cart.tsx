@@ -6,6 +6,7 @@ import { FaTrash } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import Navbar2 from "../components/NavBar2";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const [userCart, setUserCart] = useState([]);
@@ -167,6 +168,13 @@ const Cart = () => {
       console.error("Error removing item from cart:", error.message);
     }
   };
+
+  const navigate = useNavigate();
+
+
+  const goToCategories = () => {
+    navigate("/");
+  };
   
 
   if (loading) {
@@ -191,7 +199,7 @@ const Cart = () => {
               <ProductCard key={index} product={product} onRemove={removeFromCart} />
             ))}
             <div className={userCart.length === 0 ? "cart-actions-hidden" : "cart-actions"}>
-              <button><p>Keep buying</p></button>
+              <button onClick={goToCategories}><p>Keep buying</p></button>
               <button className="cart-empty-cart-button" onClick={emptyCart}>
                 <FaTrash className="cart-trash-icon" /><p>Empty cart</p>
               </button>
@@ -204,7 +212,7 @@ const Cart = () => {
             <p>No items in the cart</p>
           ) : (
             <>
-              <p>Receive everything on {userCart[0]?.deliveryDate}</p>
+              <p>{userCart[0]?.deliveryDate}</p>
               <div className="cart-total">Total: {totalPrice.toFixed(2)}€</div>
             </>
           )}

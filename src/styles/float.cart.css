@@ -1,0 +1,111 @@
+/* Estilos para el carrito flotante */
+.float-cart-container {
+    position: fixed;
+    right: 0;
+    top: 70px;
+    width: 400px;
+    height: 92vh;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.float-cart-container-hidden{
+    display: none;
+}
+
+
+.float-cart-title-container {
+    margin-bottom: 20px;
+    h5 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+    p {
+        font-size: 14px;
+        color: #999;
+    }
+}
+
+.float-cart-content-container {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.float-cart-empty-cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    h5 {
+        font-size: 20px;
+        color: #333;
+    }
+    .float-cart-icon-cart {
+        font-size: 50px;
+        color: grey;
+    }
+}
+
+.float-cart-trash-icon {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.float-cart-summary {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    text-align: start;
+}
+
+.float-cart-summary h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+.float-cart-summary p {
+    font-size: 14px;
+    color: #ff9900;
+}
+
+.float-cart-total-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h6{
+        font-size: 20px;
+        font-weight: 700;
+    }
+}
+
+.float-cart-total {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.float-cart-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.float-cart-buttons button {
+    padding: 10px;
+    background-color: #ff9900;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.float-cart-buttons button:hover {
+    background-color: #ffaa2c;
+}
