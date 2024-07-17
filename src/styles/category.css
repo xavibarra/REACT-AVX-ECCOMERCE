@@ -8,6 +8,7 @@
   column-gap: 100px;
   overflow: hidden;
   padding: 2em 2.5em;
+  justify-content: center;
 }
 
 /* styles.css */
@@ -134,7 +135,7 @@
   width: 3.5em;
 }
 
-.backgroundFilter{
+.backgroundFilter {
   height: 100vh;
   background-color: rgb(var(--color-secondary-rgb), 0.75);
   position: fixed;
@@ -163,12 +164,12 @@
   margin: 0.5em;
 }
 
-.category-link:hover{
+.category-link:hover {
   height: 22vh;
   width: 22vh;
 }
 
-.priceFilter{
+.priceFilter {
   width: 18%;
   height: 20%;
   background-color: white;
@@ -178,7 +179,6 @@
   left: 110px;
   padding: 1em 2em;
   border-radius: 15px;
-  
 }
 
 .brandCheckboxes div input[type="checkbox"] {
@@ -199,8 +199,7 @@
   background-color: orange;
 }
 
-
-.brandFilter{
+.brandFilter {
   width: 18%;
   height: 40%;
   background-color: white;
@@ -212,20 +211,19 @@
   border-radius: 15px;
   overflow: auto;
 }
-.brandCheckboxes div{
+.brandCheckboxes div {
   margin-top: 0.3em;
-
 }
 
-.brandCheckboxes div input{
+.brandCheckboxes div input {
   margin-right: 0.75em;
   width: 1.25em;
   color-scheme: black;
 }
-.brandCheckboxes{
+.brandCheckboxes {
   padding-top: 0.5em;
 }
-.buttonApply{
+.buttonApply {
   width: 18%;
   height: 6%;
   background-color: white;
@@ -237,7 +235,8 @@
   font-size: 16px;
   font-weight: 600;
 }
-.priceFilter h3, .brandFilter h3 {
+.priceFilter h3,
+.brandFilter h3 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
@@ -259,7 +258,9 @@
 }
 
 .priceInputs input[type="range"] {
-  width: calc(50% - 10px); /* 50% del ancho del contenedor menos el espacio entre ellos */
+  width: calc(
+    50% - 10px
+  ); /* 50% del ancho del contenedor menos el espacio entre ellos */
   -webkit-appearance: none;
   appearance: none;
   height: 2px;
@@ -276,9 +277,9 @@
   border-radius: 50%;
   background: var(--color-primary);
   cursor: pointer;
-} 
+}
 
-.namePrice{
+.namePrice {
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;

@@ -9,15 +9,23 @@ import NavBar2 from "../components/NavBar2";
 import type { Category } from "../models/category";
 import type { FeaturesValues } from "../models/featuresValues";
 import type { Product } from "../models/product";
+import type { Review } from "../models/review"; // Assuming you have a Review type/model
 import "../styles/productDetails.css";
 import "../styles/reviewRating.css";
-
 
 const ProductPage = () => {
   const { productId } = useParams<{ productId: string }>(); // Obtener productId de la URL
   const [product, setProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
   const [featuresValues, setFeaturesValues] = useState<FeaturesValues[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviewCounts, setReviewCounts] = useState({
+    5: 0,
+    4: 0,
+    3: 0,
+    2: 0,
+    1: 0,
+  });
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,8 +41,8 @@ const ProductPage = () => {
         const data: Product = await response.json();
         setProduct(data);
         fetchCategory(data.categoryId);
-        // Llamar a la función para obtener características y valores después de obtener el producto
         fetchFeaturesValues(productId);
+        fetchReviews(productId);
       } catch (error) {
         if (error instanceof Error) {
           setError(error.message);
@@ -89,6 +97,35 @@ const ProductPage = () => {
     }
   };
 
+  const fetchReviews = async (productId: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/reviews/findReviewsByProductId/${productId}`
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const data: Review[] = await response.json();
+      setReviews(data);
+      countReviews(data); // Calculate the review counts
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    }
+  };
+
+  const countReviews = (reviews: Review[]) => {
+    const counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    reviews.forEach((review) => {
+      const rating = Math.round(review.rating);
+      counts[rating] = (counts[rating] || 0) + 1;
+    });
+    setReviewCounts(counts);
+  };
+
   // Función para generar las estrellas según el rating
   const generateStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -130,15 +167,6 @@ const ProductPage = () => {
     product?.sevillaStock && "Sevilla",
     product?.sanSebastianStock && "San Sebastian",
   ].filter(Boolean);
-
-  // Datos de ejemplo para las opiniones
-  const reviewCounts = {
-    5: 5,
-    4: 8,
-    3: 0,
-    2: 2,
-    1: 0,
-  };
 
   // Función para calcular el porcentaje de cada calificación
   const calculatePercentage = (count: number, total: number) => {
@@ -192,38 +220,57 @@ const ProductPage = () => {
           )}
         </div>
         <div className="categoryDescription">
-          <p>{category ? category.categoryDescriptionEn : <Loading />}</p>
+          {category ? <p>{category.categoryDescriptionEn}</p> : <Loading />}
         </div>
       </div>
       <div className="reviews">
         <h2>Opinions</h2>
         <div className="review-rating">
-          <div className="rating-circle">
-            <span>{product?.rating.toFixed(1)}</span>
-          </div>
-          <div className="reviews-summary">
-            {Object.keys(reviewCounts).map((star) => (
-              <div key={star} className="review-bar">
-                <span>
-                  {star} <FaStar />
-                </span>
-                <div className="bar">
-                  <div
-                    className="filled-bar"
-                    style={{
-                      width: `${calculatePercentage(
-                        reviewCounts[star],
-                        totalReviews
-                      )}%`,
-                    }}
-                  ></div>
+          <div className="reviews-summary-container">
+            <div className="rating-circle">
+              <span>{product?.rating.toFixed(1)}</span>
+            </div>
+            <div className="reviews-summary">
+              {Object.keys(reviewCounts).map((star) => (
+                <div key={star} className="review-bar">
+                  <span>
+                    {star} <FaStar />
+                  </span>
+                  <div className="bar">
+                    <div
+                      className="filled-bar"
+                      style={{
+                        width: `${calculatePercentage(
+                          reviewCounts[star],
+                          totalReviews
+                        )}%`,
+                      }}
+                    ></div>
+                  </div>
+                  <span>{reviewCounts[star]}</span>
                 </div>
-                <span>{reviewCounts[star]}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <button className="add-review-btn">Añadir opinión</button>
         </div>
+      </div>
+      <div className="userReviews">
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <div key={review.id} className="review">
+              <div className="reviewHeader">
+                <h4>User ID: {review.userId}</h4>
+                <div className="reviewStars">
+                  {generateStars(review.rating)}
+                </div>
+              </div>
+              <p>{review.review}</p>
+            </div>
+          ))
+        ) : (
+          <p>No reviews yet for this product.</p>
+        )}
       </div>
       <Footer />
     </section>
