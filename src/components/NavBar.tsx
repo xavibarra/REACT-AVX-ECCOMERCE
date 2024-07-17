@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar.css";
 import { supabaseClient } from "../utils/supabaseClient";
+import FloatCart from "./Float-Cart";
 
 function Navbar() {
   const [user, setUser] = useState({});
+  const [floatCartVisible, setFloatCartVisible] = useState(false);
 
   useEffect(() => {
     async function checkUser() {
@@ -32,7 +34,6 @@ function Navbar() {
       navigate("/login");
     }
   };
-
 
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
@@ -62,6 +63,9 @@ function Navbar() {
           logoSvg.classList.remove("show");
         }
       }
+
+      // Ocultar el carrito flotante al hacer scroll
+      setFloatCartVisible(false);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -92,24 +96,31 @@ function Navbar() {
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
+    setShowResults(true);
   };
 
   const handleInputClick = () => {
     setShowResults(true);
   };
 
-  const handleOutsideClick = (event) => {
-    if (!(event.target.closest(".searchContainer"))) {
-      setShowResults(false);
-    }
-  };
+
 
   useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (!event.target.closest(".searchContainer")) {
+        setShowResults(false);
+        setSearchTerm(''); // Limpiar el valor del input
+      }
+    };
+  
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
+  
+  
+
 
   const handleCardClick = (productId) => (event) => {
     event.preventDefault();
@@ -120,10 +131,7 @@ function Navbar() {
     window.scrollTo(0, 0);
     navigate("");
   };
-  const goCart = () => {
-    window.scrollTo(0, 0);
-    navigate("/cart");
-  };
+
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [isIconRotated, setIsIconRotated] = useState(false);
@@ -136,35 +144,20 @@ function Navbar() {
     if (menuVisible) {
       setCategoriesVisible(false);
     }
+    // Ocultar el carrito flotante al abrir el menú
+    setFloatCartVisible(false);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const navbar = document.getElementById("navbar");
-      const logoSvg = document.querySelector(".logoContainer svg");
-      if (navbar && logoSvg) {
-        if (window.scrollY > 600) {
-          navbar.classList.add("scroll");
-          navbar.classList.remove("hidden");
-          navbar.classList.remove("normal");
-          logoSvg.classList.add("show");
-        } else if (window.scrollY > 0 && window.scrollY <= 600) {
-          navbar.classList.add("hidden");
-          navbar.classList.remove("scroll");
-          navbar.classList.remove("normal");
-          logoSvg.classList.remove("show");
-        } else {
-          navbar.classList.remove("scroll", "hidden");
-          logoSvg.classList.remove("show");
-        }
-      }
-    };
+  const toggleFloatCart = () => {
+    setFloatCartVisible(!floatCartVisible);
+    setMenuVisible(false);
+    setCategoriesVisible(false);
+    setIsIconRotated(false);
+  };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const hideFloatCart = () => {
+    setFloatCartVisible(false);
+  };
 
   return (
     <>
@@ -232,6 +225,7 @@ function Navbar() {
               </div>
             )}
           </div>
+
         </div>
         <a href="" onClick={goHome}>
           <div className="logoContainer fill-white">
@@ -327,10 +321,10 @@ function Navbar() {
         </a>
         <div className="iconsNav">
           <a className="userIcon">
-            <FaUser onClick={goToProfileOrLogin} />
+            <FaUser onClick={() => { goToProfileOrLogin(); hideFloatCart(); }} />
           </a>
           <a className="cartIcon">
-            <FaShoppingBasket onClick={goCart} />
+            <FaShoppingBasket onClick={toggleFloatCart} />
           </a>
           <a
             href=""
@@ -346,6 +340,7 @@ function Navbar() {
         setCategoriesVisible={setCategoriesVisible}
         categoriesVisible={categoriesVisible}
       />
+      <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} />
     </>
   );
 }

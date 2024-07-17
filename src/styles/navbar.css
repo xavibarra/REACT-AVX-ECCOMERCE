@@ -40,6 +40,10 @@
   cursor: pointer;
 }
 
+.searchContainer{
+  width: 50%;
+}
+
 .inputSearch:focus,
 .inputSearch:not(:invalid) {
   width: 390px;

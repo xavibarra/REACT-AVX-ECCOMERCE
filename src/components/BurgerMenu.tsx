@@ -1,7 +1,6 @@
 import { FaCodeCompare, FaHeart, FaPuzzlePiece } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "../styles/burger-menu.css";
-import { useEffect } from "react";
 
 interface BurgerMenuProps {
   menuVisible: boolean;

@@ -3,12 +3,15 @@ import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../styles/navbar2.css";
 import BurgerMenu from "../components/BurgerMenu";
+import FloatCart from "./Float-Cart";
 
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false); // Estado para mostrar u ocultar resultados de búsqueda
   const [user, setUser] = useState({});
+  const [floatCartVisible, setFloatCartVisible] = useState(false);
+
 
   useEffect(() => {
     async function checkUser() {
@@ -72,21 +75,46 @@ function Navbar2() {
     navigate("/");
   };
 
-  const goCart = () => {
-    window.scrollTo(0, 0);
-    navigate("/cart");
-  };
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (!event.target.closest(".searchContainer")) {
+        setShowResults(false);
+        setSearchTerm(''); // Limpiar el valor del input
+      }
+    };
+  
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+  
+
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [isIconRotated, setIsIconRotated] = useState(false);
   const [categoriesVisible, setCategoriesVisible] = useState(false);
+
   const toggleMenu = (event) => {
     event.preventDefault();
-    setMenuVisible(!menuVisible); // Alterna la visibilidad del menú
-    setIsIconRotated(!isIconRotated); // Alterna la rotación del ícono
+    setMenuVisible(!menuVisible);
+    setIsIconRotated(!isIconRotated);
     if (menuVisible) {
       setCategoriesVisible(false);
     }
+    // Ocultar el carrito flotante al abrir el menú
+    setFloatCartVisible(false);
+  };
+
+  const toggleFloatCart = () => {
+    setFloatCartVisible(!floatCartVisible);
+    setMenuVisible(false);
+    setCategoriesVisible(false);
+    setIsIconRotated(false);
+  };
+
+  const hideFloatCart = () => {
+    setFloatCartVisible(false);
   };
 
   return (
@@ -104,7 +132,7 @@ function Navbar2() {
               required
               placeholder=" Search..."
             />
-             <div className="icon">
+            <div className="icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="lupa2"
@@ -249,16 +277,16 @@ function Navbar2() {
           </div>
         </a>
         <div className="iconsNav2">
-          <a href="" className="userIcon">
-            <FaUser onClick={goToProfileOrLogin} />
+          <a className="userIcon">
+            <FaUser onClick={() => { goToProfileOrLogin(); hideFloatCart(); }} />
           </a>
-          <a href="" className="cartIcon">
-            <FaShoppingBasket onClick={goCart} />
+          <a className="cartIcon">
+            <FaShoppingBasket onClick={toggleFloatCart} />
           </a>
           <a
             href=""
-            className={`burgerIcon ${isIconRotated ? "rotated" : ""}`} // Aplica clase rotada si isIconRotated es true
-            onClick={toggleMenu} // Llama a toggleMenu al hacer clic
+            className={`burgerIcon ${isIconRotated ? "rotated" : ""}`}
+            onClick={toggleMenu}
           >
             <FaBars />
           </a>
@@ -269,6 +297,7 @@ function Navbar2() {
         setCategoriesVisible={setCategoriesVisible}
         categoriesVisible={categoriesVisible}
       />
+      <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} />
     </>
   );
 }

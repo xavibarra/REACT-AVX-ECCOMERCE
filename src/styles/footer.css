@@ -6,6 +6,8 @@
     height: 110px;
     bottom: 0;
     right: 0;
+    position: relative;
+    top: 55.7vh;
 }
 
 /* LOGO */
