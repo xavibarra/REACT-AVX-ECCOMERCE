@@ -12,6 +12,7 @@ import type { Product } from "../models/product";
 import "../styles/productDetails.css";
 import "../styles/reviewRating.css";
 
+
 const ProductPage = () => {
   const { productId } = useParams<{ productId: string }>(); // Obtener productId de la URL
   const [product, setProduct] = useState<Product | null>(null);

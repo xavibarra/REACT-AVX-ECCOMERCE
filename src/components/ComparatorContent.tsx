@@ -7,7 +7,6 @@ import grafica4090 from "../assets/img/grafica-4090.jpg";
 import graficaAmd from "../assets/img/grafica-amd.jpg";
 import { IoClose } from "react-icons/io5";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
 
 interface FeaturesValues {
   id_feature: number;
@@ -47,19 +46,34 @@ const ComparatorContent = () => {
 
   const fetchProducts = async () => {
     try {
-      const url = `http://localhost:3000/products/search/${search}/${selectedCategory}/${minPrice}/${maxPrice}`;
-      console.log("Fetch URL:", url); // Para depuración
+        let url = '';
 
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setProducts(data);
+        if (search && selectedCategory) {
+            url = `http://localhost:3000/products/searchByAllFilters/${minPrice}/${maxPrice}/${search}/${selectedCategory}`;
+        } else if (search) {
+            url = `http://localhost:3000/products/searchByPriceAndName/${minPrice}/${maxPrice}/${search}`;
+        } else if (selectedCategory) {
+            url = `http://localhost:3000/products/searchByPriceAndCategory/${minPrice}/${maxPrice}/${selectedCategory}`;
+        } else {
+            url = `http://localhost:3000/products/searchByPrice/${minPrice}/${maxPrice}`;
+        }
+
+        console.log("Fetch URL:", url); // Para depuración
+
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data);
     } catch (error) {
-      console.error('Error fetching products:', error);
+        console.error('Error fetching products:', error);
     }
-  };
+};
+
+
+
+
 
 
   const fetchFeaturesValues = async (productId: number, setFeatures: (features: FeaturesValues[]) => void) => {
@@ -294,7 +308,7 @@ const ComparatorContent = () => {
             <div className="comparator-price-filter-header">
               <h3>Price</h3>
             </div>
-            <div className="priceInputs">
+            <div className="comparator-priceInputs">
               <input
                 type="range"
                 min="0"
@@ -318,6 +332,7 @@ const ComparatorContent = () => {
                 min="0"
                 max="5000"
               />
+              <span>€</span>
               <span> - </span>
               <input
                 type="number"

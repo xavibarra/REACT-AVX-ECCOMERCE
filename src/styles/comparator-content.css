@@ -1,4 +1,4 @@
-/* Estilos generales */
+      /* Estilos generales */
 .comparator-content-container {
   height: auto;
   width: 100%;
@@ -259,6 +259,7 @@
 /* Estilos de la cuadrícula de comparación */
 .comparator-grid {
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 50px;
@@ -337,7 +338,6 @@
   font-size: 16px;
   font-weight: bold;
   padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
 }
 
 .comparator-priceInputs {

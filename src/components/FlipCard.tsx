@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { CiHeart } from "react-icons/ci";
-import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import {
+  FaHeart,
+  FaRegHeart,
+  FaRegStar,
+  FaStar,
+  FaStarHalfAlt,
+} from "react-icons/fa";
 import { FaCodeCompare, FaShop } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-
-import type { Product } from "../models/product";
-import "../styles/flip-card.css";
 import { supabaseClient } from "../utils/supabaseClient";
+import "../styles/flip-card.css";
+
+interface Product {
+  id: string;
+  name: string;
+  imageUrl: string;
+  price: number;
+  discount: number;
+  rating: number;
+  offer?: boolean;
+  categories?: {
+    category_description_en: string;
+  };
+}
 
 interface FlipCardProps {
   product: Product;
@@ -15,19 +31,45 @@ interface FlipCardProps {
 const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const [showIndicator, setShowIndicator] = useState(false);
   const [user, setUser] = useState(null);
+  const [isLiked, setIsLiked] = useState(false);
   const navigate = useNavigate();
 
-  async function getUserData() {
-    const { data, error } = await supabaseClient.auth.getUser();
-    if (error) {
-      console.error("Error fetching user data:", error);
-    } else {
-      setUser(data.user);
-      console.log(data.user.id);
-    }
-  }
-
   useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const { data, error } = await supabaseClient.auth.getUser();
+        if (error) {
+          console.error("Error fetching user data:", error);
+          return;
+        }
+
+        setUser(data.user);
+        const userId = data.user.id;
+
+        // Verificar si el producto está en la lista de "me gusta"
+        const response = await fetch(
+          `http://localhost:3000/users/check-like?userId=${userId}&productId=${product.id}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new TypeError("Oops, we haven't got JSON!");
+        }
+
+        const result = await response.json();
+        setIsLiked(result.isLiked);
+      } catch (error) {
+        console.error("Error checking if product is liked:", error);
+        // Puedes manejar el error aquí, por ejemplo, establecer isLiked en false o mostrar un mensaje de error al usuario.
+      }
+    }
+
+    fetchUserData();
+
     const storeList = document.getElementById("store-list");
 
     function checkOverflow() {
@@ -44,7 +86,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     return () => {
       window.removeEventListener("resize", checkOverflow);
     };
-  }, []);
+  }, [product.id]);
 
   const formatCityList = (): string => {
     const cities: string[] = [];
@@ -70,7 +112,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     navigate(`/product/${product.id}`);
   };
 
-  // Función para generar las estrellas según el rating
   const generateStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating - fullStars >= 0.5;
@@ -121,7 +162,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     }
   };
 
-  const handleAddToLikeClick = async (event: React.MouseEvent) => {
+  const handleLikeClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
 
     try {
@@ -134,30 +175,57 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       const userId = data.user.id;
       const productId = product.id;
 
-      const response = await fetch("http://localhost:3000/users/add-like", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId, productId }),
-      });
+      // Determinar si estamos agregando o eliminando "me gusta"
+      if (!isLiked) {
+        // Agregar "me gusta"
+        const response = await fetch("http://localhost:3000/users/add-like", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, productId }),
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to add product to likes");
+        if (!response.ok) {
+          throw new Error("Failed to add product to likes");
+        }
+
+        setIsLiked(true); // Actualizar el estado local
+        const result = await response.json();
+        console.log(result.message); // Maneja la respuesta del backend como desees
+      } else {
+        // Eliminar "me gusta"
+        const response = await fetch(
+          "http://localhost:3000/users/remove-like",
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId, productId }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to remove product from likes");
+        }
+
+        setIsLiked(false); // Actualizar el estado local
+        const result = await response.json();
+        console.log(result.message); // Maneja la respuesta del backend como desees
       }
-
-      const result = await response.json();
-      console.log(result.message); // Maneja la respuesta del backend como desees
     } catch (error) {
-      console.error("Error adding product to likes:", error.message);
+      console.error(
+        "Error adding/removing product to/from likes:",
+        error.message
+      );
     }
   };
 
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick}
-    >
+      onClick={handleCardClick}>
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-500">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
@@ -192,15 +260,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="bottomCard">
             <button
               className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-              onClick={handleAddToCartClick}
-            >
+              onClick={handleAddToCartClick}>
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
               <span>Add to cart</span>
             </button>
-            <div className="favIcon" onClick={handleAddToLikeClick}>
-              <CiHeart />
+            <div
+              className="favIcon"
+              onClick={isLiked ? handleLikeClick : handleLikeClick}>
+              {isLiked ? <FaHeart /> : <FaRegHeart />}
             </div>
           </div>
         </div>
@@ -215,8 +284,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
             <div
               className="overflow-y-auto hide-scrollbar relative cities"
-              id="store-list"
-            >
+              id="store-list">
               <p className="card-city list-none my-1 text-left mx-2 flex items-center">
                 {formatCityList()}.
               </p>
@@ -226,15 +294,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             <div className="bottomCard">
               <button
                 className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-                onClick={handleAddToCartClick}
-              >
+                onClick={handleAddToCartClick}>
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
                 <span>Add to cart</span>
               </button>
-              <div className="favIcon" onClick={handleAddToLikeClick}>
-                <CiHeart />
+              <div
+                className="favIcon"
+                onClick={isLiked ? handleLikeClick : handleLikeClick}>
+                {isLiked ? <FaHeart /> : <FaRegHeart />}
               </div>
             </div>
           </div>

@@ -33,6 +33,7 @@ function Navbar() {
     }
   };
 
+
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
@@ -128,7 +129,8 @@ function Navbar() {
   const [isIconRotated, setIsIconRotated] = useState(false);
   const [categoriesVisible, setCategoriesVisible] = useState(false);
 
-  const toggleMenu = () => {
+  const toggleMenu = (event) => {
+    event.preventDefault();
     setMenuVisible(!menuVisible);
     setIsIconRotated(!isIconRotated);
     if (menuVisible) {
@@ -231,7 +233,7 @@ function Navbar() {
             )}
           </div>
         </div>
-        <a href="/" onClick={goHome}>
+        <a href="" onClick={goHome}>
           <div className="logoContainer fill-white">
             <svg
               id="Layer_1"
@@ -331,7 +333,7 @@ function Navbar() {
             <FaShoppingBasket onClick={goCart} />
           </a>
           <a
-            href="#"
+            href=""
             className={`burgerIcon ${isIconRotated ? "rotated" : ""}`}
             onClick={toggleMenu}
           >
