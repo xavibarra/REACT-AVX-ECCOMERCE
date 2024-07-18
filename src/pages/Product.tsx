@@ -6,19 +6,21 @@ import CharacteristicProductDetails from "../components/CharacteristicProductDet
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import NavBar2 from "../components/NavBar2";
-import type { Category } from "../models/category";
-import type { FeaturesValues } from "../models/featuresValues";
-import type { Product } from "../models/product";
-import type { Review } from "../models/review"; // Assuming you have a Review type/model
+import { Category } from "../models/category";
+import { FeaturesValues } from "../models/featuresValues";
+import { Product } from "../models/product";
+import { Review } from "../models/review";
+import { User } from "../models/user";
 import "../styles/productDetails.css";
 import "../styles/reviewRating.css";
 
 const ProductPage = () => {
-  const { productId } = useParams<{ productId: string }>(); // Obtener productId de la URL
+  const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
   const [featuresValues, setFeaturesValues] = useState<FeaturesValues[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [users, setUsers] = useState<{ [key: string]: User | null }>({});
   const [reviewCounts, setReviewCounts] = useState({
     5: 0,
     4: 0,
@@ -108,12 +110,28 @@ const ProductPage = () => {
       const data: Review[] = await response.json();
       setReviews(data);
       countReviews(data); // Calculate the review counts
+      data.forEach((review) => fetchUser(review.userId));
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
       } else {
         setError("An unknown error occurred.");
       }
+    }
+  };
+
+  const fetchUser = async (userId: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/users/getById/${userId}`
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const data: User = await response.json();
+      setUsers((prevUsers) => ({ ...prevUsers, [userId]: data }));
+    } catch (error) {
+      console.error(`Error fetching user with ID ${userId}:`, error);
     }
   };
 
@@ -124,6 +142,31 @@ const ProductPage = () => {
       counts[rating] = (counts[rating] || 0) + 1;
     });
     setReviewCounts(counts);
+  };
+
+  const handleLikeClick = async (reviewId: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/reviews/updateLikes/${reviewId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ incrementBy: 1 }), // Increment likes by 1
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const updatedReview: Review = await response.json();
+      // Actualizar la lista de reviews con el review actualizado
+      setReviews((prevReviews) =>
+        prevReviews.map((r) => (r.id === updatedReview.id ? updatedReview : r))
+      );
+    } catch (error) {
+      console.error(`Error liking review with ID ${reviewId}:`, error);
+    }
   };
 
   // Función para generar las estrellas según el rating
@@ -252,22 +295,38 @@ const ProductPage = () => {
               ))}
             </div>
           </div>
-          <button className="add-review-btn">Añadir opinión</button>
+          <button className="add-review-btn">Add Review</button>
         </div>
       </div>
       <div className="userReviews">
         {reviews.length > 0 ? (
-          reviews.map((review) => (
-            <div key={review.id} className="review">
-              <div className="reviewHeader">
-                <h4>User ID: {review.userId}</h4>
-                <div className="reviewStars">
-                  {generateStars(review.rating)}
+          reviews.map((review) => {
+            const user = users[review.userId];
+            return (
+              <div key={review.id} className="review">
+                <h4 className="reviewEmail">
+                  {user ? user.email : "Loading user..."}
+                </h4>
+                <div className="reviewContent">
+                  <div className="reviewStars">
+                    {generateStars(review.rating)}
+                  </div>
+                  <p className="reviewText">{review.review}</p>
+                  <div className="likesContainer">
+                    <div className="likeNumber">{review.likes}</div>
+                    <div>
+                      <button
+                        className="add-review-btn"
+                        onClick={() => handleLikeClick(review.id.toString())}
+                      >
+                        Like
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p>{review.review}</p>
-            </div>
-          ))
+            );
+          })
         ) : (
           <p>No reviews yet for this product.</p>
         )}
