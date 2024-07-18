@@ -106,6 +106,7 @@
   .iconsNav2 svg {
     width: 80%;
     color: white;
+    cursor: pointer;
   }
   
   .lupa2 {

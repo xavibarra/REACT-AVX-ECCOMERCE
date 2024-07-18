@@ -5,7 +5,7 @@ import ComparatorFlipCard from "./ComparatorFlipCard";
 import { Product } from "../models/product";
 import grafica4090 from "../assets/img/grafica-4090.jpg";
 import graficaAmd from "../assets/img/grafica-amd.jpg";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoCloseOutline } from "react-icons/io5";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 interface FeaturesValues {
@@ -42,6 +42,7 @@ const ComparatorContent = () => {
     };
 
     fetchCategories();
+    fetchProducts(); // Ejecuta la búsqueda al cargar la página
   }, []);
 
   const fetchProducts = async () => {
@@ -70,11 +71,6 @@ const ComparatorContent = () => {
         console.error('Error fetching products:', error);
     }
 };
-
-
-
-
-
 
   const fetchFeaturesValues = async (productId: number, setFeatures: (features: FeaturesValues[]) => void) => {
     try {
@@ -105,7 +101,7 @@ const ComparatorContent = () => {
 
     if (firstEmptyIndex !== -1) {
       if (firstEmptyIndex === 1 && newComparisonProducts[0]?.categoryId !== product.categoryId) {
-        setComparisonError("No se pueden comparar dos objetos de diferentes categorías");
+        setComparisonError("Cannot compare two objects from different categories");
         setTimeout(() => setComparisonError(null), 2000);
         return;
       }
@@ -213,7 +209,7 @@ const ComparatorContent = () => {
               <div className={comparisonProducts[0] ? "comparator-rating-name-container" : "comparator-rating-name-container-hidden"}>
                 <h4 className="comparator-rating">{comparisonProducts[0] ? comparisonProducts[0].rating : 'Rating'}</h4>
                 <h4 className="comparator-name">{comparisonProducts[0] ? comparisonProducts[0].name : 'Nombre'}</h4>
-                <IoClose className="comparator-remove-choice-icon" onClick={() => handleRemoveFromComparator(0)} />
+                <IoCloseOutline className="comparator-remove-choice-icon" onClick={() => handleRemoveFromComparator(0)} />
               </div>
               <img className="comparator-first-choice-img" src={comparisonProducts[0] ? comparisonProducts[0].imageUrl : grafica4090} alt="" />
               <div className="comparator-see-product-button-container">
@@ -239,7 +235,7 @@ const ComparatorContent = () => {
               <div className={comparisonProducts[1] ? "comparator-rating-name-container" : "comparator-rating-name-container-hidden"}>
                 <h4 className="comparator-rating">{comparisonProducts[1] ? comparisonProducts[1].rating : 'Rating'}</h4>
                 <h4 className="comparator-name">{comparisonProducts[1] ? comparisonProducts[1].name : 'Nombre'}</h4>
-                <IoClose className="comparator-remove-choice-icon" onClick={() => handleRemoveFromComparator(1)} />
+                <IoCloseOutline  className="comparator-remove-choice-icon" onClick={() => handleRemoveFromComparator(1)} />
               </div>
               <img className="comparator-second-choice-img" src={comparisonProducts[1] ? comparisonProducts[1].imageUrl : graficaAmd} alt="" />
               <div className="comparator-see-product-button-container">
@@ -255,8 +251,9 @@ const ComparatorContent = () => {
             </a>
           </div>
         </div>
+        <div className="shadow-white"></div>
         <div className={comparisonProducts.every(product => product === null) ? "comparator-choices-names-container-hidden" : "comparator-choices-names-container"}>
-          <h4>{comparisonProducts[0]?.name || '(Item1)'} VS {comparisonProducts[1]?.name || '(---)'}</h4>
+          <h4>{comparisonProducts[0]?.name || ' '}  VS  {comparisonProducts[1]?.name || ' '}</h4>
         </div>
         <div className={comparisonProducts.every(product => product === null) ? "comparator-characteristics-container-hidden" : "comparator-characteristics-container"}>
           {commonFeatures.map((feature) => (
@@ -279,7 +276,7 @@ const ComparatorContent = () => {
           })}
         </div>
         <div id="comparator-add-title-container" className="comparator-add-title-container">
-          <h3>Añade un componente</h3>
+          <h3>Add component</h3>
         </div>
         <div className="comparator-search-container">
           <div className="comparator-input-container">
