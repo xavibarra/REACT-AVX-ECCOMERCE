@@ -61,12 +61,19 @@
   .product-table td {
     padding: 8px;
     border: 1px solid #ddd;
-    text-align: left;
   }
   
   .product-table th {
     background-color: var(--color-secondary);
     color: var(--color-primary);
+    font-size: 0.9em;
+  }
+
+  .product-table td {
+    white-space: nowrap;
+    font-size: 0.9em;
+    overflow-x: auto;
+    max-width: 150px; /* Puedes ajustar este valor según sea necesario */
   }
   
   .product-table td input[type="text"] {
@@ -106,11 +113,15 @@
   }
   .image-column {
     overflow-x: auto;
-    max-width: 250px; /* Puedes ajustar este valor según sea necesario */
+    max-width: 150px; /* Puedes ajustar este valor según sea necesario */
   }
 
   .admin-container h2{
     margin-top: 2em;
+  }
+  
+  .admin-container button{
+    margin: 0.75em;
   }
   
   
