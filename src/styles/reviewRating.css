@@ -66,7 +66,6 @@
 }
 
 .add-review-btn {
-  margin-top: 20px;
   background-color: var(--color-primary);
   color: #fff;
   border: none;
@@ -87,4 +86,52 @@
   width: 30%;
   display: flex;
   flex-direction: column;
+}
+.review {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+.reviewEmail {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.reviewContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewStars {
+  margin-top: 10px;
+  display: flex;
+}
+
+.reviewText {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.userReviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.likesContainer {
+  display: flex;
+  margin-top: 20px;
+}
+.likeNumber {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: var(--color-primary) 5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
 }
