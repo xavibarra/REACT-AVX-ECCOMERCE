@@ -145,11 +145,14 @@ const FloatCart = ({ className }) => {
         navigate("/cart");
     };
 
+<<<<<<< HEAD:src/components/Float-Cart.tsx
+=======
 
     if (loading) {
         return <Loading/>
     }
 
+>>>>>>> 24a7a9ac2bc3a95c3d0fc82357617a26ef08745d:src/components/FloatCart.tsx
     return (
         <div className={className}>
             <div className="float-cart-title-container">
