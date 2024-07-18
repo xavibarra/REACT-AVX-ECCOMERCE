@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar.css";
 import { supabaseClient } from "../utils/supabaseClient";
-import FloatCart from "./Float-Cart";
+import FloatCart from "./FloatCart";
 
 function Navbar() {
   const [user, setUser] = useState({});

@@ -8,8 +8,8 @@ import {
 } from "react-icons/fa";
 import { FaCodeCompare, FaShop } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import { supabaseClient } from "../utils/supabaseClient";
 import "../styles/flip-card.css";
+import { supabaseClient } from "../utils/supabaseClient";
 
 interface Product {
   id: string;
@@ -35,40 +35,40 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchUserData() {
-      try {
-        const { data, error } = await supabaseClient.auth.getUser();
-        if (error) {
-          console.error("Error fetching user data:", error);
-          return;
-        }
+    // async function fetchUserData() {
+    //   try {
+    //     const { data, error } = await supabaseClient.auth.getUser();
+    //     if (error) {
+    //       console.error("Error fetching user data:", error);
+    //       return;
+    //     }
 
-        setUser(data.user);
-        const userId = data.user.id;
+    //     setUser(data.user);
+    //     const userId = data.user.id;
 
-        // Verificar si el producto está en la lista de "me gusta"
-        const response = await fetch(
-          `http://localhost:3000/users/check-like?userId=${userId}&productId=${product.id}`
-        );
+    //     // Verificar si el producto está en la lista de "me gusta"
+    //     const response = await fetch(
+    //       `http://localhost:3000/users/check-like?userId=${userId}&productId=${product.id}`
+    //     );
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+    //     if (!response.ok) {
+    //       throw new Error("Network response was not ok");
+    //     }
 
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          throw new TypeError("Oops, we haven't got JSON!");
-        }
+    //     const contentType = response.headers.get("content-type");
+    //     if (!contentType || !contentType.includes("application/json")) {
+    //       throw new TypeError("Oops, we haven't got JSON!");
+    //     }
 
-        const result = await response.json();
-        setIsLiked(result.isLiked);
-      } catch (error) {
-        console.error("Error checking if product is liked:", error);
-        // Puedes manejar el error aquí, por ejemplo, establecer isLiked en false o mostrar un mensaje de error al usuario.
-      }
-    }
+    //     const result = await response.json();
+    //     setIsLiked(result.isLiked);
+    //   } catch (error) {
+    //     console.error("Error checking if product is liked:", error);
+    //     // Puedes manejar el error aquí, por ejemplo, establecer isLiked en false o mostrar un mensaje de error al usuario.
+    //   }
+    // }
 
-    fetchUserData();
+    // fetchUserData();
 
     const storeList = document.getElementById("store-list");
 
@@ -225,7 +225,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick}>
+      onClick={handleCardClick}
+    >
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-500">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
@@ -260,7 +261,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="bottomCard">
             <button
               className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-              onClick={handleAddToCartClick}>
+              onClick={handleAddToCartClick}
+            >
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
@@ -268,7 +270,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </button>
             <div
               className="favIcon"
-              onClick={isLiked ? handleLikeClick : handleLikeClick}>
+              onClick={isLiked ? handleLikeClick : handleLikeClick}
+            >
               {isLiked ? <FaHeart /> : <FaRegHeart />}
             </div>
           </div>
@@ -284,7 +287,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
             <div
               className="overflow-y-auto hide-scrollbar relative cities"
-              id="store-list">
+              id="store-list"
+            >
               <p className="card-city list-none my-1 text-left mx-2 flex items-center">
                 {formatCityList()}.
               </p>
@@ -294,7 +298,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             <div className="bottomCard">
               <button
                 className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-                onClick={handleAddToCartClick}>
+                onClick={handleAddToCartClick}
+              >
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
@@ -302,7 +307,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
               </button>
               <div
                 className="favIcon"
-                onClick={isLiked ? handleLikeClick : handleLikeClick}>
+                onClick={isLiked ? handleLikeClick : handleLikeClick}
+              >
                 {isLiked ? <FaHeart /> : <FaRegHeart />}
               </div>
             </div>

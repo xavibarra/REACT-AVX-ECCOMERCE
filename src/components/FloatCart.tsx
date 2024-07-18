@@ -5,6 +5,7 @@ import "../styles/float.cart.css";
 import { FiShoppingCart } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import { IoClose } from "react-icons/io5";
 
 const FloatCart = ({ className }) => {
     const [userCart, setUserCart] = useState([]);
@@ -144,11 +145,24 @@ const FloatCart = ({ className }) => {
         navigate("/cart");
     };
 
+<<<<<<< HEAD:src/components/Float-Cart.tsx
+=======
+
+    if (loading) {
+        return <Loading/>
+    }
+
+>>>>>>> 24a7a9ac2bc3a95c3d0fc82357617a26ef08745d:src/components/FloatCart.tsx
     return (
         <div className={className}>
             <div className="float-cart-title-container">
-                <h5>My cart</h5>
-                <p>{userCart.length} items</p>
+                <div>
+                   <h5>My cart</h5>
+                    <p>{userCart.length} items</p> 
+                </div>
+                <div className="float-cart-close-icon-container">
+                <IoClose className="float-cart-close-icon" />
+                </div>
             </div>
             <div className="float-cart-content-container">
                 {userCart.length === 0 ? (
