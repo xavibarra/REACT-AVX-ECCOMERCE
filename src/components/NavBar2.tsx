@@ -3,7 +3,7 @@ import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../styles/navbar2.css";
 import BurgerMenu from "../components/BurgerMenu";
-import FloatCart from "./Float-Cart";
+import FloatCart from "./FloatCart";
 
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
