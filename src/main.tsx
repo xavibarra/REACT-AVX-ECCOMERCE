@@ -1,7 +1,7 @@
+// src/index.tsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-
 import "./index.css";
 
 import Loading from "./components/Loading";
@@ -15,6 +15,9 @@ import Product from "./pages/Product";
 import Profile from "./pages/Profile";
 import ProjectInfo from "./pages/ProjectInfo";
 import Admin from "./pages/Admin";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+const userId = "user-id-from-context-or-auth";
 
 const router = createBrowserRouter([
   {
@@ -54,12 +57,12 @@ const router = createBrowserRouter([
     element: <Cart />,
   },
   {
-    path: "likes",
+    path: "/likes",
     element: <Likes />,
   },
   {
-    path: "admin",
-    element: <Admin />,
+    path: "/admin",
+    element: <ProtectedRoute element={<Admin />} userId={userId} />,
   },
 ]);
 
