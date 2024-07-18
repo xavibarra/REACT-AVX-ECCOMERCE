@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/admin.css"; // Importamos el archivo CSS para los estilos
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { IoIosSave } from "react-icons/io";
 
 interface Product {
   id: number;
@@ -431,18 +433,6 @@ const Admin: React.FC = () => {
       )}
 
       <h2>Product List</h2>
-      <div className="filter-category">
-        <span>Filter by Category:</span>
-        <select
-          value={selectedCategoryId || ""}
-          onChange={(e) => setSelectedCategoryId(parseInt(e.target.value))}>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.id}
-            </option>
-          ))}
-        </select>
-      </div>
       <input
         type="text"
         className="search-input"
@@ -467,7 +457,7 @@ const Admin: React.FC = () => {
               <th>Sevilla Stock</th>
               <th>Bilbao Stock</th>
               <th>Cordoba Stock</th>
-              <th>A Coruna Stock</th>
+              <th>Acoruña Stock</th>
               <th>Segovia Stock</th>
               <th>Final Price</th>
               <th>Actions</th>
@@ -530,14 +520,110 @@ const Admin: React.FC = () => {
                       `${product.discount}%`
                     )}
                   </td>
-                  <td>{product.barcelonaStock ? "Yes" : "No"}</td>
-                  <td>{product.murciaStock ? "Yes" : "No"}</td>
-                  <td>{product.valenciaStock ? "Yes" : "No"}</td>
-                  <td>{product.sevillaStock ? "Yes" : "No"}</td>
-                  <td>{product.bilbaoStock ? "Yes" : "No"}</td>
-                  <td>{product.cordobaStock ? "Yes" : "No"}</td>
-                  <td>{product.aCorunaStock ? "Yes" : "No"}</td>
-                  <td>{product.segoviaStock ? "Yes" : "No"}</td>
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.barcelonaStock}
+                        onChange={(e) => handleInputChange(e, "barcelonaStock")}
+                      />
+                    ) : product.barcelonaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.murciaStock}
+                        onChange={(e) => handleInputChange(e, "murciaStock")}
+                      />
+                    ) : product.murciaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.sevillaStock}
+                        onChange={(e) => handleInputChange(e, "sevillaStock")}
+                      />
+                    ) : product.sevillaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.valenciaStock}
+                        onChange={(e) => handleInputChange(e, "valenciaStock")}
+                      />
+                    ) : product.valenciaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.bilbaoStock}
+                        onChange={(e) => handleInputChange(e, "bilbaoStock")}
+                      />
+                    ) : product.bilbaoStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.cordobaStock}
+                        onChange={(e) => handleInputChange(e, "cordobaStock")}
+                      />
+                    ) : product.cordobaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.aCorunaStock}
+                        onChange={(e) => handleInputChange(e, "aCorunaStock")}
+                      />
+                    ) : product.aCorunaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.segoviaStock}
+                        onChange={(e) => handleInputChange(e, "segoviaStock")}
+                      />
+                    ) : product.segoviaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
                   <td>${product.finalPrice}</td>
                   <td>
                     {editProductId === product.id ? (
@@ -561,15 +647,17 @@ const Admin: React.FC = () => {
                             final_price: product.final_price,
                           })
                         }>
-                        Save
+                        <IoIosSave />
+
                       </button>
                     ) : (
                       <button onClick={() => handleEditProduct(product.id)}>
-                        Edit
+                        <FaEdit />
+
                       </button>
                     )}
                     <button onClick={() => handleDeleteProduct(product.id)}>
-                      Delete
+                    <FaTrash />
                     </button>
                   </td>
                 </tr>

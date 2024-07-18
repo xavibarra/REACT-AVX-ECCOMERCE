@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "./Loading";
 import { createClient } from "@supabase/supabase-js";
+import Login from "../pages/Login";
 
 interface ProtectedRouteProps {
   element: React.ReactNode;
@@ -30,6 +31,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
           setUserId(null);
         }
       } catch (error) {
+        return <Navigate to="/login" />
         console.error("Error fetching user:", error);
         setUserId(null);
       }
@@ -59,7 +61,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
   }, [userId]);
 
   if (userId === null || isAdmin === null) {
-    return <Loading />;
+    return <Login />;
   }
 
   return isAdmin ? <>{element}</> : <Navigate to="/login" />;
