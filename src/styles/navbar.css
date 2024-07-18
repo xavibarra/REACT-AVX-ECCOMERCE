@@ -64,10 +64,12 @@
   pointer-events: none;
   color: white;
   width: 1.25em;
+  cursor: pointer;
 }
 
 .scroll .icon svg{
   color: var(--color-secondary);
+  cursor: pointer;
 }
 
 #nav-mid {
@@ -111,6 +113,7 @@ p {
 
 .iconsNav svg {
   width: 80%;
+  cursor: pointer;
 }
 
 .icon{
