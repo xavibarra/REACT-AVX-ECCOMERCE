@@ -1,4 +1,3 @@
-
 import i18next from "i18next";
 
 import React from "react";
@@ -19,7 +18,6 @@ import Product from "./pages/Product";
 import Profile from "./pages/Profile";
 import ProjectInfo from "./pages/ProjectInfo";
 
-
 import global_ca from "./translations/ca/global.json";
 import global_en from "./translations/en/global.json";
 import global_es from "./translations/es/global.json";
@@ -27,7 +25,6 @@ import global_es from "./translations/es/global.json";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const userId = "user-id-from-context-or-auth";
-
 
 const router = createBrowserRouter([
   {
@@ -75,10 +72,10 @@ const router = createBrowserRouter([
     element: <ProtectedRoute element={<Admin />} userId={userId} />,
   },
 ]);
-
+const savedLanguage = localStorage.getItem("language") || "en";
 i18next.init({
   interpolation: { escapeValue: false },
-  lng: "en",
+  lng: savedLanguage,
   resources: {
     en: {
       global: global_en,
