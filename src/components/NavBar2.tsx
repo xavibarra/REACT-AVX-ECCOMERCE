@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 
 import "../styles/navbar2.css";
-import FloatCart from "./Float-Cart";
+import FloatCart from "./FloatCart";
 
-import useCart from "./useCart";
 
 
 function Navbar2() {

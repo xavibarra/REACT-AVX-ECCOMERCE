@@ -1,5 +1,107 @@
 {
-  "prueba": {
-    "about": "¡Bienvenidos a Components Portions! Fundada por entusiastas de la tecnología, estamos dedicados a ofrecer componentes informáticos de la más alta calidad para ayudarte a construir, mejorar y optimizar tus sistemas. Nuestra amplia selección incluye CPUs de primera línea, GPUs, placas base, memoria, soluciones de almacenamiento y mucho más, atendiendo tanto a aficionados como a profesionales."
+  "navbar": {
+    "search": "Buscar...",
+    "search_results": "No se encontraron resultados",
+    "favorites": "Favoritos",
+    "comparator": "Comparador",
+    "components": "Componentes"
+  },
+  "categories": {
+    "case": "TORRE",
+    "motherboard": "PLACA BASE",
+    "power_supply": "FUENTE DE ALIMENTACIÓN",
+    "cpu": "CPU",
+    "graphic_card": "TARJETA GRÁFICA",
+    "external_hard_drive": "DISCO DURO EXTERNO",
+    "internal_hard_drive": "DISCO DURO INTERNO",
+    "monitor": "MONITOR",
+    "case_fan": "VENTILADOR DE TORRE",
+    "optical_drive": "UNIDAD ÓPTICA",
+    "cpu_cooler": "ENFRIADOR DE CPU",
+    "ram_memory": "MEMORIA RAM",
+    "favorites": "FAVORITOS"
+  },
+  "home": {
+    "about_us": {
+      "title": "Sobre Nosotros",
+      "description": "¡Bienvenidos a Components Portions! Fundada por entusiastas de la tecnología, nos dedicamos a ofrecer componentes de ordenador de la más alta calidad para ayudarte a construir, actualizar y optimizar tus sistemas. Nuestra amplia selección incluye CPU, GPU, placas base, memoria, soluciones de almacenamiento y más, para aficionados y profesionales.",
+      "button": "¡Saber más!"
+    }
+  },
+  "highlighted_offers": {
+    "title": "Ofertas destacadas"
+  },
+  "form": {
+    "title": "¡Nos encantaría saber de ti!",
+    "description": "En AVX components, nos esforzamos por ofrecer productos y servicios de alta calidad para satisfacer las necesidades de nuestros clientes. Tu opinión es importante para nosotros, ya sea una queja, una sugerencia o simplemente compartir tus pensamientos sobre tu experiencia con nosotros.",
+    "title2": "¿Qué queremos saber de ti?",
+    "li1": "¿Tienes alguna pregunta sobre?",
+    "li2": "¿Te gustaría compartir tu experiencia sobre una compra reciente?",
+    "li3": "¿Tienes alguna sugerencia para nuestra tienda online o oferta de productos?",
+    "li4": "¿Necesitas ayuda con un problema técnico o de servicio?",
+    "b1": "nuestros productos o servicios",
+    "b2": "comentarios",
+    "b3": "mejorar",
+    "b4": "ayuda",
+    "final_text": "¡No dudes en ponerte en contacto con nosotros! Tu satisfacción es nuestra prioridad número uno, y estamos aquí para ayudarte en todo lo que podamos.",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "matter": "asunto",
+    "message": "Mensaje",
+    "button": "Enviar"
+  },
+  "category": {
+    "order_lowest": "Precio más bajo",
+    "order_highest": "Precio más alto",
+    "order_rated": "Mejor valorados",
+    "order_offers": "Ofertas",
+    "order_name": "Nombre",
+    "filter_price_range": "Rango de precio",
+    "brands": "Marcas",
+    "button": "Aplicar"
+  },
+  "card": {
+    "button": "Añadir al carrito",
+    "stock": "Disponible en tiendas"
+  },
+  "comparator": {
+    "add_component": "Añadir componente",
+    "button_search": "Buscar",
+    "search": "Buscar...",
+    "select_category": "Seleccionar Categoría",
+    "price": "Precio",
+    "button_card": "Añadir al comparador"
+  },
+  "product": {
+    "receive": "Recíbelo el",
+    "shipping": "Envío: Gratis",
+    "stock": "Disponible en tiendas",
+    "title": "Opiniones",
+    "button_review": "Añadir opinión",
+    "text_review": "Escribe tu opinión aquí...",
+    "like": "Me gusta"
+  },
+  "profile": {
+    "name": "Nombre",
+    "user": "Nombre de usuario",
+    "email": "Correo electrónico",
+    "button": "Cerrar sesión",
+    "title": "Mis pedidos",
+    "orders_error": "No hay pedidos en este momento"
+  },
+  "cart_float": {
+    "title": "Mi carrito",
+    "items": "artículos",
+    "receive": "Recíbelo el",
+    "summary": "Resumen",
+    "button": "Ver artículos en tu carrito"
+  },
+  "cart": {
+    "title": "Mi carrito",
+    "items": "artículos",
+    "button_keep": "Seguir comprando",
+    "button_empty": "Vaciar carrito",
+    "button_purchase": "Finalizar compra",
+    "receive": "Recíbelo el"
   }
 }

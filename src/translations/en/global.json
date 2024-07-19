@@ -1,5 +1,109 @@
 {
-  "prueba": {
-    "about": "Welcome to Components Portions! Founded by tech enthusiasts, we are dedicated to providing the highest quality computer components to help you build, upgrade, and optimize your systems. Our extensive selection includes top-tier CPUs, GPUs, motherboards, memory, storage solutions, and more, catering to both hobbyists and professionals."
+  "navbar": {
+    "search": "Search...",
+    "search_results": "No results found",
+    "favorites": "Favorites",
+    "comparator": "Comparator",
+    "components": "Components"
+  },
+  "categories": {
+    "case": "CASE",
+    "motherboard": "MOTHERBOARD",
+    "power_supply": "POWER SUPPLY",
+    "cpu": "CPU",
+    "graphic_card": "GRAPHIC CARD",
+    "external_hard_drive": "EXTERNAL HARD DRIVE",
+    "internal_hard_drive": "INTERNAL HARD DRIVE",
+    "monitor": "MONITOR",
+    "case_fan": "CASE FAN",
+    "optical_drive": "OPTICAL DRIVE",
+    "cpu_cooler": "CPU COOLER",
+    "ram_memory": "RAM MEMORY",
+    "favorites": "FAVORITES"
+  },
+  "home": {
+    "about_us": {
+      "title": "About Us",
+      "description": "Welcome to Components Portions! Founded by tech enthusiasts, we are dedicated to providing the highest quality computer components to help you build, upgrade, and optimize your systems. Our extensive selection includes top-tier CPUs, GPUs, motherboards, memory, storage solutions, and more, catering to both hobbyists and professionals.",
+      "button": "Know more!"
+    },
+    "highlighted_offers": {
+      "title": "Highlighted offers"
+    },
+    "form": {
+      "title": "We'd Love to Hear from You!",
+      "description1": "At Components Portions, we believe in the power of technology to transform lives. Our mission is to offer premium products at competitive prices, combined with exceptional customer service. Our knowledgeable team is here to guide you through every step of your purchase, ensuring you find the perfect components to meet your specific needs.",
+      "description2": " Thank you for choosing Components Portions. We are committed to making your shopping experience seamless and enjoyable, with fast shipping and reliable support. Join us on our journey to enhance the future of computing, one component at a time!",
+      "title2": "What Do We Want to Hear from You?",
+      "li1": "Do you have any questions about?",
+      "li2": "Would you like to share your about a recent purchase?",
+      "li3": "Do you have any suggestions for our online store or product offerings?",
+      "li4": " Do you need with a technical or service issue?",
+      "b1": "our products or services",
+      "b2": "feedback",
+      "b3": "improving",
+      "b4": "assistance",
+      "final_text": "Don't hesitate to get in touch! Your satisfaction is our number one priority, and we're here to help in any way we can.",
+      "name": "Name",
+      "email": "Email",
+      "matter": "matter",
+      "message": "Message",
+      "button": "Send"
+    }
+  },
+
+  "category": {
+    "order_lowest": "Lowest price",
+    "order_highest": "Highest price",
+    "order_rated": "Best rated",
+    "order_offers": "Offers",
+    "order_name": "Name",
+    "filter_price_range": "Price Range",
+    "brands": "Brands",
+    "button": "Apply"
+  },
+  "card": {
+    "button": "Add to cart",
+    "stock": "Available in stores"
+  },
+  "comparator": {
+    "add_component": "Add component",
+    "button_search": "Search",
+    "search": "Search...",
+    "select_category": "Select Category",
+    "price": "Price",
+    "button_card": "Add to comparator"
+  },
+  "product": {
+    "receive": "Receive it on",
+    "shipping": "Shipping: Free",
+    "stock": "Available in stores",
+    "title": "Opinions",
+    "button_review": "Add review",
+    "text_review": "Write your review here...",
+    "like": "Like"
+  },
+  "profile": {
+    "name": "Name",
+    "user": "User name",
+    "email": "Email",
+    "button": "Sing Out",
+    "title": "My orders",
+    "orders_error": "There are no orders at this time"
+  },
+  "cart_float": {
+    "title": "My cart",
+    "items": "items",
+    "receive": "Receive it on",
+    "summary": "Summary",
+    "button": "View items in your basket"
+  },
+  "cart": {
+    "title": "My cart",
+    "items": "items",
+    "button_keep": "Keep buying",
+    "button_empty": "Empty cart",
+    "button_purchase": "Finalize purchase",
+    "receive": "Receive it on"
   }
 }
