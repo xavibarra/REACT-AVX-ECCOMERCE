@@ -24,7 +24,9 @@
   "home": {
     "about_us": {
       "title": "About Us",
-      "description": "Welcome to Components Portions! Founded by tech enthusiasts, we are dedicated to providing the highest quality computer components to help you build, upgrade, and optimize your systems. Our extensive selection includes top-tier CPUs, GPUs, motherboards, memory, storage solutions, and more, catering to both hobbyists and professionals.",
+      "description1": "Welcome to Components Portions! Founded by tech enthusiasts, we are dedicated to providing the highest quality computer components to help you build, upgrade, and optimize your systems. Our extensive selection includes top-tier CPUs, GPUs, motherboards, memory, storage solutions, and more, catering to both hobbyists and professionals.",
+      "description2": "At Components Portions, we believe in the power of technology to transform lives. Our mission is to offer premium products at competitive prices, combined with exceptional customer service. Our knowledgeable team is here to guide you through every step of your purchase, ensuring you find the perfect components to meet your specific needs.",
+      "description3": " Thank you for choosing Components Portions. We are committed to making your shopping experience seamless and enjoyable, with fast shipping and reliable support. Join us on our journey to enhance the future of computing, one component at a time!",
       "button": "Know more!"
     },
     "highlighted_offers": {
@@ -32,8 +34,7 @@
     },
     "form": {
       "title": "We'd Love to Hear from You!",
-      "description1": "At Components Portions, we believe in the power of technology to transform lives. Our mission is to offer premium products at competitive prices, combined with exceptional customer service. Our knowledgeable team is here to guide you through every step of your purchase, ensuring you find the perfect components to meet your specific needs.",
-      "description2": " Thank you for choosing Components Portions. We are committed to making your shopping experience seamless and enjoyable, with fast shipping and reliable support. Join us on our journey to enhance the future of computing, one component at a time!",
+      "description": "At AVX components, we strive to provide high-quality products and services to meet our customers' needs. Your feedback is important to us, whether you have a complaint, a suggestion, or simply want to share your thoughts about your experience with us.",
       "title2": "What Do We Want to Hear from You?",
       "li1": "Do you have any questions about?",
       "li2": "Would you like to share your about a recent purchase?",
