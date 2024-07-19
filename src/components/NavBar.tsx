@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
@@ -8,7 +7,6 @@ import { supabaseClient } from "../utils/supabaseClient";
 import FloatCart from "./FloatCart";
 
 function Navbar() {
-  const [t, i18n] = useTranslation("global");
   const [user, setUser] = useState({});
   const [floatCartVisible, setFloatCartVisible] = useState(false);
 
@@ -117,7 +115,6 @@ function Navbar() {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
-
 
   const handleCardClick = (productId) => (event) => {
     event.preventDefault();
@@ -348,7 +345,11 @@ function Navbar() {
         categoriesVisible={categoriesVisible}
       />
       <FloatCart
-        className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}
+        className={
+          floatCartVisible
+            ? "float-cart-container"
+            : "float-cart-container-hidden"
+        }
         setFloatCartVisible={setFloatCartVisible}
       />
     </>
