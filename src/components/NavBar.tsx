@@ -112,14 +112,14 @@ function Navbar() {
         setSearchTerm(''); // Limpiar el valor del input
       }
     };
-  
+
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
-  
-  
+
+
 
 
   const handleCardClick = (productId) => (event) => {
@@ -340,7 +340,11 @@ function Navbar() {
         setCategoriesVisible={setCategoriesVisible}
         categoriesVisible={categoriesVisible}
       />
-      <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} />
+      <FloatCart
+        className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}
+        setFloatCartVisible={setFloatCartVisible}
+      />
+
     </>
   );
 }

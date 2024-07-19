@@ -1,92 +1,27 @@
-import { useEffect, useState } from "react";
-import { supabaseClient } from "../utils/supabaseClient";
+import { useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import "../styles/float.cart.css";
 import { FiShoppingCart } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import { IoClose } from "react-icons/io5";
+import useCart from "../components/useCart"; // Importa el hook personalizado
+import { supabaseClient } from "../utils/supabaseClient";
+import { useEffect } from "react";
 
-const FloatCart = ({ className }) => {
-    const [userCart, setUserCart] = useState([]);
-    const [loading, setLoading] = useState(true);
+interface FloatCartProps {
+    className: string;
+    setFloatCartVisible: (visible: boolean) => void;
+}
 
+const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
+    const { userCart, setUserCart, loading, fetchCart } = useCart(); // Usa el hook
+
+    // Ejecuta fetchCart después de cada cambio en el carrito
     useEffect(() => {
-        async function fetchData() {
-            try {
-                // Obtener datos del usuario
-                const { data: userData, error: userError } =
-                    await supabaseClient.auth.getUser();
-                if (userError) {
-                    throw new Error(userError.message);
-                }
+        fetchCart();
+    }, [userCart]);
 
-                const userId = userData.user.id; // Obtener el userId del usuario
-
-                // Obtener el carrito del usuario desde Supabase
-                const { data: profileData, error: profileError } = await supabaseClient
-                    .from("profiles")
-                    .select("cart")
-                    .eq("id", userId)
-                    .single();
-
-                if (profileError) {
-                    throw new Error(profileError.message);
-                }
-
-                const cartItems = profileData.cart || [];
-
-                // Contar las ocurrencias de cada productId
-                const itemCounts = cartItems.reduce((acc, productId) => {
-                    acc[productId] = (acc[productId] || 0) + 1;
-                    return acc;
-                }, {});
-
-                // Obtener datos de productos basados en los IDs del carrito
-                const promises = Object.keys(itemCounts).map(async (productId) => {
-                    const response = await fetch(
-                        `http://localhost:3000/products/${productId}`
-                    );
-                    if (!response.ok) {
-                        throw new Error(`Failed to fetch product with ID ${productId}`);
-                    }
-                    const productData = await response.json();
-
-                    // Generar una fecha de entrega fija de 3 días desde hoy
-                    const deliveryDays = 3;
-                    const deliveryDate = new Date();
-                    deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
-
-                    // Formatear la fecha
-                    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-                    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                    const formattedDeliveryDate = `Receive it on ${daysOfWeek[deliveryDate.getDay()]}, ${months[deliveryDate.getMonth()]} ${deliveryDate.getDate()}`;
-
-                    return {
-                        ...productData,
-                        deliveryDate: formattedDeliveryDate,
-                        quantity: itemCounts[productId]
-                    };
-                });
-
-                const products = await Promise.all(promises);
-                setUserCart(products);
-                setLoading(false);
-            } catch (error) {
-                console.error("Error fetching user cart:", error.message);
-                setLoading(false);
-            }
-        }
-
-        fetchData();
-    }, []);
-
-    // Calcular el precio total de todos los productos en el carrito
-    const totalPrice = userCart.reduce((total, product) => {
-        return total + (parseFloat(product.finalPrice) * product.quantity);
-    }, 0);
-
-    const removeFromCart = async (productId) => {
+    const removeFromCart = async (productId: string) => {
         try {
             const { data: userData, error: userError } = await supabaseClient.auth.getUser();
             if (userError) {
@@ -95,7 +30,6 @@ const FloatCart = ({ className }) => {
 
             const userId = userData.user.id;
 
-            // Obtener el carrito del usuario desde Supabase
             const { data: profileData, error: profileError } = await supabaseClient
                 .from("profiles")
                 .select("cart")
@@ -106,14 +40,13 @@ const FloatCart = ({ className }) => {
                 throw new Error(profileError.message);
             }
 
-            const cartItems = profileData.cart || [];
+            const cartItems: string[] = profileData.cart || [];
             const productIndex = cartItems.indexOf(productId);
 
             if (productIndex !== -1) {
                 cartItems.splice(productIndex, 1); // Eliminar solo una instancia del producto
             }
 
-            // Actualizar el carrito del usuario en Supabase
             const { error } = await supabaseClient
                 .from("profiles")
                 .update({ cart: cartItems })
@@ -123,7 +56,6 @@ const FloatCart = ({ className }) => {
                 throw new Error(error.message);
             }
 
-            // Actualizar el carrito localmente
             const newCart = [...userCart];
             const localProductIndex = newCart.findIndex(product => product.id === productId);
             if (localProductIndex !== -1) {
@@ -145,20 +77,27 @@ const FloatCart = ({ className }) => {
         navigate("/cart");
     };
 
+    const closeFloatCart = () => {
+        setFloatCartVisible(false);
+    };
 
     if (loading) {
-        return <Loading/>
+        return <Loading />;
     }
 
+    const totalPrice = userCart.reduce((total, product) => {
+        return total + (parseFloat(product.finalPrice) * product.quantity);
+    }, 0);
+
     return (
-        <div className={className}>
+        <div id="float-cart-container" className={className}>
             <div className="float-cart-title-container">
                 <div>
-                   <h5>My cart</h5>
-                    <p>{userCart.length} items</p> 
+                    <h5>My cart</h5>
+                    <p>{userCart.length} items</p>
                 </div>
                 <div className="float-cart-close-icon-container">
-                <IoClose className="float-cart-close-icon" />
+                    <IoClose className="float-cart-close-icon" onClick={closeFloatCart} />
                 </div>
             </div>
             <div className="float-cart-content-container">
@@ -179,7 +118,6 @@ const FloatCart = ({ className }) => {
                     <p>No items in the cart</p>
                 ) : (
                     <>
-
                         <p>{userCart[0]?.deliveryDate}</p>
                         <div className="float-cart-total-container">
                             <div className="float-cart-total">Total:</div>
@@ -193,6 +131,6 @@ const FloatCart = ({ className }) => {
             </div>
         </div>
     );
-}
+};
 
 export default FloatCart;
