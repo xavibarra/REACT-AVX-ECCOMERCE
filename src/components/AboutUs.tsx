@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
+
 import about from "../assets/img/aboutUs.jpg";
 import "../styles/about-us.css";
 
 const AboutUs = () => {
+  const [t, i18n] = useTranslation("global");
   const navigate = useNavigate();
 
   const goToProjectInfo = () => {
@@ -14,13 +18,16 @@ const AboutUs = () => {
     <section className="ab-container">
       <div className="ab-description-container">
         <h2>About us</h2>
-        <p className="ab-description">
-          Welcome to Components Portions! Founded by tech enthusiasts, we are
-          dedicated to providing the highest quality computer components to help
-          you build, upgrade, and optimize your systems. Our extensive selection
-          includes top-tier CPUs, GPUs, motherboards, memory, storage solutions,
-          and more, catering to both hobbyists and professionals.
-        </p>
+        <button className="idioma" onClick={() => i18n.changeLanguage("es")}>
+          ES
+        </button>
+        <button className="idioma" onClick={() => i18n.changeLanguage("en")}>
+          EN
+        </button>
+        <button className="idioma" onClick={() => i18n.changeLanguage("ca")}>
+          CA
+        </button>
+        <p className="ab-description">{t("prueba.about")}</p>
         <p className="ab-description">
           At Components Portions, we believe in the power of technology to
           transform lives. Our mission is to offer premium products at

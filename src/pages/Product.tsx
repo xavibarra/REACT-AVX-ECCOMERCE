@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CardAddCartProduct from "../components/CardAddCartProduct";
 import CharacteristicProductDetails from "../components/CharacteristicProductDetails";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import NavBar2 from "../components/NavBar2";
+import StarRating from "../components/StarRating";
 import { Category } from "../models/category";
 import { FeaturesValues } from "../models/featuresValues";
 import { Product } from "../models/product";
@@ -14,7 +15,17 @@ import { User } from "../models/user";
 import "../styles/productDetails.css";
 import "../styles/reviewRating.css";
 
+import { createClient } from "@supabase/supabase-js";
+import { supabaseClient } from "../utils/supabaseClient";
+
+const supabase = createClient(
+  "https://dtchhmivnblzqzsmodfa.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0Y2hobWl2bmJsenF6c21vZGZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU4MTI5NTQsImV4cCI6MjAzMTM4ODk1NH0.mGFqzugUYSJ393JWZiG5KQDIPyXA5YvB-Bxc3Bvr-9k"
+);
+
 const ProductPage = () => {
+  const navigate = useNavigate();
+  const [actualUser, setActualUser] = useState(null);
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [category, setCategory] = useState<Category | null>(null);
@@ -31,7 +42,21 @@ const ProductPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [userRating, setUserRating] = useState<number>(0);
+  const [userReview, setUserReview] = useState<string>("");
+
   useEffect(() => {
+    async function getUserData() {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error) {
+        console.error("Error fetching user data:", error);
+      } else {
+        setActualUser(data.user);
+
+        // Asegúrate de que los datos del usuario se establecen correctamente
+      }
+    }
+    getUserData();
     const fetchProduct = async () => {
       try {
         const response = await fetch(
@@ -104,6 +129,10 @@ const ProductPage = () => {
       const response = await fetch(
         `http://localhost:3000/reviews/findReviewsByProductId/${productId}`
       );
+      if (response.status === 404) {
+        setReviews([]);
+        return;
+      }
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
@@ -146,6 +175,16 @@ const ProductPage = () => {
 
   const handleLikeClick = async (reviewId: string) => {
     try {
+      // Convertir reviewId a número
+      const reviewIdNum = parseInt(reviewId, 10);
+
+      // Actualizar visualmente el número de likes antes de enviar la solicitud
+      setReviews((prevReviews) =>
+        prevReviews.map((r) =>
+          r.id === reviewIdNum ? { ...r, likes: r.likes + 1 } : r
+        )
+      );
+
       const response = await fetch(
         `http://localhost:3000/reviews/updateLikes/${reviewId}`,
         {
@@ -160,7 +199,7 @@ const ProductPage = () => {
         throw new Error(`Error: ${response.statusText}`);
       }
       const updatedReview: Review = await response.json();
-      // Actualizar la lista de reviews con el review actualizado
+      // Actualizar la lista de reviews con el review actualizado (opcional)
       setReviews((prevReviews) =>
         prevReviews.map((r) => (r.id === updatedReview.id ? updatedReview : r))
       );
@@ -169,8 +208,55 @@ const ProductPage = () => {
     }
   };
 
+  const handleReviewSubmit = async () => {
+    if (!actualUser) {
+      navigate("/login");
+      return;
+    }
+
+    // Validar que la calificación del usuario es un número válido y dentro de 0-5
+    if (typeof userRating !== "number" || userRating < 0 || userRating > 5) {
+      console.error("Invalid rating value:", userRating);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/reviews/createReview`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            product_id: productId,
+            user_id: actualUser.id,
+            rating: userRating,
+            review: userReview,
+            likes: 0,
+          }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const newReview: Review = await response.json();
+      setReviews((prevReviews) => [...prevReviews, newReview]);
+      setUserRating(0);
+      setUserReview("");
+      window.location.reload();
+    } catch (error) {
+      console.error(`Error submitting review:`, error);
+    }
+  };
+
   // Función para generar las estrellas según el rating
-  const generateStars = (rating: number) => {
+  const generateStars = (rating) => {
+    // Asegurarse de que rating es un número válido y dentro de 0-5
+    if (typeof rating !== "number" || rating < 0 || rating > 5) {
+      rating = 0;
+    }
+
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating - fullStars >= 0.5;
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
@@ -180,7 +266,7 @@ const ProductPage = () => {
         {[...Array(fullStars)].map((_, i) => (
           <FaStar key={`full-${i}`} />
         ))}
-        {hasHalfStar && <FaStarHalfAlt />}
+        {hasHalfStar && <FaStarHalfAlt key={`half`} />}
         {[...Array(emptyStars)].map((_, i) => (
           <FaRegStar key={`empty-${i}`} />
         ))}
@@ -295,7 +381,17 @@ const ProductPage = () => {
               ))}
             </div>
           </div>
-          <button className="add-review-btn">Add Review</button>
+          <button className="add-review-btn" onClick={handleReviewSubmit}>
+            Add Review
+          </button>
+        </div>
+        <div className="add-review-section">
+          <StarRating rating={userRating} setRating={setUserRating} />
+          <textarea
+            placeholder="Write your review here..."
+            value={userReview}
+            onChange={(e) => setUserReview(e.target.value)}
+          />
         </div>
       </div>
       <div className="userReviews">
@@ -328,7 +424,7 @@ const ProductPage = () => {
             );
           })
         ) : (
-          <p>No reviews yet for this product.</p>
+          <p>This product does not yet have reviews</p>
         )}
       </div>
       <Footer />

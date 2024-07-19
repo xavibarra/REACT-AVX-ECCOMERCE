@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import "../styles/navbar2.css";
 import BurgerMenu from "../components/BurgerMenu";
-import FloatCart from "../components/FloatCart";
+
+import "../styles/navbar2.css";
+import FloatCart from "./Float-Cart";
+
 import useCart from "./useCart";
+
 
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,24 +15,6 @@ function Navbar2() {
   const [showResults, setShowResults] = useState(false); // Estado para mostrar u ocultar resultados de búsqueda
   const [user, setUser] = useState({});
   const [floatCartVisible, setFloatCartVisible] = useState(false);
-
-
-  useEffect(() => {
-    async function checkUser() {
-      // Simulando la autenticación de Supabase
-      // const { data, error } = await supabaseClient.auth.getUser();
-      const data = { user: { name: "John Doe" } }; // Ejemplo de usuario autenticado
-      const error = null;
-      if (error) {
-        setUser(null);
-      } else {
-        setUser(data.user);
-        console.log(data); // Asegúrate de que los datos del usuario se establecen correctamente
-      }
-    }
-
-    checkUser();
-  }, []);
 
   const goToProfileOrLogin = () => {
     if (user) {
@@ -80,17 +65,15 @@ function Navbar2() {
     const handleOutsideClick = (event) => {
       if (!event.target.closest(".searchContainer")) {
         setShowResults(false);
-        setSearchTerm(''); // Limpiar el valor del input
+        setSearchTerm(""); // Limpiar el valor del input
       }
     };
-  
+
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
-  
-
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [isIconRotated, setIsIconRotated] = useState(false);
@@ -249,7 +232,10 @@ function Navbar2() {
                   d="M246.49,41.27c-56.01,0-106.72,22.7-143.43,59.41l143.75,143.11"
                 />
               </g>
-              <text className="font-semi-bold" transform="translate(231.47 473.26)">
+              <text
+                className="font-semi-bold"
+                transform="translate(231.47 473.26)"
+              >
                 <tspan x="0" y="0">
                   PO
                 </tspan>
@@ -260,7 +246,10 @@ function Navbar2() {
                   TIONS
                 </tspan>
               </text>
-              <text className="font-light4" transform="translate(528.29 246.07)">
+              <text
+                className="font-light4"
+                transform="translate(528.29 246.07)"
+              >
                 <tspan className="spacing-wide" x="0" y="0">
                   C
                 </tspan>
@@ -279,7 +268,12 @@ function Navbar2() {
         </a>
         <div className="iconsNav2">
           <a className="userIcon">
-            <FaUser onClick={() => { goToProfileOrLogin(); hideFloatCart(); }} />
+            <FaUser
+              onClick={() => {
+                goToProfileOrLogin();
+                hideFloatCart();
+              }}
+            />
           </a>
           <a className="cartIcon">
             <FaShoppingBasket onClick={toggleFloatCart} />
@@ -298,7 +292,9 @@ function Navbar2() {
         setCategoriesVisible={setCategoriesVisible}
         categoriesVisible={categoriesVisible}
       />
+
       <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} setFloatCartVisible={setFloatCartVisible} />
+
     </>
   );
 }
