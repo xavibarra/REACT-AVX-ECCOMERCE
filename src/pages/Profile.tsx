@@ -40,7 +40,7 @@ const Profile = () => {
       <div>
         {user ? (
           <div>
-            <div className="formCard">
+            <div className="profileCard">
               <div className="formCircle"></div>
               <div className="formCircle"></div>
               <div className="formCardInner profile">

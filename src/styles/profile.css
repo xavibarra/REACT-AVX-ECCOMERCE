@@ -6,6 +6,9 @@
   flex-direction: column;
   justify-content: space-around;
 }
+.profileCard {
+  margin: 5em 19em !important;
+}
 .profile-information-container {
   display: flex;
   flex-direction: row;

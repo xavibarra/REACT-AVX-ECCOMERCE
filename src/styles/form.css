@@ -11,6 +11,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
   padding: 1em;
+  height: inherit;
 }
 
 .formCardInner h2 {
@@ -42,7 +43,7 @@ ul {
     margin: 2em;
     font-size: 0.8em;
   }
-  
+
   .formInfo p,
   ul {
     margin-bottom: 1em;
@@ -54,7 +55,6 @@ ul {
     margin-bottom: 0.5em;
     font-weight: 400;
   }
-  
 }
 
 @media (min-width: 900px) and (max-width: 1749px) {
@@ -63,7 +63,7 @@ ul {
     margin: 1.5em;
     font-size: 0.7em;
   }
-  
+
   .formInfo p,
   ul {
     margin-bottom: 1em;
@@ -75,7 +75,6 @@ ul {
     margin-bottom: 0.5em;
     font-weight: 400;
   }
-  
 }
 
 .formInfo h4 {
