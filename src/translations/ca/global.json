@@ -1,86 +1,89 @@
 {
   "navbar": {
-    "search": "Cercar...",
+    "search": "Cerca...",
     "search_results": "No s'han trobat resultats",
-    "favorites": "Preferits",
+    "favorites": "Favorits",
     "comparator": "Comparador",
     "components": "Components"
   },
   "categories": {
-    "case": "TORRE",
+    "case": "CAIXA",
     "motherboard": "PLACA BASE",
     "power_supply": "FONT D'ALIMENTACIÓ",
     "cpu": "CPU",
-    "graphic_card": "TARJETA GRÀFICA",
+    "graphic_card": "TARGETA GRÀFICA",
     "external_hard_drive": "DISC DUR EXTERN",
     "internal_hard_drive": "DISC DUR INTERN",
     "monitor": "MONITOR",
-    "case_fan": "VENTILADOR DE TORRE",
+    "case_fan": "VENTILADOR DE CAIXA",
     "optical_drive": "UNITAT ÒPTICA",
-    "cpu_cooler": "REFREDADOR DE CPU",
+    "cpu_cooler": "REFRIGERADOR DE CPU",
     "ram_memory": "MEMÒRIA RAM",
-    "favorites": "PREFERITS"
+    "favorites": "FAVORITS"
   },
   "home": {
     "about_us": {
       "title": "Sobre Nosaltres",
-      "description1": "Benvinguts a Components Portions! Fundada per entusiastes de la tecnologia, ens dediquem a oferir components d'ordinador de la més alta qualitat per ajudar-te a construir, actualitzar i optimitzar els teus sistemes. La nostra àmplia selecció inclou CPU, GPU, plaques base, memòria, solucions d'emmagatzematge i més, per a aficionats i professionals.",
-      "description2": "A Components Portions, creiem en el poder de la tecnologia per transformar vides. La nostra missió és oferir productes premium a preus competitius, combinats amb un servei al client excepcional. El nostre equip expert està aquí per guiar-te en cada pas de la teva compra, assegurant-se que trobis els components perfectes per a les teves necessitats específiques.",
-      "description3": "Gràcies per triar Components Portions. Ens comprometem a fer que la teva experiència de compra sigui senzilla i agradable, amb enviaments ràpids i suport fiable. Uneix-te a nosaltres en el nostre viatge per millorar el futur de la informàtica, un component a la vegada!",
+      "description1": "Benvingut a Components Portions! Fundat per entusiastes de la tecnologia, estem dedicats a proporcionar els components de computadora de la més alta qualitat per ajudar-te a construir, actualitzar i optimitzar els teus sistemes. La nostra àmplia selecció inclou CPUs, GPUs, plaques base, memòria, solucions d'emmagatzematge i més, atenen tant aficionats com professionals.",
+      "description2": "A Components Portions, creiem en el poder de la tecnologia per transformar vides. La nostra missió és oferir productes premium a preus competitius, combinats amb un servei al client excepcional. El nostre equip format està aquí per guiar-te en cada pas de la teva compra, assegurant que trobis els components perfectes per satisfer les teves necessitats específiques.",
+      "description3": "Gràcies per triar Components Portions. Estem compromesos a fer que la teva experiència de compra sigui fluida i agradable, amb enviament ràpid i suport fiable. Uneix-te a nosaltres en el nostre viatge per millorar el futur de la computació, un component a la vegada!",
       "button": "Saber més!"
     },
     "highlighted_offers": {
       "title": "Ofertes destacades"
     },
     "form": {
-      "title": "Ens encantaria saber de tu!",
-      "description": "A AVX components, ens esforcem per oferir productes i serveis de alta qualitat per satisfer les necessitats dels nostres clients. La teva opinió és important per a nosaltres, ja sigui una queixa, una suggerència o simplement compartir els teus pensaments sobre la teva experiència amb nosaltres.",
-      "title2": "Què volem saber de tu?",
-      "li1": "Tens alguna pregunta sobre?",
-      "li2": "T'agradaria compartir la teva experiència sobre una compra recent?",
-      "li3": "Tens alguna suggerència per a la nostra botiga en línia o oferta de productes?",
-      "li4": "Necessites ajuda amb un problema tècnic o de servei?",
+      "title": "Ens Encantaria Saber de Tu!",
+      "description": "A AVX components, ens esforcem per proporcionar productes i serveis de gran qualitat per satisfer les necessitats dels nostres clients. La teva opinió és important per a nosaltres, ja sigui que tinguis una queixa, una suggerència o simplement vulguis compartir els teus pensaments sobre la teva experiència amb nosaltres.",
+      "title2": "Què Volem Saber de Tu?",
+      "li1": "Tens alguna pregunta sobre",
+      "li21": "Et agradaria compartir el teu ",
+      "li22": " sobre una compra recent?",
+      "li31": "Tens alguna suggerència per a",
+      "li32": "la nostra botiga en línia o les nostres ofertes de productes?",
+      "li41": "Necessites ",
+      "li42": "amb un problema tècnic o de servei?",
       "b1": "els nostres productes o serveis",
       "b2": "comentaris",
-      "b3": "millorar",
-      "b4": "ajuda",
-      "final_text": "No dubtis a posar-te en contacte amb nosaltres! La teva satisfacció és la nostra prioritat número u, i estem aquí per ajudar-te en tot el que puguem.",
+      "b3": "millores",
+      "b4": "assistència",
+      "final_text": "No dubtis a posar-te en contacte! La teva satisfacció és la nostra prioritat número u i estem aquí per ajudar en tot el que puguem.",
       "name": "Nom",
       "email": "Correu electrònic",
-      "matter": "assumpte",
+      "matter": "Assumpte",
       "message": "Missatge",
-      "button": "Enviar"
+      "button": "ENVIAR"
     }
   },
   "category": {
     "order_lowest": "Preu més baix",
     "order_highest": "Preu més alt",
-    "order_rated": "Millor valorats",
+    "order_rated": "Millor valorat",
     "order_offers": "Ofertes",
     "order_name": "Nom",
-    "filter_price_range": "Rang de preu",
+    "filter_price_range": "Rang de preus",
     "brands": "Marques",
     "button": "Aplicar"
   },
   "card": {
-    "button": "Afegir al carret",
+    "button": "Afegir al carro",
     "stock": "Disponible a les botigues"
   },
   "comparator": {
     "add_component": "Afegir component",
-    "button_search": "Cercar",
-    "search": "Cercar...",
-    "select_category": "Seleccionar Categoria",
+    "button_search": "Cerca",
+    "search": "Cerca...",
+    "select_category": "Selecciona categoria",
     "price": "Preu",
     "button_card": "Afegir al comparador"
   },
   "product": {
-    "receive": "Rep-lo el",
+    "receive": "Rep-ho el",
     "shipping": "Enviament: Gratuït",
     "stock": "Disponible a les botigues",
     "title": "Opinions",
-    "button_review": "Afegir opinió",
-    "text_review": "Escriu la teva opinió aquí...",
+    "button_review": "Afegir ressenya",
+    "text_review": "Escriu la teva ressenya aquí...",
     "like": "M'agrada"
   },
   "profile": {
@@ -92,18 +95,18 @@
     "orders_error": "No hi ha comandes en aquest moment"
   },
   "cart_float": {
-    "title": "El meu carret",
+    "title": "La meva cistella",
     "items": "articles",
-    "receive": "Rep-lo el",
+    "receive": "Rep-ho el",
     "summary": "Resum",
-    "button": "Veure articles al teu carret"
+    "button": "Veure articles al teu carro"
   },
   "cart": {
-    "title": "El meu carret",
+    "title": "La meva cistella",
     "items": "articles",
-    "button_keep": "Continuar comprant",
-    "button_empty": "Buidar carret",
+    "button_keep": "Seguir comprant",
+    "button_empty": "Buidar carro",
     "button_purchase": "Finalitzar compra",
-    "receive": "Rep-lo el"
+    "receive": "Rep-ho el"
   }
 }

@@ -4,10 +4,13 @@ import Loading from "../components/Loading";
 import Navbar2 from "../components/NavBar2";
 import "../styles/profile.css";
 import { supabaseClient } from "../utils/supabaseClient";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const [user, setUser] = useState(null); // Inicializa el estado como null
   const navigate = useNavigate();
+  const { t } = useTranslation("global");
+
   useEffect(() => {
     async function getUserData() {
       const { data, error } = await supabaseClient.auth.getUser();
@@ -47,9 +50,9 @@ const Profile = () => {
                 <div className="profile-information-container">
                   <div className="profile-information">
                     <div>
-                      <p>Name:</p>
-                      <p>User Name:</p>
-                      <p>Email:</p>
+                      <p>{t("profile.name")}:</p>
+                      <p>{t("profile.user")}:</p>
+                      <p>{t("profile.email")}:</p>
                     </div>
                     <div>
                       <b>{user.user_metadata?.full_name || "No disponible"}</b>
@@ -64,9 +67,8 @@ const Profile = () => {
                 <div className="profile-button-container">
                   <button
                     className="singout-button"
-                    onClick={() => singOutUser()}
-                  >
-                    Sing Out
+                    onClick={() => singOutUser()}>
+                    {t("profile.button")}{" "}
                   </button>
                 </div>
               </div>

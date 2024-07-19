@@ -7,15 +7,15 @@
     "components": "Componentes"
   },
   "categories": {
-    "case": "TORRE",
-    "motherboard": "PLACA BASE",
+    "case": "CAJA",
+    "motherboard": "PLACAS BASE",
     "power_supply": "FUENTE DE ALIMENTACIÓN",
     "cpu": "CPU",
     "graphic_card": "TARJETA GRÁFICA",
     "external_hard_drive": "DISCO DURO EXTERNO",
     "internal_hard_drive": "DISCO DURO INTERNO",
     "monitor": "MONITOR",
-    "case_fan": "VENTILADOR DE TORRE",
+    "case_fan": "VENTILADOR DE CAJA",
     "optical_drive": "UNIDAD ÓPTICA",
     "cpu_cooler": "ENFRIADOR DE CPU",
     "ram_memory": "MEMORIA RAM",
@@ -24,41 +24,44 @@
   "home": {
     "about_us": {
       "title": "Sobre Nosotros",
-      "description1": "¡Bienvenidos a Components Portions! Fundada por entusiastas de la tecnología, nos dedicamos a ofrecer componentes de ordenador de la más alta calidad para ayudarte a construir, actualizar y optimizar tus sistemas. Nuestra amplia selección incluye CPU, GPU, placas base, memoria, soluciones de almacenamiento y más, para aficionados y profesionales.",
-      "description2": "En Components Portions, creemos en el poder de la tecnología para transformar vidas. Nuestra misión es ofrecer productos premium a precios competitivos, combinados con un servicio al cliente excepcional. Nuestro equipo experto está aquí para guiarte en cada paso de tu compra, asegurándose de que encuentres los componentes perfectos para tus necesidades específicas.",
-      "description3": "Gracias por elegir Components Portions. Nos comprometemos a hacer que tu experiencia de compra sea sencilla y agradable, con envíos rápidos y soporte confiable. ¡Únete a nosotros en nuestro viaje para mejorar el futuro de la informática, un componente a la vez!",
+      "description1": "¡Bienvenido a Components Portions! Fundado por entusiastas de la tecnología, estamos dedicados a proporcionar los componentes de computadora de la más alta calidad para ayudarte a construir, actualizar y optimizar tus sistemas. Nuestra amplia selección incluye CPUs, GPUs, placas base, memoria, soluciones de almacenamiento y más, atendiendo tanto a aficionados como a profesionales.",
+      "description2": "En Components Portions, creemos en el poder de la tecnología para transformar vidas. Nuestra misión es ofrecer productos premium a precios competitivos, combinados con un servicio al cliente excepcional. Nuestro equipo capacitado está aquí para guiarte en cada paso de tu compra, asegurando que encuentres los componentes perfectos para satisfacer tus necesidades específicas.",
+      "description3": "Gracias por elegir Components Portions. Estamos comprometidos a hacer que tu experiencia de compra sea fluida y agradable, con envío rápido y soporte confiable. ¡Únete a nosotros en nuestro viaje para mejorar el futuro de la computación, un componente a la vez!",
       "button": "¡Saber más!"
     },
     "highlighted_offers": {
       "title": "Ofertas destacadas"
     },
     "form": {
-      "title": "¡Nos encantaría saber de ti!",
-      "description": "En AVX components, nos esforzamos por ofrecer productos y servicios de alta calidad para satisfacer las necesidades de nuestros clientes. Tu opinión es importante para nosotros, ya sea una queja, una sugerencia o simplemente compartir tus pensamientos sobre tu experiencia con nosotros.",
-      "title2": "¿Qué queremos saber de ti?",
-      "li1": "¿Tienes alguna pregunta sobre?",
-      "li2": "¿Te gustaría compartir tu experiencia sobre una compra reciente?",
-      "li3": "¿Tienes alguna sugerencia para nuestra tienda online o oferta de productos?",
-      "li4": "¿Necesitas ayuda con un problema técnico o de servicio?",
+      "title": "¡Nos Encantaría Saber de Ti!",
+      "description": "En AVX components, nos esforzamos por proporcionar productos y servicios de alta calidad para satisfacer las necesidades de nuestros clientes. Tu opinión es importante para nosotros, ya sea que tengas una queja, una sugerencia o simplemente quieras compartir tus pensamientos sobre tu experiencia con nosotros.",
+      "title2": "¿Qué Queremos Saber de Ti?",
+      "li1": "¿Tienes alguna pregunta sobre",
+      "li21": "¿Te gustaría compartir tu ",
+      "li22": " sobre una compra reciente?",
+      "li31": "¿Tienes alguna sugerencia para",
+      "li32": "nuestra tienda en línea o nuestras ofertas de productos?",
+      "li41": "¿Necesitas ",
+      "li42": "con un problema técnico o de servicio?",
       "b1": "nuestros productos o servicios",
-      "b2": "comentarios",
-      "b3": "mejorar",
-      "b4": "ayuda",
-      "final_text": "¡No dudes en ponerte en contacto con nosotros! Tu satisfacción es nuestra prioridad número uno, y estamos aquí para ayudarte en todo lo que podamos.",
+      "b2": "retroalimentación",
+      "b3": "mejoras",
+      "b4": "asistencia",
+      "final_text": "¡No dudes en ponerte en contacto! Tu satisfacción es nuestra prioridad número uno y estamos aquí para ayudar en todo lo que podamos.",
       "name": "Nombre",
       "email": "Correo electrónico",
-      "matter": "asunto",
+      "matter": "Asunto",
       "message": "Mensaje",
-      "button": "Enviar"
+      "button": "ENVIAR"
     }
   },
   "category": {
     "order_lowest": "Precio más bajo",
     "order_highest": "Precio más alto",
-    "order_rated": "Mejor valorados",
+    "order_rated": "Mejor valorado",
     "order_offers": "Ofertas",
     "order_name": "Nombre",
-    "filter_price_range": "Rango de precio",
+    "filter_price_range": "Rango de precios",
     "brands": "Marcas",
     "button": "Aplicar"
   },
@@ -70,7 +73,7 @@
     "add_component": "Añadir componente",
     "button_search": "Buscar",
     "search": "Buscar...",
-    "select_category": "Seleccionar Categoría",
+    "select_category": "Seleccionar categoría",
     "price": "Precio",
     "button_card": "Añadir al comparador"
   },
@@ -79,8 +82,8 @@
     "shipping": "Envío: Gratis",
     "stock": "Disponible en tiendas",
     "title": "Opiniones",
-    "button_review": "Añadir opinión",
-    "text_review": "Escribe tu opinión aquí...",
+    "button_review": "Añadir reseña",
+    "text_review": "Escribe tu reseña aquí...",
     "like": "Me gusta"
   },
   "profile": {
@@ -96,7 +99,7 @@
     "items": "artículos",
     "receive": "Recíbelo el",
     "summary": "Resumen",
-    "button": "Ver artículos en tu carrito"
+    "button": "Ver artículos en tu cesta"
   },
   "cart": {
     "title": "Mi carrito",

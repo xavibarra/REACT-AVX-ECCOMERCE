@@ -36,10 +36,13 @@
       "title": "We'd Love to Hear from You!",
       "description": "At AVX components, we strive to provide high-quality products and services to meet our customers' needs. Your feedback is important to us, whether you have a complaint, a suggestion, or simply want to share your thoughts about your experience with us.",
       "title2": "What Do We Want to Hear from You?",
-      "li1": "Do you have any questions about?",
-      "li2": "Would you like to share your about a recent purchase?",
-      "li3": "Do you have any suggestions for our online store or product offerings?",
-      "li4": " Do you need with a technical or service issue?",
+      "li1": "Do you have any questions about",
+      "li21": "Would you like to share your ",
+      "li22": " about a recent purchase?",
+      "li31": "Do you have any suggestions for ",
+      "li32": "our online store or product offerings?",
+      "li41": "Do you need ",
+      "li42": "with a technical or service issue?",
       "b1": "our products or services",
       "b2": "feedback",
       "b3": "improving",
@@ -47,9 +50,9 @@
       "final_text": "Don't hesitate to get in touch! Your satisfaction is our number one priority, and we're here to help in any way we can.",
       "name": "Name",
       "email": "Email",
-      "matter": "matter",
+      "matter": "Matter",
       "message": "Message",
-      "button": "Send"
+      "button": "SEND"
     }
   },
 
@@ -97,7 +100,8 @@
     "items": "items",
     "receive": "Receive it on",
     "summary": "Summary",
-    "button": "View items in your basket"
+    "button": "View items in your basket",
+    "cart_error": "There are no items in the Cart"
   },
   "cart": {
     "title": "My cart",
@@ -105,6 +109,7 @@
     "button_keep": "Keep buying",
     "button_empty": "Empty cart",
     "button_purchase": "Finalize purchase",
-    "receive": "Receive it on"
+    "receive": "Receive it on",
+    "cart_error": "There are no items in the Cart"
   }
 }

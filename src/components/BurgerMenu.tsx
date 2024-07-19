@@ -1,6 +1,7 @@
 import { FaCodeCompare, FaHeart, FaPuzzlePiece } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "../styles/burger-menu.css";
+import { useTranslation } from "react-i18next";
 
 interface BurgerMenuProps {
   menuVisible: boolean;
@@ -17,6 +18,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
     event.preventDefault();
     setCategoriesVisible(!categoriesVisible);
   };
+  const { t } = useTranslation("global");
 
   const navigate = useNavigate();
 
@@ -79,73 +81,71 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
 
   return (
     <>
-      <div id="burger-container" className={`burger-container ${menuVisible ? "visible" : "hidden"}`}>
+      <div
+        id="burger-container"
+        className={`burger-container ${menuVisible ? "visible" : "hidden"}`}>
         <a href="" className="burger-icon-name-first" onClick={goToLikes}>
           <FaHeart className="burger-icon" />
-          <p>Favorites</p>
+          <p>{t("navbar.favorites")}</p>
         </a>
         <a href="#" className="burger-icon-name" onClick={goToComparator}>
           <FaCodeCompare className="burger-icon" />
-          <p>Comparator</p>
+          <p>{t("navbar.comparator")}</p>
         </a>
         <a
           href="#"
           className="burger-icon-name-third"
-          onClick={toggleCategories}
-        >
+          onClick={toggleCategories}>
           <FaPuzzlePiece className="burger-icon" />
-          <p>Components</p>
+          <p>{t("navbar.components")}</p>
         </a>
       </div>
       <div
         id="burger-categories-container"
         className={`burger-categories-container ${
           categoriesVisible ? "visible" : "hidden"
-        }`}
-      >
+        }`}>
         <a href="" className="burger-category-name-first" onClick={goToCase}>
-          <p>Case</p>
+          <p>{t("categories.case")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToPowerSupply}>
-          <p>Power Supply</p>
+          <p>{t("categories.power_supply")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToGraphicCard}>
-          <p>Graphic Card</p>
+          <p>{t("categories.graphic_card")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToCpuCooler}>
-          <p>Cpu Cooler</p>
+          <p>{t("categories.cpu_cooler")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToMotherBoard}>
-          <p>Motherboard</p>
+          <p>{t("categories.motherboard")}</p>
         </a>
         <a
           href=""
           className="burger-category-name-2"
-          onClick={goToExternalHardDrive}
-        >
-          <p>External Hard Drive</p>
+          onClick={goToExternalHardDrive}>
+          <p>{t("categories.external_hard_drive")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToMonitor}>
-          <p>Monitor</p>
+          <p>{t("categories.monitor")}</p>
         </a>
         <a
           href=""
           className="burger-category-name-2"
-          onClick={goToInternalHardDrive}
-        >
-          <p>Internal Hard Drive</p>
+          onClick={goToInternalHardDrive}>
+          <p>{t("categories.internal_hard_drive")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToRamMemory}>
-          <p>Ram Memory</p>
+          <p>{t("categories.ram_memory")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToCaseFan}>
-          <p>Case Fan</p>
+          <p>{t("categories.case_fan")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToOpticalDrive}>
-          <p>Optical Drive</p>
+          <p>{t("categories.optical_drive")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToCpu}>
-          <p>Cpu</p>
+          <p>{t("categories.cpu")}</p>
         </a>
       </div>
     </>

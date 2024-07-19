@@ -7,10 +7,13 @@ import { FiShoppingCart } from "react-icons/fi";
 import Navbar2 from "../components/NavBar2";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
   const [userCart, setUserCart] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     async function fetchData() {
@@ -59,14 +62,37 @@ const Cart = () => {
           deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
 
           // Formatear la fecha
-          const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-          const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-          const formattedDeliveryDate = `Receive it on ${daysOfWeek[deliveryDate.getDay()]}, ${months[deliveryDate.getMonth()]} ${deliveryDate.getDate()}`;
+          const daysOfWeek = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ];
+          const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+          const formattedDeliveryDate = `Receive it on ${
+            daysOfWeek[deliveryDate.getDay()]
+          }, ${months[deliveryDate.getMonth()]} ${deliveryDate.getDate()}`;
 
           return {
             ...productData,
             deliveryDate: formattedDeliveryDate,
-            quantity: itemCounts[productId]
+            quantity: itemCounts[productId],
           };
         });
 
@@ -84,13 +110,14 @@ const Cart = () => {
 
   // Calcular el precio total de todos los productos en el carrito
   const totalPrice = userCart.reduce((total, product) => {
-    return total + (parseFloat(product.finalPrice) * product.quantity);
+    return total + parseFloat(product.finalPrice) * product.quantity;
   }, 0);
 
   // Función para vaciar el carrito
   const emptyCart = async () => {
     try {
-      const { data: userData, error: userError } = await supabaseClient.auth.getUser();
+      const { data: userData, error: userError } =
+        await supabaseClient.auth.getUser();
       if (userError) {
         throw new Error(userError.message);
       }
@@ -98,15 +125,18 @@ const Cart = () => {
       const userId = userData.user.id;
 
       // Llamar a la API para vaciar el carrito
-      const response = await fetch(`http://localhost:3000/users/empty-cart/${userId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await fetch(
+        `http://localhost:3000/users/empty-cart/${userId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to empty cart');
+        throw new Error("Failed to empty cart");
       }
 
       // Vaciar el carrito localmente
@@ -118,44 +148,47 @@ const Cart = () => {
 
   const removeFromCart = async (productId) => {
     try {
-      const { data: userData, error: userError } = await supabaseClient.auth.getUser();
+      const { data: userData, error: userError } =
+        await supabaseClient.auth.getUser();
       if (userError) {
         throw new Error(userError.message);
       }
-  
+
       const userId = userData.user.id;
-  
+
       // Obtener el carrito del usuario desde Supabase
       const { data: profileData, error: profileError } = await supabaseClient
         .from("profiles")
         .select("cart")
         .eq("id", userId)
         .single();
-  
+
       if (profileError) {
         throw new Error(profileError.message);
       }
-  
+
       const cartItems = profileData.cart || [];
       const productIndex = cartItems.indexOf(productId);
-  
+
       if (productIndex !== -1) {
         cartItems.splice(productIndex, 1); // Eliminar solo una instancia del producto
       }
-  
+
       // Actualizar el carrito del usuario en Supabase
       const { error } = await supabaseClient
         .from("profiles")
         .update({ cart: cartItems })
         .eq("id", userId);
-  
+
       if (error) {
         throw new Error(error.message);
       }
-  
+
       // Actualizar el carrito localmente
       const newCart = [...userCart];
-      const localProductIndex = newCart.findIndex(product => product.id === productId);
+      const localProductIndex = newCart.findIndex(
+        (product) => product.id === productId
+      );
       if (localProductIndex !== -1) {
         if (newCart[localProductIndex].quantity > 1) {
           newCart[localProductIndex].quantity -= 1;
@@ -171,52 +204,76 @@ const Cart = () => {
 
   const navigate = useNavigate();
 
-
   const goToCategories = () => {
     navigate("/");
   };
-  
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <p>
+        <Loading></Loading>
+      </p>
+    );
   }
 
   return (
     <>
       <Navbar2 />
       <div className="cart-title-container">
-        <h5>My cart</h5>
-        <p>{userCart.length} items</p>
+        <h5>{t("cart.title")}</h5>
+        <p>
+          {userCart.length} {t("cart.items")}
+        </p>
       </div>
       <div className="cart-container">
         <div className="cart-content-container">
-          <div className={userCart.length === 0 ? "cart-empty-cart-container" : "cart-empty-cart-container-hidden"}>
-            <h5>There are no items in the Cart</h5>
+          <div
+            className={
+              userCart.length === 0
+                ? "cart-empty-cart-container"
+                : "cart-empty-cart-container-hidden"
+            }>
+            <h5>{t("cart.title")}</h5>
             <FiShoppingCart className="cart-icon-cart" />
           </div>
-          <div className={userCart.length === 0 ? "cart-items-hidden" : "cart-items"}>
+          <div
+            className={
+              userCart.length === 0 ? "cart-items-hidden" : "cart-items"
+            }>
             {userCart.map((product, index) => (
-              <ProductCard key={index} product={product} onRemove={removeFromCart} />
+              <ProductCard
+                key={index}
+                product={product}
+                onRemove={removeFromCart}
+              />
             ))}
-            <div className={userCart.length === 0 ? "cart-actions-hidden" : "cart-actions"}>
-              <button onClick={goToCategories}><p>Keep buying</p></button>
+            <div
+              className={
+                userCart.length === 0 ? "cart-actions-hidden" : "cart-actions"
+              }>
+              <button onClick={goToCategories}>
+                <p>{t("cart.button_keep")}</p>
+              </button>
               <button className="cart-empty-cart-button" onClick={emptyCart}>
-                <FaTrash className="cart-trash-icon" /><p>Empty cart</p>
+                <FaTrash className="cart-trash-icon" />
+                <p>{t("cart.button_empty")}</p>
               </button>
             </div>
           </div>
         </div>
         <div className="cart-summary">
-          <h2>Summary</h2>
+          <h2>{t("cart_float.summary")}</h2>
           {userCart.length === 0 ? (
-            <p>No items in the cart</p>
+            <p>There ara no items in the cart</p>
           ) : (
             <>
               <p>{userCart[0]?.deliveryDate}</p>
               <div className="cart-total">Total: {totalPrice.toFixed(2)}€</div>
             </>
           )}
-          <button><h6>Finalize Purchase</h6></button>
+          <button>
+            <h6>{t("cart.button_purchase")}</h6>
+          </button>
         </div>
       </div>
       <Footer />
