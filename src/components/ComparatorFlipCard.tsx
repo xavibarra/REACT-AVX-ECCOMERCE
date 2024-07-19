@@ -32,7 +32,7 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product, onAddToComparato
   };
 
   return (
-    <div className="comparator-flip-card bg-transparent perspective-1000 font-sans cursor-pointer">
+    <div onClick={() => onAddToComparator(product)} className="comparator-flip-card bg-transparent perspective-1000 font-sans cursor-pointer">
       <div className="comparator-flip-card-inner relative w-full h-full text-center transition-transform duration-700">
         <div className="comparator-flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="comparator-card-offer-span"></span>}

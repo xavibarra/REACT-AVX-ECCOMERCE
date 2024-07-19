@@ -290,8 +290,14 @@ function Navbar2() {
         categoriesVisible={categoriesVisible}
       />
 
-      <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} setFloatCartVisible={setFloatCartVisible} />
-
+      <FloatCart
+        className={
+          floatCartVisible
+            ? "float-cart-container"
+            : "float-cart-container-hidden"
+        }
+        setFloatCartVisible={setFloatCartVisible}
+      />
     </>
   );
 }
