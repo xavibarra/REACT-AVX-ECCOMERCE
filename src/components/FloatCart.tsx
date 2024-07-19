@@ -7,6 +7,7 @@ import useCart from "../components/useCart"; // Importa el hook personalizado
 import "../styles/float.cart.css";
 import { supabaseClient } from "../utils/supabaseClient";
 import Loading from "./Loading";
+import { useTranslation } from "react-i18next";
 
 interface FloatCartProps {
   className: string;
@@ -15,6 +16,7 @@ interface FloatCartProps {
 
 const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
   const { userCart, setUserCart, loading, fetchCart } = useCart(); // Usa el hook
+  const { t } = useTranslation("global");
 
   // Ejecuta fetchCart después de cada cambio en el carrito
   useEffect(() => {
@@ -96,8 +98,10 @@ const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
     <div id="float-cart-container" className={className}>
       <div className="float-cart-title-container">
         <div>
-          <h5>My cart</h5>
-          <p>{userCart.length} items</p>
+          <h5>{t("cart_float.title")}</h5>
+          <p>
+            {userCart.length} {t("cart_float.items")}
+          </p>
         </div>
         <div className="float-cart-close-icon-container">
           <IoClose className="float-cart-close-icon" onClick={closeFloatCart} />
@@ -106,7 +110,7 @@ const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
       <div className="float-cart-content-container">
         {userCart.length === 0 ? (
           <div className="float-cart-empty-cart-container">
-            <h5>There are no items in the Cart</h5>
+            <h5>There ara no items in the cart</h5>
             <FiShoppingCart className="float-cart-icon-cart" />
           </div>
         ) : (
@@ -120,9 +124,9 @@ const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
         )}
       </div>
       <div className="float-cart-summary">
-        <h2>Summary</h2>
+        <h2>{t("cart_float.summary")}</h2>
         {userCart.length === 0 ? (
-          <p>No items in the cart</p>
+          <p>{t("cart_float.title")}</p>
         ) : (
           <>
             <p>{userCart[0]?.deliveryDate}</p>
@@ -135,7 +139,7 @@ const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
           </>
         )}
         <div className="float-cart-buttons">
-          <button onClick={goToCart}>View items in your basket</button>
+          <button onClick={goToCart}>{t("cart_float.button")}</button>
         </div>
       </div>
     </div>

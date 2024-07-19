@@ -1,6 +1,7 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import "../styles/form.css";
+import { useTranslation } from "react-i18next";
 
 function Form() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ function Form() {
     user_matter: "",
     user_message: "",
   });
+
+  const { t } = useTranslation("global");
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
@@ -43,39 +46,35 @@ function Form() {
         <div className="formCircle"></div>
         <div className="formCircle"></div>
         <div className="formCardInner">
-          <h2>We'd Love to Hear from You!</h2>
+          <h2>{t("home.form.title")}</h2>
           <div className="formContainer">
             <div className="formInfo">
-              <p>
-                At AVX components, we strive to provide high-quality products
-                and services to meet our customers' needs. Your feedback is
-                important to us, whether you have a complaint, a suggestion, or
-                simply want to share your thoughts about your experience with
-                us.
-              </p>
-              <h4>What Do We Want to Hear from You?</h4>
+              <p>{t("home.form.description")}</p>
+              <h4>{t("home.form.title")}</h4>
               <ul>
                 <li>
-                  Do you have any questions about{" "}
-                  <b>our products or services</b>?
+                  {t("home.form.li1")} <b>{t("home.form.b1")}</b>?
                 </li>
                 <li>
-                  Would you like to share your <b>feedback</b> about a recent
-                  purchase?
+                  {t("home.form.li21")}
+                  <b>{t("home.form.b2")} </b>
+
+                  {t("home.form.li22")}
                 </li>
                 <li>
-                  Do you have any suggestions for <b>improving</b> our online
-                  store or product offerings?
+                  {t("home.form.li31")}
+                  <b>{t("home.form.b3")} </b>
+
+                  {t("home.form.li32")}
                 </li>
                 <li>
-                  Do you need <b>assistance</b> with a technical or service
-                  issue?
+                  {t("home.form.li41")}
+                  <b>{t("home.form.b4")} </b>
+
+                  {t("home.form.li42")}
                 </li>
               </ul>
-              <p>
-                Don't hesitate to get in touch! Your satisfaction is our number
-                one priority, and we're here to help in any way we can.
-              </p>
+              <p>{t("home.form.final_text")}</p>
             </div>
             <div className="formInputs">
               <form id="form" onSubmit={handleSubmit}>
@@ -84,7 +83,7 @@ function Form() {
                     <input
                       type="text"
                       id="name"
-                      placeholder="Name"
+                      placeholder={t("home.form.name")}
                       name="user_name"
                       value={formData.user_name}
                       onChange={handleInputChange}
@@ -93,7 +92,7 @@ function Form() {
                     <input
                       type="email"
                       id="mail"
-                      placeholder="Email"
+                      placeholder={t("home.form.email")}
                       name="user_mail"
                       value={formData.user_mail}
                       onChange={handleInputChange}
@@ -104,7 +103,7 @@ function Form() {
                     <input
                       type="text"
                       id="matter"
-                      placeholder="Matter"
+                      placeholder={t("home.form.matter")}
                       name="user_matter"
                       value={formData.user_matter}
                       onChange={handleInputChange}
@@ -115,13 +114,13 @@ function Form() {
                     <textarea
                       id="msg"
                       name="user_message"
-                      placeholder="Message"
+                      placeholder={t("home.form.message")}
                       value={formData.user_message}
                       onChange={handleInputChange}
                       required></textarea>
                   </li>
                   <li>
-                    <button type="submit">Enviar</button>
+                    <button type="submit">{t("home.form.button")}</button>
                   </li>
                 </ul>
               </form>
