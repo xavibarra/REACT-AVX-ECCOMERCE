@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import "../styles/svgCategories.css";
 import Navbar from "./NavBar";
@@ -8,7 +7,6 @@ import Navbar from "./NavBar";
 const Categories: React.FC<{ category: string }> = ({ category }) => {
   useEffect(() => {
     function rotarVentiladorGenerico(ventiladorId: string, svgId: string) {
-      const { t } = useTranslation("global");
       let angulo = 0;
       let velocidad = 0;
       let animacionId: number;
