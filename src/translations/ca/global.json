@@ -1,5 +1,107 @@
 {
-  "prueba": {
-    "about": "Benvinguts a Components Portions! Fundada per entusiastes de la tecnologia, estem dedicats a oferir components informàtics de la més alta qualitat per ajudar-vos a construir, millorar i optimitzar els vostres sistemes. La nostra àmplia selecció inclou CPUs de primera línia, GPUs, plaques base, memòria, solucions d'emmagatzematge i molt més, atenent tant a aficionats com a professionals."
+  "navbar": {
+    "search": "Cerca...",
+    "search_results": "No s'han trobat resultats",
+    "favorites": "Favorits",
+    "comparator": "Comparador",
+    "components": "Components"
+  },
+  "categories": {
+    "case": "TORRE",
+    "motherboard": "PLA BASE",
+    "power_supply": "FONT D'ALIMENTACIÓ",
+    "cpu": "CPU",
+    "graphic_card": "TARGETA GRÀFICA",
+    "external_hard_drive": "DISC DUR EXTERN",
+    "internal_hard_drive": "DISC DUR INTERN",
+    "monitor": "MONITOR",
+    "case_fan": "VENTILADOR DE TORRE",
+    "optical_drive": "LECTOR ÒPTIC",
+    "cpu_cooler": "REFREDADOR DE CPU",
+    "ram_memory": "MEMÒRIA RAM",
+    "favorites": "FAVORITS"
+  },
+  "home": {
+    "about_us": {
+      "title": "Sobre nosaltres",
+      "description": "Benvinguts a Components Portions! Fundada per entusiastes de la tecnologia, ens dediquem a oferir components d'ordinador de la més alta qualitat per ajudar-te a construir, actualitzar i optimitzar els teus sistemes. La nostra àmplia selecció inclou CPU, GPU, plaques base, memòria, solucions d'emmagatzematge i més, per a aficionats i professionals.",
+      "button": "Saber més!"
+    }
+  },
+  "highlighted_offers": {
+    "title": "Ofertes destacades"
+  },
+  "form": {
+    "title": "Ens encantaria escoltar-te!",
+    "description": "A AVX components, ens esforcem per oferir productes i serveis de gran qualitat per satisfer les necessitats dels nostres clients. La teva opinió és important per a nosaltres, ja sigui una queixa, una suggerència o simplement compartir els teus pensaments sobre la teva experiència amb nosaltres.",
+    "title2": "Què volem escoltar de tu?",
+    "li1": "Tens alguna pregunta sobre?",
+    "li2": "T'agradaria compartir la teva experiència sobre una compra recent?",
+    "li3": "Tens alguna suggerència per a la nostra botiga en línia o l'oferta de productes?",
+    "li4": "Necessites ajuda amb un problema tècnic o de servei?",
+    "b1": "els nostres productes o serveis",
+    "b2": "comentaris",
+    "b3": "millorar",
+    "b4": "ajuda",
+    "final_text": "No dubtis a contactar-nos! La teva satisfacció és la nostra prioritat número u, i estem aquí per ajudar-te en tot el que puguem.",
+    "name": "Nom",
+    "email": "Correu electrònic",
+    "matter": "assumpte",
+    "message": "Missatge",
+    "button": "Enviar"
+  },
+  "category": {
+    "order_lowest": "Preu més baix",
+    "order_highest": "Preu més alt",
+    "order_rated": "Millor valorats",
+    "order_offers": "Ofertes",
+    "order_name": "Nom",
+    "filter_price_range": "Rang de preu",
+    "brands": "Marques",
+    "button": "Aplicar"
+  },
+  "card": {
+    "button": "Afegir al carret",
+    "stock": "Disponible a les botigues"
+  },
+  "comparator": {
+    "add_component": "Afegir component",
+    "button_search": "Cercar",
+    "search": "Cerca...",
+    "select_category": "Selecciona Categoria",
+    "price": "Preu",
+    "button_card": "Afegir al comparador"
+  },
+  "product": {
+    "receive": "Rebràs el",
+    "shipping": "Enviament: Gratuït",
+    "stock": "Disponible a les botigues",
+    "title": "Opinions",
+    "button_review": "Afegeix una opinió",
+    "text_review": "Escriu la teva opinió aquí...",
+    "like": "M'agrada"
+  },
+  "profile": {
+    "name": "Nom",
+    "user": "Nom d'usuari",
+    "email": "Correu electrònic",
+    "button": "Tancar sessió",
+    "title": "Les meves comandes",
+    "orders_error": "No hi ha comandes en aquest moment"
+  },
+  "cart_float": {
+    "title": "El meu carret",
+    "items": "articles",
+    "receive": "Rebràs el",
+    "summary": "Resum",
+    "button": "Veure articles al teu carret"
+  },
+  "cart": {
+    "title": "El meu carret",
+    "items": "articles",
+    "button_keep": "Continuar comprant",
+    "button_empty": "Buidar carret",
+    "button_purchase": "Finalitzar compra",
+    "receive": "Rebràs el"
   }
 }
