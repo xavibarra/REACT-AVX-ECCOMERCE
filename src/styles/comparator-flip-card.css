@@ -128,23 +128,6 @@
   justify-content: center;
 }
 
-.comparator-tooltip {
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.comparator-tooltip::before {
-  position: absolute;
-  content: "";
-  height: 8px;
-  width: 8px;
-  bottom: -3px;
-  left: 50%;
-  transform: translate(-50%) rotate(45deg);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
 .comparator-card-button {
   background-color: var(--color-secondary);
   width: 100%;
@@ -156,12 +139,6 @@
 
 }
 
-.comparator-card-button:hover .comparator-tooltip {
-  top: -33px;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
 
 .comparator-card-button:hover .comparator-tooltip,
 .comparator-card-button:hover .comparator-tooltip::before {

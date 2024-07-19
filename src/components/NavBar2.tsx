@@ -6,6 +6,7 @@ import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar2.css";
 import FloatCart from "./FloatCart";
 
+
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
