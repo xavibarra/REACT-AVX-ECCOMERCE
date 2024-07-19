@@ -1,0 +1,68 @@
+.language-switcher {
+  position: fixed;
+  bottom: 50px;
+  left: 25px;
+  z-index: 999;
+}
+
+.translate-button {
+  background-color: var(--color-secondary);
+  color: white;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
+    inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
+}
+
+.languages {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.idioma {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.idioma:hover {
+  transform: scale(1.05);
+}
+
+.idioma.en {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
+    inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
+}
+
+.idioma.es {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
+    inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
+}
+
+.idioma.ca {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
+    inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
+}

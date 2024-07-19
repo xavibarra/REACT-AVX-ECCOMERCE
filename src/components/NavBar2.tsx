@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 
 import "../styles/navbar2.css";
-import FloatCart from "./Float-Cart";
-
-import useCart from "./useCart";
-
+import FloatCart from "./FloatCart";
 
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -293,8 +290,14 @@ function Navbar2() {
         categoriesVisible={categoriesVisible}
       />
 
-      <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} setFloatCartVisible={setFloatCartVisible} />
-
+      <FloatCart
+        className={
+          floatCartVisible
+            ? "float-cart-container"
+            : "float-cart-container-hidden"
+        }
+        setFloatCartVisible={setFloatCartVisible}
+      />
     </>
   );
 }
