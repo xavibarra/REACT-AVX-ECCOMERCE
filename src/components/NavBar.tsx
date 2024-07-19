@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
@@ -7,6 +8,7 @@ import { supabaseClient } from "../utils/supabaseClient";
 import FloatCart from "./Float-Cart";
 
 function Navbar() {
+  const [t, i18n] = useTranslation("global");
   const [user, setUser] = useState({});
   const [floatCartVisible, setFloatCartVisible] = useState(false);
 
@@ -17,7 +19,6 @@ function Navbar() {
         setUser(null);
       } else {
         setUser(data.user);
-        console.log(data);
       }
     }
 
@@ -103,24 +104,19 @@ function Navbar() {
     setShowResults(true);
   };
 
-
-
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!event.target.closest(".searchContainer")) {
         setShowResults(false);
-        setSearchTerm(''); // Limpiar el valor del input
+        setSearchTerm(""); // Limpiar el valor del input
       }
     };
-  
+
     document.addEventListener("click", handleOutsideClick);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
-  
-  
-
 
   const handleCardClick = (productId) => (event) => {
     event.preventDefault();
@@ -131,7 +127,6 @@ function Navbar() {
     window.scrollTo(0, 0);
     navigate("");
   };
-
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [isIconRotated, setIsIconRotated] = useState(false);
@@ -225,7 +220,6 @@ function Navbar() {
               </div>
             )}
           </div>
-
         </div>
         <a href="" onClick={goHome}>
           <div className="logoContainer fill-white">
@@ -291,7 +285,10 @@ function Navbar() {
                   d="M246.49,41.27c-56.01,0-106.72,22.7-143.43,59.41l143.75,143.11"
                 />
               </g>
-              <text className="font-semi-bold" transform="translate(231.47 473.26)">
+              <text
+                className="font-semi-bold"
+                transform="translate(231.47 473.26)"
+              >
                 <tspan x="0" y="0">
                   PO
                 </tspan>
@@ -302,7 +299,10 @@ function Navbar() {
                   TIONS
                 </tspan>
               </text>
-              <text className="font-light4" transform="translate(528.29 246.07)">
+              <text
+                className="font-light4"
+                transform="translate(528.29 246.07)"
+              >
                 <tspan className="spacing-wide" x="0" y="0">
                   C
                 </tspan>
@@ -321,7 +321,12 @@ function Navbar() {
         </a>
         <div className="iconsNav">
           <a className="userIcon">
-            <FaUser onClick={() => { goToProfileOrLogin(); hideFloatCart(); }} />
+            <FaUser
+              onClick={() => {
+                goToProfileOrLogin();
+                hideFloatCart();
+              }}
+            />
           </a>
           <a className="cartIcon">
             <FaShoppingBasket onClick={toggleFloatCart} />
@@ -335,12 +340,19 @@ function Navbar() {
           </a>
         </div>
       </div>
+
       <BurgerMenu
         menuVisible={menuVisible}
         setCategoriesVisible={setCategoriesVisible}
         categoriesVisible={categoriesVisible}
       />
-      <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} />
+      <FloatCart
+        className={
+          floatCartVisible
+            ? "float-cart-container"
+            : "float-cart-container-hidden"
+        }
+      />
     </>
   );
 }
