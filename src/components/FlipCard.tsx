@@ -10,6 +10,7 @@ import { FaCodeCompare, FaShop } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "../styles/flip-card.css";
 import { supabaseClient } from "../utils/supabaseClient";
+import { useTranslation } from "react-i18next";
 
 interface Product {
   id: string;
@@ -33,6 +34,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const [user, setUser] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     const storeList = document.getElementById("store-list");
@@ -51,6 +53,38 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     return () => {
       window.removeEventListener("resize", checkOverflow);
     };
+  }, [product.id]);
+
+  // Fetch user data and set favorite status for the product
+  useEffect(() => {
+    const fetchUserAndFavorites = async () => {
+      try {
+        const { data: userData, error: userError } =
+          await supabaseClient.auth.getUser();
+        if (userError) {
+          console.error("Error fetching user data:", userError);
+          return;
+        }
+
+        const userId = userData.user.id;
+        setUser(userData.user);
+
+        const response = await fetch(
+          `http://localhost:3000/users/getById/${userId}`
+        );
+        const profileData = await response.json();
+
+        if (response.ok && profileData.likes) {
+          setIsLiked(profileData.likes.includes(product.id));
+        } else {
+          console.error("Error fetching user profile data");
+        }
+      } catch (error) {
+        console.error("Error fetching user profile and favorites:", error);
+      }
+    };
+
+    fetchUserAndFavorites();
   }, [product.id]);
 
   const formatCityList = (): string => {
@@ -101,42 +135,41 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       floatcart.classList.remove("float-cart-container-hidden");
       floatcart.classList.add("float-cart-container");
     }
-  }
+  };
 
   const handleAddToCartClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
 
     try {
-        const { data, error } = await supabaseClient.auth.getUser();
-        if (error) {
-            console.error("Error fetching user data:", error);
-            return;
-        }
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error) {
+        console.error("Error fetching user data:", error);
+        return;
+      }
 
-        const userId = data.user.id;
-        const productId = product.id;
+      const userId = data.user.id;
+      const productId = product.id;
 
-        const response = await fetch("http://localhost:3000/users/add-to-cart", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userId, productId }),
-        });
+      const response = await fetch("http://localhost:3000/users/add-to-cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, productId }),
+      });
 
-        if (!response.ok) {
-            throw new Error("Failed to add product to cart");
-        }
+      if (!response.ok) {
+        throw new Error("Failed to add product to cart");
+      }
 
-        const result = await response.json();
-        console.log(result.message); // Aquí puedes manejar la respuesta del backend
+      const result = await response.json();
+      console.log(result.message); // Aquí puedes manejar la respuesta del backend
 
-        FloatCartAppear(); // Usa FloatCartAppear para mostrar el carrito
+      FloatCartAppear(); // Usa FloatCartAppear para mostrar el carrito
     } catch (error) {
-        console.error("Error adding product to cart:", error.message);
+      console.error("Error adding product to cart:", error.message);
     }
-};
-
+  };
 
   const handleLikeClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -201,8 +234,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick}
-    >
+      onClick={handleCardClick}>
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-500">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
@@ -237,17 +269,20 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="bottomCard">
             <button
               className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-              onClick={(event) => { handleAddToCartClick(event); FloatCartAppear(); }}
-            >
+              onClick={(event) => {
+                handleAddToCartClick(event);
+                FloatCartAppear();
+              }}>
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
-              <span>Add to cart</span>
+              <span>{t("card.button")}</span>
             </button>
             <div
               className="favIcon"
-              onClick={isLiked ? handleLikeClick : handleLikeClick}
-            >
+              onClick={(event) => {
+                handleLikeClick(event);
+              }}>
               {isLiked ? <FaHeart /> : <FaRegHeart />}
             </div>
           </div>
@@ -259,12 +294,11 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="infoCardBack">
             <div className="stock">
               <FaShop />
-              <h3 className="">Availability in store:</h3>
+              <h3 className="">{t("card.stock")}:</h3>
             </div>
             <div
               className="overflow-y-auto hide-scrollbar relative cities"
-              id="store-list"
-            >
+              id="store-list">
               <p className="card-city list-none my-1 text-left mx-2 flex items-center">
                 {formatCityList()}.
               </p>
@@ -274,17 +308,17 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             <div className="bottomCard">
               <button
                 className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-                onClick={handleAddToCartClick}
-              >
+                onClick={handleAddToCartClick}>
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
-                <span>Add to cart</span>
+                <span>{t("card.button")}</span>
               </button>
               <div
                 className="favIcon"
-                onClick={isLiked ? handleLikeClick : handleLikeClick}
-              >
+                onClick={(event) => {
+                  handleLikeClick(event);
+                }}>
                 {isLiked ? <FaHeart /> : <FaRegHeart />}
               </div>
             </div>
@@ -296,4 +330,3 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
 };
 
 export default FlipCard;
-  

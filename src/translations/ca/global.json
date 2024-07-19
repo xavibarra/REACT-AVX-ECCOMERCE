@@ -63,10 +63,11 @@
     "order_name": "Nom",
     "filter_price_range": "Rang de preus",
     "brands": "Marques",
-    "button": "Aplicar"
+    "button": "Aplicar",
+    "error": "No hi ha productes amb les característiques especificades."
   },
   "card": {
-    "button": "Afegir al carro",
+    "button": "Afegir a la cistella",
     "stock": "Disponible a les botigues"
   },
   "comparator": {

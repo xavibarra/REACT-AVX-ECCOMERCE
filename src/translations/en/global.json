@@ -64,7 +64,8 @@
     "order_name": "Name",
     "filter_price_range": "Price Range",
     "brands": "Brands",
-    "button": "Apply"
+    "button": "Apply",
+    "error": "There are no products with the specified features."
   },
   "card": {
     "button": "Add to cart",
