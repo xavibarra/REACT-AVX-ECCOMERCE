@@ -3,7 +3,8 @@ import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../styles/navbar2.css";
 import BurgerMenu from "../components/BurgerMenu";
-import FloatCart from "./FloatCart";
+import FloatCart from "../components/FloatCart";
+import useCart from "./useCart";
 
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -297,7 +298,7 @@ function Navbar2() {
         setCategoriesVisible={setCategoriesVisible}
         categoriesVisible={categoriesVisible}
       />
-      <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} />
+      <FloatCart className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} setFloatCartVisible={setFloatCartVisible} />
     </>
   );
 }

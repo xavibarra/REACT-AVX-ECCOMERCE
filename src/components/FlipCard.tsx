@@ -35,41 +35,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // async function fetchUserData() {
-    //   try {
-    //     const { data, error } = await supabaseClient.auth.getUser();
-    //     if (error) {
-    //       console.error("Error fetching user data:", error);
-    //       return;
-    //     }
-
-    //     setUser(data.user);
-    //     const userId = data.user.id;
-
-    //     // Verificar si el producto está en la lista de "me gusta"
-    //     const response = await fetch(
-    //       `http://localhost:3000/users/check-like?userId=${userId}&productId=${product.id}`
-    //     );
-
-    //     if (!response.ok) {
-    //       throw new Error("Network response was not ok");
-    //     }
-
-    //     const contentType = response.headers.get("content-type");
-    //     if (!contentType || !contentType.includes("application/json")) {
-    //       throw new TypeError("Oops, we haven't got JSON!");
-    //     }
-
-    //     const result = await response.json();
-    //     setIsLiked(result.isLiked);
-    //   } catch (error) {
-    //     console.error("Error checking if product is liked:", error);
-    //     // Puedes manejar el error aquí, por ejemplo, establecer isLiked en false o mostrar un mensaje de error al usuario.
-    //   }
-    // }
-
-    // fetchUserData();
-
     const storeList = document.getElementById("store-list");
 
     function checkOverflow() {
@@ -130,37 +95,48 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     );
   };
 
+  const FloatCartAppear = () => {
+    const floatcart = document.getElementById("float-cart-container");
+    if (floatcart) {
+      floatcart.classList.remove("float-cart-container-hidden");
+      floatcart.classList.add("float-cart-container");
+    }
+  }
+
   const handleAddToCartClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
 
     try {
-      const { data, error } = await supabaseClient.auth.getUser();
-      if (error) {
-        console.error("Error fetching user data:", error);
-        return;
-      }
+        const { data, error } = await supabaseClient.auth.getUser();
+        if (error) {
+            console.error("Error fetching user data:", error);
+            return;
+        }
 
-      const userId = data.user.id;
-      const productId = product.id;
+        const userId = data.user.id;
+        const productId = product.id;
 
-      const response = await fetch("http://localhost:3000/users/add-to-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId, productId }),
-      });
+        const response = await fetch("http://localhost:3000/users/add-to-cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId, productId }),
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to add product to cart");
-      }
+        if (!response.ok) {
+            throw new Error("Failed to add product to cart");
+        }
 
-      const result = await response.json();
-      console.log(result.message); // Aquí puedes manejar la respuesta del backend
+        const result = await response.json();
+        console.log(result.message); // Aquí puedes manejar la respuesta del backend
+
+        FloatCartAppear(); // Usa FloatCartAppear para mostrar el carrito
     } catch (error) {
-      console.error("Error adding product to cart:", error.message);
+        console.error("Error adding product to cart:", error.message);
     }
-  };
+};
+
 
   const handleLikeClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -261,7 +237,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="bottomCard">
             <button
               className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-              onClick={handleAddToCartClick}
+              onClick={(event) => { handleAddToCartClick(event); FloatCartAppear(); }}
             >
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
@@ -320,3 +296,4 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
 };
 
 export default FlipCard;
+  
