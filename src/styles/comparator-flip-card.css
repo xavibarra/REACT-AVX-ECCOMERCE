@@ -152,7 +152,8 @@
 
 .comparator-card-button span {
   font-weight: 500;
-  font-size: 13px;
+  font-size: 13px;  font-size: 1em;
+
 }
 
 .comparator-card-button:hover .comparator-tooltip {

@@ -69,11 +69,9 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product, onAddToComparato
               <span className="comparator-tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
-              <span> Add to Comparator </span>
+              <span> Add to comparator </span>
             </button>
-            <div className="comparator-favIcon">
-              <CiHeart />
-            </div>
+    
           </div>
         </div>
       </div>

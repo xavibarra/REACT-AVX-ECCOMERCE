@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/admin.css"; // Importamos el archivo CSS para los estilos
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { IoIosSave } from "react-icons/io";
 
 interface Product {
   id: number;
@@ -62,6 +64,7 @@ const Admin: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [productsFiltered, setProductsFiltered] = useState<Product[]>([]);
   const [editProductId, setEditProductId] = useState<number | null>(null);
+  const [showAddForm, setShowAddForm] = useState(false); // Estado para controlar la visibilidad del formulario
 
   useEffect(() => {
     fetchProducts();
@@ -224,12 +227,13 @@ const Admin: React.FC = () => {
         feature_values: {},
       });
       fetchProducts();
+      setShowAddForm(false); // Ocultar el formulario después de agregar el producto
     } catch (error) {
       console.error("Error adding product:", error);
     }
   };
 
-  const handleCategoryChange = (
+  const handleCategoryChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const categoryId = parseInt(event.target.value);
@@ -255,7 +259,7 @@ const Admin: React.FC = () => {
   const fetchFeatureValues = async (categoryId: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/categories/${categoryId}/features`
+        `http://localhost:3000/values/${categoryId}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -269,164 +273,166 @@ const Admin: React.FC = () => {
 
   return (
     <div className="admin-container">
-      <h1>Product Administration</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Name:</label>
-          <input
-            type="text"
-            value={newProduct.name}
-            onChange={(e) => handleInputChange(e, "name")}
-            required
-          />
+      {!showAddForm && (
+        <div className="add-product-button pagination2">
+          <button onClick={() => setShowAddForm(true)}>Add Product</button>
         </div>
-        <div className="form-group">
-          <label>Price:</label>
-          <input
-            type="number"
-            value={newProduct.price}
-            onChange={(e) => handleInputChange(e, "price")}
-            step="0.01"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Category:</label>
-          <select
-            value={newProduct.category_id}
-            onChange={handleCategoryChange}
-            required>
-            <option value={0}>Select Category</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.categoryNameEn}
-              </option>
+      )}
+
+      {showAddForm && (
+        <div className="add-product-form">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Name:</label>
+              <input
+                type="text"
+                value={newProduct.name}
+                onChange={(e) => handleInputChange(e, "name")}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Price:</label>
+              <input
+                type="number"
+                value={newProduct.price}
+                onChange={(e) => handleInputChange(e, "price")}
+                step="0.01"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Category:</label>
+              <select
+                value={newProduct.category_id}
+                onChange={handleCategoryChange}
+                required>
+                <option value={0}>Select Category</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.categoryNameEn}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Image URL:</label>
+              <input
+                type="text"
+                value={newProduct.image_url}
+                onChange={(e) => handleInputChange(e, "image_url")}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Offer:</label>
+              <input
+                type="checkbox"
+                checked={newProduct.offer}
+                onChange={(e) => handleInputChange(e, "offer")}
+              />
+            </div>
+            <div className="form-group">
+              <label>Discount (%):</label>
+              <input
+                type="number"
+                value={newProduct.discount}
+                onChange={(e) => handleInputChange(e, "discount")}
+                required
+              />
+            </div>
+            <div className="stock-group">
+              <div className="form-group2">
+                <label>Barcelona:</label>
+                <input
+                  type="checkbox"
+                  checked={newProduct.barcelonaStock}
+                  onChange={(e) => handleInputChange(e, "barcelonaStock")}
+                />
+              </div>
+              <div className="form-group2">
+                <label>Murcia:</label>
+                <input
+                  type="checkbox"
+                  checked={newProduct.murciaStock}
+                  onChange={(e) => handleInputChange(e, "murciaStock")}
+                />
+              </div>
+              <div className="form-group2">
+                <label>Valencia:</label>
+                <input
+                  type="checkbox"
+                  checked={newProduct.valenciaStock}
+                  onChange={(e) => handleInputChange(e, "valenciaStock")}
+                />
+              </div>
+              <div className="form-group2">
+                <label>Sevilla:</label>
+                <input
+                  type="checkbox"
+                  checked={newProduct.sevillaStock}
+                  onChange={(e) => handleInputChange(e, "sevillaStock")}
+                />
+              </div>
+              <div className="form-group2">
+                <label>Bilbao:</label>
+                <input
+                  type="checkbox"
+                  checked={newProduct.bilbaoStock}
+                  onChange={(e) => handleInputChange(e, "bilbaoStock")}
+                />
+              </div>
+              <div className="form-group2">
+                <label>Cordoba:</label>
+                <input
+                  type="checkbox"
+                  checked={newProduct.cordobaStock}
+                  onChange={(e) => handleInputChange(e, "cordobaStock")}
+                />
+              </div>
+              <div className="form-group2">
+                <label>A Coruna:</label>
+                <input
+                  type="checkbox"
+                  checked={newProduct.aCorunaStock}
+                  onChange={(e) => handleInputChange(e, "aCorunaStock")}
+                />
+              </div>
+              <div className="form-group2">
+                <label>Segovia:</label>
+                <input
+                  type="checkbox"
+                  checked={newProduct.segoviaStock}
+                  onChange={(e) => handleInputChange(e, "segoviaStock")}
+                />
+              </div>
+            </div>
+            {featureValues.map((feature) => (
+              <div key={feature.id} className="form-group feature-value">
+                <label>{feature.feature_name_en}:</label>
+                <input
+                  type="text"
+                  value={newProduct.feature_values[feature.id] || ""}
+                  onChange={(e) =>
+                    handleFeatureValueChange(feature.id, e.target.value)
+                  }
+                />
+              </div>
             ))}
-          </select>
+            <div className="form-group pagination2">
+              <button type="submit">Add Product</button>
+              <button
+                type="button"
+                onClick={() => setShowAddForm(false)}
+                className="close-button">
+                Close
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="form-group">
-          <label>Image URL:</label>
-          <input
-            type="text"
-            value={newProduct.image_url}
-            onChange={(e) => handleInputChange(e, "image_url")}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Offer:</label>
-          <input
-            type="checkbox"
-            checked={newProduct.offer}
-            onChange={(e) => handleInputChange(e, "offer")}
-          />
-        </div>
-        <div className="form-group">
-          <label>Discount (%):</label>
-          <input
-            type="number"
-            value={newProduct.discount}
-            onChange={(e) => handleInputChange(e, "discount")}
-            required
-          />
-        </div>
-        <div className="stock-group">
-          <div className="form-group2">
-            <label>Barcelona:</label>
-            <input
-              type="checkbox"
-              checked={newProduct.barcelonaStock}
-              onChange={(e) => handleInputChange(e, "barcelonaStock")}
-            />
-          </div>
-          <div className="form-group2">
-            <label>Murcia:</label>
-            <input
-              type="checkbox"
-              checked={newProduct.murciaStock}
-              onChange={(e) => handleInputChange(e, "murciaStock")}
-            />
-          </div>
-          <div className="form-group2">
-            <label>Valencia:</label>
-            <input
-              type="checkbox"
-              checked={newProduct.valenciaStock}
-              onChange={(e) => handleInputChange(e, "valenciaStock")}
-            />
-          </div>
-          <div className="form-group2">
-            <label>Sevilla:</label>
-            <input
-              type="checkbox"
-              checked={newProduct.sevillaStock}
-              onChange={(e) => handleInputChange(e, "sevillaStock")}
-            />
-          </div>
-          <div className="form-group2">
-            <label>Bilbao:</label>
-            <input
-              type="checkbox"
-              checked={newProduct.bilbaoStock}
-              onChange={(e) => handleInputChange(e, "bilbaoStock")}
-            />
-          </div>
-          <div className="form-group2">
-            <label>Cordoba:</label>
-            <input
-              type="checkbox"
-              checked={newProduct.cordobaStock}
-              onChange={(e) => handleInputChange(e, "cordobaStock")}
-            />
-          </div>
-          <div className="form-group2">
-            <label>A Coruna:</label>
-            <input
-              type="checkbox"
-              checked={newProduct.aCorunaStock}
-              onChange={(e) => handleInputChange(e, "aCorunaStock")}
-            />
-          </div>
-          <div className="form-group2">
-            <label>Segovia:</label>
-            <input
-              type="checkbox"
-              checked={newProduct.segoviaStock}
-              onChange={(e) => handleInputChange(e, "segoviaStock")}
-            />
-          </div>
-        </div>
-        {featureValues.map((feature) => (
-          <div key={feature.id} className="form-group feature-value">
-            <label>{feature.name}:</label>
-            <input
-              type="text"
-              value={newProduct.feature_values[feature.id] || ""}
-              onChange={(e) =>
-                handleFeatureValueChange(feature.id, e.target.value)
-              }
-            />
-          </div>
-        ))}
-        <div className="pagination2">
-          <button type="submit">Add Product</button>
-        </div>
-      </form>
+      )}
 
       <h2>Product List</h2>
-      <div className="filter-category">
-        <span>Filter by Category:</span>
-        <select
-          value={selectedCategoryId || ""}
-          onChange={(e) => setSelectedCategoryId(parseInt(e.target.value))}>
-          <option value="">All Categories</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.categoryNameEn}
-            </option>
-          ))}
-        </select>
-      </div>
       <input
         type="text"
         className="search-input"
@@ -451,7 +457,7 @@ const Admin: React.FC = () => {
               <th>Sevilla Stock</th>
               <th>Bilbao Stock</th>
               <th>Cordoba Stock</th>
-              <th>A Coruna Stock</th>
+              <th>Acoruña Stock</th>
               <th>Segovia Stock</th>
               <th>Final Price</th>
               <th>Actions</th>
@@ -514,15 +520,111 @@ const Admin: React.FC = () => {
                       `${product.discount}%`
                     )}
                   </td>
-                  <td>{product.barcelonaStock ? "Yes" : "No"}</td>
-                  <td>{product.murciaStock ? "Yes" : "No"}</td>
-                  <td>{product.valenciaStock ? "Yes" : "No"}</td>
-                  <td>{product.sevillaStock ? "Yes" : "No"}</td>
-                  <td>{product.bilbaoStock ? "Yes" : "No"}</td>
-                  <td>{product.cordobaStock ? "Yes" : "No"}</td>
-                  <td>{product.aCorunaStock ? "Yes" : "No"}</td>
-                  <td>{product.segoviaStock ? "Yes" : "No"}</td>
-                  <td>${product.final_price}</td>
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.barcelonaStock}
+                        onChange={(e) => handleInputChange(e, "barcelonaStock")}
+                      />
+                    ) : product.barcelonaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.murciaStock}
+                        onChange={(e) => handleInputChange(e, "murciaStock")}
+                      />
+                    ) : product.murciaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.sevillaStock}
+                        onChange={(e) => handleInputChange(e, "sevillaStock")}
+                      />
+                    ) : product.sevillaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.valenciaStock}
+                        onChange={(e) => handleInputChange(e, "valenciaStock")}
+                      />
+                    ) : product.valenciaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.bilbaoStock}
+                        onChange={(e) => handleInputChange(e, "bilbaoStock")}
+                      />
+                    ) : product.bilbaoStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.cordobaStock}
+                        onChange={(e) => handleInputChange(e, "cordobaStock")}
+                      />
+                    ) : product.cordobaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.aCorunaStock}
+                        onChange={(e) => handleInputChange(e, "aCorunaStock")}
+                      />
+                    ) : product.aCorunaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>
+                    {editProductId === product.id ? (
+                      <input
+                        type="checkbox"
+                        checked={product.segoviaStock}
+                        onChange={(e) => handleInputChange(e, "segoviaStock")}
+                      />
+                    ) : product.segoviaStock ? (
+                      "Yes"
+                    ) : (
+                      "No"
+                    )}
+                  </td>{" "}
+                  <td>${product.finalPrice}</td>
                   <td>
                     {editProductId === product.id ? (
                       <button
@@ -545,15 +647,17 @@ const Admin: React.FC = () => {
                             final_price: product.final_price,
                           })
                         }>
-                        Save
+                        <IoIosSave />
+
                       </button>
                     ) : (
                       <button onClick={() => handleEditProduct(product.id)}>
-                        Edit
+                        <FaEdit />
+
                       </button>
                     )}
                     <button onClick={() => handleDeleteProduct(product.id)}>
-                      Delete
+                    <FaTrash />
                     </button>
                   </td>
                 </tr>

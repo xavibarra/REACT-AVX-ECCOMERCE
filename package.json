@@ -16,6 +16,7 @@
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.44.3",
+    "axios": "^1.7.2",
     "emailjs-com": "^3.2.0",
     "i18next": "^23.12.1",
     "lodash": "^4.17.21",
@@ -27,6 +28,7 @@
     "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/lodash": "^4.17.6",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

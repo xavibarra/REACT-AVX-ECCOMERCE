@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar.css";
 import { supabaseClient } from "../utils/supabaseClient";
-import FloatCart from "./Float-Cart";
+import FloatCart from "./FloatCart";
 
 function Navbar() {
   const [t, i18n] = useTranslation("global");
@@ -117,6 +117,7 @@ function Navbar() {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
+
 
   const handleCardClick = (productId) => (event) => {
     event.preventDefault();
@@ -347,11 +348,8 @@ function Navbar() {
         categoriesVisible={categoriesVisible}
       />
       <FloatCart
-        className={
-          floatCartVisible
-            ? "float-cart-container"
-            : "float-cart-container-hidden"
-        }
+        className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}
+        setFloatCartVisible={setFloatCartVisible}
       />
     </>
   );
