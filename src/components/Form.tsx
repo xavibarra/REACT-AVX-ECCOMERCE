@@ -32,6 +32,12 @@ function Form() {
         (response) => {
           console.log("SUCCESS!", response.status, response.text);
           alert("Email sent successfully!");
+          setFormData({
+            user_name: "",
+            user_mail: "",
+            user_matter: "",
+            user_message: "",
+          }); // Reset the form fields after successful submission
         },
         (error) => {
           console.log("FAILED...", error);

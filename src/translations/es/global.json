@@ -63,7 +63,8 @@
     "order_name": "Nombre",
     "filter_price_range": "Rango de precios",
     "brands": "Marcas",
-    "button": "Aplicar"
+    "button": "Aplicar",
+    "error": "No hay productos con las características especificadas."
   },
   "card": {
     "button": "Añadir al carrito",

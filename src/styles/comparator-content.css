@@ -173,7 +173,7 @@
 
 /* Estilos del contenedor de añadir título */
 .comparator-add-title-container {
-  padding: 50px 0;  
+  padding: 50px 0;
 }
 
 .comparator-add-title-container h3 {
@@ -402,5 +402,5 @@
   height: 200px;
   position: absolute;
   top: 604px;
-  z-index: 96;
+  z-index: 1;
 }

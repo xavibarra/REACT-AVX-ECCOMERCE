@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 import Navbar2 from "../components/NavBar2";
 import { Product } from "../models/product";
 import "../styles/category.css";
+import { useTranslation } from "react-i18next";
 
 const PAGE_SIZE = 10; // Número de productos por página
 
@@ -23,6 +24,7 @@ const Category = () => {
     "rgba(253, 174, 55, 0.2)"
   );
   const [sortOrder, setSortOrder] = useState<string>("");
+  const [activeSortOrder, setActiveSortOrder] = useState<string>(""); // Estado para rastrear el botón activo
   const [minPrice, setMinPrice] = useState<number>(1); // Valor mínimo del rango de precio
   const [maxPrice, setMaxPrice] = useState<number>(5000); // Valor máximo del rango de precio
   const [brands, setBrands] = useState<Set<string>>(new Set());
@@ -31,7 +33,10 @@ const Category = () => {
   // Estados temporales para los filtros
   const [tempMinPrice, setTempMinPrice] = useState<number>(1);
   const [tempMaxPrice, setTempMaxPrice] = useState<number>(5000);
-  const [tempSelectedBrands, setTempSelectedBrands] = useState<Set<string>>(new Set());
+  const [tempSelectedBrands, setTempSelectedBrands] = useState<Set<string>>(
+    new Set()
+  );
+  const { t } = useTranslation("global");
 
   // Función para cargar productos por categoría y página
   const fetchProductsByCategory = async (page: number, sort: string = "") => {
@@ -63,7 +68,9 @@ const Category = () => {
 
       // Filtrar productos por marcas seleccionadas si hay alguna seleccionada
       const filteredData = selectedBrands.size
-        ? data.filter((product) => selectedBrands.has(product.name.split(" ")[0]))
+        ? data.filter((product) =>
+            selectedBrands.has(product.name.split(" ")[0])
+          )
         : data;
 
       // Actualizar estado con los nuevos productos cargados
@@ -88,7 +95,7 @@ const Category = () => {
           throw new Error("Error al obtener el nombre de la categoría.");
         }
         const data = await response.json();
-        setCategoryName(data.category_name_en);
+        setCategoryName(data.categoryNameEn);
       } catch (error) {
         const err = error as Error;
         setError(
@@ -124,6 +131,7 @@ const Category = () => {
 
   const handleSortOrderChange = (order: string) => {
     setSortOrder(order);
+    setActiveSortOrder(order); // Establecer el botón activo
     fetchProductsByCategory(1, order); // Cargar la primera página con el nuevo orden
   };
 
@@ -183,13 +191,12 @@ const Category = () => {
         <div className="backFilterContainer">
           <div
             className={`buttonBack ${buttonBackExpanded ? "expanded" : ""}`}
-            style={{ backgroundColor: backFilterColor }}
-          >
+            style={{ backgroundColor: backFilterColor }}>
             {buttonBackExpanded && (
               <div className="filterContainer">
                 <div className="priceFilter">
                   <div className="namePrice">
-                    <h3>Price Range</h3>
+                    <h3> {t("category.filter_price_range")}</h3>
                     <p>
                       {formatPrice(tempMinPrice)} - {formatPrice(tempMaxPrice)}
                     </p>{" "}
@@ -213,7 +220,7 @@ const Category = () => {
                   </div>
                 </div>
                 <div className="brandFilter">
-                  <h3>Brands</h3>
+                  <h3> {t("category.brands")}</h3>
                   <div className="brandCheckboxes">
                     {[...brands].map((brand) => (
                       <div key={brand}>
@@ -229,7 +236,7 @@ const Category = () => {
                   </div>
                 </div>
                 <button className="buttonApply" onClick={applyFilters}>
-                  Apply
+                  {t("category.button")}
                 </button>
               </div>
             )}
@@ -240,39 +247,54 @@ const Category = () => {
         </div>
         <button
           className={`buttonFilter ${buttonBackExpanded ? "expanded" : ""}`}
-          onClick={handleFilterButtonClick}
-        ></button>
+          onClick={handleFilterButtonClick}></button>
         {buttonBackExpanded && <div className="blueDiv"></div>}
       </div>
       <Navbar2 />
       <div className="titleContainer">
-        {/* Mostrar solo los títulos de la primera página */}
-        {products.slice(0, PAGE_SIZE).map((product) => (
-          <RepeatedTitle
-            key={product.id}
-            text={product.categories.category_name_en}
-          />
-        ))}
+        {/* Mostrar el título de la categoría */}
+        <RepeatedTitle text={categoryName} />
       </div>
 
       <div className="filterOrder">
-        <button onClick={() => handleSortOrderChange("lowestPrice")}>
-          Lowest price
+        <button
+          onClick={() => handleSortOrderChange("lowestPrice")}
+          className={activeSortOrder === "lowestPrice" ? "active" : ""}>
+          {t("category.order_lowest")}
         </button>
-        <button onClick={() => handleSortOrderChange("highestPrice")}>
-          Highest price
+        <button
+          onClick={() => handleSortOrderChange("highestPrice")}
+          className={activeSortOrder === "highestPrice" ? "active" : ""}>
+          {t("category.order_highest")}
         </button>
-        <button onClick={() => handleSortOrderChange("bestRated")}>
-          Best rated
+        <button
+          onClick={() => handleSortOrderChange("bestRated")}
+          className={activeSortOrder === "bestRated" ? "active" : ""}>
+          {t("category.order_rated")}
         </button>
-        <button onClick={() => handleSortOrderChange("offers")}>Offers</button>
-        <button onClick={() => handleSortOrderChange("name")}>Name</button>
+        <button
+          onClick={() => handleSortOrderChange("offers")}
+          className={activeSortOrder === "offers" ? "active" : ""}>
+          {t("category.order_offers")}
+        </button>
+        <button
+          onClick={() => handleSortOrderChange("name")}
+          className={activeSortOrder === "name" ? "active" : ""}>
+          {t("category.order_name")}
+        </button>
       </div>
-      <div className="categoryProducts">
+      <div
+        className={`categoryProducts ${
+          products.length === 0 ? "noProducts" : ""
+        }`}>
         {/* Mostrar productos de la página actual */}
-        {products.map((product) => (
-          <FlipCard key={product.id} product={product} />
-        ))}
+        {products.length > 0 ? (
+          products.map((product) => (
+            <FlipCard key={product.id} product={product} />
+          ))
+        ) : (
+          <p>{t("category.error")}</p>
+        )}
       </div>
       {/* Información de paginación */}
       <div className="pagination">

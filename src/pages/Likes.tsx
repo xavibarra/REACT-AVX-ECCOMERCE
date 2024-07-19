@@ -7,7 +7,7 @@ import Navbar2 from "../components/NavBar2";
 import "../styles/category.css";
 import { supabaseClient } from "../utils/supabaseClient";
 
-const PAGE_SIZE = 10; // Número de productos por página
+const PAGE_SIZE = 20; // Número de productos por página
 
 const Likes = () => {
   const [userLikes, setUserLikes] = useState<Product[]>([]);
@@ -15,8 +15,8 @@ const Likes = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-
   const [sortOrder, setSortOrder] = useState<string>("");
+  const [activeSortOrder, setActiveSortOrder] = useState<string>(""); // Estado para rastrear el botón activo
 
   // Función para cargar productos por likes y página
   const fetchUserLikes = async (page: number, sort: string = "") => {
@@ -93,6 +93,7 @@ const Likes = () => {
 
   const handleSortOrderChange = (order: string) => {
     setSortOrder(order);
+    setActiveSortOrder(order); // Establecer el botón activo
     fetchUserLikes(1, order); // Cargar la primera página con el nuevo orden
   };
 
@@ -110,17 +111,31 @@ const Likes = () => {
       </div>
 
       <div className="filterOrder">
-        <button onClick={() => handleSortOrderChange("lowestPrice")}>
+        <button
+          onClick={() => handleSortOrderChange("lowestPrice")}
+          className={activeSortOrder === "lowestPrice" ? "active" : ""}>
           Lowest price
         </button>
-        <button onClick={() => handleSortOrderChange("highestPrice")}>
+        <button
+          onClick={() => handleSortOrderChange("highestPrice")}
+          className={activeSortOrder === "highestPrice" ? "active" : ""}>
           Highest price
         </button>
-        <button onClick={() => handleSortOrderChange("bestRated")}>
+        <button
+          onClick={() => handleSortOrderChange("bestRated")}
+          className={activeSortOrder === "bestRated" ? "active" : ""}>
           Best rated
         </button>
-        <button onClick={() => handleSortOrderChange("offers")}>Offers</button>
-        <button onClick={() => handleSortOrderChange("name")}>Name</button>
+        <button
+          onClick={() => handleSortOrderChange("offers")}
+          className={activeSortOrder === "offers" ? "active" : ""}>
+          Offers
+        </button>
+        <button
+          onClick={() => handleSortOrderChange("name")}
+          className={activeSortOrder === "name" ? "active" : ""}>
+          Name
+        </button>
       </div>
       <div className="categoryProducts">
         {/* Mostrar productos de la página actual */}
