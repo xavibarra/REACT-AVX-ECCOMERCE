@@ -27,9 +27,11 @@ const AboutUs = () => {
         <button className="idioma" onClick={() => i18n.changeLanguage("ca")}>
           CA
         </button>
-        <p className="ab-description">{t("home.description1")}</p>
-        <p className="ab-description">{t("description2")}</p>
-        <p className="ab-description lastDescription">{t("description3")}</p>
+        <p className="ab-description">{t("home.about_us.description1")}</p>
+        <p className="ab-description">{t("home.about_us.description2")}</p>
+        <p className="ab-description lastDescription">
+          {t("home.about_us.description3")}
+        </p>
         <button onClick={goToProjectInfo} className="ab-button">
           Know more!
         </button>

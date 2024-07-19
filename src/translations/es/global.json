@@ -24,31 +24,33 @@
   "home": {
     "about_us": {
       "title": "Sobre Nosotros",
-      "description": "¡Bienvenidos a Components Portions! Fundada por entusiastas de la tecnología, nos dedicamos a ofrecer componentes de ordenador de la más alta calidad para ayudarte a construir, actualizar y optimizar tus sistemas. Nuestra amplia selección incluye CPU, GPU, placas base, memoria, soluciones de almacenamiento y más, para aficionados y profesionales.",
+      "description1": "¡Bienvenidos a Components Portions! Fundada por entusiastas de la tecnología, nos dedicamos a ofrecer componentes de ordenador de la más alta calidad para ayudarte a construir, actualizar y optimizar tus sistemas. Nuestra amplia selección incluye CPU, GPU, placas base, memoria, soluciones de almacenamiento y más, para aficionados y profesionales.",
+      "description2": "En Components Portions, creemos en el poder de la tecnología para transformar vidas. Nuestra misión es ofrecer productos premium a precios competitivos, combinados con un servicio al cliente excepcional. Nuestro equipo experto está aquí para guiarte en cada paso de tu compra, asegurándose de que encuentres los componentes perfectos para tus necesidades específicas.",
+      "description3": "Gracias por elegir Components Portions. Nos comprometemos a hacer que tu experiencia de compra sea sencilla y agradable, con envíos rápidos y soporte confiable. ¡Únete a nosotros en nuestro viaje para mejorar el futuro de la informática, un componente a la vez!",
       "button": "¡Saber más!"
+    },
+    "highlighted_offers": {
+      "title": "Ofertas destacadas"
+    },
+    "form": {
+      "title": "¡Nos encantaría saber de ti!",
+      "description": "En AVX components, nos esforzamos por ofrecer productos y servicios de alta calidad para satisfacer las necesidades de nuestros clientes. Tu opinión es importante para nosotros, ya sea una queja, una sugerencia o simplemente compartir tus pensamientos sobre tu experiencia con nosotros.",
+      "title2": "¿Qué queremos saber de ti?",
+      "li1": "¿Tienes alguna pregunta sobre?",
+      "li2": "¿Te gustaría compartir tu experiencia sobre una compra reciente?",
+      "li3": "¿Tienes alguna sugerencia para nuestra tienda online o oferta de productos?",
+      "li4": "¿Necesitas ayuda con un problema técnico o de servicio?",
+      "b1": "nuestros productos o servicios",
+      "b2": "comentarios",
+      "b3": "mejorar",
+      "b4": "ayuda",
+      "final_text": "¡No dudes en ponerte en contacto con nosotros! Tu satisfacción es nuestra prioridad número uno, y estamos aquí para ayudarte en todo lo que podamos.",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "matter": "asunto",
+      "message": "Mensaje",
+      "button": "Enviar"
     }
-  },
-  "highlighted_offers": {
-    "title": "Ofertas destacadas"
-  },
-  "form": {
-    "title": "¡Nos encantaría saber de ti!",
-    "description": "En AVX components, nos esforzamos por ofrecer productos y servicios de alta calidad para satisfacer las necesidades de nuestros clientes. Tu opinión es importante para nosotros, ya sea una queja, una sugerencia o simplemente compartir tus pensamientos sobre tu experiencia con nosotros.",
-    "title2": "¿Qué queremos saber de ti?",
-    "li1": "¿Tienes alguna pregunta sobre?",
-    "li2": "¿Te gustaría compartir tu experiencia sobre una compra reciente?",
-    "li3": "¿Tienes alguna sugerencia para nuestra tienda online o oferta de productos?",
-    "li4": "¿Necesitas ayuda con un problema técnico o de servicio?",
-    "b1": "nuestros productos o servicios",
-    "b2": "comentarios",
-    "b3": "mejorar",
-    "b4": "ayuda",
-    "final_text": "¡No dudes en ponerte en contacto con nosotros! Tu satisfacción es nuestra prioridad número uno, y estamos aquí para ayudarte en todo lo que podamos.",
-    "name": "Nombre",
-    "email": "Correo electrónico",
-    "matter": "asunto",
-    "message": "Mensaje",
-    "button": "Enviar"
   },
   "category": {
     "order_lowest": "Precio más bajo",
