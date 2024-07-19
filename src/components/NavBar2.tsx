@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
-
 import "../styles/navbar2.css";
-import FloatCart from "./Float-Cart";
-
-import useCart from "./useCart";
+import FloatCart from "./FloatCart";
 
 
 function Navbar2() {
