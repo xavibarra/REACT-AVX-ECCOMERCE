@@ -3,6 +3,7 @@ import ProductCard from "../components/ProductCard";
 import "../styles/float.cart.css";
 import { FiShoppingCart } from "react-icons/fi";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import useCart from "../components/useCart"; // Importa el hook personalizado
 import { supabaseClient } from "../utils/supabaseClient";
@@ -88,6 +89,7 @@ const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
     const totalPrice = userCart.reduce((total, product) => {
         return total + (parseFloat(product.finalPrice) * product.quantity);
     }, 0);
+
 
     return (
         <div id="float-cart-container" className={className}>

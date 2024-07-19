@@ -4,11 +4,11 @@
 .categoryProducts {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   row-gap: 50px;
   column-gap: 100px;
   overflow: hidden;
-  padding: 2em 2.5em;
-  justify-content: center;
+  padding: 3em 5em;
 }
 
 /* styles.css */
@@ -32,7 +32,7 @@
 .filterOrder {
   display: flex;
   justify-content: space-between;
-  padding: 0 2.5em;
+  padding: 0 5em;
 }
 
 .filterOrder button {

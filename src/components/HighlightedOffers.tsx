@@ -98,7 +98,6 @@ function HighlightedOffers() {
     setCurrentPage((prevPage) => (prevPage - 1 + totalPages) % totalPages);
   };
 
-  if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
 
   if (products.length === 0) {
