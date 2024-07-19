@@ -1,12 +1,10 @@
-import { useNavigate } from "react-router-dom";
-
 import { useTranslation } from "react-i18next";
-
+import { useNavigate } from "react-router-dom";
 import about from "../assets/img/aboutUs.jpg";
 import "../styles/about-us.css";
 
 const AboutUs = () => {
-  const [t, i18n] = useTranslation("global");
+  const { t } = useTranslation("global");
   const navigate = useNavigate();
 
   const goToProjectInfo = () => {
@@ -18,15 +16,6 @@ const AboutUs = () => {
     <section className="ab-container">
       <div className="ab-description-container">
         <h2>About us</h2>
-        <button className="idioma" onClick={() => i18n.changeLanguage("es")}>
-          ES
-        </button>
-        <button className="idioma" onClick={() => i18n.changeLanguage("en")}>
-          EN
-        </button>
-        <button className="idioma" onClick={() => i18n.changeLanguage("ca")}>
-          CA
-        </button>
         <p className="ab-description">{t("prueba.about")}</p>
         <p className="ab-description">
           At Components Portions, we believe in the power of technology to
