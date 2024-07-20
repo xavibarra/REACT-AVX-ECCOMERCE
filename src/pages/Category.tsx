@@ -317,7 +317,7 @@ const Category = () => {
 };
 
 const RepeatedTitle = ({ text }: { text: string }) => {
-  const repeatedText = new Array(10).fill(text).join("\u00A0\u00A0\u00A0");
+  const repeatedText = new Array(20).fill(text).join("\u00A0\u00A0\u00A0");
 
   return (
     <div className="title">

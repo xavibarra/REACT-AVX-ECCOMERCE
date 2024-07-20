@@ -60,13 +60,18 @@ import { Product } from "../models/product";
 import "../styles/HighlightedOffers.css";
 import FlipCard from "./FlipCard";
 import Loading from "./Loading";
-import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 function HighlightedOffers() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     const fetchOfferProducts = async () => {
@@ -113,11 +118,15 @@ function HighlightedOffers() {
 
   return (
     <section className="highlighted-offers-container">
-      <h2>Highlighted offers</h2>
+      <h2>{t("home.offers")}</h2>
       <div className="carouselContainer">
-        <button onClick={prevSlide} className="carouselButton prevButton"><IoIosArrowDropleftCircle /></button>
+        <button onClick={prevSlide} className="carouselButton prevButton">
+          <IoIosArrowDropleftCircle />
+        </button>
         <div className="carouselInner">
-          <div className="carouselPage" style={{ transform: `translateX(-${currentPage * 100}%)` }}>
+          <div
+            className="carouselPage"
+            style={{ transform: `translateX(-${currentPage * 100}%)` }}>
             {products.map((product, index) => (
               <div className="carouselItem" key={product.id}>
                 <FlipCard product={product} />
@@ -125,7 +134,9 @@ function HighlightedOffers() {
             ))}
           </div>
         </div>
-        <button onClick={nextSlide} className="carouselButton nextButton"><IoIosArrowDroprightCircle /></button>
+        <button onClick={nextSlide} className="carouselButton nextButton">
+          <IoIosArrowDroprightCircle />
+        </button>
       </div>
     </section>
   );

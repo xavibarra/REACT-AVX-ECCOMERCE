@@ -22,6 +22,7 @@
     "favorites": "FAVORITS"
   },
   "home": {
+    "offers": "Ofertes destacades",
     "about_us": {
       "title": "Sobre Nosaltres",
       "description1": "Benvingut a Components Portions! Fundat per entusiastes de la tecnologia, estem dedicats a proporcionar els components de computadora de la més alta qualitat per ajudar-te a construir, actualitzar i optimitzar els teus sistemes. La nostra àmplia selecció inclou CPUs, GPUs, plaques base, memòria, solucions d'emmagatzematge i més, atenen tant aficionats com professionals.",
@@ -68,7 +69,7 @@
   },
   "card": {
     "button": "Afegir a la cistella",
-    "stock": "Disponible a les botigues"
+    "stock": "Disponible a "
   },
   "comparator": {
     "add_component": "Afegir component",
@@ -76,7 +77,9 @@
     "search": "Cerca...",
     "select_category": "Selecciona categoria",
     "price": "Preu",
-    "button_card": "Afegir al comparador"
+    "button_card": "Afegir al comparador",
+    "message_added": "Producte afegit al comparador",
+    "message_error": "No es poden comparar dos objectes de diferents categories"
   },
   "product": {
     "receive": "Rep-ho el",

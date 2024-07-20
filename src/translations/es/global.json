@@ -22,6 +22,7 @@
     "favorites": "FAVORITOS"
   },
   "home": {
+    "offers": "Highlighted offers",
     "about_us": {
       "title": "Sobre Nosotros",
       "description1": "¡Bienvenido a Components Portions! Fundado por entusiastas de la tecnología, estamos dedicados a proporcionar los componentes de computadora de la más alta calidad para ayudarte a construir, actualizar y optimizar tus sistemas. Nuestra amplia selección incluye CPUs, GPUs, placas base, memoria, soluciones de almacenamiento y más, atendiendo tanto a aficionados como a profesionales.",
@@ -76,7 +77,9 @@
     "search": "Buscar...",
     "select_category": "Seleccionar categoría",
     "price": "Precio",
-    "button_card": "Añadir al comparador"
+    "button_card": "Añadir al comparador",
+    "message_added": "Producto añadido al comparador",
+    "message_error": "No se pueden comparar dos objetos de diferentes categorías"
   },
   "product": {
     "receive": "Recíbelo el",
