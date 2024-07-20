@@ -72,10 +72,10 @@ const router = createBrowserRouter([
     element: <ProtectedRoute element={<Admin />} userId={userId} />,
   },
 ]);
-
+const savedLanguage = localStorage.getItem("language") || "en";
 i18next.init({
   interpolation: { escapeValue: false },
-  lng: "en",
+  lng: savedLanguage,
   resources: {
     en: {
       global: global_en,

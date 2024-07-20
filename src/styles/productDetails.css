@@ -1,7 +1,6 @@
 .productDetails {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 30px;
   margin: 100px 50px 0 50px;
@@ -17,7 +16,7 @@
   justify-content: center;
   flex-direction: column;
 }
-.productDetailsDiv img{
+.productDetailsDiv img {
   width: 400px;
 }
 .productDetailsDiv h3 {
@@ -52,19 +51,18 @@
   margin: 5px 0 25px 70px;
 }
 
-.cardAddCartSection{
+.cardAddCartSection {
   display: flex;
-    margin-left: 55px;
-    height: 20em;
-    flex-direction: column;
-    justify-content: space-between;
+  margin-left: 55px;
+  height: 20em;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.categoryDescription{
-    margin-left: 55px;
-
+.categoryDescription {
+  margin-left: 55px;
 }
 
-.reviews{
+.reviews {
   margin: 3em;
 }

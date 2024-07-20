@@ -19,7 +19,7 @@ const CardAddCartProduct = ({ tiendas, price }) => {
     } as const; // Asegura que los tipos sean tratados como literales específicos
 
     const formattedDeliveryDay = deliveryDay.toLocaleDateString(
-      "es-ES",
+      "en-EN",
       options
     );
 

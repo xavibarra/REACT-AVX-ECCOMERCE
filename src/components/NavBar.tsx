@@ -9,7 +9,6 @@ import FloatCart from "./FloatCart";
 import { FloatCartContext } from "./SetFloatCartVisibleContext";
 
 function Navbar() {
-  const [t, i18n] = useTranslation("global");
   const [user, setUser] = useState({});
   const context = useContext(FloatCartContext);
   const location = useLocation();

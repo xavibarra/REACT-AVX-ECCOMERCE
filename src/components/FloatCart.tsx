@@ -43,7 +43,13 @@ const FloatCart = ({ className }: FloatCartProps) => {
       }
 
       const userId = userData.user.id;
+      const userId = userData.user.id;
 
+      const { data: profileData, error: profileError } = await supabaseClient
+        .from("profiles")
+        .select("cart")
+        .eq("id", userId)
+        .single();
       const { data: profileData, error: profileError } = await supabaseClient
         .from("profiles")
         .select("cart")
@@ -53,10 +59,18 @@ const FloatCart = ({ className }: FloatCartProps) => {
       if (profileError) {
         throw new Error(profileError.message);
       }
+      if (profileError) {
+        throw new Error(profileError.message);
+      }
 
       const cartItems: string[] = profileData.cart || [];
       const productIndex = cartItems.indexOf(productId);
+      const cartItems: string[] = profileData.cart || [];
+      const productIndex = cartItems.indexOf(productId);
 
+      if (productIndex !== -1) {
+        cartItems.splice(productIndex, 1); // Eliminar solo una instancia del producto
+      }
       if (productIndex !== -1) {
         cartItems.splice(productIndex, 1); // Eliminar solo una instancia del producto
       }
@@ -65,7 +79,14 @@ const FloatCart = ({ className }: FloatCartProps) => {
         .from("profiles")
         .update({ cart: cartItems })
         .eq("id", userId);
+      const { error } = await supabaseClient
+        .from("profiles")
+        .update({ cart: cartItems })
+        .eq("id", userId);
 
+      if (error) {
+        throw new Error(error.message);
+      }
       if (error) {
         throw new Error(error.message);
       }
@@ -77,12 +98,16 @@ const FloatCart = ({ className }: FloatCartProps) => {
   };
 
   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const goToCart = () => {
     navigate("/cart");
     setFloatCartVisible(false);
   };
 
+  const closeFloatCart = () => {
+    setFloatCartVisible(false);
+  };
   const closeFloatCart = () => {
     setFloatCartVisible(false);
   };
