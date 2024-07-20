@@ -1,38 +1,39 @@
 #loading {
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Asegura que el contenido esté centrado verticalmente */
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Asegura que el contenido esté centrado verticalmente */
+  height: 100vh;
+  background-color: var(--color-secondary);
+  animation: backgroundFlash 3s ease infinite;
+  position: relative;
+  z-index: 99;
+}
+
+@keyframes backgroundFlash {
+  0% {
     background-color: var(--color-secondary);
-    animation: backgroundFlash 3s ease infinite;
   }
-  
-  @keyframes backgroundFlash {
-    0% {
-      background-color: var(--color-secondary);
-    }
-    50% {
-      background-color: #212431ee;
-    }
-    100% {
-      background-color: var(--color-secondary);
-    }
+  50% {
+    background-color: #212431ee;
   }
-  
-  #loading svg {
-    width: 50%;
+  100% {
+    background-color: var(--color-secondary);
   }
-  
-  .pathAnimate {
-    animation: colorChange 0.5s forwards;
+}
+
+#loading svg {
+  width: 50%;
+}
+
+.pathAnimate {
+  animation: colorChange 0.5s forwards;
+}
+
+@keyframes colorChange {
+  from {
+    fill: #fff;
   }
-  
-  @keyframes colorChange {
-    from {
-      fill: #fff;
-    }
-    to {
-      fill: var(--color-primary);
-    }
+  to {
+    fill: var(--color-primary);
   }
-  
+}

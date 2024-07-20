@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
+
 import CardAddCartProduct from "../components/CardAddCartProduct";
 import CharacteristicProductDetails from "../components/CharacteristicProductDetails";
 import Footer from "../components/Footer";
@@ -16,6 +17,7 @@ import "../styles/productDetails.css";
 import "../styles/reviewRating.css";
 
 import { createClient } from "@supabase/supabase-js";
+import { useTranslation } from "react-i18next";
 import { supabaseClient } from "../utils/supabaseClient";
 
 const supabase = createClient(
@@ -41,7 +43,7 @@ const ProductPage = () => {
   });
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const { t, i18n } = useTranslation("global");
   const [userRating, setUserRating] = useState<number>(0);
   const [userReview, setUserReview] = useState<string>("");
 
@@ -333,23 +335,41 @@ const ProductPage = () => {
                 label={"RATING"}
                 value={generateStars(product?.rating || 0)}
               />
-              {featuresValues.map(
-                (featureValue) =>
+              {featuresValues.map((featureValue) => {
+                const featureName =
+                  i18n.language === "en"
+                    ? featureValue.feature_name_en
+                    : i18n.language === "es"
+                    ? featureValue.feature_name_es
+                    : featureValue.feature_name_ca;
+
+                return (
                   featureValue.value !== null && (
                     <CharacteristicProductDetails
                       key={featureValue.id_feature}
-                      label={featureValue.feature_name_es}
+                      label={featureName}
                       value={featureValue.value}
                     />
                   )
-              )}
+                );
+              })}
             </div>
           ) : (
             <p>No product found with ID {productId}</p>
           )}
         </div>
         <div className="categoryDescription">
-          {category ? <p>{category.categoryDescriptionEn}</p> : <Loading />}
+          {category ? (
+            <p>
+              {i18n.language === "en"
+                ? product.categories?.category_description_en
+                : i18n.language === "es"
+                ? product.categories?.category_description_es
+                : product.categories?.category_description_ca}
+            </p>
+          ) : (
+            <Loading />
+          )}
         </div>
       </div>
       <div className="reviews">
