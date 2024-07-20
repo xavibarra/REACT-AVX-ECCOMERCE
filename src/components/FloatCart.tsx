@@ -42,7 +42,7 @@ const FloatCart = ({ className }: FloatCartProps) => {
         throw new Error(userError.message);
       }
 
-      const userId = userData.user.id;
+  const userId = userData.user.id;
 
       const { data: profileData, error: profileError } = await supabaseClient
         .from("profiles")
