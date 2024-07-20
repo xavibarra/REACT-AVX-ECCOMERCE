@@ -89,11 +89,16 @@
   },
   "profile": {
     "name": "Nombre",
-    "user": "Nombre de usuario",
-    "email": "Correo electrónico",
+    "user": "Usuario",
+    "email": "Correo",
+    "header": "Tu perfil",
     "button": "Cerrar sesión",
     "title": "Mis pedidos",
-    "orders_error": "No hay pedidos en este momento"
+    "orders_error": "No hay pedidos en este momento",
+    "favorites": "Tus productos favoritos",
+    "no_favorites": "Todavía no tienes ningún producto favorito",
+    "cart": "Tu carrito",
+    "no_cart": "Todavía no tienes ningún producto en tu carrito"
   },
   "cart_float": {
     "title": "Mi carrito",

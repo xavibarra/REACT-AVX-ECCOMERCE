@@ -92,9 +92,14 @@
     "name": "Name",
     "user": "User name",
     "email": "Email",
+    "header": "Your profile",
     "button": "Sing Out",
     "title": "My orders",
-    "orders_error": "There are no orders at this time"
+    "orders_error": "There are no orders at this time",
+    "favorites": "Your favorites products",
+    "no_favorites": "You don't have any products in favorites yet",
+    "cart": "Your cart",
+    "no_cart": "You don't have any products in your cart yet"
   },
   "cart_float": {
     "title": "My cart",

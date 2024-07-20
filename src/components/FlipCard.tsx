@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   FaHeart,
   FaRegHeart,
@@ -10,7 +11,6 @@ import { FaCodeCompare, FaShop } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "../styles/flip-card.css";
 import { supabaseClient } from "../utils/supabaseClient";
-import { useTranslation } from "react-i18next";
 
 interface Product {
   id: string;
@@ -34,7 +34,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const [user, setUser] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const navigate = useNavigate();
-  const { t } = useTranslation("global");
+  const { t, i18n } = useTranslation("global");
 
   useEffect(() => {
     const storeList = document.getElementById("store-list");
@@ -234,7 +234,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick}>
+      onClick={handleCardClick}
+    >
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-500">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
@@ -272,7 +273,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
               onClick={(event) => {
                 handleAddToCartClick(event);
                 FloatCartAppear();
-              }}>
+              }}
+            >
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
@@ -282,15 +284,23 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
               className="favIcon"
               onClick={(event) => {
                 handleLikeClick(event);
-              }}>
+              }}
+            >
               {isLiked ? <FaHeart /> : <FaRegHeart />}
             </div>
           </div>
         </div>
         <div className="flip-card-back absolute flex flex-col justify-between w-full h-full bg-white shadow-md transform rotate-y-180">
           <div className="descriptionProduct">
-            <p>{product.categories?.category_description_en}</p>
+            <p>
+              {i18n.language === "en"
+                ? product.categories?.category_description_en
+                : i18n.language === "es"
+                ? product.categories?.category_description_es
+                : product.categories?.category_description_ca}
+            </p>
           </div>
+
           <div className="infoCardBack">
             <div className="stock">
               <FaShop />
@@ -298,7 +308,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
             <div
               className="overflow-y-auto hide-scrollbar relative cities"
-              id="store-list">
+              id="store-list"
+            >
               <p className="card-city list-none my-1 text-left mx-2 flex items-center">
                 {formatCityList()}.
               </p>
@@ -308,7 +319,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             <div className="bottomCard">
               <button
                 className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-                onClick={handleAddToCartClick}>
+                onClick={handleAddToCartClick}
+              >
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
@@ -318,7 +330,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
                 className="favIcon"
                 onClick={(event) => {
                   handleLikeClick(event);
-                }}>
+                }}
+              >
                 {isLiked ? <FaHeart /> : <FaRegHeart />}
               </div>
             </div>

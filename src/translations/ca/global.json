@@ -89,11 +89,16 @@
   },
   "profile": {
     "name": "Nom",
-    "user": "Nom d'usuari",
-    "email": "Correu electrònic",
+    "user": "Usuari",
+    "email": "Correu",
+    "header": "El teu perfil",
     "button": "Tancar sessió",
     "title": "Les meves comandes",
-    "orders_error": "No hi ha comandes en aquest moment"
+    "orders_error": "No hi ha comandes en aquest moment",
+    "favorites": "Els teus productes favorits",
+    "no_favorites": "Encara no tens cap producte a favorits",
+    "cart": "La teva cistella",
+    "no_cart": "Encara no tens cap producte a la cistella"
   },
   "cart_float": {
     "title": "La meva cistella",
