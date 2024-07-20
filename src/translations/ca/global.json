@@ -21,6 +21,29 @@
     "ram_memory": "MEMÒRIA RAM",
     "favorites": "FAVORITS"
   },
+  "daysOfWeek": {
+    "Sunday": "Diumenge",
+    "Monday": "Dilluns",
+    "Tuesday": "Dimarts",
+    "Wednesday": "Dimecres",
+    "Thursday": "Dijous",
+    "Friday": "Divendres",
+    "Saturday": "Dissabte"
+  },
+  "months": {
+    "January": "Gener",
+    "February": "Febrer",
+    "March": "Març",
+    "April": "Abril",
+    "May": "Maig",
+    "June": "Juny",
+    "July": "Juliol",
+    "August": "Agost",
+    "September": "Setembre",
+    "October": "Octubre",
+    "November": "Novembre",
+    "December": "Desembre"
+  },
   "home": {
     "offers": "Ofertes destacades",
     "about_us": {
@@ -40,7 +63,7 @@
       "li1": "Tens alguna pregunta sobre",
       "li21": "Et agradaria compartir el teu ",
       "li22": " sobre una compra recent?",
-      "li31": "Tens alguna suggerència per a",
+      "li31": "Tens alguna suggerència per a ",
       "li32": "la nostra botiga en línia o les nostres ofertes de productes?",
       "li41": "Necessites ",
       "li42": "amb un problema tècnic o de servei?",
@@ -77,18 +100,22 @@
     "search": "Cerca...",
     "select_category": "Selecciona categoria",
     "price": "Preu",
+    "rating": "Valoració",
     "button_card": "Afegir al comparador",
     "message_added": "Producte afegit al comparador",
-    "message_error": "No es poden comparar dos objectes de diferents categories"
+    "message_error": "No es poden comparar dos objectes de diferents categories",
+    "see_product": "Veure el producte"
   },
   "product": {
-    "receive": "Rep-ho el",
+    "receive": "T'arribarà el",
     "shipping": "Enviament: Gratuït",
     "stock": "Disponible a les botigues",
     "title": "Opinions",
     "button_review": "Afegir ressenya",
     "text_review": "Escriu la teva ressenya aquí...",
-    "like": "M'agrada"
+    "like": "M'agrada",
+    "no_review": "Aquest producte encara no té cap valoració",
+    "add": "Afegir a la cistella"
   },
   "profile": {
     "name": "Nom",

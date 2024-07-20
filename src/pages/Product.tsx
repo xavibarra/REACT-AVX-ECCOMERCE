@@ -18,6 +18,7 @@ import "../styles/reviewRating.css";
 
 import { createClient } from "@supabase/supabase-js";
 import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import { supabaseClient } from "../utils/supabaseClient";
 
 const supabase = createClient(
@@ -310,6 +311,7 @@ const ProductPage = () => {
   return (
     <section>
       <NavBar2 />
+      <LanguageSwitcher />
       <div className="productDetails">
         <div className="productDetailsDiv">
           <img src={product?.imageUrl} alt="" />
@@ -328,11 +330,11 @@ const ProductPage = () => {
           {product ? (
             <div>
               <CharacteristicProductDetails
-                label={"PRICE"}
+                label={t("comparator.price")}
                 value={`${finalPrice}€`}
               />
               <CharacteristicProductDetails
-                label={"RATING"}
+                label={t("comparator.rating")}
                 value={generateStars(product?.rating || 0)}
               />
               {featuresValues.map((featureValue) => {
@@ -402,13 +404,13 @@ const ProductPage = () => {
             </div>
           </div>
           <button className="add-review-btn" onClick={handleReviewSubmit}>
-            Add Review
+            {t("product.button_review")}
           </button>
         </div>
         <div className="add-review-section">
           <StarRating rating={userRating} setRating={setUserRating} />
           <textarea
-            placeholder="Write your review here..."
+            placeholder={t("product.text_review")}
             value={userReview}
             onChange={(e) => setUserReview(e.target.value)}
           />
@@ -444,7 +446,7 @@ const ProductPage = () => {
             );
           })
         ) : (
-          <p>This product does not yet have reviews</p>
+          <p>{t("product.no_review")}</p>
         )}
       </div>
       <Footer />

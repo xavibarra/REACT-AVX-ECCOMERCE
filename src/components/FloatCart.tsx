@@ -1,11 +1,11 @@
+import { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FiShoppingCart } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import "../styles/float.cart.css";
-import { FiShoppingCart } from "react-icons/fi";
-import Loading from "./Loading";
-import { IoClose } from "react-icons/io5";
 import { supabaseClient } from "../utils/supabaseClient";
-import { useEffect, useContext, useState } from "react";
 import { FloatCartContext } from "./SetFloatCartVisibleContext";
 
 interface Product {
@@ -17,7 +17,6 @@ interface Product {
   name: string;
   [key: string]: any;
 }
-import { useTranslation } from "react-i18next";
 
 interface FloatCartProps {
   className?: string;
@@ -26,10 +25,11 @@ interface FloatCartProps {
 const FloatCart = ({ className }: FloatCartProps) => {
   const context = useContext(FloatCartContext);
   if (!context) {
-    throw new Error('FloatCart must be used within a FloatCartProvider');
+    throw new Error("FloatCart must be used within a FloatCartProvider");
   }
 
-  const { isFloatCartVisible, setFloatCartVisible, userCart, fetchCart } = context;
+  const { isFloatCartVisible, setFloatCartVisible, userCart, fetchCart } =
+    context;
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation("global");
 
@@ -39,12 +39,13 @@ const FloatCart = ({ className }: FloatCartProps) => {
 
   const removeFromCart = async (productId: string) => {
     try {
-      const { data: userData, error: userError } = await supabaseClient.auth.getUser();
+      const { data: userData, error: userError } =
+        await supabaseClient.auth.getUser();
       if (userError) {
         throw new Error(userError.message);
       }
 
-  const userId = userData.user.id;
+      const userId = userData.user.id;
 
       const { data: profileData, error: profileError } = await supabaseClient
         .from("profiles")
@@ -89,16 +90,19 @@ const FloatCart = ({ className }: FloatCartProps) => {
     setFloatCartVisible(false);
   };
 
-  if (loading) { // Asegúrate de que "loading" esté chequeando el estado de carga correcto
-    return <Loading />;
-  }
-
   const totalPrice = userCart.reduce((total, product) => {
-    return total + (parseFloat(product.finalPrice) * product.quantity);
+    return total + parseFloat(product.finalPrice) * product.quantity;
   }, 0);
 
   return (
-    <div id="float-cart-container" className={isFloatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}>
+    <div
+      id="float-cart-container"
+      className={
+        isFloatCartVisible
+          ? "float-cart-container"
+          : "float-cart-container-hidden"
+      }
+    >
       <div className="float-cart-title-container">
         <div>
           <h5>{t("cart_float.title")}</h5>
@@ -118,7 +122,11 @@ const FloatCart = ({ className }: FloatCartProps) => {
           </div>
         ) : (
           userCart.map((product, index) => (
-            <ProductCard key={index} product={product} onRemove={removeFromCart} />
+            <ProductCard
+              key={index}
+              product={product}
+              onRemove={removeFromCart}
+            />
           ))
         )}
       </div>
@@ -131,7 +139,9 @@ const FloatCart = ({ className }: FloatCartProps) => {
             <p>{userCart[0]?.deliveryDate}</p>
             <div className="float-cart-total-container">
               <div className="float-cart-total">Total:</div>
-              <div><h6>{totalPrice.toFixed(2)}€</h6></div>
+              <div>
+                <h6>{totalPrice.toFixed(2)}€</h6>
+              </div>
             </div>
           </>
         )}

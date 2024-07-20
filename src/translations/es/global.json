@@ -21,6 +21,29 @@
     "ram_memory": "MEMORIA RAM",
     "favorites": "FAVORITOS"
   },
+  "daysOfWeek": {
+    "Sunday": "Domingo",
+    "Monday": "Lunes",
+    "Tuesday": "Martes",
+    "Wednesday": "Miércoles",
+    "Thursday": "Jueves",
+    "Friday": "Viernes",
+    "Saturday": "Sábado"
+  },
+  "months": {
+    "January": "Enero",
+    "February": "Febrero",
+    "March": "Marzo",
+    "April": "Abril",
+    "May": "Mayo",
+    "June": "Junio",
+    "July": "Julio",
+    "August": "Agosto",
+    "September": "Septiembre",
+    "October": "Octubre",
+    "November": "Noviembre",
+    "December": "Diciembre"
+  },
   "home": {
     "offers": "Highlighted offers",
     "about_us": {
@@ -40,7 +63,7 @@
       "li1": "¿Tienes alguna pregunta sobre",
       "li21": "¿Te gustaría compartir tu ",
       "li22": " sobre una compra reciente?",
-      "li31": "¿Tienes alguna sugerencia para",
+      "li31": "¿Tienes alguna sugerencia para ",
       "li32": "nuestra tienda en línea o nuestras ofertas de productos?",
       "li41": "¿Necesitas ",
       "li42": "con un problema técnico o de servicio?",
@@ -77,9 +100,12 @@
     "search": "Buscar...",
     "select_category": "Seleccionar categoría",
     "price": "Precio",
+    "rating": "Valoración",
     "button_card": "Añadir al comparador",
     "message_added": "Producto añadido al comparador",
-    "message_error": "No se pueden comparar dos objetos de diferentes categorías"
+    "message_error": "No se pueden comparar dos objetos de diferentes categorías",
+    "see_product": "Ver el producto",
+    "no_review": "This product does not yet have reviews"
   },
   "product": {
     "receive": "Recíbelo el",
@@ -88,7 +114,8 @@
     "title": "Opiniones",
     "button_review": "Añadir reseña",
     "text_review": "Escribe tu reseña aquí...",
-    "like": "Me gusta"
+    "like": "Me gusta",
+    "add": "Añadir al carrito"
   },
   "profile": {
     "name": "Nombre",
