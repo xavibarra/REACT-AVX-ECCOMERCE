@@ -7,7 +7,6 @@ import "../styles/navbar.css";
 import { supabaseClient } from "../utils/supabaseClient";
 import FloatCart from "./FloatCart";
 import { FloatCartContext } from "./SetFloatCartVisibleContext";
-import { useTranslation } from "react-i18next";
 
 function Navbar() {
   const [user, setUser] = useState({});
