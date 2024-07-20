@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaTruck } from "react-icons/fa";
 import { FaShop } from "react-icons/fa6";
 import "../styles/cardAddCartProduct.css";
 
 const CardAddCartProduct = ({ tiendas, price }) => {
   const [deliveryDate, setDeliveryDate] = useState("");
+  const { t } = useTranslation("global");
 
   useEffect(() => {
     // Calcular la fecha tres días posteriores al actual
@@ -37,10 +39,12 @@ const CardAddCartProduct = ({ tiendas, price }) => {
         </div>
         <div className="cardAddCartSubContainer">
           <div className="infoTitle">
-            <p>Shipping: Free</p>
+            <p>{t("product.shipping")}</p>
           </div>
           <div>
-            <p className="text-primary-color">Receive it on {deliveryDate}</p>
+            <p className="text-primary-color">
+              {t("product.receive")} {deliveryDate}
+            </p>
           </div>
         </div>
       </div>
@@ -50,7 +54,7 @@ const CardAddCartProduct = ({ tiendas, price }) => {
         </div>
         <div>
           <div className="cardAddCartSubContainer infoTitle">
-            <p>Available in stores:</p>
+            <p>{t("product.stock")}</p>
           </div>
           <div>
             <p className="text-primary-color">{tiendas.join(", ")}</p>
@@ -59,7 +63,7 @@ const CardAddCartProduct = ({ tiendas, price }) => {
       </div>
       <div className="cardAddCartButtonContainer">
         <button className="bg-primary-color cardAddCartButton">
-          Add to cart
+          {t("product.add")}
         </button>
       </div>
     </aside>

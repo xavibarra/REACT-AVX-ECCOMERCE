@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
-import BurgerMenu from "../components/BurgerMenu";
 import InfoTecnologies from "../components/InfoTecnologies";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import Navbar2 from "../components/NavBar2";
 import ProjectInfoContent from "../components/ProjectInfoContent";
 // TODO DISSENY
@@ -9,6 +9,7 @@ const ProjectInfo = () => {
   return (
     <>
       <Navbar2 />
+      <LanguageSwitcher />
       <ProjectInfoContent />
       <InfoTecnologies />
       <Footer />
@@ -16,6 +17,4 @@ const ProjectInfo = () => {
   );
 };
 
-
 export default ProjectInfo;
-

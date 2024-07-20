@@ -21,6 +21,29 @@
     "ram_memory": "RAM MEMORY",
     "favorites": "FAVORITES"
   },
+  "daysOfWeek": {
+    "Sunday": "Sunday",
+    "Monday": "Monday",
+    "Tuesday": "Tuesday",
+    "Wednesday": "Wednesday",
+    "Thursday": "Thursday",
+    "Friday": "Friday",
+    "Saturday": "Saturday"
+  },
+  "months": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December"
+  },
   "home": {
     "offers": "Ofertas destacadas",
     "about_us": {
@@ -78,9 +101,11 @@
     "search": "Search...",
     "select_category": "Select Category",
     "price": "Price",
+    "rating": "Rating",
     "button_card": "Add to comparator",
     "message_added": "Product added to comparator",
-    "message_error": "Cannot compare two objects from different categories"
+    "message_error": "Cannot compare two objects from different categories",
+    "see_product": "See product"
   },
   "product": {
     "receive": "Receive it on",
@@ -89,7 +114,9 @@
     "title": "Opinions",
     "button_review": "Add review",
     "text_review": "Write your review here...",
-    "like": "Like"
+    "like": "Like",
+    "no_review": "Este producto aún no tiene valoraciones",
+    "add": "Add cart"
   },
   "profile": {
     "name": "Name",

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import CartCarousel from "../components/CartCarousel";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import LikesCarousel from "../components/LikesCarousel";
 import Loading from "../components/Loading";
 import Navbar2 from "../components/NavBar2";
@@ -109,6 +110,7 @@ const Profile = () => {
                 <p>Loading favorites...</p>
               )}
             </div>
+            <LanguageSwitcher />
           </div>
         ) : (
           <Loading />

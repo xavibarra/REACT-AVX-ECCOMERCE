@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { supabaseClient } from "../utils/supabaseClient";
-import ProductCard from "../components/ProductCard";
-import "../styles/cart.css";
+import { useTranslation } from "react-i18next";
 import { FaTrash } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
-import Navbar2 from "../components/NavBar2";
-import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import Loading from "../components/Loading";
-import { useTranslation } from "react-i18next";
+import Navbar2 from "../components/NavBar2";
+import ProductCard from "../components/ProductCard";
+import "../styles/cart.css";
+import { supabaseClient } from "../utils/supabaseClient";
 
 const Cart = () => {
   const [userCart, setUserCart] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t } = useTranslation("global");
+  const { t, i18n } = useTranslation("global");
+  const [formattedDeliveryDate, setFormattedDeliveryDate] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -56,42 +58,9 @@ const Cart = () => {
           }
           const productData = await response.json();
 
-          // Generar una fecha de entrega fija de 3 días desde hoy
-          const deliveryDays = 3;
-          const deliveryDate = new Date();
-          deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
-
-          // Formatear la fecha
-          const daysOfWeek = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-          ];
-          const months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-          ];
-          const formattedDeliveryDate = `Receive it on ${
-            daysOfWeek[deliveryDate.getDay()]
-          }, ${months[deliveryDate.getMonth()]} ${deliveryDate.getDate()}`;
-
           return {
             ...productData,
-            deliveryDate: formattedDeliveryDate,
+            deliveryDate: formattedDeliveryDate, // Placeholder, será actualizado en el efecto
             quantity: itemCounts[productId],
           };
         });
@@ -106,7 +75,46 @@ const Cart = () => {
     }
 
     fetchData();
-  }, []);
+  }, [formattedDeliveryDate]); // Actualizar cuando formattedDeliveryDate cambie
+
+  useEffect(() => {
+    // Generar una fecha de entrega fija de 3 días desde hoy
+    const deliveryDays = 3;
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
+
+    // Obtener los días de la semana y meses traducidos
+    const daysOfWeek = [
+      t("daysOfWeek.Sunday"),
+      t("daysOfWeek.Monday"),
+      t("daysOfWeek.Tuesday"),
+      t("daysOfWeek.Wednesday"),
+      t("daysOfWeek.Thursday"),
+      t("daysOfWeek.Friday"),
+      t("daysOfWeek.Saturday"),
+    ];
+    const months = [
+      t("months.January"),
+      t("months.February"),
+      t("months.March"),
+      t("months.April"),
+      t("months.May"),
+      t("months.June"),
+      t("months.July"),
+      t("months.August"),
+      t("months.September"),
+      t("months.October"),
+      t("months.November"),
+      t("months.December"),
+    ];
+
+    // Formatear la fecha
+    const newFormattedDeliveryDate = `${t("product.receive")} ${
+      daysOfWeek[deliveryDate.getDay()]
+    }, ${months[deliveryDate.getMonth()]} ${deliveryDate.getDate()}`;
+
+    setFormattedDeliveryDate(newFormattedDeliveryDate);
+  }, [i18n.language, t]); // Recalcular la fecha cuando cambie el idioma
 
   // Calcular el precio total de todos los productos en el carrito
   const totalPrice = userCart.reduce((total, product) => {
@@ -211,7 +219,7 @@ const Cart = () => {
   if (loading) {
     return (
       <p>
-        <Loading></Loading>
+        <Loading />
       </p>
     );
   }
@@ -232,14 +240,16 @@ const Cart = () => {
               userCart.length === 0
                 ? "cart-empty-cart-container"
                 : "cart-empty-cart-container-hidden"
-            }>
+            }
+          >
             <h5>{t("cart.title")}</h5>
             <FiShoppingCart className="cart-icon-cart" />
           </div>
           <div
             className={
               userCart.length === 0 ? "cart-items-hidden" : "cart-items"
-            }>
+            }
+          >
             {userCart.map((product, index) => (
               <ProductCard
                 key={index}
@@ -250,7 +260,8 @@ const Cart = () => {
             <div
               className={
                 userCart.length === 0 ? "cart-actions-hidden" : "cart-actions"
-              }>
+              }
+            >
               <button onClick={goToCategories}>
                 <p>{t("cart.button_keep")}</p>
               </button>
@@ -264,7 +275,7 @@ const Cart = () => {
         <div className="cart-summary">
           <h2>{t("cart_float.summary")}</h2>
           {userCart.length === 0 ? (
-            <p>There ara no items in the cart</p>
+            <p>{t("cart.no_items")}</p>
           ) : (
             <>
               <p>{userCart[0]?.deliveryDate}</p>
@@ -276,6 +287,7 @@ const Cart = () => {
           </button>
         </div>
       </div>
+      <LanguageSwitcher />
       <Footer />
     </>
   );
