@@ -6,8 +6,9 @@ import Loading from "../components/Loading";
 import Navbar2 from "../components/NavBar2";
 import "../styles/category.css";
 import { supabaseClient } from "../utils/supabaseClient";
+import { useTranslation } from "react-i18next";
 
-const PAGE_SIZE = 10; // Número de productos por página
+const PAGE_SIZE = 20; // Número de productos por página
 
 const Likes = () => {
   const [userLikes, setUserLikes] = useState<Product[]>([]);
@@ -15,8 +16,9 @@ const Likes = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-
   const [sortOrder, setSortOrder] = useState<string>("");
+  const [activeSortOrder, setActiveSortOrder] = useState<string>(""); // Estado para rastrear el botón activo
+  const { t } = useTranslation("global");
 
   // Función para cargar productos por likes y página
   const fetchUserLikes = async (page: number, sort: string = "") => {
@@ -93,6 +95,7 @@ const Likes = () => {
 
   const handleSortOrderChange = (order: string) => {
     setSortOrder(order);
+    setActiveSortOrder(order); // Establecer el botón activo
     fetchUserLikes(1, order); // Cargar la primera página con el nuevo orden
   };
 
@@ -104,29 +107,48 @@ const Likes = () => {
       <Navbar2 />
       <div className="titleContainer">
         {/* Mostrar solo los títulos de la primera página */}
-        {userLikes.slice(0, PAGE_SIZE).map((product) => (
-          <RepeatedTitle key={product.id} text={"FAVORITES"} />
-        ))}
+        <RepeatedTitle text={t("categories.favorites")} />
       </div>
 
       <div className="filterOrder">
-        <button onClick={() => handleSortOrderChange("lowestPrice")}>
-          Lowest price
+        <button
+          onClick={() => handleSortOrderChange("lowestPrice")}
+          className={activeSortOrder === "lowestPrice" ? "active" : ""}>
+          {t("category.order_lowest")}
         </button>
-        <button onClick={() => handleSortOrderChange("highestPrice")}>
-          Highest price
+        <button
+          onClick={() => handleSortOrderChange("highestPrice")}
+          className={activeSortOrder === "highestPrice" ? "active" : ""}>
+          {t("category.order_highest")}
         </button>
-        <button onClick={() => handleSortOrderChange("bestRated")}>
-          Best rated
+        <button
+          onClick={() => handleSortOrderChange("bestRated")}
+          className={activeSortOrder === "bestRated" ? "active" : ""}>
+          {t("category.order_rated")}
         </button>
-        <button onClick={() => handleSortOrderChange("offers")}>Offers</button>
-        <button onClick={() => handleSortOrderChange("name")}>Name</button>
+        <button
+          onClick={() => handleSortOrderChange("offers")}
+          className={activeSortOrder === "offers" ? "active" : ""}>
+          {t("category.order_offers")}
+        </button>
+        <button
+          onClick={() => handleSortOrderChange("name")}
+          className={activeSortOrder === "name" ? "active" : ""}>
+          {t("category.order_name")}
+        </button>
       </div>
-      <div className="categoryProducts">
+      <div
+        className={`categoryProducts ${
+          userLikes.length === 0 ? "noProducts" : ""
+        }`}>
         {/* Mostrar productos de la página actual */}
-        {userLikes.map((product) => (
-          <FlipCard key={product.id} product={product} />
-        ))}
+        {userLikes.length === 0 ? (
+          <p>{t("category.error")}</p>
+        ) : (
+          userLikes.map((product) => (
+            <FlipCard key={product.id} product={product} />
+          ))
+        )}
       </div>
       {/* Información de paginación */}
       <div className="pagination">
@@ -149,7 +171,7 @@ const Likes = () => {
 };
 
 const RepeatedTitle = ({ text }: { text: string }) => {
-  const repeatedText = new Array(10).fill(text).join("\u00A0\u00A0\u00A0");
+  const repeatedText = new Array(20).fill(text).join("\u00A0\u00A0\u00A0");
 
   return (
     <div className="title">

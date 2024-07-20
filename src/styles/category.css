@@ -18,6 +18,11 @@
   overflow: hidden;
 }
 
+.filterOrder button.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
 .title {
   font-size: 32px;
   font-weight: bold;
@@ -283,4 +288,18 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
+}
+
+.noProductsMessage {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+}
+.noProducts {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
 }

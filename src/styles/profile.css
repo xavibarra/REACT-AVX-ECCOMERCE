@@ -1,10 +1,10 @@
-.formCard {
-  margin: 3em 11em !important;
-}
 .profile {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+.profileCard {
+  margin: 5em 20em !important;
 }
 .profile-information-container {
   display: flex;
@@ -48,4 +48,13 @@
   height: 20%;
   margin-left: 10%;
   margin-bottom: 20px;
+}
+.no_favorites {
+  text-align: center;
+  font-size: 1.5em;
+}
+.profile-title {
+  margin-bottom: 60%;
+  font-size: 2em !important;
+  white-space: nowrap;
 }

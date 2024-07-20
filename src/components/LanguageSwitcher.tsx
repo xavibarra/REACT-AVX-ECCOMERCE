@@ -26,35 +26,29 @@ const LanguageSwitcher = () => {
     <div className="language-switcher">
       <button
         className="translate-button"
-        onClick={() => setShowLanguages(!showLanguages)}
-      >
+        onClick={() => setShowLanguages((prev) => !prev)}>
         <BsTranslate />
       </button>
-      {showLanguages && (
-        <div className="languages">
-          <button
-            className="idioma en"
-            onClick={() => changeLanguage("en")}
-            title="English"
-          >
-            EN
-          </button>
-          <button
-            className="idioma es"
-            onClick={() => changeLanguage("es")}
-            title="Español"
-          >
-            ES
-          </button>
-          <button
-            className="idioma ca"
-            onClick={() => changeLanguage("ca")}
-            title="Català"
-          >
-            CA
-          </button>
-        </div>
-      )}
+      <div className={`languages ${showLanguages ? "show" : ""}`}>
+        <button
+          className="idioma en"
+          onClick={() => changeLanguage("en")}
+          title="English">
+          EN
+        </button>
+        <button
+          className="idioma es"
+          onClick={() => changeLanguage("es")}
+          title="Español">
+          ES
+        </button>
+        <button
+          className="idioma ca"
+          onClick={() => changeLanguage("ca")}
+          title="Català">
+          CA
+        </button>
+      </div>
     </div>
   );
 };

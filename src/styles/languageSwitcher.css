@@ -24,6 +24,18 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.languages.show {
+  opacity: 1;
+  max-height: 200px;
+  height: 300%;
+  width: 100%;
+  align-items: center;
 }
 
 .idioma {
@@ -65,4 +77,11 @@
   font-size: 14px;
   box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%),
     inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
+}
+
+.language-switcher {
+  position: fixed;
+  bottom: 50px;
+  left: 25px;
+  z-index: 999;
 }
