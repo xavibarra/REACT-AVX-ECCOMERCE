@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FaHeart,
@@ -11,6 +11,7 @@ import { FaCodeCompare, FaShop } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "../styles/flip-card.css";
 import { supabaseClient } from "../utils/supabaseClient";
+import { FloatCartContext } from "./SetFloatCartVisibleContext";
 
 interface Product {
   id: string;
@@ -34,6 +35,12 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const [user, setUser] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const navigate = useNavigate();
+  const context = useContext(FloatCartContext);
+  if (!context) {
+    throw new Error('FlipCard must be used within a FloatCartProvider');
+  }
+
+  const { setFloatCartVisible, fetchCart } = context;
   const { t, i18n } = useTranslation("global");
 
   useEffect(() => {
@@ -129,13 +136,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     );
   };
 
-  const FloatCartAppear = () => {
-    const floatcart = document.getElementById("float-cart-container");
-    if (floatcart) {
-      floatcart.classList.remove("float-cart-container-hidden");
-      floatcart.classList.add("float-cart-container");
-    }
-  };
 
   const handleAddToCartClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -165,11 +165,13 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       const result = await response.json();
       console.log(result.message); // Aquí puedes manejar la respuesta del backend
 
-      FloatCartAppear(); // Usa FloatCartAppear para mostrar el carrito
+      setFloatCartVisible(true); // Usa el contexto para mostrar el carrito
+      fetchCart(); // Actualiza el carrito
     } catch (error) {
       console.error("Error adding product to cart:", error.message);
     }
   };
+
 
   const handleLikeClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -184,9 +186,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       const userId = data.user.id;
       const productId = product.id;
 
-      // Determinar si estamos agregando o eliminando "me gusta"
       if (!isLiked) {
-        // Agregar "me gusta"
         const response = await fetch("http://localhost:3000/users/add-like", {
           method: "POST",
           headers: {
@@ -199,35 +199,28 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           throw new Error("Failed to add product to likes");
         }
 
-        setIsLiked(true); // Actualizar el estado local
+        setIsLiked(true);
         const result = await response.json();
-        console.log(result.message); // Maneja la respuesta del backend como desees
+        console.log(result.message);
       } else {
-        // Eliminar "me gusta"
-        const response = await fetch(
-          "http://localhost:3000/users/remove-like",
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userId, productId }),
-          }
-        );
+        const response = await fetch("http://localhost:3000/users/remove-like", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, productId }),
+        });
 
         if (!response.ok) {
           throw new Error("Failed to remove product from likes");
         }
 
-        setIsLiked(false); // Actualizar el estado local
+        setIsLiked(false);
         const result = await response.json();
-        console.log(result.message); // Maneja la respuesta del backend como desees
+        console.log(result.message);
       }
     } catch (error) {
-      console.error(
-        "Error adding/removing product to/from likes:",
-        error.message
-      );
+      console.error("Error adding/removing product to/from likes:", error.message);
     }
   };
 
@@ -270,10 +263,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="bottomCard">
             <button
               className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-              onClick={(event) => {
-                handleAddToCartClick(event);
-                FloatCartAppear();
-              }}
+              onClick={(event) => { handleAddToCartClick(event); }}
             >
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€

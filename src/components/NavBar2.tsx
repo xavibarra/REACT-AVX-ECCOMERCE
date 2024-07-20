@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar2.css";
 import FloatCart from "./FloatCart";
+import { FloatCartContext } from "./SetFloatCartVisibleContext";
 import { useTranslation } from "react-i18next";
 
 function Navbar2() {
@@ -11,7 +12,16 @@ function Navbar2() {
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false); // Estado para mostrar u ocultar resultados de búsqueda
   const [user, setUser] = useState({});
-  const [floatCartVisible, setFloatCartVisible] = useState(false);
+  const location = useLocation();
+  const context = useContext(FloatCartContext);
+
+  if (!context) {
+    throw new Error('NavBar must be used within a FloatCartProvider');
+  }
+
+  const { isFloatCartVisible, setFloatCartVisible, fetchCart } = context;  
+
+
   const { t } = useTranslation("global");
 
   const goToProfileOrLogin = () => {
@@ -89,7 +99,12 @@ function Navbar2() {
   };
 
   const toggleFloatCart = () => {
-    setFloatCartVisible(!floatCartVisible);
+    if (location.pathname !== "/cart") {
+    setFloatCartVisible(!isFloatCartVisible);
+    }
+    if (!isFloatCartVisible) {
+      fetchCart(); // Actualiza el carrito solo cuando se abre
+    }
     setMenuVisible(false);
     setCategoriesVisible(false);
     setIsIconRotated(false);
@@ -285,14 +300,8 @@ function Navbar2() {
         categoriesVisible={categoriesVisible}
       />
 
-      <FloatCart
-        className={
-          floatCartVisible
-            ? "float-cart-container"
-            : "float-cart-container-hidden"
-        }
-        setFloatCartVisible={setFloatCartVisible}
-      />
+      <FloatCart className={isFloatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} />
+
     </>
   );
 }
