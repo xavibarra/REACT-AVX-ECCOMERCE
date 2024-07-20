@@ -86,10 +86,6 @@ const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
     setFloatCartVisible(false);
   };
 
-  if (loading) {
-    return <Loading />;
-  }
-
   const totalPrice = userCart.reduce((total, product) => {
     return total + parseFloat(product.finalPrice) * product.quantity;
   }, 0);
