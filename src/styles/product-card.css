@@ -1,7 +1,7 @@
 .product-card-container {
     display: flex;
     align-items: center;
-    border: 1px solid #ddd;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding: 16px;
     border-radius: 8px;
     margin-bottom: 16px;
