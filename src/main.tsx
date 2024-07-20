@@ -1,6 +1,4 @@
-
 import i18next from "i18next";
-
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
@@ -19,15 +17,14 @@ import Product from "./pages/Product";
 import Profile from "./pages/Profile";
 import ProjectInfo from "./pages/ProjectInfo";
 
-
 import global_ca from "./translations/ca/global.json";
 import global_en from "./translations/en/global.json";
 import global_es from "./translations/es/global.json";
 
 import ProtectedRoute from "./components/ProtectedRoute";
+import { FloatCartProvider } from "./components/SetFloatCartVisibleContext"; // Import FloatCartProvider
 
 const userId = "user-id-from-context-or-auth";
-
 
 const router = createBrowserRouter([
   {
@@ -94,8 +91,10 @@ i18next.init({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <I18nextProvider i18n={i18next}>
-      <RouterProvider router={router} />
-    </I18nextProvider>
+    <FloatCartProvider> {/* Wrap the entire application with FloatCartProvider */}
+      <I18nextProvider i18n={i18next}>
+        <RouterProvider router={router} />
+      </I18nextProvider>
+    </FloatCartProvider>
   </React.StrictMode>
 );

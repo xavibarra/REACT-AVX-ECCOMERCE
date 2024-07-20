@@ -4,134 +4,139 @@ import "../styles/float.cart.css";
 import { FiShoppingCart } from "react-icons/fi";
 import Loading from "./Loading";
 import { IoClose } from "react-icons/io5";
-import useCart from "../components/useCart"; // Importa el hook personalizado
 import { supabaseClient } from "../utils/supabaseClient";
-import { useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
+import { FloatCartContext } from "./SetFloatCartVisibleContext";
 
-interface FloatCartProps {
-    className: string;
-    setFloatCartVisible: (visible: boolean) => void;
+interface Product {
+  id: string;
+  finalPrice: string;
+  deliveryDate: string;
+  quantity: number;
+  imageUrl: string;
+  name: string;
+  [key: string]: any;
 }
 
-const FloatCart = ({ className, setFloatCartVisible }: FloatCartProps) => {
-    const { userCart, setUserCart, loading, fetchCart } = useCart(); // Usa el hook
+interface FloatCartProps {
+  className?: string;
+}
 
-    // Ejecuta fetchCart después de cada cambio en el carrito
-    useEffect(() => {
-        fetchCart();
-    }, [userCart]);
+const FloatCart = ({ className }: FloatCartProps) => {
+  const context = useContext(FloatCartContext);
+  if (!context) {
+    throw new Error('FloatCart must be used within a FloatCartProvider');
+  }
 
-    const removeFromCart = async (productId: string) => {
-        try {
-            const { data: userData, error: userError } = await supabaseClient.auth.getUser();
-            if (userError) {
-                throw new Error(userError.message);
-            }
+  const { isFloatCartVisible, setFloatCartVisible, userCart, fetchCart } = context;
+  const [loading, setLoading] = useState(true);
 
-            const userId = userData.user.id;
+  useEffect(() => {
+    fetchCart().then(() => setLoading(false));
+  }, [fetchCart]);
 
-            const { data: profileData, error: profileError } = await supabaseClient
-                .from("profiles")
-                .select("cart")
-                .eq("id", userId)
-                .single();
+  const removeFromCart = async (productId: string) => {
+    try {
+      const { data: userData, error: userError } = await supabaseClient.auth.getUser();
+      if (userError) {
+        throw new Error(userError.message);
+      }
 
-            if (profileError) {
-                throw new Error(profileError.message);
-            }
+      const userId = userData.user.id;
 
-            const cartItems: string[] = profileData.cart || [];
-            const productIndex = cartItems.indexOf(productId);
+      const { data: profileData, error: profileError } = await supabaseClient
+        .from("profiles")
+        .select("cart")
+        .eq("id", userId)
+        .single();
 
-            if (productIndex !== -1) {
-                cartItems.splice(productIndex, 1); // Eliminar solo una instancia del producto
-            }
+      if (profileError) {
+        throw new Error(profileError.message);
+      }
 
-            const { error } = await supabaseClient
-                .from("profiles")
-                .update({ cart: cartItems })
-                .eq("id", userId);
+      const cartItems: string[] = profileData.cart || [];
+      const productIndex = cartItems.indexOf(productId);
 
-            if (error) {
-                throw new Error(error.message);
-            }
+      if (productIndex !== -1) {
+        cartItems.splice(productIndex, 1); // Eliminar solo una instancia del producto
+      }
 
-            const newCart = [...userCart];
-            const localProductIndex = newCart.findIndex(product => product.id === productId);
-            if (localProductIndex !== -1) {
-                if (newCart[localProductIndex].quantity > 1) {
-                    newCart[localProductIndex].quantity -= 1;
-                } else {
-                    newCart.splice(localProductIndex, 1);
-                }
-            }
-            setUserCart(newCart);
-        } catch (error) {
-            console.error("Error removing item from cart:", error.message);
-        }
-    };
+      const { error } = await supabaseClient
+        .from("profiles")
+        .update({ cart: cartItems })
+        .eq("id", userId);
 
-    const navigate = useNavigate();
+      if (error) {
+        throw new Error(error.message);
+      }
 
-    const goToCart = () => {
-        navigate("/cart");
-    };
-
-    const closeFloatCart = () => {
-        setFloatCartVisible(false);
-    };
-
-    if (loading) {
-        return <Loading />;
+      fetchCart(); // Actualiza el carrito
+    } catch (error) {
+      console.error("Error removing item from cart:", error.message);
     }
+  };
 
-    const totalPrice = userCart.reduce((total, product) => {
-        return total + (parseFloat(product.finalPrice) * product.quantity);
-    }, 0);
+  const navigate = useNavigate();
 
+  const goToCart = () => {
+    navigate("/cart");
+    setFloatCartVisible(false);
+  };
 
-    return (
-        <div id="float-cart-container" className={className}>
-            <div className="float-cart-title-container">
-                <div>
-                    <h5>My cart</h5>
-                    <p>{userCart.length} items</p>
-                </div>
-                <div className="float-cart-close-icon-container">
-                    <IoClose className="float-cart-close-icon" onClick={closeFloatCart} />
-                </div>
-            </div>
-            <div className="float-cart-content-container">
-                {userCart.length === 0 ? (
-                    <div className="float-cart-empty-cart-container">
-                        <h5>There are no items in the Cart</h5>
-                        <FiShoppingCart className="float-cart-icon-cart" />
-                    </div>
-                ) : (
-                    userCart.map((product, index) => (
-                        <ProductCard key={index} product={product} onRemove={removeFromCart} />
-                    ))
-                )}
-            </div>
-            <div className="float-cart-summary">
-                <h2>Summary</h2>
-                {userCart.length === 0 ? (
-                    <p>No items in the cart</p>
-                ) : (
-                    <>
-                        <p>{userCart[0]?.deliveryDate}</p>
-                        <div className="float-cart-total-container">
-                            <div className="float-cart-total">Total:</div>
-                            <div><h6>{totalPrice.toFixed(2)}€</h6></div>
-                        </div>
-                    </>
-                )}
-                <div className="float-cart-buttons">
-                    <button onClick={goToCart}>View items in your basket</button>
-                </div>
-            </div>
+  const closeFloatCart = () => {
+    setFloatCartVisible(false);
+  };
+
+  if (loading) { // Asegúrate de que "loading" esté chequeando el estado de carga correcto
+    return <Loading />;
+  }
+
+  const totalPrice = userCart.reduce((total, product) => {
+    return total + (parseFloat(product.finalPrice) * product.quantity);
+  }, 0);
+
+  return (
+    <div id="float-cart-container" className={isFloatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}>
+      <div className="float-cart-title-container">
+        <div>
+          <h5>My cart</h5>
+          <p>{userCart.length} items</p>
         </div>
-    );
+        <div className="float-cart-close-icon-container">
+          <IoClose className="float-cart-close-icon" onClick={closeFloatCart} />
+        </div>
+      </div>
+      <div className="float-cart-content-container">
+        {userCart.length === 0 ? (
+          <div className="float-cart-empty-cart-container">
+            <h5>There are no items in the Cart</h5>
+            <FiShoppingCart className="float-cart-icon-cart" />
+          </div>
+        ) : (
+          userCart.map((product, index) => (
+            <ProductCard key={index} product={product} onRemove={removeFromCart} />
+          ))
+        )}
+      </div>
+      <div className="float-cart-summary">
+        <h2>Summary</h2>
+        {userCart.length === 0 ? (
+          <p>No items in the cart</p>
+        ) : (
+          <>
+            <p>{userCart[0]?.deliveryDate}</p>
+            <div className="float-cart-total-container">
+              <div className="float-cart-total">Total:</div>
+              <div><h6>{totalPrice.toFixed(2)}€</h6></div>
+            </div>
+          </>
+        )}
+        <div className="float-cart-buttons">
+          <button onClick={goToCart}>View items in your basket</button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default FloatCart;

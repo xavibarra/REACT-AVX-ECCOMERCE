@@ -1,16 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar.css";
 import { supabaseClient } from "../utils/supabaseClient";
 import FloatCart from "./FloatCart";
+import { FloatCartContext } from "./SetFloatCartVisibleContext";
 
 function Navbar() {
   const [t, i18n] = useTranslation("global");
   const [user, setUser] = useState({});
-  const [floatCartVisible, setFloatCartVisible] = useState(false);
+  const context = useContext(FloatCartContext);
+  const location = useLocation();
+
+  if (!context) {
+    throw new Error('NavBar must be used within a FloatCartProvider');
+  }
+
+  const { isFloatCartVisible, setFloatCartVisible, fetchCart } = context;  
 
   useEffect(() => {
     async function checkUser() {
@@ -118,7 +126,6 @@ function Navbar() {
     };
   }, []);
 
-
   const handleCardClick = (productId) => (event) => {
     event.preventDefault();
     navigate(`/product/${productId}`);
@@ -126,7 +133,7 @@ function Navbar() {
 
   const goHome = () => {
     window.scrollTo(0, 0);
-    navigate("");
+    navigate("/");
   };
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -145,7 +152,12 @@ function Navbar() {
   };
 
   const toggleFloatCart = () => {
-    setFloatCartVisible(!floatCartVisible);
+    if (location.pathname !== "/cart") {
+    setFloatCartVisible(!isFloatCartVisible);
+    }
+    if (!isFloatCartVisible) {
+      fetchCart(); // Actualiza el carrito solo cuando se abre
+    }
     setMenuVisible(false);
     setCategoriesVisible(false);
     setIsIconRotated(false);
@@ -348,8 +360,7 @@ function Navbar() {
         categoriesVisible={categoriesVisible}
       />
       <FloatCart
-        className={floatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}
-        setFloatCartVisible={setFloatCartVisible}
+        className={isFloatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}
       />
     </>
   );

@@ -38,6 +38,7 @@
     justify-content: center;
     margin-top: 5px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .float-cart-close-icon{
