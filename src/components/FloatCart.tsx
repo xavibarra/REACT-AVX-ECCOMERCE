@@ -57,8 +57,12 @@ const FloatCart = ({ className }: FloatCartProps) => {
         throw new Error(profileError.message);
       }
 
-      const cartItems: string[] = profileData.cart || [];
-      const productIndex = cartItems.indexOf(productId);
+      const cartItems: (string | number)[] = profileData.cart || [];
+      const numericProductId = parseInt(productId, 10);
+
+      const productIndex = cartItems.findIndex(
+        (item) => item === productId || item === numericProductId
+      );
 
       if (productIndex !== -1) {
         cartItems.splice(productIndex, 1); // Eliminar solo una instancia del producto
@@ -117,7 +121,7 @@ const FloatCart = ({ className }: FloatCartProps) => {
       <div className="float-cart-content-container">
         {userCart.length === 0 ? (
           <div className="float-cart-empty-cart-container">
-            <h5>There ara no items in the cart</h5>
+            <h5>There are no items in the cart</h5>
             <FiShoppingCart className="float-cart-icon-cart" />
           </div>
         ) : (

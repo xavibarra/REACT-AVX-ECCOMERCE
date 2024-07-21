@@ -324,7 +324,11 @@ const ProductPage = () => {
           <div className="productDetailsStars">
             {generateStars(product?.rating || 0)}
           </div>
-          <CardAddCartProduct tiendas={availableStores} price={finalPrice} />
+          <CardAddCartProduct
+            tiendas={availableStores}
+            price={finalPrice}
+            productId={Number(productId)}
+          />
         </div>
         <div>
           {product ? (
