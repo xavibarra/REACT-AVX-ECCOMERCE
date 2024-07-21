@@ -15,7 +15,7 @@
     "external_hard_drive": "DISC DUR EXTERN",
     "internal_hard_drive": "DISC DUR INTERN",
     "monitor": "MONITOR",
-    "case_fan": "VENTILADOR DE CAIXA",
+    "case_fan": "VENTILADOR",
     "optical_drive": "UNITAT ÒPTICA",
     "cpu_cooler": "REFRIGERADOR DE CPU",
     "ram_memory": "MEMÒRIA RAM",
@@ -58,6 +58,21 @@
     "technologies_design": "DISSENY",
     "technologies_db": "BASE DE DADES",
     "technologies_organitzation": "ORGANITZACIÓ"
+  },
+  "categories2": {
+    "pc_case": "CAIXA",
+    "motherboards": "PLACA BASE",
+    "power_supplies": "FONT D'ALIMENTACIÓ",
+    "cpu": "CPU",
+    "graphic_cards": "TARGETA GRÀFICA",
+    "external_hard_drive": "DISC DUR EXTERN",
+    "internal_hard_drive": "DISC DUR INTERN",
+    "monitors": "MONITOR",
+    "fans": "VENTILADOR",
+    "optical_drives": "UNITAT ÒPTICA",
+    "cpu_fans": "REFRIGERADOR DE CPU",
+    "ram": "MEMÒRIA RAM",
+    "favorites": "FAVORITS"
   },
   "home": {
     "offers": "Ofertes destacades",

@@ -1,11 +1,12 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar2.css";
+import { supabaseClient } from "../utils/supabaseClient";
 import FloatCart from "./FloatCart";
 import { FloatCartContext } from "./SetFloatCartVisibleContext";
-import { useTranslation } from "react-i18next";
 
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,6 +37,16 @@ function Navbar2() {
 
   /* --------------------------------------------------------------- SEARCH INPUT FUNCIÓN --*/
   useEffect(() => {
+    async function checkUser() {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error) {
+        setUser(null);
+      } else {
+        setUser(data.user);
+      }
+    }
+
+    checkUser();
     if (searchTerm) {
       fetch(
         `http://localhost:3000/products/search/${encodeURIComponent(
@@ -109,8 +120,19 @@ function Navbar2() {
     setIsIconRotated(false);
   };
 
-  const hideFloatCart = () => {
-    setFloatCartVisible(false);
+
+      if (location.pathname !== "/cart") {
+        setFloatCartVisible(!isFloatCartVisible);
+      }
+      if (!isFloatCartVisible) {
+        await fetchCart(); // Actualiza el carrito solo cuando se abre
+      }
+      setMenuVisible(false);
+      setCategoriesVisible(false);
+      setIsIconRotated(false);
+    } catch (error) {
+      console.error("Error checking user authentication:", error.message);
+    }
   };
 
   useEffect(() => {
@@ -145,20 +167,23 @@ function Navbar2() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="lupa2"
-                viewBox="0 0 512 512">
+                viewBox="0 0 512 512"
+              >
                 <path
                   d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
                   fill="none"
                   stroke="currentColor"
                   strokeMiterlimit="10"
-                  strokeWidth="32"></path>
+                  strokeWidth="32"
+                ></path>
                 <path
                   fill="none"
                   stroke="currentColor"
                   strokeLinecap="round"
                   strokeMiterlimit="10"
                   strokeWidth="32"
-                  d="M338.29 338.29L448 448"></path>
+                  d="M338.29 338.29L448 448"
+                ></path>
               </svg>
             </div>
             {showResults && (
@@ -168,7 +193,8 @@ function Navbar2() {
                     <div
                       key={result.id}
                       className="searchResultItem"
-                      onClick={handleCardClick(result.id)}>
+                      onClick={handleCardClick(result.id)}
+                    >
                       <img
                         src={result.imageUrl || "default-image.png"}
                         alt={result.name}
@@ -198,7 +224,8 @@ function Navbar2() {
               data-name="Layer 1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1908 576"
-              className="h-auto w-full max-w-lg show">
+              className="h-auto w-full max-w-lg show"
+            >
               <defs>
                 <style>{`
                   .font-semi-bold {
@@ -256,7 +283,8 @@ function Navbar2() {
               </g>
               <text
                 className="font-semi-bold"
-                transform="translate(231.47 473.26)">
+                transform="translate(231.47 473.26)"
+              >
                 <tspan x="0" y="0">
                   PO
                 </tspan>
@@ -269,7 +297,8 @@ function Navbar2() {
               </text>
               <text
                 className="font-light4"
-                transform="translate(528.29 246.07)">
+                transform="translate(528.29 246.07)"
+              >
                 <tspan className="spacing-wide" x="0" y="0">
                   C
                 </tspan>
@@ -301,7 +330,8 @@ function Navbar2() {
           <a
             href=""
             className={`burgerIcon ${isIconRotated ? "rotated" : ""}`}
-            onClick={toggleMenu}>
+            onClick={toggleMenu}
+          >
             <FaBars />
           </a>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FaHeart,
@@ -37,7 +37,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   const navigate = useNavigate();
   const context = useContext(FloatCartContext);
   if (!context) {
-    throw new Error('FlipCard must be used within a FloatCartProvider');
+    throw new Error("FlipCard must be used within a FloatCartProvider");
   }
 
   const { setFloatCartVisible, fetchCart } = context;
@@ -136,7 +136,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     );
   };
 
-
   const handleAddToCartClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
 
@@ -144,6 +143,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       const { data, error } = await supabaseClient.auth.getUser();
       if (error) {
         console.error("Error fetching user data:", error);
+        navigate("/login"); // Redirige a la página de inicio de sesión
         return;
       }
 
@@ -172,7 +172,6 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     }
   };
 
-
   const handleLikeClick = async (event: React.MouseEvent) => {
     event.stopPropagation();
 
@@ -180,6 +179,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       const { data, error } = await supabaseClient.auth.getUser();
       if (error) {
         console.error("Error fetching user data:", error);
+        navigate("/login");
         return;
       }
 
@@ -203,13 +203,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
         const result = await response.json();
         console.log(result.message);
       } else {
-        const response = await fetch("http://localhost:3000/users/remove-like", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId, productId }),
-        });
+        const response = await fetch(
+          "http://localhost:3000/users/remove-like",
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId, productId }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to remove product from likes");
@@ -220,7 +223,10 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
         console.log(result.message);
       }
     } catch (error) {
-      console.error("Error adding/removing product to/from likes:", error.message);
+      console.error(
+        "Error adding/removing product to/from likes:",
+        error.message
+      );
     }
   };
 
@@ -263,7 +269,9 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
           <div className="bottomCard">
             <button
               className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-              onClick={(event) => { handleAddToCartClick(event); }}
+              onClick={(event) => {
+                handleAddToCartClick(event);
+              }}
             >
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€

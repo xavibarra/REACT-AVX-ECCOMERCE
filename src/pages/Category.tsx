@@ -39,6 +39,18 @@ const Category = () => {
   );
   const { t } = useTranslation("global");
 
+  // Función para transformar los nombres de categorías en claves para la traducción
+  const translateCategory = (categoryName: string) => {
+    // Normaliza el nombre de categoría a minúsculas y reemplaza espacios con guiones bajos
+    const normalizedCategory = categoryName.toLowerCase().replace(/\s+/g, "_");
+
+    // Traduce usando i18next y devuelve el nombre original si la traducción no está disponible
+    console.log(normalizedCategory);
+    const translatedCategory = t(`categories.${normalizedCategory}`);
+    console.log(translatedCategory);
+    return t(`categories2.${normalizedCategory}`, categoryName);
+  };
+
   // Función para cargar productos por categoría y página
   const fetchProductsByCategory = async (page: number, sort: string = "") => {
     try {
@@ -256,7 +268,7 @@ const Category = () => {
       <Navbar2 />
       <div className="titleContainer">
         {/* Mostrar el título de la categoría */}
-        <RepeatedTitle text={categoryName} />
+        <RepeatedTitle text={translateCategory(categoryName)} />
       </div>
 
       <div className="filterOrder">

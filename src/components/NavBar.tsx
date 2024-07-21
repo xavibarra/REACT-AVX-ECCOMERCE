@@ -150,16 +150,27 @@ function Navbar() {
     setFloatCartVisible(false);
   };
 
-  const toggleFloatCart = () => {
-    if (location.pathname !== "/cart") {
-      setFloatCartVisible(!isFloatCartVisible);
+  const toggleFloatCart = async () => {
+    try {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error || !data.user) {
+        console.error("User not authenticated:", error);
+        navigate("/login"); // Redirige a la página de inicio de sesión si no está autenticado
+        return;
+      }
+
+      if (location.pathname !== "/cart") {
+        setFloatCartVisible(!isFloatCartVisible);
+      }
+      if (!isFloatCartVisible) {
+        await fetchCart(); // Actualiza el carrito solo cuando se abre
+      }
+      setMenuVisible(false);
+      setCategoriesVisible(false);
+      setIsIconRotated(false);
+    } catch (error) {
+      console.error("Error checking user authentication:", error.message);
     }
-    if (!isFloatCartVisible) {
-      fetchCart(); // Actualiza el carrito solo cuando se abre
-    }
-    setMenuVisible(false);
-    setCategoriesVisible(false);
-    setIsIconRotated(false);
   };
 
   const hideFloatCart = () => {

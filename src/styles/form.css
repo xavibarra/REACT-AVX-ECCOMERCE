@@ -1,6 +1,6 @@
 .formCard {
   height: 70vh;
-  margin: 5em 11em;
+  margin: 9em 11em;
   transition: all 0.2s;
   position: relative;
 }
@@ -169,8 +169,8 @@ textarea::placeholder {
 }
 
 .formCircle:nth-child(2) {
-  bottom: 60px;
-  right: -25px;
+  bottom: -103px;
+  right: -30px;
   animation-name: move-down1;
 }
 
