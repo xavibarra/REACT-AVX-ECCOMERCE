@@ -15,14 +15,67 @@
     "external_hard_drive": "EXTERNAL HARD DRIVE",
     "internal_hard_drive": "INTERNAL HARD DRIVE",
     "monitor": "MONITOR",
-    "case_fan": "CASE FAN",
+    "case_fan": "FAN",
     "optical_drive": "OPTICAL DRIVE",
     "cpu_cooler": "CPU COOLER",
     "ram_memory": "RAM MEMORY",
     "favorites": "FAVORITES"
   },
+  "daysOfWeek": {
+    "Sunday": "Sunday",
+    "Monday": "Monday",
+    "Tuesday": "Tuesday",
+    "Wednesday": "Wednesday",
+    "Thursday": "Thursday",
+    "Friday": "Friday",
+    "Saturday": "Saturday"
+  },
+  "months": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December"
+  },
+  "about_us": {
+    "information_title": "PROJECT INFORMATION",
+    "information_text_1": "AVX Components was born as the final project of a bootcamp 5 months in web programming technologies, part of a dual FP of training and work of Fundesplai. This program includes both training in the bootcamp as well as the working part of the hand of the Onizea company.",
+    "information_text_2": "We started the project 1 month before finishing this formation program, applying the acquired skills and dedicating additional time to ensure that our project reflects the best possible use of these technologies.",
+    "history_title": "PROJECT HISTORY",
+    "history_text_1": "Our e-commerce, AVX Components, is proud to offer more than 10,000 products, organized into 12 categories for easy navigation and selection. Our catalog includes a wide variety of specialized electronic components and accessories, designed to meet the needs of our customers. Our main goal is to provide a complete and satisfactory shopping experience.",
+    "history_text_2": "We strive to present the best components available on the market, ensuring the quality and performance of each product. For this, we offer detailed descriptions, clear images and precise technical specifications. At AVX Components, we value our customers' opinions and are always willing to improve our services based on your comments.",
+    "history_text_3": "Our platform is intuitive and easy to use, with multiple search options and filters to quickly find what what do you need. In short, at AVX Components we are dedicated to providing a great shopping experience. first class, ensuring that our customers have access to high quality products and to exceptional service.",
+    "technologies_title": "Tecnologies Used",
+    "technologies_frontend": "FRONTEND",
+    "technologies_backend": "BACKEND",
+    "technologies_design": "DESIGN",
+    "technologies_db": "DATA BASE",
+    "technologies_organitzation": "ORGANIZATION"
+  },
+  "categories2": {
+    "pc_case": "CASE",
+    "motherboards": "MOTHERBOARD",
+    "power_supplies": "POWER SUPPLY",
+    "cpu": "CPU",
+    "graphic_cards": "GRAPHIC CARD",
+    "external_hard_drive": "EXTERNAL HARD DRIVE",
+    "internal_hard_drive": "INTERNAL HARD DRIVE",
+    "monitors": "MONITOR",
+    "fans": "FAN",
+    "optical_drives": "OPTICAL DRIVE",
+    "cpu_fans": "CPU COOLER",
+    "ram": "RAM MEMORY",
+    "favorites": "FAVORITES"
+  },
   "home": {
-    "offers": "Ofertas destacadas",
+    "offers": "Highlighted offers",
     "about_us": {
       "title": "About Us",
       "description1": "Welcome to Components Portions! Founded by tech enthusiasts, we are dedicated to providing the highest quality computer components to help you build, upgrade, and optimize your systems. Our extensive selection includes top-tier CPUs, GPUs, motherboards, memory, storage solutions, and more, catering to both hobbyists and professionals.",
@@ -35,7 +88,7 @@
     },
     "form": {
       "title": "We'd Love to Hear from You!",
-      "description": "At AVX components, we strive to provide high-quality products and services to meet our customers' needs. Your feedback is important to us, whether you have a complaint, a suggestion, or simply want to share your thoughts about your experience with us.",
+      "description": "At AVX Components, we continuously strive to provide high-quality products and exceptional services to meet and exceed our customers' needs and expectations. Your feedback is incredibly important to us, whether you have a complaint, a suggestion for improvement, or simply want to share your thoughts and experiences with us. We are making continuous improvements based on your valuable input.",
       "title2": "What Do We Want to Hear from You?",
       "li1": "Do you have any questions about",
       "li21": "Would you like to share your ",
@@ -78,9 +131,11 @@
     "search": "Search...",
     "select_category": "Select Category",
     "price": "Price",
+    "rating": "Rating",
     "button_card": "Add to comparator",
     "message_added": "Product added to comparator",
-    "message_error": "Cannot compare two objects from different categories"
+    "message_error": "Cannot compare two objects from different categories",
+    "see_product": "See product"
   },
   "product": {
     "receive": "Receive it on",
@@ -89,13 +144,15 @@
     "title": "Opinions",
     "button_review": "Add review",
     "text_review": "Write your review here...",
-    "like": "Like"
+    "like": "Like",
+    "no_review": "Este producto aún no tiene valoraciones",
+    "add": "Add cart"
   },
   "profile": {
     "name": "Name",
     "user": "User name",
     "email": "Email",
-    "header": "Your profile",
+    "header": "YOUR PROFILE",
     "button": "Sing Out",
     "title": "My orders",
     "orders_error": "There are no orders at this time",

@@ -1,7 +1,7 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar.css";
 import { supabaseClient } from "../utils/supabaseClient";
@@ -14,10 +14,10 @@ function Navbar() {
   const location = useLocation();
 
   if (!context) {
-    throw new Error('NavBar must be used within a FloatCartProvider');
+    throw new Error("NavBar must be used within a FloatCartProvider");
   }
 
-  const { isFloatCartVisible, setFloatCartVisible, fetchCart } = context;  
+  const { isFloatCartVisible, setFloatCartVisible, fetchCart } = context;
 
   useEffect(() => {
     async function checkUser() {
@@ -150,16 +150,27 @@ function Navbar() {
     setFloatCartVisible(false);
   };
 
-  const toggleFloatCart = () => {
-    if (location.pathname !== "/cart") {
-    setFloatCartVisible(!isFloatCartVisible);
+  const toggleFloatCart = async () => {
+    try {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error || !data.user) {
+        console.error("User not authenticated:", error);
+        navigate("/login"); // Redirige a la página de inicio de sesión si no está autenticado
+        return;
+      }
+
+      if (location.pathname !== "/cart") {
+        setFloatCartVisible(!isFloatCartVisible);
+      }
+      if (!isFloatCartVisible) {
+        await fetchCart(); // Actualiza el carrito solo cuando se abre
+      }
+      setMenuVisible(false);
+      setCategoriesVisible(false);
+      setIsIconRotated(false);
+    } catch (error) {
+      console.error("Error checking user authentication:", error.message);
     }
-    if (!isFloatCartVisible) {
-      fetchCart(); // Actualiza el carrito solo cuando se abre
-    }
-    setMenuVisible(false);
-    setCategoriesVisible(false);
-    setIsIconRotated(false);
   };
 
   const hideFloatCart = () => {
@@ -354,7 +365,11 @@ function Navbar() {
         categoriesVisible={categoriesVisible}
       />
       <FloatCart
-        className={isFloatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}
+        className={
+          isFloatCartVisible
+            ? "float-cart-container"
+            : "float-cart-container-hidden"
+        }
       />
     </>
   );

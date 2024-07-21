@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 import FlipCard from "../components/FlipCard";
 import Footer from "../components/Footer";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import Loading from "../components/Loading";
 import Navbar2 from "../components/NavBar2";
 import "../styles/category.css";
 import { supabaseClient } from "../utils/supabaseClient";
-import { useTranslation } from "react-i18next";
 
 const PAGE_SIZE = 20; // Número de productos por página
 
@@ -110,33 +111,6 @@ const Likes = () => {
         <RepeatedTitle text={t("categories.favorites")} />
       </div>
 
-      <div className="filterOrder">
-        <button
-          onClick={() => handleSortOrderChange("lowestPrice")}
-          className={activeSortOrder === "lowestPrice" ? "active" : ""}>
-          {t("category.order_lowest")}
-        </button>
-        <button
-          onClick={() => handleSortOrderChange("highestPrice")}
-          className={activeSortOrder === "highestPrice" ? "active" : ""}>
-          {t("category.order_highest")}
-        </button>
-        <button
-          onClick={() => handleSortOrderChange("bestRated")}
-          className={activeSortOrder === "bestRated" ? "active" : ""}>
-          {t("category.order_rated")}
-        </button>
-        <button
-          onClick={() => handleSortOrderChange("offers")}
-          className={activeSortOrder === "offers" ? "active" : ""}>
-          {t("category.order_offers")}
-        </button>
-        <button
-          onClick={() => handleSortOrderChange("name")}
-          className={activeSortOrder === "name" ? "active" : ""}>
-          {t("category.order_name")}
-        </button>
-      </div>
       <div
         className={`categoryProducts ${
           userLikes.length === 0 ? "noProducts" : ""
@@ -165,6 +139,7 @@ const Likes = () => {
           </button>
         )}
       </div>
+      <LanguageSwitcher />
       <Footer />
     </div>
   );

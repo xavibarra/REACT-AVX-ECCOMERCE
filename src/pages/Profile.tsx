@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import CartCarousel from "../components/CartCarousel";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import LikesCarousel from "../components/LikesCarousel";
 import Loading from "../components/Loading";
 import Navbar2 from "../components/NavBar2";
@@ -63,10 +64,10 @@ const Profile = () => {
       <div>
         {user ? (
           <div>
-            <div className="formCard profileCard">
+            <div className="formCard3 profileCard">
               <div className="formCircle"></div>
-              <div className="formCircle"></div>
-              <div className="formCardInner profile">
+              <div className="formCircle2"></div>
+              <div className="formCardInner2 profile">
                 <div className="profile-information-container">
                   <div className="profile-information">
                     <div>
@@ -88,8 +89,7 @@ const Profile = () => {
                 <div className="profile-button-container">
                   <button
                     className="singout-button"
-                    onClick={() => singOutUser()}
-                  >
+                    onClick={() => singOutUser()}>
                     {t("profile.button")}{" "}
                   </button>
                 </div>
@@ -109,6 +109,7 @@ const Profile = () => {
                 <p>Loading favorites...</p>
               )}
             </div>
+            <LanguageSwitcher />
           </div>
         ) : (
           <Loading />

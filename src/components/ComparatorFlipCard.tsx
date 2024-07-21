@@ -1,5 +1,5 @@
 // ComparatorFlipCard.tsx
-import { CiHeart } from "react-icons/ci";
+import { useTranslation } from "react-i18next";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FaCodeCompare } from "react-icons/fa6";
 import type { Product } from "../models/product";
@@ -10,9 +10,11 @@ interface FlipCardProps {
   onAddToComparator: (product: Product) => void;
 }
 
-const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product, onAddToComparator }) => {
-
-
+const ComparatorFlipCard: React.FC<FlipCardProps> = ({
+  product,
+  onAddToComparator,
+}) => {
+  const { t } = useTranslation("global");
   const generateStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating - fullStars >= 0.5;
@@ -32,10 +34,15 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product, onAddToComparato
   };
 
   return (
-    <div onClick={() => onAddToComparator(product)} className="comparator-flip-card bg-transparent perspective-1000 font-sans cursor-pointer">
+    <div
+      onClick={() => onAddToComparator(product)}
+      className="comparator-flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
+    >
       <div className="comparator-flip-card-inner relative w-full h-full text-center transition-transform duration-700">
         <div className="comparator-flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
-          {product.offer && <span className="comparator-card-offer-span"></span>}
+          {product.offer && (
+            <span className="comparator-card-offer-span"></span>
+          )}
           <div className="comparator-cardContainer">
             <div className="comparator-topCard">
               <div className="comparator-imgCard">
@@ -50,7 +57,9 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product, onAddToComparato
               </div>
             </div>
             <div className="comparator-cardInfo">
-              <p className="comparator-card-name text-left mx-2 text-xs">{product.name}</p>
+              <p className="comparator-card-name text-left mx-2 text-xs">
+                {product.name}
+              </p>
               <div className="comparator-card-prices-container flex">
                 <p className="comparator-card-price">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
@@ -61,17 +70,21 @@ const ComparatorFlipCard: React.FC<FlipCardProps> = ({ product, onAddToComparato
                   </p>
                 )}
               </div>
-              <div className="comparator-starsIcon">{generateStars(product.rating)}</div>
+              <div className="comparator-starsIcon">
+                {generateStars(product.rating)}
+              </div>
             </div>
           </div>
           <div className="comparator-bottomCard">
-            <button onClick={() => onAddToComparator(product)} className="comparator-card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer">
+            <button
+              onClick={() => onAddToComparator(product)}
+              className="comparator-card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
+            >
               <span className="comparator-tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
-              <span> Add to comparator </span>
+              <span>{t("comparator.add_component")}</span>
             </button>
-    
           </div>
         </div>
       </div>

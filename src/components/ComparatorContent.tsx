@@ -1,17 +1,19 @@
-import { FaPlus, FaMagnifyingGlass } from "react-icons/fa6";
-import "../styles/comparator-content.css";
-import { useState, useEffect } from "react";
-import ComparatorFlipCard from "./ComparatorFlipCard";
-import { Product } from "../models/product";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaMagnifyingGlass, FaPlus } from "react-icons/fa6";
+import { IoCloseOutline } from "react-icons/io5";
 import grafica4090 from "../assets/img/grafica-4090.jpg";
 import graficaAmd from "../assets/img/grafica-amd.jpg";
-import { IoClose, IoCloseOutline } from "react-icons/io5";
-import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { useTranslation } from "react-i18next";
+import { Product } from "../models/product";
+import "../styles/comparator-content.css";
+import ComparatorFlipCard from "./ComparatorFlipCard";
 
 interface FeaturesValues {
   id_feature: number;
   feature_name_es: string;
+  feature_name_en: string;
+  feature_name_ca: string;
   value: string;
 }
 
@@ -31,7 +33,7 @@ const ComparatorContent = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(5000);
-  const { t } = useTranslation("global");
+  const { t, i18n } = useTranslation("global");
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -172,14 +174,30 @@ const ComparatorContent = () => {
   };
 
   const commonFeatures = [
-    { label: "PRICE", key: "price" },
-    { label: "RATING", key: "rating", customRender: generateStars },
+    { label: t("comparator.price"), key: "price" },
+    {
+      label: t("comparator.rating"),
+      key: "rating",
+      customRender: generateStars,
+    },
   ];
 
   const allFeatures = [
     ...new Set([
-      ...featuresValues1.map((f) => f.feature_name_es),
-      ...featuresValues2.map((f) => f.feature_name_es),
+      ...featuresValues1.map((f) =>
+        i18n.language === "en"
+          ? f.feature_name_en
+          : i18n.language === "es"
+          ? f.feature_name_es
+          : f.feature_name_ca
+      ),
+      ...featuresValues2.map((f) =>
+        i18n.language === "en"
+          ? f.feature_name_en
+          : i18n.language === "es"
+          ? f.feature_name_es
+          : f.feature_name_ca
+      ),
     ]),
   ];
 
@@ -239,13 +257,15 @@ const ComparatorContent = () => {
                 comparisonProducts[0]
                   ? "comparator-first-choice-container"
                   : "comparator-first-choice-container-hidden"
-              }>
+              }
+            >
               <div
                 className={
                   comparisonProducts[0]
                     ? "comparator-rating-name-container"
                     : "comparator-rating-name-container-hidden"
-                }>
+                }
+              >
                 <h4 className="comparator-rating">
                   {comparisonProducts[0]
                     ? comparisonProducts[0].rating
@@ -273,8 +293,9 @@ const ComparatorContent = () => {
               <div className="comparator-see-product-button-container">
                 <div className="comparator-see-product-button-container">
                   <button
-                    onClick={() => handleSeeProduct(comparisonProducts[0]?.id)}>
-                    <h6>See Product</h6>
+                    onClick={() => handleSeeProduct(comparisonProducts[0]?.id)}
+                  >
+                    <h6>{t("comparator.see_product")}</h6>
                   </button>
                 </div>
               </div>
@@ -285,7 +306,8 @@ const ComparatorContent = () => {
                 comparisonProducts[0]
                   ? "comparator-plus-icon-1-container-hidden"
                   : "comparator-plus-icon-1-container"
-              }>
+              }
+            >
               <FaPlus className="comparator-plus-icon" />
             </a>
           </div>
@@ -303,13 +325,15 @@ const ComparatorContent = () => {
                 comparisonProducts[1]
                   ? "comparator-second-choice-container"
                   : "comparator-second-choice-container-hidden"
-              }>
+              }
+            >
               <div
                 className={
                   comparisonProducts[1]
                     ? "comparator-rating-name-container"
                     : "comparator-rating-name-container-hidden"
-                }>
+                }
+              >
                 <h4 className="comparator-rating">
                   {comparisonProducts[1]
                     ? comparisonProducts[1].rating
@@ -337,8 +361,9 @@ const ComparatorContent = () => {
               <div className="comparator-see-product-button-container">
                 <div className="comparator-see-product-button-container">
                   <button
-                    onClick={() => handleSeeProduct(comparisonProducts[1]?.id)}>
-                    <h6>See Product</h6>
+                    onClick={() => handleSeeProduct(comparisonProducts[1]?.id)}
+                  >
+                    <h6>{t("comparator.see_product")}</h6>
                   </button>
                 </div>
               </div>
@@ -349,7 +374,8 @@ const ComparatorContent = () => {
                 comparisonProducts[1]
                   ? "comparator-plus-icon-2-container-hidden"
                   : "comparator-plus-icon-2-container"
-              }>
+              }
+            >
               <FaPlus className="comparator-plus-icon" />
             </a>
           </div>
@@ -360,7 +386,8 @@ const ComparatorContent = () => {
             comparisonProducts.every((product) => product === null)
               ? "comparator-choices-names-container-hidden"
               : "comparator-choices-names-container"
-          }>
+          }
+        >
           <h4>
             {comparisonProducts[0]?.name || " "} VS{" "}
             {comparisonProducts[1]?.name || " "}
@@ -371,7 +398,8 @@ const ComparatorContent = () => {
             comparisonProducts.every((product) => product === null)
               ? "comparator-characteristics-container-hidden"
               : "comparator-characteristics-container"
-          }>
+          }
+        >
           {commonFeatures.map((feature) => (
             <div key={feature.label} className="comparator-characteristics-row">
               <div className="comparator-characteristics-cell">
@@ -395,11 +423,18 @@ const ComparatorContent = () => {
           ))}
           {allFeatures.map((feature) => {
             const feature1 = featuresValues1.find(
-              (f) => f.feature_name_es === feature
+              (f) =>
+                (i18n.language === "en" && f.feature_name_en === feature) ||
+                (i18n.language === "es" && f.feature_name_es === feature) ||
+                (i18n.language === "ca" && f.feature_name_ca === feature)
             );
             const feature2 = featuresValues2.find(
-              (f) => f.feature_name_es === feature
+              (f) =>
+                (i18n.language === "en" && f.feature_name_en === feature) ||
+                (i18n.language === "es" && f.feature_name_es === feature) ||
+                (i18n.language === "ca" && f.feature_name_ca === feature)
             );
+
             return (
               <div key={feature} className="comparator-characteristics-row">
                 <div className="comparator-characteristics-cell">{feature}</div>
@@ -415,7 +450,8 @@ const ComparatorContent = () => {
         </div>
         <div
           id="comparator-add-title-container"
-          className="comparator-add-title-container">
+          className="comparator-add-title-container"
+        >
           <h3>{t("comparator.add_component")}</h3>
         </div>
         <div className="comparator-search-container">
@@ -436,7 +472,11 @@ const ComparatorContent = () => {
               <option value="">{t("comparator.select_category")}</option>
               {categories.map((category) => (
                 <option key={category.id} value={category.id.toString()}>
-                  {category.categoryNameEn}
+                  {i18n.language === "en"
+                    ? category.categoryNameEn
+                    : i18n.language === "es"
+                    ? category.categoryNameEs
+                    : category.categoryNameCa}
                 </option>
               ))}
             </select>
@@ -485,7 +525,8 @@ const ComparatorContent = () => {
         <div className="comparator-button-search-container">
           <button
             className="comparator-button-search"
-            onClick={handleSearchClick}>
+            onClick={handleSearchClick}
+          >
             <h6>{t("comparator.button_search")}</h6>
           </button>
         </div>

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaCircleArrowLeft, FaCircleArrowRight } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import FlipCard from "../components/FlipCard";
 import Footer from "../components/Footer";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import Loading from "../components/Loading";
 import Navbar2 from "../components/NavBar2";
 import { Product } from "../models/product";
 import "../styles/category.css";
-import { useTranslation } from "react-i18next";
 
 const PAGE_SIZE = 10; // Número de productos por página
 
@@ -37,6 +38,18 @@ const Category = () => {
     new Set()
   );
   const { t } = useTranslation("global");
+
+  // Función para transformar los nombres de categorías en claves para la traducción
+  const translateCategory = (categoryName: string) => {
+    // Normaliza el nombre de categoría a minúsculas y reemplaza espacios con guiones bajos
+    const normalizedCategory = categoryName.toLowerCase().replace(/\s+/g, "_");
+
+    // Traduce usando i18next y devuelve el nombre original si la traducción no está disponible
+    console.log(normalizedCategory);
+    const translatedCategory = t(`categories.${normalizedCategory}`);
+    console.log(translatedCategory);
+    return t(`categories2.${normalizedCategory}`, categoryName);
+  };
 
   // Función para cargar productos por categoría y página
   const fetchProductsByCategory = async (page: number, sort: string = "") => {
@@ -191,7 +204,8 @@ const Category = () => {
         <div className="backFilterContainer">
           <div
             className={`buttonBack ${buttonBackExpanded ? "expanded" : ""}`}
-            style={{ backgroundColor: backFilterColor }}>
+            style={{ backgroundColor: backFilterColor }}
+          >
             {buttonBackExpanded && (
               <div className="filterContainer">
                 <div className="priceFilter">
@@ -247,46 +261,53 @@ const Category = () => {
         </div>
         <button
           className={`buttonFilter ${buttonBackExpanded ? "expanded" : ""}`}
-          onClick={handleFilterButtonClick}></button>
+          onClick={handleFilterButtonClick}
+        ></button>
         {buttonBackExpanded && <div className="blueDiv"></div>}
       </div>
       <Navbar2 />
       <div className="titleContainer">
         {/* Mostrar el título de la categoría */}
-        <RepeatedTitle text={categoryName} />
+        <RepeatedTitle text={translateCategory(categoryName)} />
       </div>
 
       <div className="filterOrder">
         <button
           onClick={() => handleSortOrderChange("lowestPrice")}
-          className={activeSortOrder === "lowestPrice" ? "active" : ""}>
+          className={activeSortOrder === "lowestPrice" ? "active" : ""}
+        >
           {t("category.order_lowest")}
         </button>
         <button
           onClick={() => handleSortOrderChange("highestPrice")}
-          className={activeSortOrder === "highestPrice" ? "active" : ""}>
+          className={activeSortOrder === "highestPrice" ? "active" : ""}
+        >
           {t("category.order_highest")}
         </button>
         <button
           onClick={() => handleSortOrderChange("bestRated")}
-          className={activeSortOrder === "bestRated" ? "active" : ""}>
+          className={activeSortOrder === "bestRated" ? "active" : ""}
+        >
           {t("category.order_rated")}
         </button>
         <button
           onClick={() => handleSortOrderChange("offers")}
-          className={activeSortOrder === "offers" ? "active" : ""}>
+          className={activeSortOrder === "offers" ? "active" : ""}
+        >
           {t("category.order_offers")}
         </button>
         <button
           onClick={() => handleSortOrderChange("name")}
-          className={activeSortOrder === "name" ? "active" : ""}>
+          className={activeSortOrder === "name" ? "active" : ""}
+        >
           {t("category.order_name")}
         </button>
       </div>
       <div
         className={`categoryProducts ${
           products.length === 0 ? "noProducts" : ""
-        }`}>
+        }`}
+      >
         {/* Mostrar productos de la página actual */}
         {products.length > 0 ? (
           products.map((product) => (
@@ -311,6 +332,7 @@ const Category = () => {
           </button>
         )}
       </div>
+      <LanguageSwitcher />
       <Footer />
     </div>
   );

@@ -1,264 +1,200 @@
 .flip-card-inner {
-    transform-style: preserve-3d;
-    width: 240px;
-    height: 350px;
-  }
-  
-  .creator-card-img {
-    height: 180px;
-    width: 120px;
-  }
-  
-  .card-name {
-    font-size: 1em;
-    margin-bottom: 0.5em;
-  }
-  
-  .card-price-offer {
-    margin-top: 0.35em;
-    margin-left: 0.3em;
-  }
-  
-  .card-price {
-    font-size: 1em;
-    font-weight: 600;
-    margin-left: 0.5em;
-    margin-bottom: 0.25em;
-    text-align: center;
-  }
-  
-  .cardInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    margin-top: 0.5em;
-  }
-  
-  .starsIcon {
-    font-size: 0.8em;
-    color: var(--color-primary);
-    display: flex;
-    margin-left: 0.75em;
-  }
-  
-  .starsIcon svg {
-    margin: 1px;
-    width: 15px !important;
-  }
-  
-  .eOWFDC {
-    height: 55vh;
-  }
-  
-  .kVtMtA, .bhRnqO {
-    background-color: var(--color-secondary) !important;
-    opacity: 100 !important;
-  }
-  
-  .kVtMtA::before, .bhRnqO::before {
-    border-top: 2px solid #ffff !important;
-    border-right: 2px solid #ffff !important;
-    left: 48% !important;
-  }
-  
-  .bVoXXg {
-    width: 240px;
-    height: 350px;
-  }
-  
-  .UtimI {
-    align-items: center;
-    justify-items: center;
-  }
-  
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .flip-card-front,
-  .flip-card-back {
-    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    padding: 0.75em;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .topCard {
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .favIcon {
-    display: flex;
-    align-items: center;
-    font-size: 25px;
-    color: var(--color-primary);
-  }
-  
-  .bottomCard {
-    display: flex;
-    justify-content: space-between;
-    margin-right: 0.5em;
-  }
-  
-  .compareIcon {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    font-size: 18px;
-    color: var(--color-secondary);
-  }
-  
-  .imgCard {
-    font-size: 1em;
-    padding: 0.5em;
-    width: 100%;
-  }
-  
-  .flip-card-back {
-    transform: rotateY(180deg);
-  }
-  
-  .card-offer-span::before {
-    content: "Offer";
-    position: absolute;
-    width: 150%;
-    height: 35px;
-    background-color: var(--color-primary);
-    transform: rotate(-45deg) translateY(-20px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    box-shadow: 11px 3px 7px 0px rgba(0, 0, 0, 0.23);
-    z-index: 15;
-  }
-  
-  .card-offer-span::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    bottom: 3px;
-    left: 0px;
-    height: 16px;
-    z-index: -1;
-    box-shadow: 133px -131px #cc3f47;
-    background-color: #cc3f47;
-  }
-  .card-offer-span {
-    position: absolute;
-    overflow: hidden;
-    width: 150px;
-    height: 150px;
-    top: -10px;
-    left: -10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .tooltip {
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
-  .tooltip::before {
-    position: absolute;
-    content: "";
-    height: 8px;
-    width: 8px;
-    bottom: -3px;
-    left: 50%;
-    transform: translate(-50%) rotate(45deg);
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  .card-button {
-    background-color: var(--color-secondary);
-    width: 100%;
-  }
-  
-  .card-button span {
-    font-weight: 500;
-    font-size: 13px;
-  }
-  
-  .card-button:hover .tooltip {
-    top: -33px;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-  
-  .card-button:hover .tooltip,
-  .card-button:hover .tooltip::before {
-    background-color: var(--color-primary);
-    color: #ffffff;
-  }
-  
-  /* Ocultar barra de desplazamiento */
-  .hide-scrollbar::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-  }
-  
-  .hide-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  
-  .scroll-indicator.visible {
-    display: block;
-  }
-  /* Agrega el siguiente estilo para la flecha indicadora de scroll */
-  .scroll-indicator {
-    position: absolute;
-    bottom: 40px;
-    right: 5px;
-    font-size: 24px;
-    color: var(--color-primary);
-    transition: opacity 0.3s ease;
-  }
-  
-  /* Ajusta el estilo para que la flecha indicadora sea visible solo cuando hay desplazamiento */
-  .scroll-indicator.invisible {
-    opacity: 0;
-  }
-  
-  .stock {
-    display: flex;
-    align-items: center;
-    margin: 0 1em;
-  }
-  
-  .stock svg {
-    margin-right: 10px;
-  }
-  
-  .stock h3 {
-    font-size: 12px;
-    font-weight: 600;
-    text-align: left;
-  }
-  
-  .cities {
-    color: var(--color-primary);
-    font-weight: 500;
-    font-size: 10px;
-    margin: 0 0.75em;
-  }
-  .creatorDescriptionProduct{
-    padding: 20px;
-  }
-  .creatorDescriptionProduct p {
-    font-size: 15px;
-    text-align: justify;
-    margin: 1em 1em 0 1em;
-  }
-  
+  transform-style: preserve-3d;
+  width: 240px;
+  height: 350px;
+}
+
+.creator-card-img {
+  height: 180px;
+  width: 120px;
+}
+
+.card-name {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}
+
+.card-price-offer {
+  margin-top: 0.35em;
+  margin-left: 0.3em;
+}
+
+.card-price {
+  font-size: 1em;
+  font-weight: 600;
+  margin-left: 0.5em;
+  margin-bottom: 0.25em;
+  text-align: center;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  margin-top: 0.5em;
+}
+
+.starsIcon {
+  font-size: 0.8em;
+  color: var(--color-primary);
+  display: flex;
+  margin-left: 0.75em;
+}
+
+.starsIcon svg {
+  margin: 1px;
+  width: 15px !important;
+}
+
+.eOWFDC {
+  height: 55vh;
+}
+
+.kVtMtA,
+.bhRnqO {
+  background-color: var(--color-secondary) !important;
+  opacity: 100 !important;
+}
+
+.kVtMtA::before,
+.bhRnqO::before {
+  border-top: 2px solid #ffff !important;
+  border-right: 2px solid #ffff !important;
+  left: 48% !important;
+}
+
+.bVoXXg {
+  width: 240px;
+  height: 350px;
+}
+
+.UtimI {
+  align-items: center;
+  justify-items: center;
+}
+
+.flip-card-front,
+.flip-card-back {
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 0.75em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topCard {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.favIcon {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  color: var(--color-primary);
+}
+
+.bottomCard {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 0.5em;
+}
+
+.compareIcon {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 18px;
+  color: var(--color-secondary);
+}
+
+.imgCard {
+  font-size: 1em;
+  padding: 0.5em;
+  width: 100%;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.card-offer-span::before {
+  content: "Offer";
+  position: absolute;
+  width: 150%;
+  height: 35px;
+  background-color: var(--color-primary);
+  transform: rotate(-45deg) translateY(-20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 11px 3px 7px 0px rgba(0, 0, 0, 0.23);
+  z-index: 15;
+}
+
+.card-offer-span::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  bottom: 3px;
+  left: 0px;
+  height: 16px;
+  z-index: -1;
+  box-shadow: 133px -131px #cc3f47;
+  background-color: #cc3f47;
+}
+.card-offer-span {
+  position: absolute;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  top: -10px;
+  left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-button {
+  background-color: var(--color-secondary);
+  width: 100%;
+}
+
+.card-button span {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.card-button:hover .tooltip {
+  top: -33px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.card-button:hover .tooltip,
+.card-button:hover .tooltip::before {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Ocultar barra de desplazamiento */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-indicator.visible {
+  display: block;
+}
