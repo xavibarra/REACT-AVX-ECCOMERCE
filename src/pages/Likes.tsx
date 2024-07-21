@@ -111,43 +111,10 @@ const Likes = () => {
         <RepeatedTitle text={t("categories.favorites")} />
       </div>
 
-      <div className="filterOrder">
-        <button
-          onClick={() => handleSortOrderChange("lowestPrice")}
-          className={activeSortOrder === "lowestPrice" ? "active" : ""}
-        >
-          {t("category.order_lowest")}
-        </button>
-        <button
-          onClick={() => handleSortOrderChange("highestPrice")}
-          className={activeSortOrder === "highestPrice" ? "active" : ""}
-        >
-          {t("category.order_highest")}
-        </button>
-        <button
-          onClick={() => handleSortOrderChange("bestRated")}
-          className={activeSortOrder === "bestRated" ? "active" : ""}
-        >
-          {t("category.order_rated")}
-        </button>
-        <button
-          onClick={() => handleSortOrderChange("offers")}
-          className={activeSortOrder === "offers" ? "active" : ""}
-        >
-          {t("category.order_offers")}
-        </button>
-        <button
-          onClick={() => handleSortOrderChange("name")}
-          className={activeSortOrder === "name" ? "active" : ""}
-        >
-          {t("category.order_name")}
-        </button>
-      </div>
       <div
         className={`categoryProducts ${
           userLikes.length === 0 ? "noProducts" : ""
-        }`}
-      >
+        }`}>
         {/* Mostrar productos de la página actual */}
         {userLikes.length === 0 ? (
           <p>{t("category.error")}</p>

@@ -24,6 +24,8 @@ function Navbar2() {
 
   const { t } = useTranslation("global");
 
+  const navigate = useNavigate();
+
   const goToProfileOrLogin = () => {
     if (user) {
       navigate("/profile");
@@ -72,8 +74,6 @@ function Navbar2() {
     navigate(`/product/${productId}`);
   };
 
-  const navigate = useNavigate();
-
   const goHome = () => {
     window.scrollTo(0, 0);
     navigate("/");
@@ -108,14 +108,18 @@ function Navbar2() {
     setFloatCartVisible(false);
   };
 
-  const toggleFloatCart = async () => {
-    try {
-      const { data, error } = await supabaseClient.auth.getUser();
-      if (error || !data.user) {
-        console.error("User not authenticated:", error);
-        navigate("/login"); // Redirige a la página de inicio de sesión si no está autenticado
-        return;
-      }
+  const toggleFloatCart = () => {
+    if (location.pathname !== "/cart") {
+      setFloatCartVisible(!isFloatCartVisible);
+    }
+    if (!isFloatCartVisible) {
+      fetchCart(); // Actualiza el carrito solo cuando se abre
+    }
+    setMenuVisible(false);
+    setCategoriesVisible(false);
+    setIsIconRotated(false);
+  };
+
 
       if (location.pathname !== "/cart") {
         setFloatCartVisible(!isFloatCartVisible);
@@ -130,6 +134,19 @@ function Navbar2() {
       console.error("Error checking user authentication:", error.message);
     }
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setMenuVisible(false);
+      setIsIconRotated(false);
+      setCategoriesVisible(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
