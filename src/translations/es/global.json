@@ -15,7 +15,7 @@
     "external_hard_drive": "DISCO DURO EXTERNO",
     "internal_hard_drive": "DISCO DURO INTERNO",
     "monitor": "MONITOR",
-    "case_fan": "VENTILADOR DE CAJA",
+    "case_fan": "VENTILADOR",
     "optical_drive": "UNIDAD ÓPTICA",
     "cpu_cooler": "ENFRIADOR DE CPU",
     "ram_memory": "MEMORIA RAM",
@@ -58,6 +58,21 @@
     "technologies_design": "DISEÑO",
     "technologies_db": "BASE DE DATOS",
     "technologies_organitzation": "ORGANIZACIÓN"
+  },
+  "categories2": {
+    "pc_case": "CAJA",
+    "motherboards": "PLACAS BASE",
+    "power_supplies": "FUENTE DE ALIMENTACIÓN",
+    "cpu": "CPU",
+    "graphic_cards": "TARJETA GRÁFICA",
+    "external_hard_drive": "DISCO DURO EXTERNO",
+    "internal_hard_drive": "DISCO DURO INTERNO",
+    "monitors": "MONITOR",
+    "fans": "VENTILADOR",
+    "optical_drives": "UNIDAD ÓPTICA",
+    "cpu_fans": "ENFRIADOR DE CPU",
+    "ram": "MEMORIA RAM",
+    "favorites": "FAVORITOS"
   },
   "home": {
     "offers": "Ofertas destacadas",

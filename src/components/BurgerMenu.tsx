@@ -1,7 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { FaCodeCompare, FaHeart, FaPuzzlePiece } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "../styles/burger-menu.css";
-import { useTranslation } from "react-i18next";
+import { supabaseClient } from "../utils/supabaseClient";
 
 interface BurgerMenuProps {
   menuVisible: boolean;
@@ -74,17 +75,29 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
     window.scrollTo(0, 0);
     navigate("/productsByCategory/3");
   };
-  const goToLikes = () => {
-    window.scrollTo(0, 0);
-    navigate("/likes");
+  const goToLikes = async () => {
+    try {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error || !data.user) {
+        console.error("User not authenticated:", error);
+        navigate("/login"); // Redirige a la página de inicio de sesión si no está autenticado
+        return;
+      }
+
+      window.scrollTo(0, 0);
+      navigate("/likes");
+    } catch (error) {
+      console.error("Error checking user authentication:", error.message);
+    }
   };
 
   return (
     <>
       <div
         id="burger-container"
-        className={`burger-container ${menuVisible ? "visible" : "hidden"}`}>
-        <a href="" className="burger-icon-name-first" onClick={goToLikes}>
+        className={`burger-container ${menuVisible ? "visible" : "hidden"}`}
+      >
+        <a href="#" className="burger-icon-name-first" onClick={goToLikes}>
           <FaHeart className="burger-icon" />
           <p>{t("navbar.favorites")}</p>
         </a>
@@ -95,7 +108,8 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
         <a
           href="#"
           className="burger-icon-name-third"
-          onClick={toggleCategories}>
+          onClick={toggleCategories}
+        >
           <FaPuzzlePiece className="burger-icon" />
           <p>{t("navbar.components")}</p>
         </a>
@@ -104,7 +118,8 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
         id="burger-categories-container"
         className={`burger-categories-container ${
           categoriesVisible ? "visible" : "hidden"
-        }`}>
+        }`}
+      >
         <a href="" className="burger-category-name-first" onClick={goToCase}>
           <p>{t("categories.case")}</p>
         </a>
@@ -123,7 +138,8 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
         <a
           href=""
           className="burger-category-name-2"
-          onClick={goToExternalHardDrive}>
+          onClick={goToExternalHardDrive}
+        >
           <p>{t("categories.external_hard_drive")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToMonitor}>
@@ -132,7 +148,8 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
         <a
           href=""
           className="burger-category-name-2"
-          onClick={goToInternalHardDrive}>
+          onClick={goToInternalHardDrive}
+        >
           <p>{t("categories.internal_hard_drive")}</p>
         </a>
         <a href="" className="burger-category-name" onClick={goToRamMemory}>
