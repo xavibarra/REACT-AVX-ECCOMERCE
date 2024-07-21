@@ -3,14 +3,12 @@
   flex-direction: column;
   justify-content: space-around;
 }
-.profileCard {
-  margin: 5em 20em !important;
-}
+
 .profile-information-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 65%;
+  height: 90%;
   margin-left: 10%;
 }
 .profile-image-container {
@@ -18,16 +16,16 @@
   justify-content: center;
   align-items: center;
   margin-right: 10%;
+  margin-bottom: 5em;
 }
 .profile-image-container img {
-  width: 180px;
-  height: 180px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
 }
 .profile-information {
   display: flex;
   flex-direction: row;
-  width: 50%;
   align-items: flex-end;
   justify-content: space-between;
 }
@@ -54,7 +52,42 @@
   font-size: 1.5em;
 }
 .profile-title {
-  margin-bottom: 60%;
+  margin-bottom: 25%;
   font-size: 2em !important;
   white-space: nowrap;
+}
+
+.formCardInner2 {
+  width: inherit;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 1em;
+  height: inherit;
+}
+
+.formCircle2:nth-child(2) {
+  bottom: -55px;
+  right: -45px;
+  animation-name: move-down1;
+}
+.formCircle:nth-child(1) {
+  top: -35px;
+  left: -45px;
+}
+
+.formCircle2 {
+  width: 20vh;
+  height: 20vh;
+  background: radial-gradient(var(--color-primary), var(--color-primary));
+  border-radius: 50%;
+  position: absolute;
+  animation: move-up6 2s ease-in infinite alternate-reverse;
+}
+
+.formCard3 {
+  height: 55vh;
+  margin: 6em 17em;
+  transition: all 0.2s;
+  position: relative;
 }

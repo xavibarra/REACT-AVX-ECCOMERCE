@@ -107,39 +107,36 @@ export default class Brands extends Component {
 
     return (
       <>
-     
-      <div className="formCard2">
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCircle2"></div>
-        <div className="formCardInner2">
-        <div className="">
-        <div className="carousel-track">
-        {duplicatedBrands.map((brand, index) => (
-          <div className="carousel-item" key={index}>
-              <img
-                className="carousel-image"
-                src={brand.logo}
-                alt={brand.alt}
-                />
+        <div className="formCard4">
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCircle3"></div>
+          <div className="formCardInner2">
+            <div className="">
+              <div className="carousel-track">
+                {duplicatedBrands.map((brand, index) => (
+                  <div className="carousel-item" key={index}>
+                    <img
+                      className="carousel-image"
+                      src={brand.logo}
+                      alt={brand.alt}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-        
-      </div>
-        </div>
-      </div>
       </>
-      
     );
   }
 }

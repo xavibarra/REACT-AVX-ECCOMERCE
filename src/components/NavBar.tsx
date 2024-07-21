@@ -7,7 +7,6 @@ import "../styles/navbar.css";
 import { supabaseClient } from "../utils/supabaseClient";
 import FloatCart from "./FloatCart";
 import { FloatCartContext } from "./SetFloatCartVisibleContext";
-import { useTranslation } from "react-i18next";
 
 function Navbar() {
   const [user, setUser] = useState({});
@@ -15,10 +14,10 @@ function Navbar() {
   const location = useLocation();
 
   if (!context) {
-    throw new Error('NavBar must be used within a FloatCartProvider');
+    throw new Error("NavBar must be used within a FloatCartProvider");
   }
 
-  const { isFloatCartVisible, setFloatCartVisible, fetchCart } = context;  
+  const { isFloatCartVisible, setFloatCartVisible, fetchCart } = context;
 
   useEffect(() => {
     async function checkUser() {
@@ -153,7 +152,7 @@ function Navbar() {
 
   const toggleFloatCart = () => {
     if (location.pathname !== "/cart") {
-    setFloatCartVisible(!isFloatCartVisible);
+      setFloatCartVisible(!isFloatCartVisible);
     }
     if (!isFloatCartVisible) {
       fetchCart(); // Actualiza el carrito solo cuando se abre
@@ -355,7 +354,11 @@ function Navbar() {
         categoriesVisible={categoriesVisible}
       />
       <FloatCart
-        className={isFloatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'}
+        className={
+          isFloatCartVisible
+            ? "float-cart-container"
+            : "float-cart-container-hidden"
+        }
       />
     </>
   );
