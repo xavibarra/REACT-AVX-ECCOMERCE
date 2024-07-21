@@ -7,6 +7,7 @@ import "../styles/creatorflipcard.css";
 interface CreatorProps {
   name: string;
   foto: string;
+  cssClass: string;
   offer: boolean;
   rating: number;
 }
@@ -14,6 +15,7 @@ interface CreatorProps {
 const CreatorFlipCard: React.FC<CreatorProps> = ({
   name,
   foto,
+  cssClass,
   offer,
   rating,
 }) => {
@@ -59,9 +61,10 @@ const CreatorFlipCard: React.FC<CreatorProps> = ({
   };
 
   return (
-    <div className=" bg-transparent perspective-1000 font-sans cursor-pointer">
+    <div
+      className={`bg-transparent perspective-1000 font-sans cursor-pointer ${cssClass}`}>
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-700">
-        <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
+        <div className="flip-card-front absolute flex flex-col w-full bg-white shadow-md">
           {offer == true && <span className="card-offer-span"></span>}
           <div className="cardContainer">
             <div className="topCard">
