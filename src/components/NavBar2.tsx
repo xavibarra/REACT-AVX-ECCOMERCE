@@ -1,11 +1,12 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaBars, FaShoppingBasket, FaUser } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BurgerMenu from "../components/BurgerMenu";
 import "../styles/navbar2.css";
+import { supabaseClient } from "../utils/supabaseClient";
 import FloatCart from "./FloatCart";
 import { FloatCartContext } from "./SetFloatCartVisibleContext";
-import { useTranslation } from "react-i18next";
 
 function Navbar2() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,8 +24,6 @@ function Navbar2() {
 
   const { t } = useTranslation("global");
 
-  const navigate = useNavigate();
-
   const goToProfileOrLogin = () => {
     if (user) {
       navigate("/profile");
@@ -36,6 +35,16 @@ function Navbar2() {
 
   /* --------------------------------------------------------------- SEARCH INPUT FUNCIÓN --*/
   useEffect(() => {
+    async function checkUser() {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error) {
+        setUser(null);
+      } else {
+        setUser(data.user);
+      }
+    }
+
+    checkUser();
     if (searchTerm) {
       fetch(
         `http://localhost:3000/products/search/${encodeURIComponent(
@@ -62,6 +71,8 @@ function Navbar2() {
     event.preventDefault();
     navigate(`/product/${productId}`);
   };
+
+  const navigate = useNavigate();
 
   const goHome = () => {
     window.scrollTo(0, 0);
@@ -97,16 +108,27 @@ function Navbar2() {
     setFloatCartVisible(false);
   };
 
-  const toggleFloatCart = () => {
-    if (location.pathname !== "/cart") {
-      setFloatCartVisible(!isFloatCartVisible);
+  const toggleFloatCart = async () => {
+    try {
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error || !data.user) {
+        console.error("User not authenticated:", error);
+        navigate("/login"); // Redirige a la página de inicio de sesión si no está autenticado
+        return;
+      }
+
+      if (location.pathname !== "/cart") {
+        setFloatCartVisible(!isFloatCartVisible);
+      }
+      if (!isFloatCartVisible) {
+        await fetchCart(); // Actualiza el carrito solo cuando se abre
+      }
+      setMenuVisible(false);
+      setCategoriesVisible(false);
+      setIsIconRotated(false);
+    } catch (error) {
+      console.error("Error checking user authentication:", error.message);
     }
-    if (!isFloatCartVisible) {
-      fetchCart(); // Actualiza el carrito solo cuando se abre
-    }
-    setMenuVisible(false);
-    setCategoriesVisible(false);
-    setIsIconRotated(false);
   };
 
   const hideFloatCart = () => {
