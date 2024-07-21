@@ -16,13 +16,14 @@ function Navbar2() {
   const context = useContext(FloatCartContext);
 
   if (!context) {
-    throw new Error('NavBar must be used within a FloatCartProvider');
+    throw new Error("NavBar must be used within a FloatCartProvider");
   }
 
-  const { isFloatCartVisible, setFloatCartVisible, fetchCart } = context;  
-
+  const { isFloatCartVisible, setFloatCartVisible, fetchCart } = context;
 
   const { t } = useTranslation("global");
+
+  const navigate = useNavigate();
 
   const goToProfileOrLogin = () => {
     if (user) {
@@ -62,8 +63,6 @@ function Navbar2() {
     navigate(`/product/${productId}`);
   };
 
-  const navigate = useNavigate();
-
   const goHome = () => {
     window.scrollTo(0, 0);
     navigate("/");
@@ -100,7 +99,7 @@ function Navbar2() {
 
   const toggleFloatCart = () => {
     if (location.pathname !== "/cart") {
-    setFloatCartVisible(!isFloatCartVisible);
+      setFloatCartVisible(!isFloatCartVisible);
     }
     if (!isFloatCartVisible) {
       fetchCart(); // Actualiza el carrito solo cuando se abre
@@ -113,6 +112,19 @@ function Navbar2() {
   const hideFloatCart = () => {
     setFloatCartVisible(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setMenuVisible(false);
+      setIsIconRotated(false);
+      setCategoriesVisible(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -300,8 +312,13 @@ function Navbar2() {
         categoriesVisible={categoriesVisible}
       />
 
-      <FloatCart className={isFloatCartVisible ? 'float-cart-container' : 'float-cart-container-hidden'} />
-
+      <FloatCart
+        className={
+          isFloatCartVisible
+            ? "float-cart-container"
+            : "float-cart-container-hidden"
+        }
+      />
     </>
   );
 }
