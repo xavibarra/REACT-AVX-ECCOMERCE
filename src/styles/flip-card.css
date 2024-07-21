@@ -45,12 +45,14 @@
   width: 15px !important;
 }
 
-.kVtMtA, .bhRnqO {
+.kVtMtA,
+.bhRnqO {
   background-color: var(--color-secondary) !important;
   opacity: 100 !important;
 }
 
-.kVtMtA::before, .bhRnqO::before {
+.kVtMtA::before,
+.bhRnqO::before {
   border-top: 2px solid #ffff !important;
   border-right: 2px solid #ffff !important;
   left: 48% !important;
@@ -59,7 +61,6 @@
 .bVoXXg {
   width: 240px;
   height: 350px;
-  
 }
 
 .UtimI {
@@ -72,7 +73,7 @@
   transform: rotateY(180deg);
 }
 
-.flip-card{
+.flip-card {
   width: 15em;
 }
 
@@ -113,7 +114,7 @@
   color: var(--color-secondary);
 }
 
-.compareIcon2 { 
+.compareIcon2 {
   position: absolute;
   right: 20px;
   top: 25px;
@@ -210,7 +211,7 @@
   background-color: var(--color-primary);
   color: #ffffff;
 }
-.duration-500{
+.duration-500 {
   transition-duration: 400ms !important;
 }
 /* Ocultar barra de desplazamiento */

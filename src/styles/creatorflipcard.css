@@ -73,10 +73,6 @@
   justify-items: center;
 }
 
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
 .flip-card-front,
 .flip-card-back {
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
@@ -165,22 +161,6 @@
   justify-content: center;
 }
 
-.tooltip {
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.tooltip::before {
-  position: absolute;
-  content: "";
-  height: 8px;
-  width: 8px;
-  bottom: -3px;
-  left: 50%;
-  transform: translate(-50%) rotate(45deg);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
 .card-button {
   background-color: var(--color-secondary);
   width: 100%;
@@ -217,49 +197,4 @@
 
 .scroll-indicator.visible {
   display: block;
-}
-/* Agrega el siguiente estilo para la flecha indicadora de scroll */
-.scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  right: 5px;
-  font-size: 24px;
-  color: var(--color-primary);
-  transition: opacity 0.3s ease;
-}
-
-/* Ajusta el estilo para que la flecha indicadora sea visible solo cuando hay desplazamiento */
-.scroll-indicator.invisible {
-  opacity: 0;
-}
-
-.stock {
-  display: flex;
-  align-items: center;
-  margin: 0 1em;
-}
-
-.stock svg {
-  margin-right: 10px;
-}
-
-.stock h3 {
-  font-size: 12px;
-  font-weight: 600;
-  text-align: left;
-}
-
-.cities {
-  color: var(--color-primary);
-  font-weight: 500;
-  font-size: 10px;
-  margin: 0 0.75em;
-}
-.creatorDescriptionProduct {
-  padding: 20px;
-}
-.creatorDescriptionProduct p {
-  font-size: 15px;
-  text-align: justify;
-  margin: 1em 1em 0 1em;
 }
