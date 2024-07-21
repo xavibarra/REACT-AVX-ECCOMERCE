@@ -64,10 +64,10 @@ const Profile = () => {
       <div>
         {user ? (
           <div>
-            <div className="formCard profileCard">
+            <div className="formCard3 profileCard">
               <div className="formCircle"></div>
-              <div className="formCircle"></div>
-              <div className="formCardInner profile">
+              <div className="formCircle2"></div>
+              <div className="formCardInner2 profile">
                 <div className="profile-information-container">
                   <div className="profile-information">
                     <div>
@@ -89,8 +89,7 @@ const Profile = () => {
                 <div className="profile-button-container">
                   <button
                     className="singout-button"
-                    onClick={() => singOutUser()}
-                  >
+                    onClick={() => singOutUser()}>
                     {t("profile.button")}{" "}
                   </button>
                 </div>
