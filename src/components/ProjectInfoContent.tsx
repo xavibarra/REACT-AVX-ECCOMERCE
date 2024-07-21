@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import persona2 from "../assets/img/foto-ejemplo-2.jpg";
-import persona3 from "../assets/img/foto-ejemplo-3.jpg";
-import persona1 from "../assets/img/foto-ejemplo.jpg";
+import alex from "../assets/img/alex_avx.png";
+import xavi from "../assets/img/xavi_avx.png";
+import alvaro from "../assets/img/alvaro_avx.png";
 import "../styles/project-info.css";
 import CreatorFlipCard from "./CreatorFlipCard";
 
@@ -10,19 +10,22 @@ const ProjectInfoContent = () => {
   const creators = [
     {
       name: "Álvaro Monfort",
-      foto: persona1,
+      foto: alvaro,
+      cssClass: "alvaro-photo",
       offer: true,
       rating: 5,
     },
     {
       name: "Xavi Barrachina",
-      foto: persona2,
+      foto: xavi,
+      cssClass: "xavi-photo",
       offer: true,
       rating: 5,
     },
     {
       name: "Àlex Virgili",
-      foto: persona3,
+      foto: alex,
+      cssClass: "alex-photo",
       offer: true,
       rating: 5,
     },
@@ -36,6 +39,7 @@ const ProjectInfoContent = () => {
             key={index}
             name={creator.name}
             foto={creator.foto}
+            cssClass={creator.cssClass}
             offer={creator.offer}
             rating={creator.rating}
           />
