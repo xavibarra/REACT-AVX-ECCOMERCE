@@ -6,7 +6,7 @@ import Navbar from "./NavBar";
 
 const Categories: React.FC<{ category: string }> = ({ category }) => {
   const { t } = useTranslation("global");
-  const [hoveredIndex, setHoveredIndex] = useState<number>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // Función para transformar los nombres de categorías en claves para la traducción
   const translateCategory = (categoryName: string) => {
