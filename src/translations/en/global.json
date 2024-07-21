@@ -15,7 +15,7 @@
     "external_hard_drive": "EXTERNAL HARD DRIVE",
     "internal_hard_drive": "INTERNAL HARD DRIVE",
     "monitor": "MONITOR",
-    "case_fan": "CASE FAN",
+    "case_fan": "FAN",
     "optical_drive": "OPTICAL DRIVE",
     "cpu_cooler": "CPU COOLER",
     "ram_memory": "RAM MEMORY",
@@ -59,6 +59,21 @@
     "technologies_db": "DATA BASE",
     "technologies_organitzation": "ORGANIZATION"
   },
+  "categories2": {
+    "pc_case": "CASE",
+    "motherboards": "MOTHERBOARD",
+    "power_supplies": "POWER SUPPLY",
+    "cpu": "CPU",
+    "graphic_cards": "GRAPHIC CARD",
+    "external_hard_drive": "EXTERNAL HARD DRIVE",
+    "internal_hard_drive": "INTERNAL HARD DRIVE",
+    "monitors": "MONITOR",
+    "fans": "FAN",
+    "optical_drives": "OPTICAL DRIVE",
+    "cpu_fans": "CPU COOLER",
+    "ram": "RAM MEMORY",
+    "favorites": "FAVORITES"
+  },
   "home": {
     "offers": "Highlighted offers",
     "about_us": {
@@ -73,7 +88,7 @@
     },
     "form": {
       "title": "We'd Love to Hear from You!",
-      "description": "At AVX components, we strive to provide high-quality products and services to meet our customers' needs. Your feedback is important to us, whether you have a complaint, a suggestion, or simply want to share your thoughts about your experience with us.",
+      "description": "At AVX Components, we continuously strive to provide high-quality products and exceptional services to meet and exceed our customers' needs and expectations. Your feedback is incredibly important to us, whether you have a complaint, a suggestion for improvement, or simply want to share your thoughts and experiences with us. We are making continuous improvements based on your valuable input.",
       "title2": "What Do We Want to Hear from You?",
       "li1": "Do you have any questions about",
       "li21": "Would you like to share your ",
