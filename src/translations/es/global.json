@@ -44,8 +44,23 @@
     "November": "Noviembre",
     "December": "Diciembre"
   },
+  "about_us": {
+    "information_title": "INFORMACIÓN DEL PROYECTO",
+    "information_text_1": "AVX Components nació como el proyecto final de un bootcamp de 5 meses en tecnologías de programación web, parte de un FP dual de formación y trabajo de Fundesplai. Este programa incluye tanto la formación en el bootcamp como la parte de trabajo de la mano de la empresa Onizea.",
+    "information_text_2": "Empezamos el proyecto 1 mes antes de finalizar este programa de formación, aplicando las habilidades adquiridas y dedicando tiempo adicional para asegurar que nuestro proyecto refleje el mejor uso posible de estas tecnologías.",
+    "history_title": "HISTORIA DEL PROYECTO",
+    "history_text_1": "Nuestro e-commerce, AVX Components, se enorgullece de ofrecer más de 10.000 productos, organizados en 12 categorías para una navegación y selección fáciles. Nuestro catálogo incluye una gran variedad de componentes electrónicos y accesorios especializados, diseñados para satisfacer las necesidades de nuestros clientes. Nuestro principal objetivo es proporcionar una experiencia de compra completa y satisfactoria.",
+    "history_text_2": "Nos esforzamos por presentar los mejores componentes disponibles en el mercado, asegurando la calidad y el rendimiento de cada producto. Para ello, ofrecemos descripciones detalladas, imágenes claras y especificaciones técnicas precisas. En AVX Components, valoramos las opiniones de nuestros clientes y estamos siempre dispuestos a mejorar nuestros servicios basándonos en vuestros comentarios.",
+    "history_text_3": "Nuestra plataforma es intuitiva y fácil de usar, con múltiples opciones de búsqueda y filtros para encontrar rápidamente lo que necesites. En resumen, en AVX Components estamos dedicados a proporcionar una experiencia de compra de primera clase, asegurando que nuestros clientes tengan acceso a productos de alta calidad y a un servicio excepcional.",
+    "technologies_title": "Tecnologías Utilizadas",
+    "technologies_frontend": "FRONTEND",
+    "technologies_backend": "BACKEND",
+    "technologies_design": "DISEÑO",
+    "technologies_db": "BASE DE DATOS",
+    "technologies_organitzation": "ORGANIZACIÓN"
+  },
   "home": {
-    "offers": "Highlighted offers",
+    "offers": "Ofertas destacadas",
     "about_us": {
       "title": "Sobre Nosotros",
       "description1": "¡Bienvenido a Components Portions! Fundado por entusiastas de la tecnología, estamos dedicados a proporcionar los componentes de computadora de la más alta calidad para ayudarte a construir, actualizar y optimizar tus sistemas. Nuestra amplia selección incluye CPUs, GPUs, placas base, memoria, soluciones de almacenamiento y más, atendiendo tanto a aficionados como a profesionales.",

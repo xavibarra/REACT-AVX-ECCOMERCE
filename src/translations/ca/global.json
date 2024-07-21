@@ -44,6 +44,21 @@
     "November": "Novembre",
     "December": "Desembre"
   },
+  "about_us": {
+    "information_title": "INFORMACIÓ DEL PROJECTE",
+    "information_text_1": "AVX Components va néixer com a projecte final d'un bootcamp de 5 mesos en tecnologies de programació web, part d'un FP dual de formació i feina de Fundesplai. Aquest programa inclou tant la formació al bootcamp com la part de treball de la mà de l'empresa Onizea.",
+    "information_text_2": "Vam començar el projecte 1 mes abans de finalitzar aquest programa de formació, aplicant les habilitats adquirides i dedicant temps addicional per assegurar-nos que el nostre projecte reflecteixi la millor utilització possible d’aquestes tecnologies.",
+    "history_title": "HISTÒRIA DEL PROJECTE",
+    "history_text_1": "El nostre e-commerce, AVX Components, es enorgulleix d’oferir més de 10.000 productes, organitzats en 12 categories per a una navegació i selecció fàcils. El nostre catàleg inclou una gran varietat de components electrònics i accessoris especialitzats, dissenyats per satisfer les necessitats dels nostres clients. El nostre principal objectiu és oferir una experiència de compra completa i satisfactòria.",
+    "history_text_2": "Ens esforcem per presentar els millors components disponibles al mercat, assegurant la qualitat i el rendiment de cada producte. Per això, oferim descripcions detallades, imatges clares i especificacions tècniques precises. A AVX Components, valorem les opinions dels nostres clients i estem sempre disposats a millorar els nostres serveis basant-nos en els vostres comentaris.",
+    "history_text_3": "La nostra plataforma és intuïtiva i fàcil d’utilitzar, amb múltiples opcions de cerca i filtres per trobar ràpidament el que necessiteu. En resum, a AVX Components estem dedicats a proporcionar una experiència de compra de primera classe, assegurant que els nostres clients tinguin accés a productes d’alta qualitat i a un servei excepcional.",
+    "technologies_title": "Tecnologies Utilitzades",
+    "technologies_frontend": "FRONTEND",
+    "technologies_backend": "BACKEND",
+    "technologies_design": "DISSENY",
+    "technologies_db": "BASE DE DADES",
+    "technologies_organitzation": "ORGANITZACIÓ"
+  },
   "home": {
     "offers": "Ofertes destacades",
     "about_us": {

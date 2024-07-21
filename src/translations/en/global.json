@@ -44,8 +44,23 @@
     "November": "November",
     "December": "December"
   },
+  "about_us": {
+    "information_title": "PROJECT INFORMATION",
+    "information_text_1": "AVX Components was born as the final project of a bootcamp 5 months in web programming technologies, part of a dual FP of training and work of Fundesplai. This program includes both training in the bootcamp as well as the working part of the hand of the Onizea company.",
+    "information_text_2": "We started the project 1 month before finishing this formation program, applying the acquired skills and dedicating additional time to ensure that our project reflects the best possible use of these technologies.",
+    "history_title": "PROJECT HISTORY",
+    "history_text_1": "Our e-commerce, AVX Components, is proud to offer more than 10,000 products, organized into 12 categories for easy navigation and selection. Our catalog includes a wide variety of specialized electronic components and accessories, designed to meet the needs of our customers. Our main goal is to provide a complete and satisfactory shopping experience.",
+    "history_text_2": "We strive to present the best components available on the market, ensuring the quality and performance of each product. For this, we offer detailed descriptions, clear images and precise technical specifications. At AVX Components, we value our customers' opinions and are always willing to improve our services based on your comments.",
+    "history_text_3": "Our platform is intuitive and easy to use, with multiple search options and filters to quickly find what what do you need. In short, at AVX Components we are dedicated to providing a great shopping experience. first class, ensuring that our customers have access to high quality products and to exceptional service.",
+    "technologies_title": "Tecnologies Used",
+    "technologies_frontend": "FRONTEND",
+    "technologies_backend": "BACKEND",
+    "technologies_design": "DESIGN",
+    "technologies_db": "DATA BASE",
+    "technologies_organitzation": "ORGANIZATION"
+  },
   "home": {
-    "offers": "Ofertas destacadas",
+    "offers": "Highlighted offers",
     "about_us": {
       "title": "About Us",
       "description1": "Welcome to Components Portions! Founded by tech enthusiasts, we are dedicated to providing the highest quality computer components to help you build, upgrade, and optimize your systems. Our extensive selection includes top-tier CPUs, GPUs, motherboards, memory, storage solutions, and more, catering to both hobbyists and professionals.",
