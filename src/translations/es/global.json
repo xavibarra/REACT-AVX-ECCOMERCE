@@ -173,6 +173,7 @@
     "button_keep": "Seguir comprando",
     "button_empty": "Vaciar carrito",
     "button_purchase": "Finalizar compra",
-    "receive": "Recíbelo el"
+    "receive": "Recíbelo el",
+    "no_items": "No tienes productos en el carrito"
   }
 }

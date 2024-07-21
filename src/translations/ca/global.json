@@ -173,6 +173,7 @@
     "button_keep": "Seguir comprant",
     "button_empty": "Buidar carro",
     "button_purchase": "Finalitzar compra",
-    "receive": "Rep-ho el"
+    "receive": "Rep-ho el",
+    "no_items": "No tens productes a la cistella"
   }
 }
