@@ -277,7 +277,7 @@ const ProductPage = () => {
     );
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
 
   // Calcular el precio final con o sin descuento

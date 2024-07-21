@@ -176,6 +176,6 @@
     "button_empty": "Empty cart",
     "button_purchase": "Finalize purchase",
     "receive": "Receive it on",
-    "cart_error": "There are no items in the Cart"
+    "no_items": "There are no items in the Cart"
   }
 }
