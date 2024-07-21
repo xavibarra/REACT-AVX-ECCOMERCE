@@ -51,10 +51,10 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
             }
           );
           console.log("Response from /users/is-admin:", response.data);
-          setIsAdmin(true);
+          setIsAdmin(response.data.isAdmin);
         } catch (error) {
           console.error("Error checking admin status:", error);
-          setIsAdmin(true);
+          setIsAdmin(false);
         }
       };
 

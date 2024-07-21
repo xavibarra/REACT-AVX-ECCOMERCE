@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../styles/admin.css"; // Importamos el archivo CSS para los estilos
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { IoIosSave } from "react-icons/io";
+import "../styles/admin.css"; // Importamos el archivo CSS para los estilos
 
 interface Product {
   id: number;
@@ -306,7 +306,8 @@ const Admin: React.FC = () => {
               <select
                 value={newProduct.category_id}
                 onChange={handleCategoryChange}
-                required>
+                required
+              >
                 <option value={0}>Select Category</option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
@@ -424,7 +425,8 @@ const Admin: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="close-button">
+                className="close-button"
+              >
                 Close
               </button>
             </div>
@@ -646,18 +648,17 @@ const Admin: React.FC = () => {
                             segoviaStock: product.segoviaStock,
                             final_price: product.final_price,
                           })
-                        }>
+                        }
+                      >
                         <IoIosSave />
-
                       </button>
                     ) : (
                       <button onClick={() => handleEditProduct(product.id)}>
                         <FaEdit />
-
                       </button>
                     )}
                     <button onClick={() => handleDeleteProduct(product.id)}>
-                    <FaTrash />
+                      <FaTrash />
                     </button>
                   </td>
                 </tr>
@@ -668,14 +669,16 @@ const Admin: React.FC = () => {
       <div className="pagination2">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}>
+          disabled={currentPage === 1}
+        >
           Previous
         </button>
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={
             currentPage === Math.ceil(productsFiltered.length / productsPerPage)
-          }>
+          }
+        >
           Next
         </button>
       </div>
