@@ -11,7 +11,7 @@ interface ProtectedRouteProps {
 
 const supabase = createClient(
   "https://dtchhmivnblzqzsmodfa.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0Y2hobWl2bmJsenF6c21vZGZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU4MTI5NTQsImV4cCI6MjAzMTM4ODk1NH0.mGFqzugUYSJ393JWZiG5KQDIPyXA5YvB-Bxc3Bvr-9k"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0Y2hobWl2bmJsenF6c21vZGZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU4MTI5NTQsImV4cCI6MjAzMTM4ODk1NH0.mGFqzugUYSJ393JWZiG5KQDIPyXA5YvB-Bxc3Bvr-9k",
 );
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
@@ -31,7 +31,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
           setUserId(null);
         }
       } catch (error) {
-        return <Navigate to="/login" />
+        return <Navigate to="/login" />;
         console.error("Error fetching user:", error);
         setUserId(null);
       }
@@ -45,9 +45,12 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
       const checkAdminStatus = async () => {
         try {
           console.log("Checking admin status for user:", userId);
-          const response = await axios.get(`http://localhost:3000/users/is-admin`, {
-            params: { userId },
-          });
+          const response = await axios.get(
+            `https://node-avx-eccomerce-0utq.onrender.com/users/is-admin`,
+            {
+              params: { userId },
+            },
+          );
           console.log("Response from /users/is-admin:", response.data);
           setIsAdmin(response.data.isAdmin);
         } catch (error) {

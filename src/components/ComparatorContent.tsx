@@ -38,7 +38,9 @@ const ComparatorContent = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:3000/categories/");
+        const response = await fetch(
+          "https://node-avx-eccomerce-0utq.onrender.com/categories/",
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -58,13 +60,13 @@ const ComparatorContent = () => {
       let url = "";
 
       if (search && selectedCategory) {
-        url = `http://localhost:3000/products/searchByAllFilters/${minPrice}/${maxPrice}/${search}/${selectedCategory}`;
+        url = `https://node-avx-eccomerce-0utq.onrender.com/products/searchByAllFilters/${minPrice}/${maxPrice}/${search}/${selectedCategory}`;
       } else if (search) {
-        url = `http://localhost:3000/products/searchByPriceAndName/${minPrice}/${maxPrice}/${search}`;
+        url = `https://node-avx-eccomerce-0utq.onrender.com/products/searchByPriceAndName/${minPrice}/${maxPrice}/${search}`;
       } else if (selectedCategory) {
-        url = `http://localhost:3000/products/searchByPriceAndCategory/${minPrice}/${maxPrice}/${selectedCategory}`;
+        url = `https://node-avx-eccomerce-0utq.onrender.com/products/searchByPriceAndCategory/${minPrice}/${maxPrice}/${selectedCategory}`;
       } else {
-        url = `http://localhost:3000/products/searchByPrice/${minPrice}/${maxPrice}`;
+        url = `https://node-avx-eccomerce-0utq.onrender.com/products/searchByPrice/${minPrice}/${maxPrice}`;
       }
 
       console.log("Fetch URL:", url); // Para depuración
@@ -82,11 +84,11 @@ const ComparatorContent = () => {
 
   const fetchFeaturesValues = async (
     productId: number,
-    setFeatures: (features: FeaturesValues[]) => void
+    setFeatures: (features: FeaturesValues[]) => void,
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/values/features/${productId}`
+        `https://node-avx-eccomerce-0utq.onrender.com/values/features/${productId}`,
       );
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -125,7 +127,7 @@ const ComparatorContent = () => {
       setComparisonProducts(newComparisonProducts);
       fetchFeaturesValues(
         product.id,
-        firstEmptyIndex === 0 ? setFeaturesValues1 : setFeaturesValues2
+        firstEmptyIndex === 0 ? setFeaturesValues1 : setFeaturesValues2,
       );
       setShowAddedMessage(true);
       setTimeout(() => setShowAddedMessage(false), 2000);
@@ -188,15 +190,15 @@ const ComparatorContent = () => {
         i18n.language === "en"
           ? f.feature_name_en
           : i18n.language === "es"
-          ? f.feature_name_es
-          : f.feature_name_ca
+            ? f.feature_name_es
+            : f.feature_name_ca,
       ),
       ...featuresValues2.map((f) =>
         i18n.language === "en"
           ? f.feature_name_en
           : i18n.language === "es"
-          ? f.feature_name_es
-          : f.feature_name_ca
+            ? f.feature_name_es
+            : f.feature_name_ca,
       ),
     ]),
   ];
@@ -228,14 +230,14 @@ const ComparatorContent = () => {
   };
 
   const handleMinPriceInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const newMinPrice = Number(event.target.value);
     setMinPrice(newMinPrice);
   };
 
   const handleMaxPriceInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const newMaxPrice = Number(event.target.value);
     setMaxPrice(newMaxPrice);
@@ -257,15 +259,13 @@ const ComparatorContent = () => {
                 comparisonProducts[0]
                   ? "comparator-first-choice-container"
                   : "comparator-first-choice-container-hidden"
-              }
-            >
+              }>
               <div
                 className={
                   comparisonProducts[0]
                     ? "comparator-rating-name-container"
                     : "comparator-rating-name-container-hidden"
-                }
-              >
+                }>
                 <h4 className="comparator-rating">
                   {comparisonProducts[0]
                     ? comparisonProducts[0].rating
@@ -293,8 +293,7 @@ const ComparatorContent = () => {
               <div className="comparator-see-product-button-container">
                 <div className="comparator-see-product-button-container">
                   <button
-                    onClick={() => handleSeeProduct(comparisonProducts[0]?.id)}
-                  >
+                    onClick={() => handleSeeProduct(comparisonProducts[0]?.id)}>
                     <h6>{t("comparator.see_product")}</h6>
                   </button>
                 </div>
@@ -306,8 +305,7 @@ const ComparatorContent = () => {
                 comparisonProducts[0]
                   ? "comparator-plus-icon-1-container-hidden"
                   : "comparator-plus-icon-1-container"
-              }
-            >
+              }>
               <FaPlus className="comparator-plus-icon" />
             </a>
           </div>
@@ -325,15 +323,13 @@ const ComparatorContent = () => {
                 comparisonProducts[1]
                   ? "comparator-second-choice-container"
                   : "comparator-second-choice-container-hidden"
-              }
-            >
+              }>
               <div
                 className={
                   comparisonProducts[1]
                     ? "comparator-rating-name-container"
                     : "comparator-rating-name-container-hidden"
-                }
-              >
+                }>
                 <h4 className="comparator-rating">
                   {comparisonProducts[1]
                     ? comparisonProducts[1].rating
@@ -361,8 +357,7 @@ const ComparatorContent = () => {
               <div className="comparator-see-product-button-container">
                 <div className="comparator-see-product-button-container">
                   <button
-                    onClick={() => handleSeeProduct(comparisonProducts[1]?.id)}
-                  >
+                    onClick={() => handleSeeProduct(comparisonProducts[1]?.id)}>
                     <h6>{t("comparator.see_product")}</h6>
                   </button>
                 </div>
@@ -374,8 +369,7 @@ const ComparatorContent = () => {
                 comparisonProducts[1]
                   ? "comparator-plus-icon-2-container-hidden"
                   : "comparator-plus-icon-2-container"
-              }
-            >
+              }>
               <FaPlus className="comparator-plus-icon" />
             </a>
           </div>
@@ -386,8 +380,7 @@ const ComparatorContent = () => {
             comparisonProducts.every((product) => product === null)
               ? "comparator-choices-names-container-hidden"
               : "comparator-choices-names-container"
-          }
-        >
+          }>
           <h4>
             {comparisonProducts[0]?.name || " "} VS{" "}
             {comparisonProducts[1]?.name || " "}
@@ -398,8 +391,7 @@ const ComparatorContent = () => {
             comparisonProducts.every((product) => product === null)
               ? "comparator-characteristics-container-hidden"
               : "comparator-characteristics-container"
-          }
-        >
+          }>
           {commonFeatures.map((feature) => (
             <div key={feature.label} className="comparator-characteristics-row">
               <div className="comparator-characteristics-cell">
@@ -409,14 +401,14 @@ const ComparatorContent = () => {
                 {comparisonProducts[0]
                   ? feature.customRender
                     ? feature.customRender(comparisonProducts[0][feature.key])
-                    : comparisonProducts[0][feature.key] ?? "- - - -"
+                    : (comparisonProducts[0][feature.key] ?? "- - - -")
                   : "- - - -"}
               </div>
               <div className="comparator-characteristics-cell">
                 {comparisonProducts[1]
                   ? feature.customRender
                     ? feature.customRender(comparisonProducts[1][feature.key])
-                    : comparisonProducts[1][feature.key] ?? "- - - -"
+                    : (comparisonProducts[1][feature.key] ?? "- - - -")
                   : "- - - -"}
               </div>
             </div>
@@ -426,23 +418,23 @@ const ComparatorContent = () => {
               (f) =>
                 (i18n.language === "en" && f.feature_name_en === feature) ||
                 (i18n.language === "es" && f.feature_name_es === feature) ||
-                (i18n.language === "ca" && f.feature_name_ca === feature)
+                (i18n.language === "ca" && f.feature_name_ca === feature),
             );
             const feature2 = featuresValues2.find(
               (f) =>
                 (i18n.language === "en" && f.feature_name_en === feature) ||
                 (i18n.language === "es" && f.feature_name_es === feature) ||
-                (i18n.language === "ca" && f.feature_name_ca === feature)
+                (i18n.language === "ca" && f.feature_name_ca === feature),
             );
 
             return (
               <div key={feature} className="comparator-characteristics-row">
                 <div className="comparator-characteristics-cell">{feature}</div>
                 <div className="comparator-characteristics-cell">
-                  {feature1 ? feature1.value ?? "- - - -" : "- - - -"}
+                  {feature1 ? (feature1.value ?? "- - - -") : "- - - -"}
                 </div>
                 <div className="comparator-characteristics-cell">
-                  {feature2 ? feature2.value ?? "- - - -" : "- - - -"}
+                  {feature2 ? (feature2.value ?? "- - - -") : "- - - -"}
                 </div>
               </div>
             );
@@ -450,8 +442,7 @@ const ComparatorContent = () => {
         </div>
         <div
           id="comparator-add-title-container"
-          className="comparator-add-title-container"
-        >
+          className="comparator-add-title-container">
           <h3>{t("comparator.add_component")}</h3>
         </div>
         <div className="comparator-search-container">
@@ -475,8 +466,8 @@ const ComparatorContent = () => {
                   {i18n.language === "en"
                     ? category.categoryNameEn
                     : i18n.language === "es"
-                    ? category.categoryNameEs
-                    : category.categoryNameCa}
+                      ? category.categoryNameEs
+                      : category.categoryNameCa}
                 </option>
               ))}
             </select>
@@ -525,8 +516,7 @@ const ComparatorContent = () => {
         <div className="comparator-button-search-container">
           <button
             className="comparator-button-search"
-            onClick={handleSearchClick}
-          >
+            onClick={handleSearchClick}>
             <h6>{t("comparator.button_search")}</h6>
           </button>
         </div>

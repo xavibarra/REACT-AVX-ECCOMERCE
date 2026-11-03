@@ -77,7 +77,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
         setUser(userData.user);
 
         const response = await fetch(
-          `http://localhost:3000/users/getById/${userId}`
+          `https://node-avx-eccomerce-0utq.onrender.com/users/getById/${userId}`,
         );
         const profileData = await response.json();
 
@@ -150,13 +150,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       const userId = data.user.id;
       const productId = product.id;
 
-      const response = await fetch("http://localhost:3000/users/add-to-cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://node-avx-eccomerce-0utq.onrender.com/users/add-to-cart",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, productId }),
         },
-        body: JSON.stringify({ userId, productId }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Failed to add product to cart");
@@ -187,13 +190,16 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
       const productId = product.id;
 
       if (!isLiked) {
-        const response = await fetch("http://localhost:3000/users/add-like", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          "https://node-avx-eccomerce-0utq.onrender.com/users/add-like",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userId, productId }),
           },
-          body: JSON.stringify({ userId, productId }),
-        });
+        );
 
         if (!response.ok) {
           throw new Error("Failed to add product to likes");
@@ -204,14 +210,14 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
         console.log(result.message);
       } else {
         const response = await fetch(
-          "http://localhost:3000/users/remove-like",
+          "https://node-avx-eccomerce-0utq.onrender.com/users/remove-like",
           {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ userId, productId }),
-          }
+          },
         );
 
         if (!response.ok) {
@@ -225,7 +231,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
     } catch (error) {
       console.error(
         "Error adding/removing product to/from likes:",
-        error.message
+        error.message,
       );
     }
   };
@@ -233,8 +239,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
   return (
     <div
       className="flip-card bg-transparent perspective-1000 font-sans cursor-pointer"
-      onClick={handleCardClick}
-    >
+      onClick={handleCardClick}>
       <div className="flip-card-inner relative w-full h-full text-center transition-transform duration-500">
         <div className="flip-card-front absolute flex flex-col w-full h-full bg-white shadow-md">
           {product.offer && <span className="card-offer-span"></span>}
@@ -271,8 +276,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
               className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
               onClick={(event) => {
                 handleAddToCartClick(event);
-              }}
-            >
+              }}>
               <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-300 ease-in-out">
                 {(product.price * (1 - product.discount / 100)).toFixed(2)}€
               </span>
@@ -282,8 +286,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
               className="favIcon"
               onClick={(event) => {
                 handleLikeClick(event);
-              }}
-            >
+              }}>
               {isLiked ? <FaHeart /> : <FaRegHeart />}
             </div>
           </div>
@@ -294,8 +297,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
               {i18n.language === "en"
                 ? product.categories?.category_description_en
                 : i18n.language === "es"
-                ? product.categories?.category_description_es
-                : product.categories?.category_description_ca}
+                  ? product.categories?.category_description_es
+                  : product.categories?.category_description_ca}
             </p>
           </div>
 
@@ -306,8 +309,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             </div>
             <div
               className="overflow-y-auto hide-scrollbar relative cities"
-              id="store-list"
-            >
+              id="store-list">
               <p className="card-city list-none my-1 text-left mx-2 flex items-center">
                 {formatCityList()}.
               </p>
@@ -317,8 +319,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
             <div className="bottomCard">
               <button
                 className="card-button relative text-white p-1 mx-2 my-2 rounded flex justify-center items-center cursor-pointer"
-                onClick={handleAddToCartClick}
-              >
+                onClick={handleAddToCartClick}>
                 <span className="tooltip absolute top-0 text-xs text-white p-1 rounded shadow opacity-0 pointer-events-none transition-all duration-100 ease-in-out">
                   {(product.price * (1 - product.discount / 100)).toFixed(2)}€
                 </span>
@@ -328,8 +329,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ product }) => {
                 className="favIcon"
                 onClick={(event) => {
                   handleLikeClick(event);
-                }}
-              >
+                }}>
                 {isLiked ? <FaHeart /> : <FaRegHeart />}
               </div>
             </div>

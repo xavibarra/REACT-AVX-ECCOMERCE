@@ -21,7 +21,9 @@ function CartCarousel({ productIds }: CartCarouselProps) {
 
   useEffect(() => {
     const fetchProductById = async (id: string): Promise<Product> => {
-      const response = await fetch(`http://localhost:3000/products/${id}`);
+      const response = await fetch(
+        `https://node-avx-eccomerce-0utq.onrender.com/products/${id}`,
+      );
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
@@ -32,7 +34,7 @@ function CartCarousel({ productIds }: CartCarouselProps) {
     const fetchProducts = async () => {
       try {
         const productsData = await Promise.all(
-          productIds.map((id) => fetchProductById(id))
+          productIds.map((id) => fetchProductById(id)),
         );
         setProducts(productsData);
       } catch (error) {
@@ -80,8 +82,7 @@ function CartCarousel({ productIds }: CartCarouselProps) {
         <div className="carouselInner">
           <div
             className="carouselPage"
-            style={{ transform: `translateX(-${currentPage * 100}%)` }}
-          >
+            style={{ transform: `translateX(-${currentPage * 100}%)` }}>
             {products.map((product) => (
               <div className="carouselItem" key={product.id}>
                 <FlipCard product={product} />

@@ -23,7 +23,7 @@ import { supabaseClient } from "../utils/supabaseClient";
 
 const supabase = createClient(
   "https://dtchhmivnblzqzsmodfa.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0Y2hobWl2bmJsenF6c21vZGZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU4MTI5NTQsImV4cCI6MjAzMTM4ODk1NH0.mGFqzugUYSJ393JWZiG5KQDIPyXA5YvB-Bxc3Bvr-9k"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0Y2hobWl2bmJsenF6c21vZGZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU4MTI5NTQsImV4cCI6MjAzMTM4ODk1NH0.mGFqzugUYSJ393JWZiG5KQDIPyXA5YvB-Bxc3Bvr-9k",
 );
 
 const ProductPage = () => {
@@ -63,7 +63,7 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/products/${productId}`
+          `https://node-avx-eccomerce-0utq.onrender.com/products/${productId}`,
         );
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
@@ -90,7 +90,7 @@ const ProductPage = () => {
   const fetchFeaturesValues = async (productId: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/values/features/${productId}`
+        `https://node-avx-eccomerce-0utq.onrender.com/values/features/${productId}`,
       );
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -109,7 +109,7 @@ const ProductPage = () => {
   const fetchCategory = async (categoryId: number) => {
     try {
       const response = await fetch(`
-        http://localhost:3000/categories/${categoryId}`);
+        https://node-avx-eccomerce-0utq.onrender.com/categories/${categoryId}`);
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
@@ -130,7 +130,7 @@ const ProductPage = () => {
   const fetchReviews = async (productId: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/reviews/findReviewsByProductId/${productId}`
+        `https://node-avx-eccomerce-0utq.onrender.com/reviews/findReviewsByProductId/${productId}`,
       );
       if (response.status === 404) {
         setReviews([]);
@@ -155,7 +155,7 @@ const ProductPage = () => {
   const fetchUser = async (userId: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/users/getById/${userId}`
+        `https://node-avx-eccomerce-0utq.onrender.com/users/getById/${userId}`,
       );
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -184,19 +184,19 @@ const ProductPage = () => {
       // Actualizar visualmente el número de likes antes de enviar la solicitud
       setReviews((prevReviews) =>
         prevReviews.map((r) =>
-          r.id === reviewIdNum ? { ...r, likes: r.likes + 1 } : r
-        )
+          r.id === reviewIdNum ? { ...r, likes: r.likes + 1 } : r,
+        ),
       );
 
       const response = await fetch(
-        `http://localhost:3000/reviews/updateLikes/${reviewId}`,
+        `https://node-avx-eccomerce-0utq.onrender.com/reviews/updateLikes/${reviewId}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ incrementBy: 1 }), // Increment likes by 1
-        }
+        },
       );
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -204,7 +204,7 @@ const ProductPage = () => {
       const updatedReview: Review = await response.json();
       // Actualizar la lista de reviews con el review actualizado (opcional)
       setReviews((prevReviews) =>
-        prevReviews.map((r) => (r.id === updatedReview.id ? updatedReview : r))
+        prevReviews.map((r) => (r.id === updatedReview.id ? updatedReview : r)),
       );
     } catch (error) {
       console.error(`Error liking review with ID ${reviewId}:`, error);
@@ -225,7 +225,7 @@ const ProductPage = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/reviews/createReview`,
+        `https://node-avx-eccomerce-0utq.onrender.com/reviews/createReview`,
         {
           method: "POST",
           headers: {
@@ -238,7 +238,7 @@ const ProductPage = () => {
             review: userReview,
             likes: 0,
           }),
-        }
+        },
       );
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -342,8 +342,8 @@ const ProductPage = () => {
                   i18n.language === "en"
                     ? featureValue.feature_name_en
                     : i18n.language === "es"
-                    ? featureValue.feature_name_es
-                    : featureValue.feature_name_ca;
+                      ? featureValue.feature_name_es
+                      : featureValue.feature_name_ca;
 
                 return (
                   featureValue.value !== null && (
@@ -366,8 +366,8 @@ const ProductPage = () => {
               {i18n.language === "en"
                 ? product.categories?.category_description_en
                 : i18n.language === "es"
-                ? product.categories?.category_description_es
-                : product.categories?.category_description_ca}
+                  ? product.categories?.category_description_es
+                  : product.categories?.category_description_ca}
             </p>
           ) : (
             <Loading />
@@ -393,10 +393,9 @@ const ProductPage = () => {
                       style={{
                         width: `${calculatePercentage(
                           reviewCounts[star],
-                          totalReviews
+                          totalReviews,
                         )}%`,
-                      }}
-                    ></div>
+                      }}></div>
                   </div>
                   <span>{reviewCounts[star]}</span>
                 </div>
@@ -435,8 +434,7 @@ const ProductPage = () => {
                     <div>
                       <button
                         className="add-review-btn"
-                        onClick={() => handleLikeClick(review.id.toString())}
-                      >
+                        onClick={() => handleLikeClick(review.id.toString())}>
                         Like
                       </button>
                     </div>
