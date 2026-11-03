@@ -52,7 +52,7 @@ const Likes = () => {
       // Obtener los productos basados en los IDs de los likes
       const promises = likesItems.map(async (productId) => {
         const response = await fetch(
-          `http://localhost:3000/products/${productId}`
+          `https://node-avx-eccomerce-0utq.onrender.com/products/${productId}`,
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch product with ID ${productId}`);
@@ -69,7 +69,7 @@ const Likes = () => {
 
       // Actualizar estado con los nuevos productos cargados
       setUserLikes(
-        productsData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+        productsData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
       );
       setCurrentPage(page); // Actualizar la página actual
     } catch (error: unknown) {

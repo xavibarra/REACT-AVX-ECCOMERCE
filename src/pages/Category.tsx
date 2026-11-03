@@ -22,7 +22,7 @@ const Category = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [buttonBackExpanded, setButtonBackExpanded] = useState<boolean>(false);
   const [backFilterColor, setBackFilterColor] = useState<string>(
-    "rgba(253, 174, 55, 0.2)"
+    "rgba(253, 174, 55, 0.2)",
   );
   const [sortOrder, setSortOrder] = useState<string>("");
   const [activeSortOrder, setActiveSortOrder] = useState<string>(""); // Estado para rastrear el botón activo
@@ -35,7 +35,7 @@ const Category = () => {
   const [tempMinPrice, setTempMinPrice] = useState<number>(1);
   const [tempMaxPrice, setTempMaxPrice] = useState<number>(5000);
   const [tempSelectedBrands, setTempSelectedBrands] = useState<Set<string>>(
-    new Set()
+    new Set(),
   );
   const { t } = useTranslation("global");
 
@@ -58,7 +58,7 @@ const Category = () => {
       setError(null);
 
       const response = await fetch(
-        `http://localhost:3000/products/productsByCategory/${categoryId}?page=${page}&sort=${sort}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+        `https://node-avx-eccomerce-0utq.onrender.com/products/productsByCategory/${categoryId}?page=${page}&sort=${sort}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
       );
 
       if (!response.ok) {
@@ -68,7 +68,7 @@ const Category = () => {
 
       // Extraer marcas de los productos
       const extractedBrands = new Set(
-        data.map((product) => product.name.split(" ")[0])
+        data.map((product) => product.name.split(" ")[0]),
       );
       setBrands(extractedBrands);
 
@@ -82,7 +82,7 @@ const Category = () => {
       // Filtrar productos por marcas seleccionadas si hay alguna seleccionada
       const filteredData = selectedBrands.size
         ? data.filter((product) =>
-            selectedBrands.has(product.name.split(" ")[0])
+            selectedBrands.has(product.name.split(" ")[0]),
           )
         : data;
 
@@ -101,7 +101,7 @@ const Category = () => {
     const fetchCategoryName = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/categories/${categoryId}`
+          `https://node-avx-eccomerce-0utq.onrender.com/categories/${categoryId}`,
         );
 
         if (!response.ok) {
@@ -112,7 +112,7 @@ const Category = () => {
       } catch (error) {
         const err = error as Error;
         setError(
-          "Error al obtener el nombre de la categoría. Inténtelo de nuevo más tarde."
+          "Error al obtener el nombre de la categoría. Inténtelo de nuevo más tarde.",
         );
       }
     };
@@ -128,7 +128,7 @@ const Category = () => {
     setBackFilterColor((prevColor) =>
       prevColor === "rgba(253, 174, 55, 0.2)"
         ? "orange"
-        : "rgba(253, 174, 55, 0.2)"
+        : "rgba(253, 174, 55, 0.2)",
     );
   };
 
@@ -204,8 +204,7 @@ const Category = () => {
         <div className="backFilterContainer">
           <div
             className={`buttonBack ${buttonBackExpanded ? "expanded" : ""}`}
-            style={{ backgroundColor: backFilterColor }}
-          >
+            style={{ backgroundColor: backFilterColor }}>
             {buttonBackExpanded && (
               <div className="filterContainer">
                 <div className="priceFilter">
@@ -261,8 +260,7 @@ const Category = () => {
         </div>
         <button
           className={`buttonFilter ${buttonBackExpanded ? "expanded" : ""}`}
-          onClick={handleFilterButtonClick}
-        ></button>
+          onClick={handleFilterButtonClick}></button>
         {buttonBackExpanded && <div className="blueDiv"></div>}
       </div>
       <Navbar2 />
@@ -274,40 +272,34 @@ const Category = () => {
       <div className="filterOrder">
         <button
           onClick={() => handleSortOrderChange("lowestPrice")}
-          className={activeSortOrder === "lowestPrice" ? "active" : ""}
-        >
+          className={activeSortOrder === "lowestPrice" ? "active" : ""}>
           {t("category.order_lowest")}
         </button>
         <button
           onClick={() => handleSortOrderChange("highestPrice")}
-          className={activeSortOrder === "highestPrice" ? "active" : ""}
-        >
+          className={activeSortOrder === "highestPrice" ? "active" : ""}>
           {t("category.order_highest")}
         </button>
         <button
           onClick={() => handleSortOrderChange("bestRated")}
-          className={activeSortOrder === "bestRated" ? "active" : ""}
-        >
+          className={activeSortOrder === "bestRated" ? "active" : ""}>
           {t("category.order_rated")}
         </button>
         <button
           onClick={() => handleSortOrderChange("offers")}
-          className={activeSortOrder === "offers" ? "active" : ""}
-        >
+          className={activeSortOrder === "offers" ? "active" : ""}>
           {t("category.order_offers")}
         </button>
         <button
           onClick={() => handleSortOrderChange("name")}
-          className={activeSortOrder === "name" ? "active" : ""}
-        >
+          className={activeSortOrder === "name" ? "active" : ""}>
           {t("category.order_name")}
         </button>
       </div>
       <div
         className={`categoryProducts ${
           products.length === 0 ? "noProducts" : ""
-        }`}
-      >
+        }`}>
         {/* Mostrar productos de la página actual */}
         {products.length > 0 ? (
           products.map((product) => (

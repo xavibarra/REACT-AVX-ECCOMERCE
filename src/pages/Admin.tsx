@@ -56,7 +56,7 @@ const Admin: React.FC = () => {
   });
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
-    null
+    null,
   );
   const [featureValues, setFeatureValues] = useState<Feature[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,13 +73,13 @@ const Admin: React.FC = () => {
 
   useEffect(() => {
     const filteredProducts = products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     if (selectedCategoryId) {
       setProductsFiltered(
         filteredProducts.filter(
-          (product) => product.category_id === selectedCategoryId
-        )
+          (product) => product.category_id === selectedCategoryId,
+        ),
       );
     } else {
       setProductsFiltered(filteredProducts);
@@ -88,7 +88,9 @@ const Admin: React.FC = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3000/products");
+      const response = await fetch(
+        "https://node-avx-eccomerce-0utq.onrender.com/products",
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -101,7 +103,9 @@ const Admin: React.FC = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://localhost:3000/categories");
+      const response = await fetch(
+        "https://node-avx-eccomerce-0utq.onrender.com/categories",
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -123,18 +127,18 @@ const Admin: React.FC = () => {
 
   const handleUpdateProduct = async (
     productId: number,
-    newData: Partial<Product>
+    newData: Partial<Product>,
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/products/${productId}`,
+        `https://node-avx-eccomerce-0utq.onrender.com/products/${productId}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(newData),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -150,7 +154,7 @@ const Admin: React.FC = () => {
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    field: keyof Product
+    field: keyof Product,
   ) => {
     const value =
       event.target.type === "checkbox"
@@ -165,10 +169,10 @@ const Admin: React.FC = () => {
   const handleDeleteProduct = async (productId: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/products/${productId}`,
+        `https://node-avx-eccomerce-0utq.onrender.com/products/${productId}`,
         {
           method: "DELETE",
-        }
+        },
       );
 
       if (!response.ok) {
@@ -194,13 +198,16 @@ const Admin: React.FC = () => {
       };
 
       // Agregar el producto mediante una solicitud POST
-      const response = await fetch("http://localhost:3000/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://node-avx-eccomerce-0utq.onrender.com/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(productData),
         },
-        body: JSON.stringify(productData),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -234,7 +241,7 @@ const Admin: React.FC = () => {
   };
 
   const handleCategoryChange = async (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const categoryId = parseInt(event.target.value);
     setSelectedCategoryId(categoryId);
@@ -259,7 +266,7 @@ const Admin: React.FC = () => {
   const fetchFeatureValues = async (categoryId: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/values/${categoryId}`
+        `https://node-avx-eccomerce-0utq.onrender.com/values/${categoryId}`,
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -467,7 +474,7 @@ const Admin: React.FC = () => {
             {productsFiltered
               .slice(
                 (currentPage - 1) * productsPerPage,
-                currentPage * productsPerPage
+                currentPage * productsPerPage,
               )
               .map((product) => (
                 <tr key={product.id}>
@@ -648,16 +655,14 @@ const Admin: React.FC = () => {
                           })
                         }>
                         <IoIosSave />
-
                       </button>
                     ) : (
                       <button onClick={() => handleEditProduct(product.id)}>
                         <FaEdit />
-
                       </button>
                     )}
                     <button onClick={() => handleDeleteProduct(product.id)}>
-                    <FaTrash />
+                      <FaTrash />
                     </button>
                   </td>
                 </tr>

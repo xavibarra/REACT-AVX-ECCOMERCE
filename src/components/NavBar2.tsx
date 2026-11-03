@@ -47,9 +47,9 @@ function Navbar2() {
     checkUser();
     if (searchTerm) {
       fetch(
-        `http://localhost:3000/products/search/${encodeURIComponent(
-          searchTerm
-        )}`
+        `https://node-avx-eccomerce-0utq.onrender.com/products/search/${encodeURIComponent(
+          searchTerm,
+        )}`,
       )
         .then((response) => response.json())
         .then((data) => {

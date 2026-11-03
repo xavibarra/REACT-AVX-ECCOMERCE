@@ -51,7 +51,7 @@ const Cart = () => {
         // Obtener datos de productos basados en los IDs del carrito
         const promises = Object.keys(itemCounts).map(async (productId) => {
           const response = await fetch(
-            `http://localhost:3000/products/${productId}`
+            `https://node-avx-eccomerce-0utq.onrender.com/products/${productId}`,
           );
           if (!response.ok) {
             throw new Error(`Failed to fetch product with ID ${productId}`);
@@ -134,13 +134,13 @@ const Cart = () => {
 
       // Llamar a la API para vaciar el carrito
       const response = await fetch(
-        `http://localhost:3000/users/empty-cart/${userId}`,
+        `https://node-avx-eccomerce-0utq.onrender.com/users/empty-cart/${userId}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -195,7 +195,7 @@ const Cart = () => {
       // Actualizar el carrito localmente
       const newCart = [...userCart];
       const localProductIndex = newCart.findIndex(
-        (product) => product.id === productId
+        (product) => product.id === productId,
       );
       if (localProductIndex !== -1) {
         if (newCart[localProductIndex].quantity > 1) {
@@ -240,16 +240,14 @@ const Cart = () => {
               userCart.length === 0
                 ? "cart-empty-cart-container"
                 : "cart-empty-cart-container-hidden"
-            }
-          >
+            }>
             <h5>{t("cart.title")}</h5>
             <FiShoppingCart className="cart-icon-cart" />
           </div>
           <div
             className={
               userCart.length === 0 ? "cart-items-hidden" : "cart-items"
-            }
-          >
+            }>
             {userCart.map((product, index) => (
               <ProductCard
                 key={index}
@@ -260,8 +258,7 @@ const Cart = () => {
             <div
               className={
                 userCart.length === 0 ? "cart-actions-hidden" : "cart-actions"
-              }
-            >
+              }>
               <button onClick={goToCategories}>
                 <p>{t("cart.button_keep")}</p>
               </button>

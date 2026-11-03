@@ -14,7 +14,7 @@ function HighlightedOffers() {
   useEffect(() => {
     const fetchOfferProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/products/offer");
+        const response = await fetch("https://node-avx-eccomerce-0utq.onrender.com/products/offer");
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
@@ -76,7 +76,9 @@ function HighlightedOffers() {
   useEffect(() => {
     const fetchOfferProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/products/offer");
+        const response = await fetch(
+          "https://node-avx-eccomerce-0utq.onrender.com/products/offer",
+        );
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }

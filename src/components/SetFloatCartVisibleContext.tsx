@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, FC, useEffect } from 'react';
+import { createContext, useState, ReactNode, FC, useEffect } from "react";
 import { supabaseClient } from "../utils/supabaseClient";
 
 interface Product {
@@ -18,7 +18,9 @@ interface FloatCartContextType {
   fetchCart: () => Promise<void>;
 }
 
-export const FloatCartContext = createContext<FloatCartContextType | undefined>(undefined);
+export const FloatCartContext = createContext<FloatCartContextType | undefined>(
+  undefined,
+);
 
 interface FloatCartProviderProps {
   children: ReactNode;
@@ -34,7 +36,8 @@ export const FloatCartProvider: FC<FloatCartProviderProps> = ({ children }) => {
 
   const fetchCart = async (): Promise<void> => {
     try {
-      const { data: userData, error: userError } = await supabaseClient.auth.getUser();
+      const { data: userData, error: userError } =
+        await supabaseClient.auth.getUser();
       if (userError) {
         throw new Error(userError.message);
       }
@@ -53,14 +56,17 @@ export const FloatCartProvider: FC<FloatCartProviderProps> = ({ children }) => {
 
       const cartItems: string[] = profileData.cart || [];
 
-      const itemCounts = cartItems.reduce<{ [key: string]: number }>((acc, productId) => {
-        acc[productId] = (acc[productId] || 0) + 1;
-        return acc;
-      }, {});
+      const itemCounts = cartItems.reduce<{ [key: string]: number }>(
+        (acc, productId) => {
+          acc[productId] = (acc[productId] || 0) + 1;
+          return acc;
+        },
+        {},
+      );
 
       const promises = Object.keys(itemCounts).map(async (productId) => {
         const response = await fetch(
-          `http://localhost:3000/products/${productId}`
+          `https://node-avx-eccomerce-0utq.onrender.com/products/${productId}`,
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch product with ID ${productId}`);
@@ -71,14 +77,35 @@ export const FloatCartProvider: FC<FloatCartProviderProps> = ({ children }) => {
         const deliveryDate = new Date();
         deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
 
-        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const daysOfWeek = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
         const formattedDeliveryDate = `Receive it on ${daysOfWeek[deliveryDate.getDay()]}, ${months[deliveryDate.getMonth()]} ${deliveryDate.getDate()}`;
 
         return {
           ...productData,
           deliveryDate: formattedDeliveryDate,
-          quantity: itemCounts[productId]
+          quantity: itemCounts[productId],
         };
       });
 
@@ -94,7 +121,8 @@ export const FloatCartProvider: FC<FloatCartProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <FloatCartContext.Provider value={{ isFloatCartVisible, setFloatCartVisible, userCart, fetchCart }}>
+    <FloatCartContext.Provider
+      value={{ isFloatCartVisible, setFloatCartVisible, userCart, fetchCart }}>
       {children}
     </FloatCartContext.Provider>
   );
