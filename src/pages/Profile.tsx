@@ -17,14 +17,26 @@ const Profile = () => {
 
   useEffect(() => {
     async function getUserData() {
-      const { data, error } = await supabaseClient.auth.getUser();
+      const {
+        data: { session },
+        error,
+      } = await supabaseClient.auth.getSession();
+
       if (error) {
-        console.error("Error fetching user data:", error);
-      } else {
-        setUser(data.user);
-        console.log(data); // Asegúrate de que los datos del usuario se establecen correctamente
-        getUserInfo(data.user.id); // Llama a getUserInfo con el ID del usuario
+        console.error("Error fetching session:", error);
+        return;
       }
+
+      if (!session?.user) {
+        setUser(null);
+        navigate("/login");
+        return;
+      }
+
+      const currentUser = session.user;
+
+      setUser(currentUser);
+      getUserInfo(currentUser.id);
     }
 
     async function getUserInfo(userId) {
@@ -32,19 +44,20 @@ const Profile = () => {
         const response = await fetch(
           `https://node-avx-eccomerce-0utq.onrender.com/users/getById/${userId}`,
         );
+
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
+
         const userData = await response.json();
         setUserInfo(userData);
-        console.log(userData.likes);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     }
 
     getUserData();
-  }, []);
+  }, [navigate]);
 
   async function singOutUser() {
     await supabaseClient.auth.signOut();

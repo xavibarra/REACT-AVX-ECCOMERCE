@@ -22,8 +22,8 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import { supabaseClient } from "../utils/supabaseClient";
 
 const supabase = createClient(
-  "https://dtchhmivnblzqzsmodfa.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0Y2hobWl2bmJsenF6c21vZGZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU4MTI5NTQsImV4cCI6MjAzMTM4ODk1NH0.mGFqzugUYSJ393JWZiG5KQDIPyXA5YvB-Bxc3Bvr-9k",
+  "https://jsqxokafxiujbnflycuz.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzcXhva2FmeGl1amJuZmx5Y3V6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNzk2MzEsImV4cCI6MjEwNDk1NTYzMX0.NInfUOtMl7p-cJ2itemAK4IsM563jdQu2-fCdoYSxk8",
 );
 
 const ProductPage = () => {
